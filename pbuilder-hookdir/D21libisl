@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -ex
+apt-get install --assume-yes --no-install-recommends lsb-release
+DIST=$(lsb_release -sc)
+ID=$(lsb_release -is| awk '{print tolower($0)}')
+if test "$DIST" = "precise" -o "$DIST" = "quantal" -o "$DIST" = "wheezy"; then
+	echo "deb http://clang.ecranbleu.org/apt/$ID-$DIST $DIST main" > /etc/apt/sources.list.d/libisl.list
+	echo "APT::Get::AllowUnauthenticated yes;" > /etc/apt/apt.conf.d/99auth
+	apt-get update
+fi

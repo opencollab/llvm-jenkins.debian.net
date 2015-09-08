@@ -1,0 +1,12 @@
+#!/bin/sh
+if test ! -d /tmp/buildd/*/reports/; then
+	echo "No code coverage report found; skipping"
+	exit 0;
+else
+	cmd='cd /tmp/buildd/*/reports/'
+	echo $cmd
+	eval $cmd
+	cmd='tar czvf /tmp/buildd/codecoverage.tar.gz coverage/'
+	echo $cmd
+	eval $cmd
+fi

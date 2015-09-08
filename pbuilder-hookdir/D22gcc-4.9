@@ -1,0 +1,11 @@
+#!/bin/sh
+set -ex
+apt-get install --assume-yes --no-install-recommends lsb-release
+DIST=$(lsb_release -sc)
+ID=$(lsb_release -is| awk '{print tolower($0)}')
+if test "$DIST" = "precise" -o "$DIST" = "trusty"  -o "$DIST" = "wheezyWONTWORK"; then
+    echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu $DIST main" > /etc/apt/sources.list.d/gcc.list
+    echo "APT::Get::AllowUnauthenticated yes;" > /etc/apt/apt.conf.d/99auth
+    apt-get update
+    apt-get install --assume-yes --no-install-recommends gcc-4.9 g++-4.9
+fi

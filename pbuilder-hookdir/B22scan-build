@@ -1,0 +1,15 @@
+#!/bin/sh
+if test ! -d /tmp/scan-build-*/; then
+	echo "No scan-build report found; skipping"
+	exit 0;
+else
+	cmd='cd /tmp/'
+	echo $cmd
+	eval $cmd
+	cmd="mv scan-build-* scan-build"
+	echo $cmd
+	eval $cmd
+	cmd='tar czvf /tmp/buildd/scan-build.tar.gz scan-build/'
+	echo $cmd
+	eval $cmd
+fi

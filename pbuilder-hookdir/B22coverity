@@ -1,0 +1,19 @@
+#!/bin/sh
+if test ! -d /tmp/buildd/*/cov-int/; then
+	echo "No coverity report found; skipping"
+	exit 0;
+else
+	cmd='cd /tmp/buildd/*/'
+	echo $cmd
+	eval $cmd
+	cmd='ls -al cov-int/; tar czvf /tmp/buildd/llvm.tgz cov-int/'
+	echo $cmd
+	eval $cmd
+	apt-get install --yes --no-install-recommends --force-yes curl
+	curl --form project=llvm --form token=UPDATETHAT \
+	    --form email=sylvestre@debian.org \
+	    --form file=@/tmp/buildd/llvm.tgz \
+	    --form version=$(date "+%Y-%m-%d_%H-%M-%S") \
+	    --form description="LLVM Toolchain" \
+	    http://scan5.coverity.com/cgi-bin/upload.py
+fi

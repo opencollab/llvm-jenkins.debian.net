@@ -1,0 +1,29 @@
+#!/bin/sh
+
+set -ex
+
+set -- /tmp/apt-*/
+TMPAPT="$1"
+
+if [ -d "$TMPAPT" ]; then
+  UPDATE_PKGLIST=0
+
+  if ls "${TMPAPT}"*.list 2>/dev/null; then
+    echo "Using additional apt sources:"
+    cat "${TMPAPT}"*.list
+
+    cp "${TMPAPT}"*.list /etc/apt/sources.list.d/
+
+    UPDATE_PKGLIST=1
+  fi
+
+  if [ -e "${TMPAPT}/keyring.gpg" ]; then
+    echo "Using keyring for additional apt sources."
+
+    cp "${TMPAPT}/keyring.gpg" /etc/apt/trusted.gpg.d
+  fi
+
+  if [ "$UPDATE_PKGLIST" = 1 ]; then
+    /usr/bin/apt-get update
+  fi
+fi
