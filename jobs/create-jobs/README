@@ -1,0 +1,25 @@
+sh create-new-job.sh unstable 3.5 release_35 3.5
+
+update the perm
+
+To create a new debian or ubuntu release, just copy the previous release
+and update values
+don't forget to chown
+~/.pbuilderrc
+and scp it to korcula & irill4
+
+/usr/share/debootstrap/scripts
+ln -s  trusty utopic
+
+
+ mkdir /srv/repository/utopic
+chown jenkins. utopic/
+
+
+To add a new trunk ubuntu release, copy the previous release
+
+cp -R llvm-toolchain-utopic-binaries llvm-toolchain-vivid-binaries && cp -R llvm-toolchain-utopic-source llvm-toolchain-vivid-source
+rm -rf llvm-toolchain-vivid-source/builds/ llvm-toolchain-vivid-source/lastS*
+sed -i -e "s|utopic|vivid|g" $(grep utopic llvm-toolchain-vivid-*/*|cut -d: -f1|sort -u)
+chown -R jenkins. *vivid*
+
