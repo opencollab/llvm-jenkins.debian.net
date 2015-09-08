@@ -1,0 +1,9 @@
+jobs/llvm-toolchain-*/lastStable
+jobs/llvm-toolchain-*/workspace/
+jobs/llvm-toolchain-*/builds/
+jobs/llvm-toolchain-*/disk-usage.xml
+jobs/llvm-toolchain-*/lastSuccessful
+jobs/llvm-toolchain-*/nextBuildNumber
+jobs/llvm-toolchain-*/svnexternals.txt
+jobs/llvm-toolchain-*/configurations/
+jobs/llvm-toolchain-*/scm-polling.log
