@@ -1,0 +1,354 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson>
+  <disabledAdministrativeMonitors/>
+  <version>1.532.2</version>
+  <numExecutors>1</numExecutors>
+  <mode>NORMAL</mode>
+  <useSecurity>true</useSecurity>
+  <authorizationStrategy class="hudson.security.FullControlOnceLoggedInAuthorizationStrategy"/>
+  <securityRealm class="hudson.security.HudsonPrivateSecurityRealm">
+    <disableSignup>true</disableSignup>
+    <enableCaptcha>false</enableCaptcha>
+  </securityRealm>
+  <disableRememberMe>false</disableRememberMe>
+  <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
+  <workspaceDir>${ITEM_ROOTDIR}/workspace</workspaceDir>
+  <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
+  <systemMessage>See &lt;a href=&quot;http://llvm.org/apt/&quot;&gt;llvm.org/apt/&lt;/a&gt; and &lt;a href=&quot;http://blog.llvm.org/2013/04/llvm-debianubuntu-nightly-packages.html&quot;&gt;the blog post&lt;/a&gt;&#xd;
+&lt;br /&gt;Contact: sylvestre@debian.org</systemMessage>
+  <markupFormatter class="hudson.markup.RawHtmlMarkupFormatter" plugin="antisamy-markup-formatter@1.3">
+    <disableSyntaxHighlighting>false</disableSyntaxHighlighting>
+  </markupFormatter>
+  <jdks/>
+  <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
+  <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
+  <clouds/>
+  <slaves>
+    <slave>
+      <name>korcula</name>
+      <description></description>
+      <remoteFS>/home/jenkins/</remoteFS>
+      <numExecutors>1</numExecutors>
+      <mode>NORMAL</mode>
+      <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
+      <launcher class="hudson.plugins.sshslaves.SSHLauncher" plugin="ssh-slaves@1.9">
+        <host>korcula.inria.fr</host>
+        <port>22</port>
+        <credentialsId>05ed3a47-53ae-41c7-a2b4-41e22a4b8270</credentialsId>
+      </launcher>
+      <label></label>
+      <nodeProperties/>
+    </slave>
+    <slave>
+      <name>irill3.inria.fr</name>
+      <description></description>
+      <remoteFS>/home/jenkins/</remoteFS>
+      <numExecutors>3</numExecutors>
+      <mode>NORMAL</mode>
+      <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
+      <launcher class="hudson.plugins.sshslaves.SSHLauncher" plugin="ssh-slaves@1.9">
+        <host>irill3.inria.fr</host>
+        <port>22</port>
+        <credentialsId>05ed3a47-53ae-41c7-a2b4-41e22a4b8270</credentialsId>
+        <maxNumRetries>0</maxNumRetries>
+        <retryWaitTime>0</retryWaitTime>
+      </launcher>
+      <label></label>
+      <nodeProperties/>
+      <userId>sylvestre</userId>
+    </slave>
+  </slaves>
+  <quietPeriod>5</quietPeriod>
+  <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
+  <views>
+    <hudson.model.AllView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Tous</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+    </hudson.model.AllView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Debian unstable</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>llvm-toolchain-binaries</string>
+        <string>llvm-toolchain-codecoverage-binaries</string>
+        <string>llvm-toolchain-coverity-binaries</string>
+        <string>llvm-toolchain-scan-build-binaries</string>
+        <string>llvm-toolchain-source</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Ubuntu Precise</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*precise.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Google branches</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*google.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Cmake</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*cmake.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Ubuntu Trusty</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>llvm-toolchain-trusty-3.5-binaries</string>
+        <string>llvm-toolchain-trusty-3.5-source</string>
+        <string>llvm-toolchain-trusty-3.5-source-trigger</string>
+        <string>llvm-toolchain-trusty-3.6-binaries</string>
+        <string>llvm-toolchain-trusty-3.6-source</string>
+        <string>llvm-toolchain-trusty-3.6-source-trigger</string>
+        <string>llvm-toolchain-trusty-binaries</string>
+        <string>llvm-toolchain-trusty-source</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Ubuntu Utopic</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>llvm-toolchain-utopic-3.6-binaries</string>
+        <string>llvm-toolchain-utopic-3.6-source</string>
+        <string>llvm-toolchain-utopic-3.6-source-trigger</string>
+        <string>llvm-toolchain-utopic-binaries</string>
+        <string>llvm-toolchain-utopic-source</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>3.6</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>llvm-toolchain-3.6-binaries</string>
+        <string>llvm-toolchain-3.6-source</string>
+        <string>llvm-toolchain-3.6-source-trigger</string>
+        <string>llvm-toolchain-jessie-3.6-binaries</string>
+        <string>llvm-toolchain-jessie-3.6-source</string>
+        <string>llvm-toolchain-jessie-3.6-source-trigger</string>
+        <string>llvm-toolchain-precise-3.6-binaries</string>
+        <string>llvm-toolchain-precise-3.6-source</string>
+        <string>llvm-toolchain-precise-3.6-source-trigger</string>
+        <string>llvm-toolchain-trusty-3.6-binaries</string>
+        <string>llvm-toolchain-trusty-3.6-source</string>
+        <string>llvm-toolchain-trusty-3.6-source-trigger</string>
+        <string>llvm-toolchain-utopic-3.6-binaries</string>
+        <string>llvm-toolchain-utopic-3.6-source</string>
+        <string>llvm-toolchain-utopic-3.6-source-trigger</string>
+        <string>llvm-toolchain-vivid-3.6-binaries</string>
+        <string>llvm-toolchain-vivid-3.6-source</string>
+        <string>llvm-toolchain-vivid-3.6-source-trigger</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Debian Jessie</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>llvm-toolchain-jessie-3.6-binaries</string>
+        <string>llvm-toolchain-jessie-3.6-source</string>
+        <string>llvm-toolchain-jessie-3.6-source-trigger</string>
+        <string>llvm-toolchain-jessie-binaries</string>
+        <string>llvm-toolchain-jessie-source</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Ubuntu Vivid</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>llvm-toolchain-vivid-3.6-binaries</string>
+        <string>llvm-toolchain-vivid-3.6-source</string>
+        <string>llvm-toolchain-vivid-3.6-source-trigger</string>
+        <string>llvm-toolchain-vivid-binaries</string>
+        <string>llvm-toolchain-vivid-source</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>3.7</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>llvm-toolchain-3.7-binaries</string>
+        <string>llvm-toolchain-3.7-source</string>
+        <string>llvm-toolchain-3.7-source-trigger</string>
+        <string>llvm-toolchain-jessie-3.7-binaries</string>
+        <string>llvm-toolchain-jessie-3.7-source</string>
+        <string>llvm-toolchain-jessie-3.7-source-trigger</string>
+        <string>llvm-toolchain-precise-3.7-binaries</string>
+        <string>llvm-toolchain-precise-3.7-source</string>
+        <string>llvm-toolchain-precise-3.7-source-trigger</string>
+        <string>llvm-toolchain-trusty-3.7-binaries</string>
+        <string>llvm-toolchain-trusty-3.7-source</string>
+        <string>llvm-toolchain-trusty-3.7-source-trigger</string>
+        <string>llvm-toolchain-utopic-3.7-binaries</string>
+        <string>llvm-toolchain-utopic-3.7-source</string>
+        <string>llvm-toolchain-utopic-3.7-source-trigger</string>
+        <string>llvm-toolchain-vivid-3.7-binaries</string>
+        <string>llvm-toolchain-vivid-3.7-source</string>
+        <string>llvm-toolchain-vivid-3.7-source-trigger</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+  </views>
+  <primaryView>Tous</primaryView>
+  <slaveAgentPort>0</slaveAgentPort>
+  <label></label>
+  <nodeProperties/>
+  <globalNodeProperties/>
+</hudson>
