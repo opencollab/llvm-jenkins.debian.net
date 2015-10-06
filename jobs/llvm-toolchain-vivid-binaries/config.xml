@@ -38,6 +38,7 @@ http://llvm-jenkins.debian.net/job/llvm-toolchain-vivid-binaries/architecture=i3
       <name>label</name>
       <values>
         <string>irill3.inria.fr</string>
+        <string>korcula</string>
       </values>
     </hudson.matrix.LabelAxis>
   </axes>
