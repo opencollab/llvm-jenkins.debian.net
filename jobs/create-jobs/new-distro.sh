@@ -1,18 +1,25 @@
 #!/bin/bash
+
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
 NAME="wily"
 
 VERSIONS=( 3.6 3.7 snapshot)
 for v in "${VERSIONS[@]}"
 do
-	echo $v
-	v_without_dot=$(echo $v|sed -e "s|\.||g")
-	echo $v_without_dot
-echo	sh create-new-job.sh $NAME $v release_$v_without_dot $v
-# sh create-new-job.sh unstable 3.5 release_35 3.5
+        echo $v
+        v_without_dot=$(echo $v|sed -e "s|\.||g")
+        sh create-new-job.sh $NAME $v release_$v_without_dot $v
+        chown -R jenkins. llvm-toolchain-*
 done
 
 cd /usr/share/debootstrap/scripts
 ln -s trusty $NAME
 
-mkdir /srv/repository/$NAME
-chown jenkins. $NAME
+mkdir  -p /srv/repository/$NAME
+chown jenkins. /srv/repository/$NAME
+
+emacs ~/.pbuilderrc
+
