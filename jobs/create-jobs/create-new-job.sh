@@ -1,6 +1,7 @@
 #!/bin/bash
 # sh create-new-job.sh precise 3.5 release_35 3.5
 # sh create-new-job.sh unstable 3.5 release_35 3.5
+# sh create-new-job.sh waly snapshot snapshot snapshot
 
 if test $# -ne 4; then
     echo "Syntax:"
