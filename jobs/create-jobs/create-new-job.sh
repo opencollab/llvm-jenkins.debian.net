@@ -22,7 +22,13 @@ SVNBRANCHDEBIAN=$4
 if test "$DISTRIBUTION" = unstable; then
 	JOBNAME="llvm-toolchain-$NAME"
 else
-	JOBNAME="llvm-toolchain-$DISTRIBUTION-$NAME"
+	if test "$NAME" = snapshot; then
+		# For a new ubuntu distro
+                JOBNAME="llvm-toolchain-$DISTRIBUTION"
+		SVNBRANCHUPSTREAM=""
+	else
+		JOBNAME="llvm-toolchain-$DISTRIBUTION-$NAME"
+	fi
 fi
 JOBNAME_SOURCE=$JOBNAME"-source"
 JOBNAME_SOURCE_TEMPLATE="source-template.xml"
