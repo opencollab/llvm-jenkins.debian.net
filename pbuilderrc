@@ -10,7 +10,7 @@ DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME
     "unstable" "testing" "stable")
 
 # List of Ubuntu suites. Update these when needed.
-UBUNTU_SUITES=("wily" "vivid", "utopic", "saucy" "trusty" "saucy" "raring" "quantal" "precise" "oneiric" "natty" "lucid" "hardy")
+UBUNTU_SUITES=("wily", "vivid", "utopic" "trusty" "saucy" "raring" "quantal" "precise" "oneiric" "natty" "lucid" "hardy")
 
 # Mirrors to use. Update these to your preferred mirror.
 DEBIAN_MIRROR="ftp.fr.debian.org"
@@ -74,7 +74,9 @@ else
     echo "Unknown distribution: $DIST"
     exit 1
 fi
-
+if test ! -d /opt/cov-analysis/; then
+   mkdir -p /opt/cov-analysis/
+fi
 #export CCACHE_DIR="/var/cache/pbuilder/ccache"
 BINDMOUNTS="/opt/cov-analysis/ ${CCACHE_DIR}"
 export PATH="/usr/lib/ccache:${PATH}"
