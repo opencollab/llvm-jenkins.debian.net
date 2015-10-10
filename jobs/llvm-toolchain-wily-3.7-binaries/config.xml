@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<matrix-project>
+<matrix-project plugin="matrix-project@1.4">
   <actions/>
   <description></description>
   <logRotator class="hudson.tasks.LogRotator">
@@ -9,13 +9,15 @@
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.28"/>
+  </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers class="vector"/>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <axes>
     <hudson.matrix.TextAxis>
@@ -33,11 +35,12 @@
     </hudson.matrix.TextAxis>
   </axes>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.26">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.36.1">
       <project>llvm-toolchain-wily-3.7-source</project>
       <filter>*</filter>
       <target></target>
       <selector class="hudson.plugins.copyartifact.TriggeredBuildSelector"/>
+      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
       <command>export DEB_BUILD_OPTIONS=&quot;parallel=7&quot;
@@ -57,10 +60,12 @@ export REPOS=llvm-toolchain-wily-3.7
   <publishers>
     <hudson.tasks.ArtifactArchiver>
       <artifacts>*.gz,*.bz2,*.xz,*.deb,*.dsc,*.changes,lintian.txt</artifacts>
-      <latestOnly>false</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
+      <onlyIfSuccessful>false</onlyIfSuccessful>
+      <fingerprint>false</fingerprint>
+      <defaultExcludes>true</defaultExcludes>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.junit.JUnitResultArchiver>
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.9">
       <testResults>**/lintian.xml</testResults>
       <keepLongStdio>false</keepLongStdio>
       <testDataPublishers/>
@@ -76,14 +81,14 @@ export REPOS=llvm-toolchain-wily-3.7
       <markBuildUnstable>false</markBuildUnstable>
       <executeOn>MATRIX</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
-    <hudson.tasks.Mailer plugin="mailer@1.4">
+    <hudson.tasks.Mailer plugin="mailer@1.15">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.12">
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.28">
       <deleteDirs>false</deleteDirs>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
   </buildWrappers>
@@ -94,6 +99,7 @@ export REPOS=llvm-toolchain-wily-3.7
       <name>SUCCESS</name>
       <ordinal>0</ordinal>
       <color>BLUE</color>
+      <completeBuild>true</completeBuild>
     </touchStoneResultCondition>
   </executionStrategy>
 </matrix-project>
