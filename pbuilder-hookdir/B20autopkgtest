@@ -8,6 +8,11 @@ if [ "${ADT:-}" = "skip" ]; then
   exit 0
 fi
 
+if [ "${ADT:-}" = "external" ]; then
+  echo "Skipping internal autopkgtests as external testing was requested via ADT variable"
+  exit 0
+fi
+
 set -ex
 
 cd /tmp/buildd/*/debian/..
@@ -22,24 +27,49 @@ if [ ! -f debian/files ]; then
   exit 1
 fi
 
-set -- /tmp/adt-*/
-TMPADT="$1"
-if [ ! -d "$TMPADT" ]; then
-  echo "Didn't find any /tmp/adt-*/ directory. It should have been created before invoking cowbuilder." >&2
-  ls -la /tmp
-  exit 1
+if [ -n "${ADT_OPTIONS:-}" ] ; then
+  echo "*** Using provided ADT_OPTIONS $ADT_OPTIONS ***"
+fi
+
+# try to launch adt-run in a new PID namespace so several testsuites can run
+# in parallel, newpid exists in jessie and newer only though
+unset newpid_name
+if ! apt-cache policy newpid | grep -q 'newpid:' ; then
+ echo "The newpid package doesn't seem to be available, not considering for installation"
+else
+  echo "The newpid package seems to be available, considering for installation"
+  newpid_name='newpid'
 fi
 
 # runner/adt-run uses apt-utils's apt-ftparchive and
 # pbuilder's pbuilder-satisfydepends-classic
-apt-get install -y autopkgtest apt-utils pbuilder
+apt-get install -y autopkgtest apt-utils pbuilder $newpid_name
 
-mkdir -p "$TMPADT/out"
-binaries=$(awk '/\.deb / { print "--binary ../" $1 }' debian/files)
+# since autopkgtest 3.16 the --tmp-dir option is gone, make sure
+# we've --output-dir available though before using it
+if adt-run --help | grep -q -- --output-dir 2>/dev/null ; then
+  OUTPUT_OPTION='--output-dir'
+else
+  OUTPUT_OPTION='--tmp-dir'
+fi
 
-adt-run --tmp-dir $TMPADT/out --summary $TMPADT/summary \
-  $binaries --built-tree $PWD --- adt-virt-null || EXIT=$?
+mkdir -p /tmp/buildd/autopkgtest.out
 
-# 4 means some test failed, exit 0 here and let adtsummary_tap report the failure
-[ ${EXIT:-0} = 4 ] && exit 0
-exit ${EXIT:-0}
+$newpid_name adt-run \
+  ${OUTPUT_OPTION} /tmp/buildd/autopkgtest.out \
+  --summary /tmp/buildd/autopkgtest.summary \
+  /tmp/buildd/*.deb \
+  --built-tree "${PWD}" \
+  ${ADT_OPTIONS:-} --- adt-virt-null || EXIT=$?
+
+# collect autopkgtest output in a single file so pbuilder automatically copies it
+tar acf /tmp/buildd/autopkgtest.tar.gz /tmp/buildd/autopkgtest.out
+
+case ${EXIT:-0} in
+  2|4|6|8) # let adtsummary_tap report the failure
+    exit 0
+    ;;
+  *)
+    exit ${EXIT:-0}
+    ;;
+esac
