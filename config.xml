@@ -43,7 +43,7 @@
       <name>irill3.inria.fr</name>
       <description></description>
       <remoteFS>/home/jenkins/</remoteFS>
-      <numExecutors>3</numExecutors>
+      <numExecutors>1</numExecutors>
       <mode>NORMAL</mode>
       <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
       <launcher class="hudson.plugins.sshslaves.SSHLauncher" plugin="ssh-slaves@1.9">
@@ -191,32 +191,6 @@
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>Ubuntu Utopic</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-        <string>llvm-toolchain-utopic-3.6-binaries</string>
-        <string>llvm-toolchain-utopic-3.6-source</string>
-        <string>llvm-toolchain-utopic-3.6-source-trigger</string>
-        <string>llvm-toolchain-utopic-binaries</string>
-        <string>llvm-toolchain-utopic-source</string>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
       <name>3.6</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
@@ -241,6 +215,9 @@
         <string>llvm-toolchain-vivid-3.6-binaries</string>
         <string>llvm-toolchain-vivid-3.6-source</string>
         <string>llvm-toolchain-vivid-3.6-source-trigger</string>
+        <string>llvm-toolchain-wily-3.6-binaries</string>
+        <string>llvm-toolchain-wily-3.6-source</string>
+        <string>llvm-toolchain-wily-3.6-source-trigger</string>
       </jobNames>
       <jobFilters/>
       <columns>
@@ -291,6 +268,9 @@
         <string>llvm-toolchain-vivid-3.6-binaries</string>
         <string>llvm-toolchain-vivid-3.6-source</string>
         <string>llvm-toolchain-vivid-3.6-source-trigger</string>
+        <string>llvm-toolchain-vivid-3.7-binaries</string>
+        <string>llvm-toolchain-vivid-3.7-source</string>
+        <string>llvm-toolchain-vivid-3.7-source-trigger</string>
         <string>llvm-toolchain-vivid-binaries</string>
         <string>llvm-toolchain-vivid-source</string>
       </jobNames>
@@ -332,6 +312,38 @@
         <string>llvm-toolchain-vivid-3.7-binaries</string>
         <string>llvm-toolchain-vivid-3.7-source</string>
         <string>llvm-toolchain-vivid-3.7-source-trigger</string>
+        <string>llvm-toolchain-wily-3.7-binaries</string>
+        <string>llvm-toolchain-wily-3.7-source</string>
+        <string>llvm-toolchain-wily-3.7-source-trigger</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Ubuntu Wily</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>llvm-toolchain-wily-3.6-binaries</string>
+        <string>llvm-toolchain-wily-3.6-source</string>
+        <string>llvm-toolchain-wily-3.6-source-trigger</string>
+        <string>llvm-toolchain-wily-3.7-binaries</string>
+        <string>llvm-toolchain-wily-3.7-source</string>
+        <string>llvm-toolchain-wily-3.7-source-trigger</string>
+        <string>llvm-toolchain-wily-binaries</string>
+        <string>llvm-toolchain-wily-source</string>
       </jobNames>
       <jobFilters/>
       <columns>
