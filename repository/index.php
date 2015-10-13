@@ -130,6 +130,19 @@ deb http://llvm.org/apt/vivid/ llvm-toolchain-vivid-<?=$qualificationBranch?> ma
 deb-src http://llvm.org/apt/vivid/ llvm-toolchain-vivid-<?=$qualificationBranch?> main
 </pre>
 
+Willy (15.10) - <small>Last update : <?=getLastUpdate("wily");?> / Revision: <?=getLastRevision("wily")?></small>
+<pre>
+deb http://llvm.org/apt/wily/ llvm-toolchain-wily main
+deb-src http://llvm.org/apt/wily/ llvm-toolchain-wily main
+# <?=$stableBranch?>
+deb http://llvm.org/apt/wily/ llvm-toolchain-wily-<?=$stableBranch?> main
+deb-src http://llvm.org/apt/wily/ llvm-toolchain-wily-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+deb http://llvm.org/apt/wily/ llvm-toolchain-wily-<?=$qualificationBranch?> main
+deb-src http://llvm.org/apt/wily/ llvm-toolchain-wily-<?=$qualificationBranch?> main
+</pre>
+
+
 </div>
 
 <div class="rel_section">Install<br />(stable branch)</div>
@@ -235,10 +248,13 @@ With the Jenkins instance, several reports are produced:
 <!--
 Changes:
 
-- Oct 6th:
+- Oct 6th 2015:
   * Debian wheezy removed
   * Ubuntu Utopic removed (EOF)
   * Fix a typo in vivid
+
+- Oct 13th 2015:
+  * Add wily
 
 -->
 <p style="font-size: smaller;">
