@@ -62,10 +62,10 @@ Jessie (Debian stable) - <small>Last update : <?=getLastUpdate("jessie");?> / Re
 <pre>
 deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie main
 deb-src http://llvm.org/apt/jessie/ llvm-toolchain-jessie main
-# <?=$stableBranch?>
+# <?=$stableBranch?> 
 deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-<?=$stableBranch?> main
 deb-src http://llvm.org/apt/jessie/ llvm-toolchain-jessie-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
+# <?=$qualificationBranch?> 
 deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-<?=$qualificationBranch?> main
 deb-src http://llvm.org/apt/jessie/ llvm-toolchain-jessie-<?=$qualificationBranch?> main
 </pre>
@@ -75,10 +75,10 @@ sid (unstable) - <small>Last update : <?=getLastUpdate("unstable");?> / Revision
 <pre>
 deb http://llvm.org/apt/unstable/ llvm-toolchain main
 deb-src http://llvm.org/apt/unstable/ llvm-toolchain main
-# <?=$stableBranch?>
+# <?=$stableBranch?> 
 deb http://llvm.org/apt/unstable/ llvm-toolchain-<?=$stableBranch?> main
 deb-src http://llvm.org/apt/unstable/ llvm-toolchain-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
+# <?=$qualificationBranch?> 
 deb http://llvm.org/apt/unstable/ llvm-toolchain-<?=$qualificationBranch?> main
 deb-src http://llvm.org/apt/unstable/ llvm-toolchain-<?=$qualificationBranch?> main
 
@@ -94,10 +94,10 @@ Quantal, Raring, Saucy and Utopic are no longer supported by Ubuntu.<br />
 <pre>
 deb http://llvm.org/apt/precise/ llvm-toolchain-precise main
 deb-src http://llvm.org/apt/precise/ llvm-toolchain-precise main
-# <?=$stableBranch?>
+# <?=$stableBranch?> 
 deb http://llvm.org/apt/precise/ llvm-toolchain-precise-<?=$stableBranch?> main
 deb-src http://llvm.org/apt/precise/ llvm-toolchain-precise-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
+# <?=$qualificationBranch?> 
 deb http://llvm.org/apt/precise/ llvm-toolchain-precise-<?=$qualificationBranch?> main
 deb-src http://llvm.org/apt/precise/ llvm-toolchain-precise-<?=$qualificationBranch?> main
 
@@ -109,10 +109,10 @@ deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu precise main
 <pre>
 deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty main
 deb-src http://llvm.org/apt/trusty/ llvm-toolchain-trusty main
-# <?=$stableBranch?>
+# <?=$stableBranch?> 
 deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-<?=$stableBranch?> main
 deb-src http://llvm.org/apt/trusty/ llvm-toolchain-trusty-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
+# <?=$qualificationBranch?> 
 deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-<?=$qualificationBranch?> main
 deb-src http://llvm.org/apt/trusty/ llvm-toolchain-trusty-<?=$qualificationBranch?> main
 
@@ -122,10 +122,10 @@ deb-src http://llvm.org/apt/trusty/ llvm-toolchain-trusty-<?=$qualificationBranc
 <pre>
 deb http://llvm.org/apt/vivid/ llvm-toolchain-vivid main
 deb-src http://llvm.org/apt/vivid/ llvm-toolchain-vivid main
-# <?=$stableBranch?>
+# <?=$stableBranch?> 
 deb http://llvm.org/apt/vivid/ llvm-toolchain-vivid-<?=$stableBranch?> main
 deb-src http://llvm.org/apt/vivid/ llvm-toolchain-vivid-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
+# <?=$qualificationBranch?> 
 deb http://llvm.org/apt/vivid/ llvm-toolchain-vivid-<?=$qualificationBranch?> main
 deb-src http://llvm.org/apt/vivid/ llvm-toolchain-vivid-<?=$qualificationBranch?> main
 </pre>
@@ -134,10 +134,10 @@ Willy (15.10) - <small>Last update : <?=getLastUpdate("wily");?> / Revision: <?=
 <pre>
 deb http://llvm.org/apt/wily/ llvm-toolchain-wily main
 deb-src http://llvm.org/apt/wily/ llvm-toolchain-wily main
-# <?=$stableBranch?>
+# <?=$stableBranch?> 
 deb http://llvm.org/apt/wily/ llvm-toolchain-wily-<?=$stableBranch?> main
 deb-src http://llvm.org/apt/wily/ llvm-toolchain-wily-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
+# <?=$qualificationBranch?> 
 deb http://llvm.org/apt/wily/ llvm-toolchain-wily-<?=$qualificationBranch?> main
 deb-src http://llvm.org/apt/wily/ llvm-toolchain-wily-<?=$qualificationBranch?> main
 </pre>
