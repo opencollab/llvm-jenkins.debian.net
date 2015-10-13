@@ -1,0 +1,62 @@
+/* http://people.debian.org/~igloo/status.css */
+
+body {
+    color: black;
+    background-color: white;
+}
+
+a:link {
+    color: blue;
+}
+
+#footer {
+    border-top: 2px solid #d70751;
+    padding: 0.5em;
+}
+
+.tiny {
+    font-size: 60%;
+}
+
+div.alert {
+    color: red;
+}
+
+.compact {
+    text-align: center;
+}
+
+.status a:link {
+    color: inherit;
+}
+
+.status-installed,
+.status-uploaded {
+    background-color: #7fffd4;
+}
+
+.status-building,
+.status-notforus,
+.status-depwait,
+.status-needsbuild,
+.status-givenback,
+.status-skipped,
+.status-bduninstallable {
+    color: olive;
+}
+
+.status-needsbuild {
+    background-color: #eeeedd;
+}
+
+.status-failed,
+.status-buildattempted,
+.status-maybefailed {
+    background-color: #ffc0cb;
+}
+
+.status-maybesuccessful,
+.status-built {
+    color: green;
+}
+

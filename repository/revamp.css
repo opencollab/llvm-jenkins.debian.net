@@ -1,0 +1,197 @@
+/*
+ * Debian PTS stylesheet.
+ * by:
+ * - Dan Callahan <dan.callahan@gmail.com>
+ * - Enrico Tassi <gareuselesinge@debian.org>
+ * - Stefano Zacchiroli <zack@debian.org>
+ */
+
+/* --- Whole-Page --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "DejaVu Sans", "Bitstream Vera Sans", sans-serif; /*Prefer Free Fonts*/
+    background: #fff url('debian.png') no-repeat 10px 7px;
+    color: #000;
+    font-size: 100%;
+}
+
+a:link    { color: #0755d7; text-decoration: underline; }
+a:visited { color: #0755d7; text-decoration: underline; }
+a:hover   { color: #032a6b; text-decoration: underline; }
+a:active  { color: #f00;    text-decoration: underline; }
+a img { border: none; }
+
+.containertable { width: 100%; }
+
+/* --- Header --- */
+body > form { /* "Jump to package" */
+    margin: 0.3em;
+    font-size: 80%;
+    padding: 0.5em;
+    border: 1px solid #aaa;
+    background-color: #dfdfdf;
+}
+#quickforms { /* "Jump to package" */
+    margin: 0.3em;
+    font-size: 80%;
+    padding: 0.5em;
+    border: 1px solid #aaa;
+    background-color: #dfdfdf;
+}
+
+
+h1#title {
+    margin: 0 0 0 0;
+    padding: 20px 0 0 280px;
+    font-size: 100%;
+/*    min-height: 60px;
+    height: auto !important; /* "Min-Height Fast Hack" */
+/*    height: 60px; */
+}
+
+h1#title a {
+    color: black;
+    text-decoration: none;
+}
+
+h2#subtitle {
+    margin: -1em 0 1em 0;
+    padding: 20px 0 0 280px;
+    font-size: 80%;
+/*    min-height: 60px;
+    height: auto !important;
+    height: 60px;*/
+}
+
+/* --- Content Pane --- */
+div#body {
+    clear: both;
+    border-top: 2px solid #d70751;
+/*    background: #dfdfdf;*/
+    padding: 1em 1em; /* 0em 0em */
+}
+
+table.containertable {
+  padding: 0.5em 0.5em;
+}
+
+td.containercell { padding: 0.5em; }
+
+table.lefttable {
+    border-collapse: collapse;
+    border: 1px solid #999;
+    background: #fff;
+    width: 100%;
+}
+
+table.righttable {
+    border-collapse: collapse;
+    border: 1px solid #999;
+    background: #fff;
+    width: 100%;
+}
+
+td.titlecell {
+    padding: 0.2em 0.2em 0.1em 0.2em;
+    font-weight: bold;
+    font-size: 100%;
+    background: #d70751;
+    color: #fff;
+    border-top: 3px solid #999;
+    border-bottom: 1px solid #999;
+}
+td.titlecell a:link    { color: #ffffff; background: #d70751; text-decoration: underline; }
+td.titlecell a:visited { color: #ffffff; background: #d70751; text-decoration: underline; }
+td.titlecell a:hover   { color: #fff200; background: #d70751; text-decoration: underline; }
+td.titlecell a:active  { color: #295598; background: #d70751; text-decoration: underline; }
+
+th.titlecell {
+    padding: 0.2em 0.2em 0.1em 0.2em;
+    font-weight: bold;
+    font-size: 100%;
+    background: #d70751;
+    color: #fff;
+    border-top: 3px solid #999;
+    border-bottom: 1px solid #999;
+}
+th.titlecell a:link    { color: #ffffff; background: #d70751; text-decoration: underline; }
+th.titlecell a:visited { color: #ffffff; background: #d70751; text-decoration: underline; }
+th.titlecell a:hover   { color: #fff200; background: #d70751; text-decoration: underline; }
+th.titlecell a:active  { color: #295598; background: #d70751; text-decoration: underline; }
+
+
+
+td.labelcell {
+    font-weight: bold;
+    padding: 0.2em 0 0.2em 0.3em;
+    border-bottom: 1px dotted #999;
+}
+td.labelcell:after {
+    content: ":";
+}
+
+td.contentcell {
+    padding: 0.2em 0.3em 0.2em 0;
+    border-bottom: 1px dotted #999;
+}
+
+/* - Edge Tables - */
+tr#bugs_rc { font-size: 90%; }
+tr#bugs_in { font-size: 90%; }
+tr#bugs_mw { font-size: 90%; }
+tr#bugs_fp { font-size: 90%; }
+span.indented { padding-left: 1.5em; }
+
+td > form { margin: 0.4em 0 0.4em 0.4em; padding: 0; } /* PTS subscribe */
+
+td#src_files ul { padding: 0; }
+td#src_files li {
+    display: inline;
+    font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+}
+
+#news-list {
+    max-height: 30em;
+    overflow: auto;
+}
+
+/* - Central Table - */
+#problems { background: #0755d7; color: #ffffff; }
+#todo { background: #0755d7; color: #ffffff; }
+    
+/* --- Footer --- */
+div#body > hr { display: none; }
+
+div.footer {
+    padding: 1em 0;
+    background-color: #fff;
+    text-align: center;
+    border-top: 2px solid #d70751;
+    margin: 0 0 0 0;
+    border-bottom: 0;
+}
+
+tt { font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace; }
+
+/* --- Misc --- */
+form > p { margin: 0; padding: 0; }
+
+a.feedlink { /* Little orange RSS button */
+    background: #f60                  !important;
+    color: #fff                       !important;
+    border: 1px solid                 !important;
+    border-color: #fc9 #630 #330 #f96 !important;
+    padding: 0 3px                    !important;
+    font-weight: bold                 !important;
+    font-size: 70%                    !important;
+    text-decoration: none             !important;
+    vertical-align: 0.2em             !important;
+    /* Without !important, inherets from td.titlecell a:* */
+}
+
+ul { list-style-type: disc; }
+li { margin-top: 0.2em; }
+/*li { margin-top: 0.4em; }
+td > ul { padding-left: 1em; }
+a.none { color: #000 !important; text-decoration: none !important; }*/

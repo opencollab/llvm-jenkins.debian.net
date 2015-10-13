@@ -1,0 +1,106 @@
+a:visited {
+    color: #3030ff;
+    text-decoration: none;
+}
+
+a:link {
+    color: #3030ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul.logs {
+    list-style-type:disc;
+    padding-left: 1em;
+}
+
+.buttons {
+    vertical-align: middle;
+}
+
+pre.failure {
+    background-color: #eee;
+    white-space: pre-wrap;
+    padding: 5px;
+    width: 650px;
+    border: 1px solid #999999;
+}
+
+span.red {
+    color: red;
+}
+
+span.green {
+    color: green;
+}
+
+span.orange {
+    color: orange;
+}
+
+/* data table */
+
+.data {
+    border-collapse: collapse;
+    border: 1px solid #999999;
+    font-size: 90%;
+    margin: 1em 0em 1em 0em;
+}
+
+table.data th.title {
+    background: #fffff1;
+    border: 1px solid #999999;
+    color: #333333;
+    font-weight: bold;
+    font-size: 120%;
+    padding: 0.5em 1em 0.5em 1em;
+    white-space: nowrap;
+}
+
+.data th {
+    background: #ffffcc;
+    border: 1px solid #999999;
+    font-weight: bold;
+    color: #545325;
+    padding: 0em 0.2em 0em 0.2em;
+}
+
+.data td {
+    border: 1px solid #999999;
+    padding: 0.1em 0.5em;
+    /*text-align: left;*/
+    vertical-align: top;
+}
+
+.data tr.odd {
+  background: #f9f9f1;
+}
+
+.data td.crit {
+  background: #c15757;
+}
+
+.data td.warn {
+  background: #cfcf00;
+}
+
+.data td.good {
+  background: #00ff00;
+}
+
+.data tr.even {
+  background: #ffffff;
+}
+
+.data tr:hover { background: #f4f4f4; }
+
+.logs td.empty {
+  border-top: 0px;
+}
+
+.logs td {
+  border-bottom: 0px;
+}
