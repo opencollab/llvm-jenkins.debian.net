@@ -63,7 +63,7 @@ if $(echo ${DEBIAN_SUITES[@]} | grep -q $DIST); then
     MIRRORSITE="http://$DEBIAN_MIRROR/debian/"
     COMPONENTS="main contrib non-free"
     if $(echo "$STABLE_CODENAME stable" | grep -q $DIST); then
-        EXTRAPACKAGES="$EXTRAPACKAGES debian-backports-keyring"
+        EXTRAPACKAGES="$EXTRAPACKAGES"
         OTHERMIRROR="$OTHERMIRROR | deb http://www.backports.org/debian $STABLE_BACKPORTS_SUITE $COMPONENTS"
     fi
 elif $(echo ${UBUNTU_SUITES[@]} | grep -q $DIST); then
