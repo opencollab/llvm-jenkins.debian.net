@@ -1,0 +1,10 @@
+#!/bin/sh
+set -ex
+apt-get install --assume-yes --no-install-recommends lsb-release
+DIST=$(lsb_release -sc)
+ID=$(lsb_release -is| awk '{print tolower($0)}')
+if test "$DIST" != "unstable"; then
+    echo "deb http://llvm.org/apt/$DIST/ llvm-toolchain-$DIST-3.6 main" > /etc/apt/sources.list.d/llvm.list
+    echo "APT::Get::AllowUnauthenticated yes;" > /etc/apt/apt.conf.d/99auth
+    apt-get update
+fi
