@@ -35,7 +35,7 @@
   </axes>
   <builders>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.36.1">
-      <project>llvm-defaults-source</project>
+      <project>llvm-defaults-@DISTRIBUTION@-source</project>
       <filter>*</filter>
       <target></target>
       <excludes></excludes>
