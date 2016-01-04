@@ -29,7 +29,7 @@
     <hudson.matrix.TextAxis>
       <name>distribution</name>
       <values>
-        <string>unstable</string>
+        <string>@DISTRIBUTION@</string>
       </values>
     </hudson.matrix.TextAxis>
   </axes>
