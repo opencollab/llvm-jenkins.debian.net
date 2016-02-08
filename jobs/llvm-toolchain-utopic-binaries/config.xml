@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<matrix-project plugin="matrix-project@1.4">
+<matrix-project plugin="matrix-project@1.6">
   <actions/>
   <description>i386 has been disabled because of a build issue with compiler-rt&#xd;
 http://llvm-jenkins.debian.net/job/llvm-toolchain-utopic-binaries/architecture=i386,distribution=utopic/710/console&#xd;
@@ -11,9 +11,7 @@ http://llvm-jenkins.debian.net/job/llvm-toolchain-utopic-binaries/architecture=i
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties>
-    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.25"/>
-  </properties>
+  <properties/>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>true</disabled>
@@ -36,7 +34,7 @@ http://llvm-jenkins.debian.net/job/llvm-toolchain-utopic-binaries/architecture=i
     </hudson.matrix.TextAxis>
   </axes>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.34">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.36.1">
       <project>llvm-toolchain-utopic-source</project>
       <filter>*</filter>
       <target></target>
@@ -69,7 +67,7 @@ export REPOS=llvm-toolchain-utopic
       <fingerprint>false</fingerprint>
       <defaultExcludes>true</defaultExcludes>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.4">
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.9">
       <testResults>**/lintian.xml</testResults>
       <keepLongStdio>false</keepLongStdio>
       <healthScaleFactor>1.0</healthScaleFactor>
@@ -93,7 +91,7 @@ export REPOS=llvm-toolchain-utopic
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.25">
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.28">
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>

@@ -9,9 +9,7 @@
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties>
-    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.28"/>
-  </properties>
+  <properties/>
   <scm class="hudson.scm.SubversionSCM" plugin="subversion@2.5.3">
     <locations>
       <hudson.scm.SubversionSCM_-ModuleLocation>
@@ -76,5 +74,9 @@ export DISTRIBUTION=wily
       </threshold>
     </hudson.tasks.BuildTrigger>
   </publishers>
-  <buildWrappers/>
+  <buildWrappers>
+    <org.jenkinsci.plugin.Diskcheck plugin="diskcheck@0.26">
+      <failOnError>true</failOnError>
+    </org.jenkinsci.plugin.Diskcheck>
+  </buildWrappers>
 </project>

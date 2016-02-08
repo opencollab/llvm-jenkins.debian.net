@@ -10,13 +10,11 @@ Built with cmake</description>
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties>
-    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.28"/>
-  </properties>
+  <properties/>
   <scm class="hudson.scm.SubversionSCM" plugin="subversion@2.5.3">
     <locations>
       <hudson.scm.SubversionSCM_-ModuleLocation>
-        <remote>svn://anonscm.debian.org/svn/pkg-llvm/llvm-toolchain/branches/snapshot</remote>
+        <remote>svn://anonscm.debian.org/svn/pkg-llvm/llvm-toolchain/branches/cmake</remote>
         <credentialsId></credentialsId>
         <local>source</local>
         <depthOption>infinity</depthOption>
@@ -48,10 +46,10 @@ Built with cmake</description>
       <command>rm -f ./* || true</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>echo &quot;Use cmake as a build system&quot;
-sed -i -e &quot;s|AUTOCONF_BUILD=yes|AUTOCONF_BUILD=no|&quot; source/debian/rules
-echo &quot;Add cmake as a new dependency&quot;
-sed -i -e &quot;s|Build-Depends:|Build-Depends: cmake,|&quot; source/debian/control
+      <command>#echo &quot;Use cmake as a build system&quot;
+#sed -i -e &quot;s|AUTOCONF_BUILD=yes|AUTOCONF_BUILD=no|&quot; source/debian/rules
+#echo &quot;Add cmake as a new dependency&quot;
+#sed -i -e &quot;s|Build-Depends:|Build-Depends: cmake,|&quot; source/debian/control
 export PRE_SOURCE_HOOK=source/debian/orig-tar.sh
 /usr/bin/generate-svn-snapshot
 </command>
@@ -86,5 +84,8 @@ export PRE_SOURCE_HOOK=source/debian/orig-tar.sh
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <org.jenkinsci.plugin.Diskcheck plugin="diskcheck@0.26">
+      <failOnError>true</failOnError>
+    </org.jenkinsci.plugin.Diskcheck>
   </buildWrappers>
 </project>

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <hudson>
   <disabledAdministrativeMonitors/>
-  <version>1.532.2</version>
+  <version>1.609.3</version>
   <numExecutors>1</numExecutors>
   <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>
@@ -23,41 +23,6 @@
   <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
   <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
   <clouds/>
-  <slaves>
-    <slave>
-      <name>korcula</name>
-      <description></description>
-      <remoteFS>/home/jenkins/</remoteFS>
-      <numExecutors>1</numExecutors>
-      <mode>NORMAL</mode>
-      <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
-      <launcher class="hudson.plugins.sshslaves.SSHLauncher" plugin="ssh-slaves@1.9">
-        <host>korcula.inria.fr</host>
-        <port>22</port>
-        <credentialsId>05ed3a47-53ae-41c7-a2b4-41e22a4b8270</credentialsId>
-      </launcher>
-      <label></label>
-      <nodeProperties/>
-    </slave>
-    <slave>
-      <name>irill3.inria.fr</name>
-      <description></description>
-      <remoteFS>/home/jenkins/</remoteFS>
-      <numExecutors>1</numExecutors>
-      <mode>NORMAL</mode>
-      <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
-      <launcher class="hudson.plugins.sshslaves.SSHLauncher" plugin="ssh-slaves@1.9">
-        <host>irill3.inria.fr</host>
-        <port>22</port>
-        <credentialsId>05ed3a47-53ae-41c7-a2b4-41e22a4b8270</credentialsId>
-        <maxNumRetries>0</maxNumRetries>
-        <retryWaitTime>0</retryWaitTime>
-      </launcher>
-      <label></label>
-      <nodeProperties/>
-      <userId>sylvestre</userId>
-    </slave>
-  </slaves>
   <quietPeriod>5</quietPeriod>
   <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
   <views>
@@ -76,6 +41,8 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>llvm-defaults-binaries</string>
+        <string>llvm-defaults-source</string>
         <string>llvm-toolchain-binaries</string>
         <string>llvm-toolchain-codecoverage-binaries</string>
         <string>llvm-toolchain-coverity-binaries</string>
@@ -102,6 +69,8 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
+        <string>llvm-defaults-precise-binaries</string>
+        <string>llvm-defaults-precise-source</string>
       </jobNames>
       <jobFilters/>
       <columns>
@@ -114,28 +83,6 @@
         <hudson.views.BuildButtonColumn/>
       </columns>
       <includeRegex>.*precise.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
-      <name>Google branches</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*google.*</includeRegex>
       <recurse>false</recurse>
     </listView>
     <listView>
@@ -168,6 +115,8 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>llvm-defaults-trusty-binaries</string>
+        <string>llvm-defaults-trusty-source</string>
         <string>llvm-toolchain-trusty-3.5-binaries</string>
         <string>llvm-toolchain-trusty-3.5-source</string>
         <string>llvm-toolchain-trusty-3.5-source-trigger</string>
@@ -239,6 +188,8 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>llvm-defaults-jessie-binaries</string>
+        <string>llvm-defaults-jessie-source</string>
         <string>llvm-toolchain-jessie-3.6-binaries</string>
         <string>llvm-toolchain-jessie-3.6-source</string>
         <string>llvm-toolchain-jessie-3.6-source-trigger</string>
@@ -265,6 +216,8 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>llvm-defaults-vivid-binaries</string>
+        <string>llvm-defaults-vivid-source</string>
         <string>llvm-toolchain-vivid-3.6-binaries</string>
         <string>llvm-toolchain-vivid-3.6-source</string>
         <string>llvm-toolchain-vivid-3.6-source-trigger</string>
@@ -336,6 +289,8 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>llvm-defaults-wily-binaries</string>
+        <string>llvm-defaults-wily-source</string>
         <string>llvm-toolchain-wily-3.6-binaries</string>
         <string>llvm-toolchain-wily-3.6-source</string>
         <string>llvm-toolchain-wily-3.6-source-trigger</string>
