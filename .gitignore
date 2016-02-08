@@ -7,6 +7,13 @@ jobs/llvm-toolchain-*/nextBuildNumber
 jobs/llvm-toolchain-*/svnexternals.txt
 jobs/llvm-toolchain-*/configurations/
 jobs/llvm-toolchain-*/scm-polling.log
+jobs/llvm-defaults-*/lastStable
+jobs/llvm-defaults-*/workspace/
+jobs/llvm-defaults-*/builds/
+jobs/llvm-defaults-*/disk-usage.xml
+jobs/llvm-defaults-*/lastSuccessful
+jobs/llvm-defaults-*/nextBuildNumber
+jobs/llvm-defaults-*/svnexternals.txt
 secrets/
 updates/
 userContent/
