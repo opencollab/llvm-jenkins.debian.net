@@ -10,7 +10,7 @@
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties/>
-  <scm class="hudson.scm.SubversionSCM" plugin="subversion@2.5.3">
+  <scm class="hudson.scm.SubversionSCM" plugin="subversion@2.5.7">
     <locations>
       <hudson.scm.SubversionSCM_-ModuleLocation>
         <remote>svn://anonscm.debian.org/svn/pkg-llvm/llvm-toolchain/branches/3.7</remote>
@@ -52,8 +52,9 @@ export DISTRIBUTION=unstable
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>true</fingerprint>
       <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.Mailer plugin="mailer@1.15">
+    <hudson.tasks.Mailer plugin="mailer@1.16">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
