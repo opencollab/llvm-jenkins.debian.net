@@ -64,7 +64,7 @@ if $(echo ${DEBIAN_SUITES[@]} | grep -q $DIST); then
     COMPONENTS="main"
     if $(echo "$STABLE_CODENAME stable" | grep -q $DIST); then
         EXTRAPACKAGES="$EXTRAPACKAGES"
-        OTHERMIRROR="$OTHERMIRROR | deb http://www.backports.org/debian $STABLE_BACKPORTS_SUITE $COMPONENTS"
+#        OTHERMIRROR="$OTHERMIRROR | deb http://www.backports.org/debian $STABLE_BACKPORTS_SUITE $COMPONENTS"
     fi
 elif $(echo ${UBUNTU_SUITES[@]} | grep -q $DIST); then
     # Ubuntu configuration
