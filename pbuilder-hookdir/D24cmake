@@ -4,7 +4,7 @@ cd /tmp/
 apt-get install --yes --no-install-recommends --force-yes curl
 DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
-if test "$DIST" = "precise" -o "$DIST" = "quantal" -o "$DIST" = "wheezy"; then
+if test "$DIST" = "precise" -o "$DIST" = "wily" -o "$DIST" = "wheezy"; then
 	curl -o cmake.tar.gz  https://cmake.org/files/v3.4/cmake-3.4.3-Linux-x86_64.tar.gz
 	tar zxvf cmake.tar.gz
 	mv cmake-* cmake
