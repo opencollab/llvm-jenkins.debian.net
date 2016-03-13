@@ -61,7 +61,7 @@ BUILDPLACE="/var/cache/pbuilder/build/"
 if $(echo ${DEBIAN_SUITES[@]} | grep -q $DIST); then
     # Debian configuration
     MIRRORSITE="http://$DEBIAN_MIRROR/debian/"
-    COMPONENTS="main contrib non-free"
+    COMPONENTS="main"
     if $(echo "$STABLE_CODENAME stable" | grep -q $DIST); then
         EXTRAPACKAGES="$EXTRAPACKAGES"
         OTHERMIRROR="$OTHERMIRROR | deb http://www.backports.org/debian $STABLE_BACKPORTS_SUITE $COMPONENTS"
