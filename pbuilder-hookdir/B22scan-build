@@ -1,5 +1,6 @@
 #!/bin/sh
-if test ! -d /tmp/scan-build-*/; then
+dir=`ls -1d /tmp/scan-build-*|tail -1`
+if test -z $dir; then
 	echo "No scan-build report found; skipping"
 	exit 0;
 else
@@ -9,7 +10,6 @@ else
         cmd='ls -al /tmp/scan-build*/*'
         echo $cmd
         eval $cmd
-	dir=`ls -1d scan-build-*|tail -1`
 	cmd="mv $dir scan-build"
 	echo $cmd
 	eval $cmd
