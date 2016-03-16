@@ -1,4 +1,5 @@
 #!/bin/sh
+echo "version 1"
 dir=`ls -1d /tmp/scan-build-*|tail -1`
 if test -z $dir; then
 	echo "No scan-build report found; skipping"
