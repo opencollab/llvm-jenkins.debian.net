@@ -8,8 +8,8 @@
       <strategy class="hudson.tasks.LogRotator">
         <daysToKeep>-1</daysToKeep>
         <numToKeep>3</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
+        <artifactDaysToKeep>1</artifactDaysToKeep>
+        <artifactNumToKeep>1</artifactNumToKeep>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
   </properties>
@@ -71,7 +71,7 @@ export REPOS=llvm-toolchain-3.7
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.10">
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.11">
       <testResults>**/lintian.xml</testResults>
       <keepLongStdio>false</keepLongStdio>
       <healthScaleFactor>1.0</healthScaleFactor>

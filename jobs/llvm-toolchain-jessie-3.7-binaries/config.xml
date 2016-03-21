@@ -2,14 +2,17 @@
 <matrix-project plugin="matrix-project@1.6">
   <actions/>
   <description></description>
-  <logRotator class="hudson.tasks.LogRotator">
-    <daysToKeep>-1</daysToKeep>
-    <numToKeep>3</numToKeep>
-    <artifactDaysToKeep>-1</artifactDaysToKeep>
-    <artifactNumToKeep>-1</artifactNumToKeep>
-  </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>-1</daysToKeep>
+        <numToKeep>3</numToKeep>
+        <artifactDaysToKeep>1</artifactDaysToKeep>
+        <artifactNumToKeep>1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+  </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
@@ -37,7 +40,9 @@
       <project>llvm-toolchain-jessie-3.7-source</project>
       <filter>*</filter>
       <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.TriggeredBuildSelector">
+        <upstreamFilterStrategy>UseGlobalSetting</upstreamFilterStrategy>
         <allowUpstreamDependencies>false</allowUpstreamDependencies>
       </selector>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
@@ -69,7 +74,7 @@ export REPOS=llvm-toolchain-jessie-3.7
     <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.11">
       <testResults>**/lintian.xml</testResults>
       <keepLongStdio>false</keepLongStdio>
-      <testDataPublishers/>
+      <healthScaleFactor>1.0</healthScaleFactor>
       <allowEmptyResults>false</allowEmptyResults>
     </hudson.tasks.junit.JUnitResultArchiver>
     <hudson.tasks.Mailer plugin="mailer@1.16">
