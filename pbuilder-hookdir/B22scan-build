@@ -12,7 +12,7 @@ else
         cmd='ls -al /tmp/scan-build*/*'
         echo $cmd
         eval $cmd
-	cmd="mv $dir scan-build"
+	cmd='mv $(ls -1d /tmp/scan-build-*|tail -1) scan-build'
 	echo $cmd
 	eval $cmd
 	cmd='tar czvf /tmp/buildd/scan-build.tar.gz scan-build/'
