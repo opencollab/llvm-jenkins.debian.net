@@ -5,7 +5,7 @@ apt-get install --yes --no-install-recommends --force-yes curl
 DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
 if test "$DIST" = "precise" -o "$DIST" = "trusty"; then
-	curl -o cmake.tar.gz  http://sylvestre.ledru.info/bordel/cmake-3.4.3-Linux-x86_64.tar.gz
+	curl -o cmake.tar.gz  http://sylvestre.ledru.info/bordel/cmake-3.4.3-Linux-$(uname -m).tar.gz
 	tar zxvf cmake.tar.gz
 	mv cmake-* cmake
 fi
