@@ -6,7 +6,7 @@ DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
 if test "$DIST" = "precise" -o "$DIST" = "trusty"; then
 	ARCH=$(uname -m)
-	if test "$ARCH" == "i686"; then
+	if test "$ARCH" = "i686"; then
 		ARCH="i386"
 	fi
 	curl -o cmake.tar.gz  http://sylvestre.ledru.info/bordel/cmake-3.4.3-Linux-$ARCH.tar.gz
