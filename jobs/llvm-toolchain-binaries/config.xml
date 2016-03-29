@@ -59,7 +59,7 @@ export REPOS=llvm-toolchain
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command># Commented, trying to do it when both are working.
-# /srv/repository/sync-to-llvm.sh $distribution
+/srv/repository/sync-to-llvm.sh $distribution
 </command>
     </hudson.tasks.Shell>
   </builders>

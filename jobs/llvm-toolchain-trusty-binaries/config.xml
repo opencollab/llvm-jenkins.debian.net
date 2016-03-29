@@ -25,6 +25,7 @@
       <name>architecture</name>
       <values>
         <string>amd64</string>
+        <string>i386</string>
       </values>
     </hudson.matrix.TextAxis>
     <hudson.matrix.TextAxis>
@@ -57,7 +58,7 @@ export REPOS=llvm-toolchain-trusty
 /usr/bin/lintian-junit-report *.dsc &gt; report/lintian.xml</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>#/srv/repository/sync-to-llvm.sh $distribution
+      <command>/srv/repository/sync-to-llvm.sh $distribution
 </command>
     </hudson.tasks.Shell>
   </builders>
