@@ -67,7 +67,7 @@ export OTHERMIRROR=&quot;deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ub
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>*.gz,*.bz2,*.xz,*.deb,*.dsc,*.changes,lintian.txt</artifacts>
+      <artifacts>*.dsc,*.changes,lintian.txt</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
