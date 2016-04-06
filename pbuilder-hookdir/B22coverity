@@ -10,7 +10,7 @@ else
 	echo $cmd
 	eval $cmd
 	apt-get install --yes --no-install-recommends --force-yes curl
-	curl --form project=llvm --form token=UPDATETHAT \
+	curl --form project=llvm --form token=whowXut2UU9x_pCB3pSbyw \
 	    --form email=sylvestre@debian.org \
 	    --form file=@/tmp/buildd/llvm.tgz \
 	    --form version=$(date "+%Y-%m-%d_%H-%M-%S") \
