@@ -1,19 +1,23 @@
 #!/bin/sh
-set -v -x
-echo "version 1"
-dir=`ls -1d /tmp/scan-build-*|tail -1`
-if test -z $dir; then
-	echo "No scan-build report found; skipping"
-	exit 0;
+
+# Delete the configure scan-build results
+dir_nb=$(ls -1d /tmp/scan-build-*|wc -l)
+if test $dir_nb -ne 1; then
+	dir=`ls -1d /tmp/scan-build-*|head -1`
+	rm -rf $dir
+fi
+
+if test ! -d /tmp/scan-build-*/; then
+       echo "No scan-build report found; skipping"
+       exit 0;
 else
-	cmd='cd /tmp/'
-	echo $cmd
-	eval $cmd
-        cmd='ls -al /tmp/scan-build*/*'
-        echo $cmd
-        eval $cmd
-	mv $(ls -1d /tmp/scan-build-*|tail -1) scan-build
-	cmd='tar czvf /tmp/buildd/scan-build.tar.gz scan-build/'
-	echo $cmd
-	eval $cmd
+       cmd='cd /tmp/'
+       echo $cmd
+       eval $cmd
+       cmd="mv scan-build-* scan-build"
+       echo $cmd
+       eval $cmd
+       cmd='tar czvf /tmp/buildd/scan-build.tar.gz scan-build/'
+       echo $cmd
+       eval $cmd
 fi
