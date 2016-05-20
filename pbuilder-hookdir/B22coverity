@@ -15,5 +15,5 @@ else
 	    --form file=@/tmp/buildd/llvm.tgz \
 	    --form version=$(date "+%Y-%m-%d_%H-%M-%S") \
 	    --form description="LLVM Toolchain" \
-	    http://scan5.coverity.com/cgi-bin/upload.py
+	    https://scan.coverity.com/builds?project=llvm
 fi
