@@ -9,7 +9,7 @@ else
 	cmd='ls -al cov-int/; tar czvf /tmp/buildd/llvm.tgz cov-int/'
 	echo $cmd
 	eval $cmd
-	apt-get install --yes --no-install-recommends --force-yes curl
+	apt-get install --yes --no-install-recommends --force-yes curl ca-certificates
 	curl --form project=llvm --form token=whowXut2UU9x_pCB3pSbyw \
 	    --form email=sylvestre@debian.org \
 	    --form file=@/tmp/buildd/llvm.tgz \
