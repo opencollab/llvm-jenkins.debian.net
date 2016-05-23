@@ -245,6 +245,59 @@ With the Jenkins instance, several reports are produced:
 <li><a href="https://scan.coverity.com/projects/llvm">Coverity reports</a></li>
 </ul>
 </div>
+
+<div class="rel_section">
+Building the latest nightly snapshot
+</div>
+
+<div class="rel_boxtext">
+<p>The latest nightly snapshot can be built on your own machine with the following steps. First, ensure you add to your apt.sources the <a href="http://llvm.org/apt">nightly repositories for your distribution</a>.</p>
+<p>Use apt-get to retrieve the sources of the llvm-toolchain-snapshot package,</p>
+<p class="www_code"> $ mkdir build/ &amp;&amp; cd build/ <br />
+ $ apt-get source llvm-toolchain-snapshot </p>
+<p>This should download all the original snapshot tarballs, and create a directory named llvm-toolchain-snapshot-3.9~svn270412. Depending on the last update of the jenkins nightly builder, the snapshot version number and svn release will vary.</p>
+<p>Then install the build dependencies,</p>
+<p class="www_code"> $ sudo apt-get build-dep llvm-toolchain-snapshot </p>
+<p>Once everything is ready, enter the directory and build the package,</p>
+<p class="www_code"> $ cd llvm-toolchain-snapshot-3.9~svn270412/ <br />
+ $ debuild -us -uc -b</p>
+</div>
+
+<div class="rel_section">
+Building a snapshot package by hand
+</div>
+
+<div class="rel_boxtext">
+<p>In some cases you may want to build a snapshot package manually. For example to debug the debian package scripts, or to build a package for a specific development branch. In that scenario, follow the following steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Checkout the llvm-toolchain source package.</p>
+<p>The source package is maintained in SVN, you can retrieve it using the svn checkout command,</p>
+<p class="www_code">$ svn co svn://anonscm.debian.org/svn/pkg-llvm/llvm-toolchain/</p></li>
+<li><p>Retrieve the latest snapshot and create original tarballs.</p>
+<p>From the branches/ directory run the orig-tar.sh script,</p>
+<p class="www_code">$ sh snapshot/debian/orig-tar.sh</p>
+<p>which will retrieve the latest version for each LLVM subproject (llvm, clang, lldb, etc.) from the main development SVN and repack it as a set of tarballs.</p></li>
+<li><p>Unpack the original tarballs and apply quilt debian patches.</p>
+<p>From the branches/ directory run the unpack.sh script,</p>
+<p class="www_code">$ sh unpack.sh</p>
+<p>which will unpack the source tree inside a new directory such as branches/llvm-toolchain-snapshot_3.9~svn268942. Depending on the current snapshot version number and svn release, the directory name will be different. Quilt patches will then be applied.</p></li>
+<li><p>Build the binary packages using,</p>
+<p class="www_code">$ fakeroot debian/rules binary</p>
+<p>When debugging, successive builds can be recompiled faster by using tools such as ccache (PATH=/usr/lib/ccache:$PATH fakeroot debian/rules binary).</p></li>
+</ol>
+<h2 id="retrieving-a-specific-branch-or-release-candidate-with-orig-tar.sh">Retrieving a specific branch or release candidate with orig-tar.sh</h2>
+<p>When using orig-tar.sh, if you need to retrieve a specific branch, you can pass the branch name as the first argument. For example, to get the 3.8 release branch at http://llvm.org/svn/llvm-project/{llvm,...}/branches/release_38 you should use,</p>
+<p class="www_code">$ sh 3.8/debian/orig-tar.sh release_38</p>
+<p>To retrieve a specific release candidate, you can pass the branch name as the first argument, and the tag rc number as the second argument. For example, to get the 3.8.0 release candidate rc3 at http://llvm.org/svn/llvm-project/{llvm,...}/tags/RELEASE_380/rc3 you should use,</p>
+<p class="www_code">$ sh 3.8/debian/orig-tar.sh RELEASE_380 rc3</p>
+<h2 id="organization-of-the-repository">Organization of the repository</h2>
+<p>The debian package for each LLVM point release is maintained as a separate SVN branch in the branches/ directory. For example, the 3.8 release lives at branches/3.8.</p>
+<p>The current snapshot release is maintained at branches/snapshot.</p>
+<h2 id="additional-maintainer-scripts">Additional maintainer scripts</h2>
+<p>The script qualify-clang.sh that is found at the SVN root should be used to quickly test a newly built package. It runs a short set of sanity-check tests.</p>
+<p>The script releases/snapshot/debian/prepare-new-release.sh is used when preparing a new point release. It automatically replaces version numbers in various files of the package.</p>
+</div>
+
 <!--
 Changes:
 
