@@ -298,6 +298,13 @@ Building a snapshot package by hand
 <p>The script releases/snapshot/debian/prepare-new-release.sh is used when preparing a new point release. It automatically replaces version numbers in various files of the package.</p>
 </div>
 
+<div class="rel_title">
+  How to build LLVM Debian/Ubuntu packages from source ?
+</div>
+<div class="rel_boxtext">
+  Building LLVM packages from source is documented in <a href="./building-pkgs.html">a separate page.</a>
+</div>
+
 <!--
 Changes:
 
