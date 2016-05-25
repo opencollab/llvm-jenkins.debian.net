@@ -2,11 +2,10 @@
 function getLastUpdate($version) {
    $base="/home/apt/www/";
    if ($version!="unstable") {
-     $fullpath=$base."/${version}/dists/llvm-toolchain-{$version}/InRelease";
+     $fullpath=$base."/${version}/dists/llvm-toolchain-{$version}/Release";
    } else {
-     $fullpath=$base."/${version}/dists/llvm-toolchain/InRelease";
+     $fullpath=$base."/${version}/dists/llvm-toolchain/Release";
    }
-
    $handle = fopen($fullpath, "r");
    $contents = fread($handle, filesize($fullpath));
    preg_match("/Date: (.*)/",$contents,$matches);
@@ -25,9 +24,9 @@ function getLastRevision($version) {
    return $matches[1];
 }
 
-$stableBranch="3.6";
-$qualificationBranch="3.7";
-$devBranch="3.8";
+$stableBranch="3.7";
+$qualificationBranch="3.8";
+$devBranch="3.9";
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -50,7 +49,7 @@ $devBranch="3.8";
 
 <div class="rel_boxtext">
 
-  <p>The goal is to provide Debian and Ubuntu nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64 and i386 and for both the stable and development branches (currently <?=$stableBranch?> and <?=$devBranch?>).</p>
+  <p>The goal is to provide Debian and Ubuntu nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64 and i386 and for both the stable, qualification and development branches (currently <?=$stableBranch?>, <?=$qualificationBranch?> and <?=$devBranch?>).</p>
 <p>The packages provide <a href="http://llvm.org/">LLVM</a> + <a href="http://clang.llvm.org/">Clang</a> + <a href="http://compiler-rt.llvm.org/">compiler-rt</a> + <a href="http://polly.llvm.org/">polly</a> + <a href="http://lldb.llvm.org/">LLDB</a></p>
 </div>
 
@@ -118,19 +117,7 @@ deb-src http://llvm.org/apt/trusty/ llvm-toolchain-trusty-<?=$qualificationBranc
 
 </pre>
 
-     Vivid (15.04) - <small>Last update : <?=getLastUpdate("vivid");?> / Revision: <?=getLastRevision("vivid")?></small>
-<pre>
-deb http://llvm.org/apt/vivid/ llvm-toolchain-vivid main
-deb-src http://llvm.org/apt/vivid/ llvm-toolchain-vivid main
-# <?=$stableBranch?> 
-deb http://llvm.org/apt/vivid/ llvm-toolchain-vivid-<?=$stableBranch?> main
-deb-src http://llvm.org/apt/vivid/ llvm-toolchain-vivid-<?=$stableBranch?> main
-# <?=$qualificationBranch?> 
-deb http://llvm.org/apt/vivid/ llvm-toolchain-vivid-<?=$qualificationBranch?> main
-deb-src http://llvm.org/apt/vivid/ llvm-toolchain-vivid-<?=$qualificationBranch?> main
-</pre>
-
-Willy (15.10) - <small>Last update : <?=getLastUpdate("wily");?> / Revision: <?=getLastRevision("wily")?></small>
+Wily (15.10) - <small>Last update : <?=getLastUpdate("wily");?> / Revision: <?=getLastRevision("wily")?></small>
 <pre>
 deb http://llvm.org/apt/wily/ llvm-toolchain-wily main
 deb-src http://llvm.org/apt/wily/ llvm-toolchain-wily main
@@ -140,6 +127,20 @@ deb-src http://llvm.org/apt/wily/ llvm-toolchain-wily-<?=$stableBranch?> main
 # <?=$qualificationBranch?> 
 deb http://llvm.org/apt/wily/ llvm-toolchain-wily-<?=$qualificationBranch?> main
 deb-src http://llvm.org/apt/wily/ llvm-toolchain-wily-<?=$qualificationBranch?> main
+</pre>
+
+Xenial (16.04) - <small>Last update : <?=getLastUpdate("xenial");?> / Revision: <?=getLastRevision("xenial")?></small>
+<pre>
+deb http://llvm.org/apt/xenial/ llvm-toolchain-xenial main
+deb-src http://llvm.org/apt/xenial/ llvm-toolchain-xenial main
+# <?=$stableBranch?>
+
+deb http://llvm.org/apt/xenial/ llvm-toolchain-xenial-<?=$stableBranch?> main
+deb-src http://llvm.org/apt/xenial/ llvm-toolchain-xenial-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://llvm.org/apt/xenial/ llvm-toolchain-xenial-<?=$qualificationBranch?> main
+deb-src http://llvm.org/apt/xenial/ llvm-toolchain-xenial-<?=$qualificationBranch?> main
 </pre>
 
 
@@ -179,7 +180,7 @@ apt-get install clang-<?=$qualificationBranch?> lldb-<?=$qualificationBranch?>
 To install all packages:<br />
 <p class="www_code">
 
-apt-get install clang-<?=$qualificationBranch?> clang-<?=$qualificationBranch?>-doc libclang-common-<?=$qualificationBranch?>-dev libclang-<?=$qualificationBranch?>-dev libclang1-<?=$qualificationBranch?> libclang1-<?=$qualificationBranch?>-dbg libllvm-<?=$qualificationBranch?>-ocaml-dev libllvm<?=$qualificationBranch?> libllvm<?=$qualificationBranch?>-dbg lldb-<?=$qualificationBranch?> llvm-<?=$qualificationBranch?> llvm-<?=$qualificationBranch?>-dev llvm-<?=$qualificationBranch?>-doc llvm-<?=$qualificationBranch?>-examples llvm-<?=$qualificationBranch?>-runtime clang-modernize-<?=$qualificationBranch?> clang-format-<?=$qualificationBranch?> python-clang-<?=$qualificationBranch?> lldb-<?=$qualificationBranch?>-dev liblldb-<?=$qualificationBranch?>-dbg
+apt-get install clang-<?=$qualificationBranch?> clang-<?=$qualificationBranch?>-doc libclang-common-<?=$qualificationBranch?>-dev libclang-<?=$qualificationBranch?>-dev libclang1-<?=$qualificationBranch?> libclang1-<?=$qualificationBranch?>-dbg libllvm-<?=$qualificationBranch?>-ocaml-dev libllvm<?=$qualificationBranch?> libllvm<?=$qualificationBranch?>-dbg lldb-<?=$qualificationBranch?> llvm-<?=$qualificationBranch?> llvm-<?=$qualificationBranch?>-dev llvm-<?=$qualificationBranch?>-doc llvm-<?=$qualificationBranch?>-examples llvm-<?=$qualificationBranch?>-runtime clang-format-<?=$qualificationBranch?> python-clang-<?=$qualificationBranch?> lldb-<?=$qualificationBranch?>-dev liblldb-<?=$qualificationBranch?>-dbg
 </p>
 
 </div>
@@ -310,11 +311,17 @@ Changes:
 
 - Oct 6th 2015:
   * Debian wheezy removed
-  * Ubuntu Utopic removed (EOF)
+  * Ubuntu Utopic removed (EOL)
   * Fix a typo in vivid
 
 - Oct 13th 2015:
   * Add wily
+
+- Feb 14th 2016:
+  * 3.8 added / snapshot moved to 3.9
+  * Ubuntu vivid removed (EOL)
+  * switch to cmake for 3.8 & 3.9
+  * Wily added
 
 -->
 <p style="font-size: smaller;">
