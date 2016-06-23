@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>How to build LLVM Debian/Ubuntu packages from source?</title>
-  <link rel="stylesheet" type="text/css" href="../llvm.css">
+  <link rel="stylesheet" type="text/css" href="http://llvm.org/llvm.css">
 </head>
 <body>
 

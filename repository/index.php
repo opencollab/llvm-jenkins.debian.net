@@ -1,6 +1,6 @@
-<?
+<?php
 function getLastUpdate($version) {
-   $base="/home/apt/www/";
+   $base="/data/apt/www/";
    if ($version!="unstable") {
      $fullpath=$base."/${version}/dists/llvm-toolchain-{$version}/Release";
    } else {
@@ -12,7 +12,7 @@ function getLastUpdate($version) {
    return $matches[1];
 }
 function getLastRevision($version) {
-   $base="/home/apt/www/";
+   $base="/data/apt/www/";
    if ($version!="unstable") {
      $fullpath=$base."/${version}/dists/llvm-toolchain-{$version}/main/binary-amd64/Packages";
    } else {
@@ -35,7 +35,7 @@ $devBranch="3.9";
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>LLVM Debian/Ubuntu nightly packages</title>
-  <link rel="stylesheet" type="text/css" href="../llvm.css">
+  <link rel="stylesheet" type="text/css" href="http://llvm.org/llvm.css">
 </head>
 <body>
 
@@ -59,27 +59,27 @@ $devBranch="3.9";
 
 Jessie (Debian stable) - <small>Last update : <?=getLastUpdate("jessie");?> / Revision: <?=getLastRevision("jessie")?></small>
 <pre>
-deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie main
-deb-src http://llvm.org/apt/jessie/ llvm-toolchain-jessie main
+deb http://apt.llvm.org/jessie/ llvm-toolchain-jessie main
+deb-src http://apt.llvm.org/jessie/ llvm-toolchain-jessie main
 # <?=$stableBranch?> 
-deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-<?=$stableBranch?> main
-deb-src http://llvm.org/apt/jessie/ llvm-toolchain-jessie-<?=$stableBranch?> main
+deb http://apt.llvm.org/jessie/ llvm-toolchain-jessie-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/jessie/ llvm-toolchain-jessie-<?=$stableBranch?> main
 # <?=$qualificationBranch?> 
-deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-<?=$qualificationBranch?> main
-deb-src http://llvm.org/apt/jessie/ llvm-toolchain-jessie-<?=$qualificationBranch?> main
+deb http://apt.llvm.org/jessie/ llvm-toolchain-jessie-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/jessie/ llvm-toolchain-jessie-<?=$qualificationBranch?> main
 </pre>
 
 sid (unstable) - <small>Last update : <?=getLastUpdate("unstable");?> / Revision: <?=getLastRevision("unstable")?></small>
 <!--# Need Debian experimental too-->
 <pre>
-deb http://llvm.org/apt/unstable/ llvm-toolchain main
-deb-src http://llvm.org/apt/unstable/ llvm-toolchain main
+deb http://apt.llvm.org/unstable/ llvm-toolchain main
+deb-src http://apt.llvm.org/unstable/ llvm-toolchain main
 # <?=$stableBranch?> 
-deb http://llvm.org/apt/unstable/ llvm-toolchain-<?=$stableBranch?> main
-deb-src http://llvm.org/apt/unstable/ llvm-toolchain-<?=$stableBranch?> main
+deb http://apt.llvm.org/unstable/ llvm-toolchain-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/unstable/ llvm-toolchain-<?=$stableBranch?> main
 # <?=$qualificationBranch?> 
-deb http://llvm.org/apt/unstable/ llvm-toolchain-<?=$qualificationBranch?> main
-deb-src http://llvm.org/apt/unstable/ llvm-toolchain-<?=$qualificationBranch?> main
+deb http://apt.llvm.org/unstable/ llvm-toolchain-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/unstable/ llvm-toolchain-<?=$qualificationBranch?> main
 
 </pre>
 
@@ -91,14 +91,14 @@ Quantal, Raring, Saucy and Utopic are no longer supported by Ubuntu.<br />
 <br />
      Precise (12.04) - <small>Last update : <?=getLastUpdate("precise");?> / Revision: <?=getLastRevision("precise")?></small>
 <pre>
-deb http://llvm.org/apt/precise/ llvm-toolchain-precise main
-deb-src http://llvm.org/apt/precise/ llvm-toolchain-precise main
+deb http://apt.llvm.org/precise/ llvm-toolchain-precise main
+deb-src http://apt.llvm.org/precise/ llvm-toolchain-precise main
 # <?=$stableBranch?> 
-deb http://llvm.org/apt/precise/ llvm-toolchain-precise-<?=$stableBranch?> main
-deb-src http://llvm.org/apt/precise/ llvm-toolchain-precise-<?=$stableBranch?> main
+deb http://apt.llvm.org/precise/ llvm-toolchain-precise-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/precise/ llvm-toolchain-precise-<?=$stableBranch?> main
 # <?=$qualificationBranch?> 
-deb http://llvm.org/apt/precise/ llvm-toolchain-precise-<?=$qualificationBranch?> main
-deb-src http://llvm.org/apt/precise/ llvm-toolchain-precise-<?=$qualificationBranch?> main
+deb http://apt.llvm.org/precise/ llvm-toolchain-precise-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/precise/ llvm-toolchain-precise-<?=$qualificationBranch?> main
 
 # Common
 deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu precise main
@@ -106,41 +106,41 @@ deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu precise main
 
      Trusty (14.04) - <small>Last update : <?=getLastUpdate("trusty");?> / Revision: <?=getLastRevision("trusty")?></small>
 <pre>
-deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty main
-deb-src http://llvm.org/apt/trusty/ llvm-toolchain-trusty main
+deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty main
+deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty main
 # <?=$stableBranch?> 
-deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-<?=$stableBranch?> main
-deb-src http://llvm.org/apt/trusty/ llvm-toolchain-trusty-<?=$stableBranch?> main
+deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty-<?=$stableBranch?> main
 # <?=$qualificationBranch?> 
-deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-<?=$qualificationBranch?> main
-deb-src http://llvm.org/apt/trusty/ llvm-toolchain-trusty-<?=$qualificationBranch?> main
+deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty-<?=$qualificationBranch?> main
 
 </pre>
 
 Wily (15.10) - <small>Last update : <?=getLastUpdate("wily");?> / Revision: <?=getLastRevision("wily")?></small>
 <pre>
-deb http://llvm.org/apt/wily/ llvm-toolchain-wily main
-deb-src http://llvm.org/apt/wily/ llvm-toolchain-wily main
+deb http://apt.llvm.org/wily/ llvm-toolchain-wily main
+deb-src http://apt.llvm.org/wily/ llvm-toolchain-wily main
 # <?=$stableBranch?> 
-deb http://llvm.org/apt/wily/ llvm-toolchain-wily-<?=$stableBranch?> main
-deb-src http://llvm.org/apt/wily/ llvm-toolchain-wily-<?=$stableBranch?> main
+deb http://apt.llvm.org/wily/ llvm-toolchain-wily-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/wily/ llvm-toolchain-wily-<?=$stableBranch?> main
 # <?=$qualificationBranch?> 
-deb http://llvm.org/apt/wily/ llvm-toolchain-wily-<?=$qualificationBranch?> main
-deb-src http://llvm.org/apt/wily/ llvm-toolchain-wily-<?=$qualificationBranch?> main
+deb http://apt.llvm.org/wily/ llvm-toolchain-wily-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/wily/ llvm-toolchain-wily-<?=$qualificationBranch?> main
 </pre>
 
 Xenial (16.04) - <small>Last update : <?=getLastUpdate("xenial");?> / Revision: <?=getLastRevision("xenial")?></small>
 <pre>
-deb http://llvm.org/apt/xenial/ llvm-toolchain-xenial main
-deb-src http://llvm.org/apt/xenial/ llvm-toolchain-xenial main
+deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main
+deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial main
 # <?=$stableBranch?>
 
-deb http://llvm.org/apt/xenial/ llvm-toolchain-xenial-<?=$stableBranch?> main
-deb-src http://llvm.org/apt/xenial/ llvm-toolchain-xenial-<?=$stableBranch?> main
+deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-<?=$stableBranch?> main
 # <?=$qualificationBranch?>
 
-deb http://llvm.org/apt/xenial/ llvm-toolchain-xenial-<?=$qualificationBranch?> main
-deb-src http://llvm.org/apt/xenial/ llvm-toolchain-xenial-<?=$qualificationBranch?> main
+deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-<?=$qualificationBranch?> main
 </pre>
 
 
@@ -150,7 +150,7 @@ deb-src http://llvm.org/apt/xenial/ llvm-toolchain-xenial-<?=$qualificationBranc
 <div class="rel_boxtext">
 To retrieve the archive signature:
   <p class="www_code">
-wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key|sudo apt-key add -<br />
+wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -<br />
 </p><br />
 
 To install just clang and lldb (<?=$stableBranch?> release):
@@ -169,7 +169,7 @@ apt-get install clang-<?=$stableBranch?> clang-<?=$stableBranch?>-doc libclang-c
 <div class="rel_boxtext">
 To retrieve the archive signature:
   <p class="www_code">
-wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key|sudo apt-key add -<br />
+wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -<br />
 </p><br />
 
 To install just clang and lldb (<?=$qualificationBranch?> release):
@@ -190,7 +190,7 @@ apt-get install clang-<?=$qualificationBranch?> clang-<?=$qualificationBranch?>-
 <div class="rel_boxtext">
 To retrieve the archive signature:
   <p class="www_code">
-wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key|sudo apt-key add -<br />
+wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -<br />
 </p><br />
 
 To install just clang and lldb (<?=$devBranch?> release):
