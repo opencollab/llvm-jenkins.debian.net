@@ -275,7 +275,7 @@ Changes:
 -->
 <p style="font-size: smaller;">
      Contact: <a href="mailto:sylvestre@debian.org">Sylvestre Ledru</a>
-<br />Hosting by <a href="http://www.irill.org/">IRILL</a>
+<br />Build infra by <a href="http://www.irill.org/">IRILL</a> / Hosting by LLVM Foundation
 </p>
 
 </div> <!-- rel_container -->
