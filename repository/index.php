@@ -252,7 +252,7 @@ Building the latest nightly snapshot
 </div>
 
 <div class="rel_boxtext">
-  <a href="./building-pkgs.html">Building LLVM packages from source</a> is documented in a dedicated page.
+  <a href="./building-pkgs.php">Building LLVM packages from source</a> is documented in a dedicated page.
 </div>
 
 <!--
