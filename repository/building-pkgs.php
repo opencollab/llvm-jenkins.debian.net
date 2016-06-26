@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>How to build LLVM Debian/Ubuntu packages from source?</title>
-  <link rel="stylesheet" type="text/css" href="../llvm.css">
+  <link rel="stylesheet" type="text/css" href="http://llvm.org/llvm.css">
 </head>
 <body>
 
@@ -127,7 +127,7 @@ Changes:
 -->
 <p style="font-size: smaller;">
      Contact: <a href="mailto:sylvestre@debian.org">Sylvestre Ledru</a>
-<br />Hosting by <a href="http://www.irill.org/">IRILL</a>
+<br />Build infra by <a href="http://www.irill.org/">IRILL</a> / Hosting by LLVM Foundation
 </p>
 
 </div> <!-- rel_container -->
