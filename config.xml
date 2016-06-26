@@ -8,7 +8,9 @@
   <numExecutors>1</numExecutors>
   <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>
-  <authorizationStrategy class="hudson.security.AuthorizationStrategy$Unsecured"/>
+  <authorizationStrategy class="hudson.security.FullControlOnceLoggedInAuthorizationStrategy">
+    <denyAnonymousReadAccess>false</denyAnonymousReadAccess>
+  </authorizationStrategy>
   <securityRealm class="hudson.security.HudsonPrivateSecurityRealm">
     <disableSignup>true</disableSignup>
     <enableCaptcha>false</enableCaptcha>
@@ -105,28 +107,6 @@
         <hudson.views.BuildButtonColumn/>
       </columns>
       <includeRegex>.*precise.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
-      <name>Cmake</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*cmake.*</includeRegex>
       <recurse>false</recurse>
     </listView>
     <listView>

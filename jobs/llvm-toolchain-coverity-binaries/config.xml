@@ -14,7 +14,7 @@
     </jenkins.model.BuildDiscarderProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <assignedNode>master</assignedNode>
+  <assignedNode>irill3.inria.fr</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -38,9 +38,15 @@
         <string>unstable</string>
       </values>
     </hudson.matrix.TextAxis>
+    <hudson.matrix.LabelAxis>
+      <name>label</name>
+      <values>
+        <string>irill3.inria.fr</string>
+      </values>
+    </hudson.matrix.LabelAxis>
   </axes>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.37">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38">
       <project>llvm-toolchain-source</project>
       <filter>*</filter>
       <target></target>
@@ -59,7 +65,7 @@ sudo /opt/install-coverity.sh
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.16">
+    <hudson.tasks.Mailer plugin="mailer@1.17">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>

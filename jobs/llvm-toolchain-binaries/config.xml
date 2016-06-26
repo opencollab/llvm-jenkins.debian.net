@@ -36,7 +36,7 @@
     </hudson.matrix.TextAxis>
   </axes>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.37">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38">
       <project>llvm-toolchain-source</project>
       <filter>*</filter>
       <target></target>
@@ -72,13 +72,13 @@ export REPOS=llvm-toolchain
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.11">
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.13">
       <testResults>**/lintian.xml</testResults>
       <keepLongStdio>false</keepLongStdio>
       <healthScaleFactor>1.0</healthScaleFactor>
       <allowEmptyResults>false</allowEmptyResults>
     </hudson.tasks.junit.JUnitResultArchiver>
-    <hudson.tasks.Mailer plugin="mailer@1.16">
+    <hudson.tasks.Mailer plugin="mailer@1.17">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
