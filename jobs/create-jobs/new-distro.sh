@@ -22,4 +22,4 @@ mkdir  -p /srv/repository/$NAME
 chown jenkins. /srv/repository/$NAME
 
 emacs ~/.pbuilderrc
-
+echo "On every slave, git pull + create the symlink from trusty for deboostrap"
