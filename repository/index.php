@@ -1,6 +1,6 @@
 <?php
 function getLastUpdate($version) {
-   $base="/data/apt/www/";
+   $base="/data/apt/www";
    if ($version!="unstable") {
      $fullpath=$base."/${version}/dists/llvm-toolchain-{$version}/Release";
    } else {
@@ -12,7 +12,7 @@ function getLastUpdate($version) {
    return $matches[1];
 }
 function getLastRevision($version) {
-   $base="/data/apt/www/";
+   $base="/data/apt/www";
    if ($version!="unstable") {
      $fullpath=$base."/${version}/dists/llvm-toolchain-{$version}/main/binary-amd64/Packages";
    } else {
@@ -24,9 +24,9 @@ function getLastRevision($version) {
    return $matches[1];
 }
 
-$stableBranch="3.7";
-$qualificationBranch="3.8";
-$devBranch="3.9";
+$stableBranch="3.8";
+$qualificationBranch="3.9";
+$devBranch="4.0";
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -143,7 +143,24 @@ deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-<?=$qualificationBranch?> 
 deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-<?=$qualificationBranch?> main
 </pre>
 
+<?php
+if (false) {
+?>
 
+Yakkety (16.10) - <small>Last update : <?=getLastUpdate("Yakkety");?> / Revision: <?=getLastRevision("Yakkety")?></small>
+<pre>
+deb http://apt.llvm.org/Yakkety/ llvm-toolchain-Yakkety main
+deb-src http://apt.llvm.org/Yakkety/ llvm-toolchain-Yakkety main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/Yakkety/ llvm-toolchain-Yakkety-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/Yakkety/ llvm-toolchain-Yakkety-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/Yakkety/ llvm-toolchain-Yakkety-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/Yakkety/ llvm-toolchain-Yakkety-<?=$qualificationBranch?> main
+</pre>
+<?php } ?>
 </div>
 
 <div class="rel_section">Install<br />(stable branch)</div>
@@ -271,6 +288,10 @@ Changes:
   * Ubuntu vivid removed (EOL)
   * switch to cmake for 3.8 & 3.9
   * Wily added
+
+- Jul 20th 2016:
+  * 3.7 dead, 4.0 enabled
+
 
 -->
 <p style="font-size: smaller;">
