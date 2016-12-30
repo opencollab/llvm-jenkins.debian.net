@@ -1,7 +1,7 @@
 #!/bin/bash
-VERSION="3.8"
-VERSION_2="38"
-DISTROS=( unstable jessie precise trusty utopic vivid wily )
+VERSION="3.9"
+VERSION_2="39"
+DISTROS=( unstable jessie precise trusty wily xenial yakkety )
 for d in "${DISTROS[@]}"
 do
 	echo $d
