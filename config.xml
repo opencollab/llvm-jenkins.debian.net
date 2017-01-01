@@ -183,48 +183,6 @@
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>3.7</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-        <string>llvm-toolchain-3.7-binaries</string>
-        <string>llvm-toolchain-3.7-source</string>
-        <string>llvm-toolchain-3.7-source-trigger</string>
-        <string>llvm-toolchain-jessie-3.7-binaries</string>
-        <string>llvm-toolchain-jessie-3.7-source</string>
-        <string>llvm-toolchain-jessie-3.7-source-trigger</string>
-        <string>llvm-toolchain-precise-3.7-binaries</string>
-        <string>llvm-toolchain-precise-3.7-source</string>
-        <string>llvm-toolchain-precise-3.7-source-trigger</string>
-        <string>llvm-toolchain-trusty-3.7-binaries</string>
-        <string>llvm-toolchain-trusty-3.7-source</string>
-        <string>llvm-toolchain-trusty-3.7-source-trigger</string>
-        <string>llvm-toolchain-utopic-3.7-binaries</string>
-        <string>llvm-toolchain-utopic-3.7-source</string>
-        <string>llvm-toolchain-utopic-3.7-source-trigger</string>
-        <string>llvm-toolchain-vivid-3.7-binaries</string>
-        <string>llvm-toolchain-vivid-3.7-source</string>
-        <string>llvm-toolchain-vivid-3.7-source-trigger</string>
-        <string>llvm-toolchain-wily-3.7-binaries</string>
-        <string>llvm-toolchain-wily-3.7-source</string>
-        <string>llvm-toolchain-wily-3.7-source-trigger</string>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
       <name>Ubuntu Wily</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
