@@ -57,10 +57,6 @@ export REPOS=llvm-toolchain-jessie-3.8
       <command>mkdir -p report
 /usr/bin/lintian-junit-report *.dsc &gt; report/lintian.xml</command>
     </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>/srv/repository/sync-to-llvm.sh $distribution
-</command>
-    </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>

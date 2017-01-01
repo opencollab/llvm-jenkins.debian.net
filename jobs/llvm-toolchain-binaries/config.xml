@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<matrix-project plugin="matrix-project@1.6">
+<matrix-project plugin="matrix-project@1.7.1">
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
@@ -36,7 +36,7 @@
     </hudson.matrix.TextAxis>
   </axes>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>llvm-toolchain-source</project>
       <filter>*</filter>
       <target></target>
@@ -57,11 +57,6 @@ export REPOS=llvm-toolchain
       <command>mkdir -p report
 /usr/bin/lintian-junit-report *.dsc &gt; report/lintian.xml</command>
     </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command># Commented, trying to do it when both are working.
-/srv/repository/sync-to-llvm.sh $distribution
-</command>
-    </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
@@ -72,7 +67,7 @@ export REPOS=llvm-toolchain
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.13">
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.15">
       <testResults>**/lintian.xml</testResults>
       <keepLongStdio>false</keepLongStdio>
       <healthScaleFactor>1.0</healthScaleFactor>
@@ -92,7 +87,8 @@ export REPOS=llvm-toolchain
         <completeBuild>true</completeBuild>
       </threshold>
     </hudson.tasks.BuildTrigger>
-    <hudson.plugins.ws__cleanup.WsCleanup plugin="ws-cleanup@0.29">
+    <hudson.plugins.ws__cleanup.WsCleanup plugin="ws-cleanup@0.30">
+      <patterns class="empty-list"/>
       <deleteDirs>false</deleteDirs>
       <skipWhenFailed>false</skipWhenFailed>
       <cleanWhenSuccess>true</cleanWhenSuccess>
