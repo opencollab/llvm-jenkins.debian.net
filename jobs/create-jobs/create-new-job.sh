@@ -35,6 +35,9 @@ JOBNAME_SOURCE=$JOBNAME"-source"
 JOBNAME_SOURCE_TEMPLATE="source-template.xml"
 JOBNAME_BINARY=$JOBNAME"-binaries"
 JOBNAME_BINARY_TEMPLATE="binary-template.xml"
+JOBNAME_BINARY_SYNC=$JOBNAME"-binaries-sync"
+JOBNAME_BINARY_SYNC_TEMPLATE="binary-sync-template.xml"
+
 
 JOBNAME_TRIGGER=$JOBNAME"-source-trigger"
 JOBNAME_TRIGGER_TEMPLATE="trigger-template.xml"
@@ -44,6 +47,8 @@ JOBNAME_TRIGGER_TEMPLATE="trigger-template.xml"
 # create the directories
 mkdir -p $JOBNAME_SOURCE
 mkdir -p $JOBNAME_BINARY
+mkdir -p $JOBNAME_BINARY_SYNC
+
 mkdir -p $JOBNAME_TRIGGER
 mkdir -p /srv/repository/$DISTRIBUTION
 chown jenkins. /srv/repository/$DISTRIBUTION
@@ -54,4 +59,7 @@ sed -e "s|@NAME_BINARY@|$JOBNAME_BINARY|g" -e "s|@BRANCH@|$SVNBRANCHUPSTREAM|g" 
 
 sed -e "s|@NAME_SOURCE@|$JOBNAME_SOURCE|g" -e "s|@NAME@|$JOBNAME_BINARY|g" -e "s|@JOBNAME@|$JOBNAME|g" -e "s|@BRANCH@|$SVNBRANCHUPSTREAM|g" -e "s|@DISTRIBUTION@|$DISTRIBUTION|g" $JOBNAME_BINARY_TEMPLATE > $JOBNAME_BINARY/config.xml
 
-chown -R jenkins.nogroup $JOBNAME_SOURCE $JOBNAME_BINARY $JOBNAME_TRIGGER
+sed -e "s|@DISTRIBUTION@|$DISTRIBUTION|g" $JOBNAME_BINARY_TEMPLATE > $JOBNAME_BINARY_SYNC/config.xml
+
+
+chown -R jenkins.nogroup $JOBNAME_SOURCE $JOBNAME_BINARY $JOBNAME_TRIGGER  $JOBNAME_BINARY_SYNC
