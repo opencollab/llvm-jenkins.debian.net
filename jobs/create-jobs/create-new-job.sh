@@ -47,7 +47,9 @@ JOBNAME_TRIGGER_TEMPLATE="trigger-template.xml"
 # create the directories
 mkdir -p $JOBNAME_SOURCE
 mkdir -p $JOBNAME_BINARY
-mkdir -p $JOBNAME_BINARY_SYNC
+if test "$NAME" = snapshot; then
+	mkdir -p $JOBNAME_BINARY_SYNC
+fi
 
 mkdir -p $JOBNAME_TRIGGER
 mkdir -p /srv/repository/$DISTRIBUTION
@@ -59,7 +61,12 @@ sed -e "s|@NAME_BINARY@|$JOBNAME_BINARY|g" -e "s|@BRANCH@|$SVNBRANCHUPSTREAM|g" 
 
 sed -e "s|@NAME_SOURCE@|$JOBNAME_SOURCE|g" -e "s|@NAME@|$JOBNAME_BINARY|g" -e "s|@JOBNAME@|$JOBNAME|g" -e "s|@BRANCH@|$SVNBRANCHUPSTREAM|g" -e "s|@DISTRIBUTION@|$DISTRIBUTION|g" $JOBNAME_BINARY_TEMPLATE > $JOBNAME_BINARY/config.xml
 
-sed -e "s|@DISTRIBUTION@|$DISTRIBUTION|g" $JOBNAME_BINARY_TEMPLATE > $JOBNAME_BINARY_SYNC/config.xml
+if test "$NAME" = snapshot; then
+	sed -e "s|@DISTRIBUTION@|$DISTRIBUTION|g" $JOBNAME_BINARY_SYNC_TEMPLATE > $JOBNAME_BINARY_SYNC/config.xml
+fi
 
+chown -R jenkins.nogroup $JOBNAME_SOURCE $JOBNAME_BINARY $JOBNAME_TRIGGER
 
-chown -R jenkins.nogroup $JOBNAME_SOURCE $JOBNAME_BINARY $JOBNAME_TRIGGER  $JOBNAME_BINARY_SYNC
+if test "$NAME" = snapshot; then
+	chown -R jenkins.nogroup $JOBNAME_BINARY_SYNC
+fi
