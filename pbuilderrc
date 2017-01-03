@@ -50,6 +50,7 @@ esac
 NAME="$DIST"
 if [ -n "${ARCH}" ]; then
     NAME="$NAME-$ARCH"
+    unset DEBOOTSTRAPOPTS
     DEBOOTSTRAPOPTS=("--arch" "$ARCH" "--no-check-gpg" "${DEBOOTSTRAPOPTS[@]}")
 fi
 BASETGZ="/var/cache/pbuilder/$NAME-base.tgz"
