@@ -33,7 +33,7 @@
   <views>
     <hudson.model.AllView>
       <owner class="hudson" reference="../../.."/>
-      <name>Tous</name>
+      <name>all</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
@@ -121,12 +121,6 @@
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>llvm-defaults-trusty-source</string>
-        <string>llvm-toolchain-trusty-3.5-binaries</string>
-        <string>llvm-toolchain-trusty-3.5-source</string>
-        <string>llvm-toolchain-trusty-3.5-source-trigger</string>
-        <string>llvm-toolchain-trusty-3.6-binaries</string>
-        <string>llvm-toolchain-trusty-3.6-source</string>
-        <string>llvm-toolchain-trusty-3.6-source-trigger</string>
         <string>llvm-toolchain-trusty-3.7-binaries</string>
         <string>llvm-toolchain-trusty-3.7-source</string>
         <string>llvm-toolchain-trusty-3.7-source-trigger</string>
@@ -146,6 +140,7 @@
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
       </columns>
+      <includeRegex>.*trusty.*</includeRegex>
       <recurse>false</recurse>
     </listView>
     <listView>
@@ -353,7 +348,7 @@
       <recurse>false</recurse>
     </listView>
   </views>
-  <primaryView>Tous</primaryView>
+  <primaryView>all</primaryView>
   <slaveAgentPort>0</slaveAgentPort>
   <label></label>
   <nodeProperties/>
