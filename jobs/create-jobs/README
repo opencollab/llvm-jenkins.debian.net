@@ -23,3 +23,15 @@ rm -rf llvm-toolchain-vivid-source/builds/ llvm-toolchain-vivid-source/lastS*
 sed -i -e "s|utopic|vivid|g" $(grep utopic llvm-toolchain-vivid-*/*|cut -d: -f1|sort -u)
 chown -R jenkins. *vivid*
 
+
+
+
+To add a new node:
+http://llvm-jenkins.debian.net/computer/new
+/home/jenkins/ as remote dir
+on ursae, update secret.lst with the hostname and secret
+run salt:
+salt -v 'blade06*' state.highstate 
+check no job is failing
+start the node in jenkins
+
