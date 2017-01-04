@@ -14,7 +14,7 @@ UBUNTU_SUITES=("zesty" "yakkety" "xenial" "wily" "vivid" "utopic" "trusty" "sauc
 
 # Mirrors to use. Update these to your preferred mirror.
 DEBIAN_MIRROR="ftp.fr.debian.org"
-UBUNTU_MIRROR="mirrors.kernel.org"
+UBUNTU_MIRROR="www-ftp.lip6.fr/pub/linux/distributions/"
 
 # Optionally use the changelog of a package to determine the suite to use if
 # none set.
@@ -69,7 +69,7 @@ if $(echo ${DEBIAN_SUITES[@]} | grep -q $DIST); then
     fi
 elif $(echo ${UBUNTU_SUITES[@]} | grep -q $DIST); then
     # Ubuntu configuration
-    MIRRORSITE="http://$UBUNTU_MIRROR/ubuntu/"
+    MIRRORSITE="http://$UBUNTU_MIRROR/Ubuntu/archive/"
     COMPONENTS="main restricted universe multiverse"
 else
     echo "Unknown distribution: $DIST"
