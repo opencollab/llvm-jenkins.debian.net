@@ -6,7 +6,7 @@ else
 	cmd='cd /tmp/buildd/*/reports/'
 	echo $cmd
 	eval $cmd
-	cmd='tar czvf /tmp/buildd/codecoverage.tar.gz coverage/'
+	cmd='tar czvf ../codecoverage.tar.gz coverage/'
 	echo $cmd
 	eval $cmd
 fi
