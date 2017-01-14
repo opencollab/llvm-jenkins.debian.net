@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-yakkety-binaries, llvm-toolchain-yakkety-3.9-binaries, llvm-toolchain-yakkety-3.8-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-yakkety-binaries, llvm-toolchain-yakkety-4.0-binaries, llvm-toolchain-yakkety-3.9-binaries, llvm-toolchain-yakkety-3.8-binaries, </upstreamProjects>
       <threshold>
         <name>UNSTABLE</name>
         <ordinal>1</ordinal>

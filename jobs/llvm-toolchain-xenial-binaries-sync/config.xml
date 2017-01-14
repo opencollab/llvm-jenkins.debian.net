@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-xenial-binaries, llvm-toolchain-xenial-3.9-binaries, llvm-toolchain-xenial-3.8-binaries</upstreamProjects>
+      <upstreamProjects>llvm-toolchain-xenial-binaries, llvm-toolchain-xenial-4.0-binaries, llvm-toolchain-xenial-3.9-binaries, llvm-toolchain-xenial-3.8-binaries</upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
