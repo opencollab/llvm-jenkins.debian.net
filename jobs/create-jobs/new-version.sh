@@ -1,6 +1,6 @@
 #!/bin/bash
-VERSION="3.9"
-VERSION_2="39"
+VERSION="4.0"
+VERSION_2="40"
 DISTROS=( unstable jessie precise trusty wily xenial yakkety )
 for d in "${DISTROS[@]}"
 do
