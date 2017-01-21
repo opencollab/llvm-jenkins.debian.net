@@ -81,4 +81,4 @@ fi
 #export CCACHE_DIR="/var/cache/pbuilder/ccache"
 BINDMOUNTS="/opt/cov-analysis/ ${CCACHE_DIR}"
 export PATH="/usr/lib/ccache:${PATH}"
-ADDITIONAL_BUILDRESULTS=(coverage.tar.gz)
+ADDITIONAL_BUILDRESULTS=(coverage.tar.gz scan-build.tar.gz)
