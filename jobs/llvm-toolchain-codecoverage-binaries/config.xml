@@ -70,7 +70,7 @@ tar zxvf $WORKSPACE/codecoverage.tar.gz
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>cd /srv/repository/coverage/
-time /usr/bin/rsync --stats --delete -r * apt@llvm.org:/home/apt/reports/coverage/</command>
+time /usr/bin/rsync --delay-updates --stats --delete -r * apt@llvm.org:/home/apt/reports/coverage/</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>

@@ -60,7 +60,7 @@ tar zxvf $CURRENT_PATH/scan-build.tar.gz
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>cd /srv/repository/scan-build/
-/usr/bin/rsync --stats --delete -r * apt@llvm.org:/home/apt/reports/scan-build/</command>
+/usr/bin/rsync --delay-updates --stats --delete -r * apt@llvm.org:/home/apt/reports/scan-build/</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
