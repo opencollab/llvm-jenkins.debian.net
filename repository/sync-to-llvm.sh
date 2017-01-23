@@ -16,7 +16,7 @@ if test ! -d $BASE_LOCALDIR/$REPOSITORY; then
 fi
 find $BASE_LOCALDIR -type d | xargs chmod 755
 find $BASE_LOCALDIR -type f ! -name sync-to-llvm.sh | xargs chmod 644
-time /usr/bin/rsync --delay-updates -v --stats --delete -r $BASE_LOCALDIR/$REPOSITORY $TARGET:$BASE_TARGETDIR/
+time /usr/bin/rsync --delay-updates --times -v --stats --delete -r $BASE_LOCALDIR/$REPOSITORY $TARGET:$BASE_TARGETDIR/
 #ssh $TARGET mv $BASE_TARGETDIR/www/$REPOSITORY $BASE_TARGETDIR/www/$REPOSITORY.back
 #ssh $TARGET mv $BASE_TARGETDIR/tmp-repo/$REPOSITORY $BASE_TARGETDIR/www/$REPOSITORY
 #ssh $TARGET rm -rf $BASE_TARGETDIR/www/$REPOSITORY.back
