@@ -19,7 +19,7 @@ else
 		    --form email=sylvestre@debian.org \
 		    --form file=@/tmp/buildd/llvm.tgz \
 		    --form version=$(date "+%Y-%m-%d_%H-%M-%S") \
-		    --form description="LLVM Toolchain" \
+		    --form description="llvm-toolchain" \
 		    https://scan.coverity.com/builds?project=llvm
         else
 		cat cov-int/build-log.txt
