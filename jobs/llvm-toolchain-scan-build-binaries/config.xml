@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<matrix-project plugin="matrix-project@1.7.1">
+<matrix-project plugin="matrix-project@1.8">
   <actions/>
   <description>Build with scan-build&#xd;
 Run all the tests&#xd;
@@ -38,6 +38,12 @@ Only build amd64</description>
         <string>unstable</string>
       </values>
     </hudson.matrix.TextAxis>
+    <hudson.matrix.LabelAxis>
+      <name>label</name>
+      <values>
+        <string>master</string>
+      </values>
+    </hudson.matrix.LabelAxis>
   </axes>
   <builders>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">

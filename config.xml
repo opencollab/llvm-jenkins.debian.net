@@ -6,7 +6,7 @@
   </disabledAdministrativeMonitors>
   <version>2.6</version>
   <numExecutors>1</numExecutors>
-  <mode>NORMAL</mode>
+  <mode>EXCLUSIVE</mode>
   <useSecurity>true</useSecurity>
   <authorizationStrategy class="hudson.security.FullControlOnceLoggedInAuthorizationStrategy">
     <denyAnonymousReadAccess>false</denyAnonymousReadAccess>
@@ -57,7 +57,11 @@
         <string>llvm-toolchain-3.9-binaries</string>
         <string>llvm-toolchain-3.9-source</string>
         <string>llvm-toolchain-3.9-source-trigger</string>
+        <string>llvm-toolchain-4.0-binaries</string>
+        <string>llvm-toolchain-4.0-source</string>
+        <string>llvm-toolchain-4.0-source-trigger</string>
         <string>llvm-toolchain-binaries</string>
+        <string>llvm-toolchain-binaries-sync</string>
         <string>llvm-toolchain-codecoverage-binaries</string>
         <string>llvm-toolchain-coverity-binaries</string>
         <string>llvm-toolchain-scan-build-binaries</string>
@@ -152,9 +156,6 @@
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>llvm-defaults-jessie-source</string>
-        <string>llvm-toolchain-jessie-3.6-binaries</string>
-        <string>llvm-toolchain-jessie-3.6-source</string>
-        <string>llvm-toolchain-jessie-3.6-source-trigger</string>
         <string>llvm-toolchain-jessie-3.7-binaries</string>
         <string>llvm-toolchain-jessie-3.7-source</string>
         <string>llvm-toolchain-jessie-3.7-source-trigger</string>
@@ -174,6 +175,7 @@
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
       </columns>
+      <includeRegex>.*jessie.*</includeRegex>
       <recurse>false</recurse>
     </listView>
     <listView>
@@ -185,9 +187,6 @@
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>llvm-defaults-wily-source</string>
-        <string>llvm-toolchain-wily-3.6-binaries</string>
-        <string>llvm-toolchain-wily-3.6-source</string>
-        <string>llvm-toolchain-wily-3.6-source-trigger</string>
         <string>llvm-toolchain-wily-3.7-binaries</string>
         <string>llvm-toolchain-wily-3.7-source</string>
         <string>llvm-toolchain-wily-3.7-source-trigger</string>
@@ -207,6 +206,7 @@
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
       </columns>
+      <includeRegex>.*wily.*</includeRegex>
       <recurse>false</recurse>
     </listView>
     <listView>
@@ -224,6 +224,8 @@
         <string>llvm-defaults-trusty-source</string>
         <string>llvm-defaults-vivid-source</string>
         <string>llvm-defaults-wily-source</string>
+        <string>llvm-defaults-yakkety-source</string>
+        <string>llvm-defaults-zesty-source</string>
       </jobNames>
       <jobFilters/>
       <columns>
@@ -345,6 +347,50 @@
         <hudson.views.BuildButtonColumn/>
       </columns>
       <includeRegex>.*3.9.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>4.0</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*4.0.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Ubuntu Zesty</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*zesty.*</includeRegex>
       <recurse>false</recurse>
     </listView>
   </views>
