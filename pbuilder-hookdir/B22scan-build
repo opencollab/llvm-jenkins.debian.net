@@ -20,4 +20,10 @@ else
        cmd='tar czvf /tmp/buildd/scan-build.tar.gz scan-build/'
        echo $cmd
        eval $cmd
+       cmd='cp /tmp/buildd/scan-build.tar.gz /tmp/buildd/llvm-toolchain-snapshot*/'
+       echo $cmd
+       eval $cmd
+       cmd='ls -al /tmp/buildd/llvm-toolchain-snapshot*/scan-build.tar.gz /tmp/buildd/scan-build.tar.gz'
+       echo $cmd
+       eval $cmd
 fi

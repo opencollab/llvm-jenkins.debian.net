@@ -9,11 +9,21 @@ else
 	cmd='ls -al cov-int/; tar czvf /tmp/buildd/llvm.tgz cov-int/'
 	echo $cmd
 	eval $cmd
-	apt-get install --yes --no-install-recommends --force-yes curl ca-certificates
-	curl --form project=llvm --form token=whowXut2UU9x_pCB3pSbyw \
-	    --form email=sylvestre@debian.org \
-	    --form file=@/tmp/buildd/llvm.tgz \
-	    --form version=$(date "+%Y-%m-%d_%H-%M-%S") \
-	    --form description="LLVM Toolchain" \
-	    https://scan.coverity.com/builds?project=llvm
+
+
+	minimumsize=190000
+	actualsize=$(du -k /tmp/buildd/llvm.tgz | cut -f 1)
+	if [ $actualsize -ge $minimumsize ]; then
+		apt-get install --yes --no-install-recommends --force-yes curl ca-certificates
+		curl --form project=llvm --form token=pass \
+		    --form email=sylvestre@debian.org \
+		    --form file=@/tmp/buildd/llvm.tgz \
+		    --form version=$(date "+%Y-%m-%d_%H-%M-%S") \
+		    --form description="llvm-toolchain" \
+		    https://scan.coverity.com/builds?project=llvm
+        else
+		cat cov-int/build-log.txt
+                echo "Unexpected filesize. Should be at least $minimumsize (found $actualize)"
+                exit 1
+        fi
 fi

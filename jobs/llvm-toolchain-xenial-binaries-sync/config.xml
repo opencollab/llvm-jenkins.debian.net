@@ -5,14 +5,15 @@
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.scm.NullSCM"/>
-  <canRoam>true</canRoam>
+  <assignedNode>master || korcula</assignedNode>
+  <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-xenial-binaries, llvm-toolchain-xenial-3.9-binaries, llvm-toolchain-xenial-3.8-binaries</upstreamProjects>
+      <upstreamProjects>llvm-toolchain-xenial-binaries, llvm-toolchain-xenial-4.0-binaries, llvm-toolchain-xenial-3.9-binaries, llvm-toolchain-xenial-3.8-binaries, llvm-defaults-xenial-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -29,15 +30,11 @@
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.17">
+    <hudson.tasks.Mailer plugin="mailer@1.18">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
-  <buildWrappers>
-    <org.jenkinsci.plugin.Diskcheck plugin="diskcheck@0.26">
-      <failOnError>false</failOnError>
-    </org.jenkinsci.plugin.Diskcheck>
-  </buildWrappers>
+  <buildWrappers/>
 </project>

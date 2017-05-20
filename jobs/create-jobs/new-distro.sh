@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 NAME="zesty"
 
-VERSIONS=( 3.8 3.9 snapshot)
+VERSIONS=( 3.9 4.0 snapshot)
 for v in "${VERSIONS[@]}"
 do
         echo $v
@@ -23,3 +23,4 @@ chown jenkins. /srv/repository/$NAME
 
 emacs ~/.pbuilderrc
 echo "On every slave, git pull + create the symlink from trusty for deboostrap"
+echo "also ignore the new distro in pbuilder-hookdir/D23-add-repo-for-default"

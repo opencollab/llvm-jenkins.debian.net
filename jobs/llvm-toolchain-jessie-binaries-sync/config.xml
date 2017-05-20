@@ -5,14 +5,15 @@
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.scm.NullSCM"/>
-  <canRoam>true</canRoam>
+  <assignedNode>master || korcula</assignedNode>
+  <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-jessie-binaries, llvm-toolchain-jessie-3.9-binaries, llvm-toolchain-jessie-3.8-binaries</upstreamProjects>
+      <upstreamProjects>llvm-toolchain-jessie-binaries, llvm-toolchain-jessie-4.0-binaries, llvm-toolchain-jessie-3.9-binaries, llvm-toolchain-jessie-3.8-binaries</upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
