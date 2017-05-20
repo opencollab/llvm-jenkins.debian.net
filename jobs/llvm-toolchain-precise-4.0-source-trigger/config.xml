@@ -29,7 +29,7 @@
     <filterChangelog>false</filterChangelog>
   </scm>
   <canRoam>true</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -56,9 +56,5 @@
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
-  <buildWrappers>
-    <org.jenkinsci.plugin.Diskcheck plugin="diskcheck@0.26">
-      <failOnError>true</failOnError>
-    </org.jenkinsci.plugin.Diskcheck>
-  </buildWrappers>
+  <buildWrappers/>
 </project>

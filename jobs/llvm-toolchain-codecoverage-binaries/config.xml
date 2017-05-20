@@ -42,7 +42,6 @@ Only build amd64</description>
       <name>label</name>
       <values>
         <string>korcula</string>
-        <string>master</string>
       </values>
     </hudson.matrix.LabelAxis>
   </axes>

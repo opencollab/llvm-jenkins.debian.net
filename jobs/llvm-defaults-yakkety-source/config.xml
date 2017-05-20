@@ -51,7 +51,7 @@ H 22 * * *</spec>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>
-export DISTRIBUTION=trusty
+export DISTRIBUTION=yakkety
 /usr/bin/generate-svn-snapshot
 </command>
     </hudson.tasks.Shell>

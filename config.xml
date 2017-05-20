@@ -5,7 +5,7 @@
     <string>OldData</string>
   </disabledAdministrativeMonitors>
   <version>2.6</version>
-  <numExecutors>1</numExecutors>
+  <numExecutors>2</numExecutors>
   <mode>EXCLUSIVE</mode>
   <useSecurity>true</useSecurity>
   <authorizationStrategy class="hudson.security.FullControlOnceLoggedInAuthorizationStrategy">
@@ -81,43 +81,6 @@
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>Ubuntu Precise</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
-        <string>llvm-defaults-precise-source</string>
-        <string>llvm-toolchain-precise-3.5-binaries</string>
-        <string>llvm-toolchain-precise-3.5-source</string>
-        <string>llvm-toolchain-precise-3.5-source-trigger</string>
-        <string>llvm-toolchain-precise-3.6-binaries</string>
-        <string>llvm-toolchain-precise-3.6-source</string>
-        <string>llvm-toolchain-precise-3.6-source-trigger</string>
-        <string>llvm-toolchain-precise-3.7-binaries</string>
-        <string>llvm-toolchain-precise-3.7-source</string>
-        <string>llvm-toolchain-precise-3.7-source-trigger</string>
-        <string>llvm-toolchain-precise-3.8-binaries</string>
-        <string>llvm-toolchain-precise-3.8-source</string>
-        <string>llvm-toolchain-precise-3.8-source-trigger</string>
-        <string>llvm-toolchain-precise-binaries</string>
-        <string>llvm-toolchain-precise-source</string>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*precise.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
       <name>Ubuntu Trusty</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
@@ -176,37 +139,6 @@
         <hudson.views.BuildButtonColumn/>
       </columns>
       <includeRegex>.*jessie.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
-      <name>Ubuntu Wily</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-        <string>llvm-defaults-wily-source</string>
-        <string>llvm-toolchain-wily-3.7-binaries</string>
-        <string>llvm-toolchain-wily-3.7-source</string>
-        <string>llvm-toolchain-wily-3.7-source-trigger</string>
-        <string>llvm-toolchain-wily-3.8-binaries</string>
-        <string>llvm-toolchain-wily-3.8-source</string>
-        <string>llvm-toolchain-wily-3.8-source-trigger</string>
-        <string>llvm-toolchain-wily-binaries</string>
-        <string>llvm-toolchain-wily-source</string>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*wily.*</includeRegex>
       <recurse>false</recurse>
     </listView>
     <listView>
