@@ -1,0 +1,37 @@
+Origin: LLVM/Clang build dep
+Label: LLVM/Clang build dep
+Codename: wheezy
+Date: Tue, 17 Dec 2013 13:34:02 UTC
+Architectures: amd64 i386
+Components: main
+Description: Apt repository of build of llvm-toolchain
+MD5Sum:
+ e467411607324a18b2a29e21c5eb8aba 5749 main/binary-amd64/Packages
+ 44bb4ae20dce7a346543545d03df24ab 1705 main/binary-amd64/Packages.gz
+ 9f3fa38ec28f81d9b14ee77b4d0332d3 148 main/binary-amd64/Release
+ f5002a1e846b4f9f7a307712a03c3207 5737 main/binary-i386/Packages
+ 9270cb5016fa23d74e172ee78baec66a 1701 main/binary-i386/Packages.gz
+ 9e83e8b4649edcf57eddc6856dacc111 147 main/binary-i386/Release
+ 2d0d5c75d016c5bbe6505352b7c54a4b 2581 main/source/Sources
+ efa8d4f79289e69acb8b956ec1b45291 1148 main/source/Sources.gz
+ 995559db660852127fd40910d3925647 149 main/source/Release
+SHA1:
+ 664dfbb51691c41ae39a3953cb7e9d5e2f158a50 5749 main/binary-amd64/Packages
+ 8e5fe5e6bbdf90a9595c446f20db6303c870bf2e 1705 main/binary-amd64/Packages.gz
+ b6cbc71167fa3d0a8bd1c7529805f44d50b6d326 148 main/binary-amd64/Release
+ b5b7ca2e2094fce444d1109077d163586a240b3b 5737 main/binary-i386/Packages
+ a4305aee0af08657cb6cfbde97977904f86f6111 1701 main/binary-i386/Packages.gz
+ 0608faa8e3a646b3ae4802da22b9c72fdb238c7a 147 main/binary-i386/Release
+ 84f8547966947cb185ca743c41680d6179a07172 2581 main/source/Sources
+ 0348a51311543a49be670f4adacca75ba2b25998 1148 main/source/Sources.gz
+ 9548e73cbeb4eedfb37bbe36ab51b0296d1a1bec 149 main/source/Release
+SHA256:
+ 77c8b8e9cb958ebf32cedc64eb13daabd7bdef0b1a24c5a234a944d41a7a4dc8 5749 main/binary-amd64/Packages
+ b36ba1ed0c3645b20331b7336490ffbb7541616567d445396b7b121efafeb012 1705 main/binary-amd64/Packages.gz
+ 494cd3facd6ca26947f54c4d64b00cc98e97fac6cd619ba230ccfd4fc865d284 148 main/binary-amd64/Release
+ 9bcd9496709f588dd5ed433ccebd29c726c7a539edc25e341507149b75f48702 5737 main/binary-i386/Packages
+ 3e186b1e04132fe51f933165ec2c81dde79a7d2efc2868f472095cc575fc88a9 1701 main/binary-i386/Packages.gz
+ efd212eb77a27c258d44f66d92144b7fffe30f10bb935ee5736dd1306316bdfa 147 main/binary-i386/Release
+ ae2a2837984cb71347d127a986c3a8fd972b6f35ccfe539471bb00ed8fb15545 2581 main/source/Sources
+ c2b6a679affc474ea6bcd16cdd452c98a4a8a2a6860316e3919a35d78f3b333d 1148 main/source/Sources.gz
+ af6fb3c1274a03d2cec82c0f707925e8700c4e9d58ff8a5eaa90ad87fca65da7 149 main/source/Release

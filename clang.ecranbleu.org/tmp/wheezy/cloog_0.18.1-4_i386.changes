@@ -1,0 +1,36 @@
+Format: 1.8
+Date: Tue, 17 Dec 2013 13:38:47 +0100
+Source: cloog
+Binary: libcloog-isl-dev libcloog-isl4 cloog-isl
+Architecture: source i386
+Version: 0.18.1-4
+Distribution: stable
+Urgency: low
+Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
+Changed-By: Sylvestre Ledru <sylvestre@debian.org>
+Description: 
+ cloog-isl  - Chunky Loop Generator (runtime library)
+ libcloog-isl-dev - Chunky Loop Generator (development files)
+ libcloog-isl4 - Chunky Loop Generator (runtime library)
+Changes: 
+ cloog (0.18.1-4) stable; urgency=low
+ .
+   * repack for stable
+Checksums-Sha1: 
+ b0dc3cfd55a749d296d4153575afebc23b00cf29 1042 cloog_0.18.1-4.dsc
+ 45224dc01f23a2c72f252c75b50c30f749690a46 6545 cloog_0.18.1-4.diff.gz
+ ffcd8c2996f4016ac72d0c11f189d473786300e5 83782 libcloog-isl-dev_0.18.1-4_i386.deb
+ dce17421c092e6a244975d88192f671a12f85b56 74216 libcloog-isl4_0.18.1-4_i386.deb
+ 425faa9578b430d0c80ba60b8b9d75f6391ca5a1 8292 cloog-isl_0.18.1-4_i386.deb
+Checksums-Sha256: 
+ 7acb8fd0e262643ddf95bd7f70b24a23da2b503249b8c19ff906abe5c3b8111a 1042 cloog_0.18.1-4.dsc
+ 66b61dd40457fd3e18ff994bcc51b02ce983942bd1e0dd83cd16be8e967fe489 6545 cloog_0.18.1-4.diff.gz
+ a5a1ae7750ac610d72a83a7cc24f023aad3f09a80e938df1018ee40c7a8f5e4c 83782 libcloog-isl-dev_0.18.1-4_i386.deb
+ 959c835ddf3656886a44f976840e4ceb59c9fd21106fd4cb6aeb020ab19b7e18 74216 libcloog-isl4_0.18.1-4_i386.deb
+ 568d66f2b935eef44961de4d417e94cd9fdc816688b3a9d551699f9b6edea720 8292 cloog-isl_0.18.1-4_i386.deb
+Files: 
+ 60ea2bee5087af5fe80094bba8b1959b 1042 libs optional cloog_0.18.1-4.dsc
+ 9afb12fdff7cc493e2afe46c84419625 6545 libs optional cloog_0.18.1-4.diff.gz
+ d06299fc602a1f122fac7020604b6d6b 83782 libdevel optional libcloog-isl-dev_0.18.1-4_i386.deb
+ f6975d30b22b74d799f0d5616d5bdf39 74216 libs optional libcloog-isl4_0.18.1-4_i386.deb
+ 82088110ac60392479adc0edf942a0da 8292 libs optional cloog-isl_0.18.1-4_i386.deb

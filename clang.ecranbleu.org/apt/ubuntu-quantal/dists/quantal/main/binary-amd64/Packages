@@ -1,0 +1,80 @@
+Package: libisl-dbg
+Source: isl
+Version: 0.11.1-1
+Architecture: amd64
+Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
+Installed-Size: 3982
+Depends: libisl10 (= 0.11.1-1)
+Replaces: libisl-dev (<< 0.08)
+Multi-Arch: same
+Homepage: http://freecode.com/projects/isl
+Priority: extra
+Section: debug
+Filename: pool/main/i/isl/libisl-dbg_0.11.1-1_amd64.deb
+Size: 1231408
+SHA256: 50a9f64f2f4d25e30633edc8e2044e8014a69307f1df6b2f6968fa259dd1146e
+SHA1: 3149dfe38e0841e1724ec94a91222e24b285f7ef
+MD5sum: 3bddd5221b5366efac27947ff4f0a5df
+Description: manipulating sets and relations of integer points bounded by linear constraints
+ isl is a library for manipulating sets and relations of integer points
+ bounded by linear constraints. Supported operations on sets include
+ intersection, union, set difference, emptiness check, convex hull,
+ (integer) affine hull, integer projection, and computing the lexicographic
+ minimum using parametric integer programming. It also includes an ILP solver
+ based on generalized basis reduction.
+ .
+ This package contains debug files.
+
+Package: libisl-dev
+Source: isl
+Version: 0.11.1-1
+Architecture: amd64
+Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
+Installed-Size: 2259
+Depends: libisl10 (= 0.11.1-1)
+Multi-Arch: same
+Homepage: http://freecode.com/projects/isl
+Priority: optional
+Section: libdevel
+Filename: pool/main/i/isl/libisl-dev_0.11.1-1_amd64.deb
+Size: 614868
+SHA256: 5acc5d7408a38e360c8e2f5a4c12d7195024e90b29a8e75a5f44c69b10ab8b82
+SHA1: 694387a3ed9557bb17a3116667e3a7620599294d
+MD5sum: 4e07a116cb524c309922df9c0e42d9de
+Description: manipulating sets and relations of integer points bounded by linear constraints
+ isl is a library for manipulating sets and relations of integer points
+ bounded by linear constraints. Supported operations on sets include
+ intersection, union, set difference, emptiness check, convex hull,
+ (integer) affine hull, integer projection, and computing the lexicographic
+ minimum using parametric integer programming. It also includes an ILP solver
+ based on generalized basis reduction.
+ .
+ This package contains the development files.
+
+Package: libisl10
+Source: isl
+Version: 0.11.1-1
+Architecture: amd64
+Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
+Installed-Size: 1202
+Pre-Depends: multiarch-support
+Depends: libc6 (>= 2.14), libgmp10
+Multi-Arch: same
+Homepage: http://freecode.com/projects/isl
+Priority: optional
+Section: libs
+Filename: pool/main/i/isl/libisl10_0.11.1-1_amd64.deb
+Size: 486796
+SHA256: 6169842e4d77cf5c9558d39539354f18843db576b5fce1b5622e15c5f533a1dc
+SHA1: fc78c09a1f57076c8bd478fe79ef8e4e1c78e805
+MD5sum: ca88b01391571a71c5b1c88b7a914537
+Description: manipulating sets and relations of integer points bounded by linear constraints
+ isl is a library for manipulating sets and relations of integer points
+ bounded by linear constraints. Supported operations on sets include
+ intersection, union, set difference, emptiness check, convex hull,
+ (integer) affine hull, integer projection, and computing the lexicographic
+ minimum using parametric integer programming. It also includes an ILP solver
+ based on generalized basis reduction.
+ .
+ This package contains the runtime library.
+

@@ -1,0 +1,45 @@
+Format: 1.8
+Date: Fri, 08 Mar 2013 10:35:16 +0100
+Source: isl
+Binary: libisl-dev libisl-dbg libisl10
+Architecture: source amd64
+Version: 0.11.1-1
+Distribution: quantal
+Urgency: low
+Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
+Changed-By: Sylvestre Ledru <sylvestre@debian.org>
+Description: 
+ libisl-dbg - manipulating sets and relations of integer points bounded by line
+ libisl-dev - manipulating sets and relations of integer points bounded by line
+ libisl10   - manipulating sets and relations of integer points bounded by line
+Changes: 
+ isl (0.11.1-1) quantal; urgency=low
+ .
+   [ Matthias Klose ]
+   * New upstream release.
+   * Update debian/copyright.
+   * Build using dh-autoreconf.
+ .
+   [ Sylvestre Ledru ]
+    * Rebuild for quantal (used by the llvm-toolchain CI)
+Checksums-Sha1: 
+ c5b79cce772edcb8600c96270901b7ce3348e76c 994 isl_0.11.1-1.dsc
+ d7936929c3937e03f09b64c3c54e49422fa8ddb3 1244610 isl_0.11.1.orig.tar.bz2
+ f7e6f9518dfd88b164d0fcff4576d0ae2b7e6324 16493 isl_0.11.1-1.debian.tar.gz
+ 969ec994e387d252f12e665fb9377b5c01b12913 614862 libisl-dev_0.11.1-1_amd64.deb
+ a2ce71c0b3021aba4944f40b0e1847123d32006b 1231410 libisl-dbg_0.11.1-1_amd64.deb
+ 9bdc581da5687033ca92ada7fdbcd6a420045ef9 486796 libisl10_0.11.1-1_amd64.deb
+Checksums-Sha256: 
+ 67472bd4b8f4a93b9f145961e44bb9ba4b52c2e1260c1dcaf1092686ec67cd99 994 isl_0.11.1-1.dsc
+ 095f4b54c88ca13a80d2b025d9c551f89ea7ba6f6201d701960bfe5c1466a98d 1244610 isl_0.11.1.orig.tar.bz2
+ 1db41f7258825618afbcc62e0bd179cbf94ae55774682008b34757c783bc7614 16493 isl_0.11.1-1.debian.tar.gz
+ 64e0651706eab1b935bc8576b80f4fc107fa143754a7ecfc76c3fbc0a088604a 614862 libisl-dev_0.11.1-1_amd64.deb
+ 9bdc480e732ca6d1d1b94cc71188d1723baacfc60b3eac40dde2b85bb3742d13 1231410 libisl-dbg_0.11.1-1_amd64.deb
+ 5ecbac8241779079b0af4c53eb65d72c5219a4fc9e4379570f80e5d01292c578 486796 libisl10_0.11.1-1_amd64.deb
+Files: 
+ ded460076c691b9facfe94b256bb03d8 994 libs optional isl_0.11.1-1.dsc
+ bce1586384d8635a76d2f017fb067cd2 1244610 libs optional isl_0.11.1.orig.tar.bz2
+ 50f2cad0d3ad564c4f7db10c7691c13c 16493 libs optional isl_0.11.1-1.debian.tar.gz
+ 43bfc5fffeea4a3709b81eb2a0038a20 614862 libdevel optional libisl-dev_0.11.1-1_amd64.deb
+ d03a94e36d7590512b9d126e81c5389d 1231410 debug extra libisl-dbg_0.11.1-1_amd64.deb
+ ff99ccd4830fbf385044dc75789c5316 486796 libs optional libisl10_0.11.1-1_amd64.deb

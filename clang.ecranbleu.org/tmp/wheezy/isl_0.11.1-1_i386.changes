@@ -1,0 +1,45 @@
+Format: 1.8
+Date: Fri, 08 Mar 2013 10:35:16 +0100
+Source: isl
+Binary: libisl-dev libisl-dbg libisl10
+Architecture: source i386
+Version: 0.11.1-1
+Distribution: wheezy
+Urgency: low
+Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
+Changed-By: Sylvestre Ledru <sylvestre@debian.org>
+Description: 
+ libisl-dbg - manipulating sets and relations of integer points bounded by line
+ libisl-dev - manipulating sets and relations of integer points bounded by line
+ libisl10   - manipulating sets and relations of integer points bounded by line
+Changes: 
+ isl (0.11.1-1) wheezy; urgency=low
+ .
+   [ Matthias Klose ]
+   * New upstream release.
+   * Update debian/copyright.
+   * Build using dh-autoreconf.
+ .
+   [ Sylvestre Ledru ]
+    * Rebuild for quantal (used by the llvm-toolchain CI)
+Checksums-Sha1: 
+ 2f0e59c2a94a59eb2775249f3661caa60742a054 994 isl_0.11.1-1.dsc
+ d7936929c3937e03f09b64c3c54e49422fa8ddb3 1244610 isl_0.11.1.orig.tar.bz2
+ d3ce258bbc092e93f1eaf9081a975314cdf4916f 16549 isl_0.11.1-1.debian.tar.gz
+ 043c249cc2ad1e05f47eb373edbfcd7110ef9434 574590 libisl-dev_0.11.1-1_i386.deb
+ 318260c7da7bc8b9896ada61804992b3f8eb21ff 1115370 libisl-dbg_0.11.1-1_i386.deb
+ 87f5fbf328f7bbe24b18fac1a53fcdc3ee0f2809 536474 libisl10_0.11.1-1_i386.deb
+Checksums-Sha256: 
+ 9c3562854fa2bc2052769ff230aa2c9b2b9eb48cdf79e8cc8fd47353cf78c0bb 994 isl_0.11.1-1.dsc
+ 095f4b54c88ca13a80d2b025d9c551f89ea7ba6f6201d701960bfe5c1466a98d 1244610 isl_0.11.1.orig.tar.bz2
+ 251fbd53aa8b8b2f63264c75259a3f116f8e2627dc3131b24ef5885fe7290956 16549 isl_0.11.1-1.debian.tar.gz
+ 0a22fe6b9537f1c07210cb9755946058be05b4f2a31470a4c7e7211e565cab19 574590 libisl-dev_0.11.1-1_i386.deb
+ 3500327199e7c2adf71265361f94f4b633b627b981bf5bdddbbeaba9f7903b5b 1115370 libisl-dbg_0.11.1-1_i386.deb
+ 3d99e886c5c6c4809b245576a858eb33c60c1158ee4c4b06dda18b3665c7b718 536474 libisl10_0.11.1-1_i386.deb
+Files: 
+ 71344783617844aa62f88c56e8e39e56 994 libs optional isl_0.11.1-1.dsc
+ bce1586384d8635a76d2f017fb067cd2 1244610 libs optional isl_0.11.1.orig.tar.bz2
+ 60c6d7c46f6ebec53942d593903ed6ea 16549 libs optional isl_0.11.1-1.debian.tar.gz
+ 047765cd06d20ce525b9b25a711c31e0 574590 libdevel optional libisl-dev_0.11.1-1_i386.deb
+ 7d0ed4f60738934de99cd1532e6fb9ed 1115370 debug extra libisl-dbg_0.11.1-1_i386.deb
+ f01bacf2e2bf3274c7a09ff2ee4c6f2a 536474 libs optional libisl10_0.11.1-1_i386.deb

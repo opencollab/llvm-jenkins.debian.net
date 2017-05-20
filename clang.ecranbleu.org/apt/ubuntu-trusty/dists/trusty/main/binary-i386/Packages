@@ -1,0 +1,53 @@
+Package: libctypes-ocaml
+Source: ocaml-ctypes
+Version: 0.2.3-1build1
+Architecture: i386
+Maintainer: Debian OCaml Maintainers <debian-ocaml-maint@lists.debian.org>
+Installed-Size: 425
+Depends: ocaml-base-nox-4.01.0, libc6 (>= 2.7), libffi6 (>= 3.0.4)
+Provides: libctypes-ocaml-5o814
+Homepage: https://github.com/ocamllabs/ocaml-ctypes
+Priority: optional
+Section: ocaml
+Filename: pool/main/o/ocaml-ctypes/libctypes-ocaml_0.2.3-1build1_i386.deb
+Size: 81042
+SHA256: c5f6ea243398cd4c073f391cbf0ce0d627b7cb0d97c643ddfb62d00d6ab2cb1b
+SHA1: c28359e9fed3e887b6f501092a42180158cd03b3
+MD5sum: 380c9e563d085c29b63ead17fce3797a
+Description: library for binding to C libraries using pure OCaml (runtime)
+ The ocaml-ctypes library makes it possible to call C functions
+ directly from OCaml without writing or generating C code.  The core
+ of the library is a set of combinators for describing C types --
+ scalars, functions, structs, unions, arrays, and pointers to values
+ and functions.  Type descriptions can then be used to bind native
+ functions and values.
+ .
+ This package contains the shared runtime stub library and plugins.
+
+Package: libctypes-ocaml-dev
+Source: ocaml-ctypes
+Version: 0.2.3-1build1
+Architecture: i386
+Maintainer: Debian OCaml Maintainers <debian-ocaml-maint@lists.debian.org>
+Installed-Size: 530
+Depends: libctypes-ocaml-5o814, ocaml-nox-4.01.0
+Provides: libctypes-ocaml-dev-5o814
+Homepage: https://github.com/ocamllabs/ocaml-ctypes
+Priority: optional
+Section: ocaml
+Filename: pool/main/o/ocaml-ctypes/libctypes-ocaml-dev_0.2.3-1build1_i386.deb
+Size: 92628
+SHA256: 2b23eac92ea59e3699e62e942b555ad01393337ba0d909118cbc7b83c0814a82
+SHA1: f14b3888f524d6fc82e7a054ded52e9b9c79b8c8
+MD5sum: d9c8e942d7e3673f6cadc1952731e38f
+Description: library for binding to C libraries using pure OCaml (dev)
+ The ocaml-ctypes library makes it possible to call C functions
+ directly from OCaml without writing or generating C code.  The core
+ of the library is a set of combinators for describing C types --
+ scalars, functions, structs, unions, arrays, and pointers to values
+ and functions.  Type descriptions can then be used to bind native
+ functions and values.
+ .
+ This package contains all the development stuff you need to use
+ ocaml-ctypes.
+

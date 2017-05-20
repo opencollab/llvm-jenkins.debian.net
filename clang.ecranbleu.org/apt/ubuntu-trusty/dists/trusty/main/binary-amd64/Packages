@@ -1,0 +1,53 @@
+Package: libctypes-ocaml
+Source: ocaml-ctypes
+Version: 0.2.3-1build1
+Architecture: amd64
+Maintainer: Debian OCaml Maintainers <debian-ocaml-maint@lists.debian.org>
+Installed-Size: 512
+Depends: ocaml-base-nox-4.01.0, libc6 (>= 2.14), libffi6 (>= 3.0.4)
+Provides: libctypes-ocaml-mvnd3
+Homepage: https://github.com/ocamllabs/ocaml-ctypes
+Priority: optional
+Section: ocaml
+Filename: pool/main/o/ocaml-ctypes/libctypes-ocaml_0.2.3-1build1_amd64.deb
+Size: 87472
+SHA256: 56718e90be75303c2b21d8b9cf603c7ff3e646e1adaaf750e6dc86712275bbaa
+SHA1: f8c2f9d9957291f00062fc6252ab2428e4ec868e
+MD5sum: ad70873a7bcf5e797080756cf3414c79
+Description: library for binding to C libraries using pure OCaml (runtime)
+ The ocaml-ctypes library makes it possible to call C functions
+ directly from OCaml without writing or generating C code.  The core
+ of the library is a set of combinators for describing C types --
+ scalars, functions, structs, unions, arrays, and pointers to values
+ and functions.  Type descriptions can then be used to bind native
+ functions and values.
+ .
+ This package contains the shared runtime stub library and plugins.
+
+Package: libctypes-ocaml-dev
+Source: ocaml-ctypes
+Version: 0.2.3-1build1
+Architecture: amd64
+Maintainer: Debian OCaml Maintainers <debian-ocaml-maint@lists.debian.org>
+Installed-Size: 708
+Depends: libctypes-ocaml-mvnd3, ocaml-nox-4.01.0
+Provides: libctypes-ocaml-dev-mvnd3
+Homepage: https://github.com/ocamllabs/ocaml-ctypes
+Priority: optional
+Section: ocaml
+Filename: pool/main/o/ocaml-ctypes/libctypes-ocaml-dev_0.2.3-1build1_amd64.deb
+Size: 92892
+SHA256: e12e4134d6df94c63af8c01069a6eb27d46f0a808d860542c5a78a78743fd0ca
+SHA1: 63087e3e64ddff366d171b6b666afd35ee8fee7d
+MD5sum: 9b054a7e6e7e9371eba641939f162603
+Description: library for binding to C libraries using pure OCaml (dev)
+ The ocaml-ctypes library makes it possible to call C functions
+ directly from OCaml without writing or generating C code.  The core
+ of the library is a set of combinators for describing C types --
+ scalars, functions, structs, unions, arrays, and pointers to values
+ and functions.  Type descriptions can then be used to bind native
+ functions and values.
+ .
+ This package contains all the development stuff you need to use
+ ocaml-ctypes.
+

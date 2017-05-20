@@ -1,0 +1,148 @@
+Package: cloog-isl
+Source: cloog
+Version: 0.18.1-4
+Architecture: i386
+Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
+Installed-Size: 49
+Depends: libcloog-isl4 (= 0.18.1-4), libc6 (>= 2.3.4), libgmp10
+Conflicts: cloog-ppl (<< 0.15.11-4), libcloog-ppl-dev (<< 0.15.11-1)
+Homepage: http://www.CLooG.org
+Priority: optional
+Section: libs
+Filename: pool/main/c/cloog/cloog-isl_0.18.1-4_i386.deb
+Size: 8292
+SHA256: 568d66f2b935eef44961de4d417e94cd9fdc816688b3a9d551699f9b6edea720
+SHA1: 425faa9578b430d0c80ba60b8b9d75f6391ca5a1
+MD5sum: 82088110ac60392479adc0edf942a0da
+Description: Chunky Loop Generator (runtime library)
+ CLooG is a software which generates loops for scanning Z-polyhedra.
+ .
+ This package contains the cloog-isl binary.
+
+Package: libcloog-isl-dev
+Source: cloog
+Version: 0.18.1-4
+Architecture: i386
+Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
+Installed-Size: 319
+Depends: libisl-dev (>= 0.11), libgmp-dev, libcloog-isl4 (= 0.18.1-4), dpkg (>= 1.15.4) | install-info
+Conflicts: libcloog-ppl-dev
+Multi-Arch: same
+Homepage: http://www.CLooG.org
+Priority: optional
+Section: libdevel
+Filename: pool/main/c/cloog/libcloog-isl-dev_0.18.1-4_i386.deb
+Size: 83782
+SHA256: a5a1ae7750ac610d72a83a7cc24f023aad3f09a80e938df1018ee40c7a8f5e4c
+SHA1: ffcd8c2996f4016ac72d0c11f189d473786300e5
+MD5sum: d06299fc602a1f122fac7020604b6d6b
+Description: Chunky Loop Generator (development files)
+ CLooG is a software which generates loops for scanning Z-polyhedra. That is,
+ CLooG finds the code or pseudo-code where each integral point of one or more
+ parametrized polyhedron or parametrized polyhedra union is reached. CLooG is
+ designed to avoid control overhead and to produce a very efficient code.
+ .
+ This package contains the development files and the cloog binary.
+
+Package: libcloog-isl4
+Source: cloog
+Version: 0.18.1-4
+Architecture: i386
+Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
+Installed-Size: 202
+Pre-Depends: multiarch-support
+Depends: libc6 (>= 2.7), libgmp10, libisl10 (>= 0.11)
+Multi-Arch: same
+Homepage: http://www.CLooG.org
+Priority: optional
+Section: libs
+Filename: pool/main/c/cloog/libcloog-isl4_0.18.1-4_i386.deb
+Size: 74216
+SHA256: 959c835ddf3656886a44f976840e4ceb59c9fd21106fd4cb6aeb020ab19b7e18
+SHA1: dce17421c092e6a244975d88192f671a12f85b56
+MD5sum: f6975d30b22b74d799f0d5616d5bdf39
+Description: Chunky Loop Generator (runtime library)
+ CLooG is a software which generates loops for scanning Z-polyhedra.
+ .
+ This package contains the runtime library.
+
+Package: libisl-dbg
+Source: isl
+Version: 0.11.1-1
+Architecture: i386
+Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
+Installed-Size: 2712
+Depends: libisl10 (= 0.11.1-1)
+Replaces: libisl-dev (<< 0.08)
+Multi-Arch: same
+Homepage: http://freecode.com/projects/isl
+Priority: extra
+Section: debug
+Filename: pool/main/i/isl/libisl-dbg_0.11.1-1_i386.deb
+Size: 1115370
+SHA256: 3500327199e7c2adf71265361f94f4b633b627b981bf5bdddbbeaba9f7903b5b
+SHA1: 318260c7da7bc8b9896ada61804992b3f8eb21ff
+MD5sum: 7d0ed4f60738934de99cd1532e6fb9ed
+Description: manipulating sets and relations of integer points bounded by linear constraints
+ isl is a library for manipulating sets and relations of integer points
+ bounded by linear constraints. Supported operations on sets include
+ intersection, union, set difference, emptiness check, convex hull,
+ (integer) affine hull, integer projection, and computing the lexicographic
+ minimum using parametric integer programming. It also includes an ILP solver
+ based on generalized basis reduction.
+ .
+ This package contains debug files.
+
+Package: libisl-dev
+Source: isl
+Version: 0.11.1-1
+Architecture: i386
+Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
+Installed-Size: 1772
+Depends: libisl10 (= 0.11.1-1)
+Multi-Arch: same
+Homepage: http://freecode.com/projects/isl
+Priority: optional
+Section: libdevel
+Filename: pool/main/i/isl/libisl-dev_0.11.1-1_i386.deb
+Size: 574590
+SHA256: 0a22fe6b9537f1c07210cb9755946058be05b4f2a31470a4c7e7211e565cab19
+SHA1: 043c249cc2ad1e05f47eb373edbfcd7110ef9434
+MD5sum: 047765cd06d20ce525b9b25a711c31e0
+Description: manipulating sets and relations of integer points bounded by linear constraints
+ isl is a library for manipulating sets and relations of integer points
+ bounded by linear constraints. Supported operations on sets include
+ intersection, union, set difference, emptiness check, convex hull,
+ (integer) affine hull, integer projection, and computing the lexicographic
+ minimum using parametric integer programming. It also includes an ILP solver
+ based on generalized basis reduction.
+ .
+ This package contains the development files.
+
+Package: libisl10
+Source: isl
+Version: 0.11.1-1
+Architecture: i386
+Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
+Installed-Size: 1348
+Pre-Depends: multiarch-support
+Depends: libc6 (>= 2.4), libgmp10
+Multi-Arch: same
+Homepage: http://freecode.com/projects/isl
+Priority: optional
+Section: libs
+Filename: pool/main/i/isl/libisl10_0.11.1-1_i386.deb
+Size: 536474
+SHA256: 3d99e886c5c6c4809b245576a858eb33c60c1158ee4c4b06dda18b3665c7b718
+SHA1: 87f5fbf328f7bbe24b18fac1a53fcdc3ee0f2809
+MD5sum: f01bacf2e2bf3274c7a09ff2ee4c6f2a
+Description: manipulating sets and relations of integer points bounded by linear constraints
+ isl is a library for manipulating sets and relations of integer points
+ bounded by linear constraints. Supported operations on sets include
+ intersection, union, set difference, emptiness check, convex hull,
+ (integer) affine hull, integer projection, and computing the lexicographic
+ minimum using parametric integer programming. It also includes an ILP solver
+ based on generalized basis reduction.
+ .
+ This package contains the runtime library.
+

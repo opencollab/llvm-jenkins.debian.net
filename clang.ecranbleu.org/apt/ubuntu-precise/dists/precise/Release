@@ -1,0 +1,37 @@
+Origin: LLVM/Clang build dep
+Label: LLVM/Clang build dep
+Codename: precise
+Date: Fri, 08 Mar 2013 11:08:20 UTC
+Architectures: amd64 i386
+Components: main
+Description: Apt repository of build of llvm-toolchain
+MD5Sum:
+ a43dff2f372318a11b525b2e9f41f234 3217 main/binary-amd64/Packages
+ b9b614eb83c02e33716d2ebff159d93e 996 main/binary-amd64/Packages.gz
+ 9f3fa38ec28f81d9b14ee77b4d0332d3 148 main/binary-amd64/Release
+ b2e1faf6f4f7958d61c77ba2977e3663 3210 main/binary-i386/Packages
+ e46626900d74c1650a1e9d3685b5df40 990 main/binary-i386/Packages.gz
+ 9e83e8b4649edcf57eddc6856dacc111 147 main/binary-i386/Release
+ b05507f2c0db27a751339c4c5d14c29a 1261 main/source/Sources
+ 7ef79cf8f1e57e7586838e4edf0e219c 708 main/source/Sources.gz
+ 995559db660852127fd40910d3925647 149 main/source/Release
+SHA1:
+ ed5b98675f5ce7659b31ca1a38f18a839a87db1a 3217 main/binary-amd64/Packages
+ 4616f79330b03e7098bcc86b5c6e898cff4ec063 996 main/binary-amd64/Packages.gz
+ b6cbc71167fa3d0a8bd1c7529805f44d50b6d326 148 main/binary-amd64/Release
+ 7dcfb3e1c6a6c3eb96781ff98db891773add8323 3210 main/binary-i386/Packages
+ 2a9858c5e8716489d0ceb947680ceec6e2145081 990 main/binary-i386/Packages.gz
+ 0608faa8e3a646b3ae4802da22b9c72fdb238c7a 147 main/binary-i386/Release
+ 5710a8a0298ac1f49951bec180d2f5b83826b69b 1261 main/source/Sources
+ d77d37c61da1de496e5d310fb2fead059ba127f2 708 main/source/Sources.gz
+ 9548e73cbeb4eedfb37bbe36ab51b0296d1a1bec 149 main/source/Release
+SHA256:
+ daa8e2cf255c015390e183d49266df7a4c911d331c7af4317b174a67bff848f5 3217 main/binary-amd64/Packages
+ ca58d56c7f747486e2cac3f59a9d1711132b4ecdacb6dd5ec5b9ffffbf7b7fce 996 main/binary-amd64/Packages.gz
+ 494cd3facd6ca26947f54c4d64b00cc98e97fac6cd619ba230ccfd4fc865d284 148 main/binary-amd64/Release
+ 8bd9cd8cc8131e8847e6f0f3ed339f4e1b900d3ca2070d30f7c42a0c5b7d4cca 3210 main/binary-i386/Packages
+ bf595a809eecf8a1b5a859f83e60899af6c800b747f9d6407db515b6bbb250c3 990 main/binary-i386/Packages.gz
+ efd212eb77a27c258d44f66d92144b7fffe30f10bb935ee5736dd1306316bdfa 147 main/binary-i386/Release
+ 71276135cfc1baa6022dd85b8f35dc86ca5031ed28f5df4e88eb7bdfbb32fe66 1261 main/source/Sources
+ 5f3fe0f8837c05b0ce1a580730879e3ae6ef8e0f08ad55932d354a751edcf391 708 main/source/Sources.gz
+ af6fb3c1274a03d2cec82c0f707925e8700c4e9d58ff8a5eaa90ad87fca65da7 149 main/source/Release
