@@ -4,7 +4,7 @@ set -ex
 apt-get install --assume-yes --no-install-recommends lsb-release
 DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
-if test "$DIST" = "precise" -o "$DIST" = "quantal" -o "$DIST" = "wheezy" -o "$DIST" = "trusty"; then
+if test "$DIST" = "precise" -o "$DIST" = "quantal" -o "$DIST" = "wheezy" -o "$DIST" = "trusty"  -o "$DIST" = "artful"; then
 	echo "deb http://clang.ecranbleu.org/apt/$ID-$DIST $DIST main" > /etc/apt/sources.list.d/libbackport.list
 	echo "APT::Get::AllowUnauthenticated yes;" > /etc/apt/apt.conf.d/99auth
 	apt-get update
