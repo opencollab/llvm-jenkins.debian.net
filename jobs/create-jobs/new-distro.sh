@@ -23,5 +23,5 @@ chown jenkins. /srv/repository/$NAME
 
 emacs ~/.pbuilderrc
 echo "On every slave, git pull + create the symlink from $NAME for deboostrap"
-echo "also ignore the new distro in pbuilder-hookdir/D23-add-repo-for-default"
+echo "also ignore the new distro in pbuilder-hookdir/D23-add-repo-for-default and pbuilder-hookdir/D21backport-repo"
 echo "Please also create llvm-defaults-$NAME"
