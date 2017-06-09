@@ -1,10 +1,10 @@
-#!/bin/bash
+>#!/bin/bash
 
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root" 1>&2
    exit 1
 fi
-NAME="zesty"
+NAME="artful"
 
 VERSIONS=( 3.9 4.0 snapshot)
 for v in "${VERSIONS[@]}"
@@ -22,5 +22,6 @@ mkdir  -p /srv/repository/$NAME
 chown jenkins. /srv/repository/$NAME
 
 emacs ~/.pbuilderrc
-echo "On every slave, git pull + create the symlink from trusty for deboostrap"
+echo "On every slave, git pull + create the symlink from $NAME for deboostrap"
 echo "also ignore the new distro in pbuilder-hookdir/D23-add-repo-for-default"
+echo "Please also create llvm-defaults-$NAME"
