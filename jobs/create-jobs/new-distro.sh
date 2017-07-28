@@ -1,12 +1,12 @@
->#!/bin/bash
+#!/bin/bash
 
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root" 1>&2
    exit 1
 fi
-NAME="artful"
+NAME="stretch"
 
-VERSIONS=( 3.9 4.0 snapshot)
+VERSIONS=( 4.0 5.0 snapshot)
 for v in "${VERSIONS[@]}"
 do
         echo $v
@@ -15,8 +15,10 @@ do
         chown -R jenkins. llvm-toolchain-*
 done
 
+sh create-new-job-default.sh $NAME
+
 cd /usr/share/debootstrap/scripts
-ln -s trusty $NAME
+ln -s jessie $NAME
 
 mkdir  -p /srv/repository/$NAME
 chown jenkins. /srv/repository/$NAME
