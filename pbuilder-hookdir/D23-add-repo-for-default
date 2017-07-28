@@ -3,7 +3,7 @@ set -ex
 apt-get install --assume-yes --no-install-recommends lsb-release
 DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
-if test "$DIST" != "sid" -a "$DIST" != "stretch" -a "$DIST" != "xenial" -a "$DIST" != "yakkety" -a "$DIST" != "zesty" -a "$DIST" != "artful"; then
+if test "$DIST" != "sid" -a "$DIST" != "stretch" -a "$DIST" != "buster" -a "$DIST" != "xenial" -a "$DIST" != "yakkety" -a "$DIST" != "zesty" -a "$DIST" != "artful"; then
     echo "deb http://apt.llvm.org/$DIST/ llvm-toolchain-$DIST main" > /etc/apt/sources.list.d/llvm.list
     echo "APT::Get::AllowUnauthenticated yes;" > /etc/apt/apt.conf.d/99auth
     apt-get update
