@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<matrix-project plugin="matrix-project@1.8">
+<matrix-project plugin="matrix-project@1.11">
   <actions/>
   <description>Build with scan-build&#xd;
 Run all the tests&#xd;
@@ -66,11 +66,11 @@ tar zxvf $CURRENT_PATH/scan-build.tar.gz
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>cd /srv/repository/scan-build/
-/usr/bin/rsync --delay-updates --stats --delete -r * apt@llvm.org:/home/apt/reports/scan-build/</command>
+/usr/bin/rsync --delay-updates --stats --delete -r * sledru@llvm.org:/opt/reports/scan-build</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.18">
+    <hudson.tasks.Mailer plugin="mailer@1.20">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
