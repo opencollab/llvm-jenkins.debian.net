@@ -10,7 +10,7 @@
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties/>
-  <scm class="hudson.scm.SubversionSCM" plugin="subversion@2.5.7">
+  <scm class="hudson.scm.SubversionSCM" plugin="subversion@2.9">
     <locations>
       <hudson.scm.SubversionSCM_-ModuleLocation>
         <remote>svn://anonscm.debian.org/svn/pkg-llvm/llvm-toolchain/branches/3.9</remote>
@@ -29,7 +29,7 @@
     <filterChangelog>false</filterChangelog>
   </scm>
   <canRoam>true</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
@@ -54,7 +54,7 @@ export DISTRIBUTION=yakkety
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.Mailer plugin="mailer@1.17">
+    <hudson.tasks.Mailer plugin="mailer@1.20">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
@@ -69,9 +69,5 @@ export DISTRIBUTION=yakkety
       </threshold>
     </hudson.tasks.BuildTrigger>
   </publishers>
-  <buildWrappers>
-    <org.jenkinsci.plugin.Diskcheck plugin="diskcheck@0.26">
-      <failOnError>true</failOnError>
-    </org.jenkinsci.plugin.Diskcheck>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
