@@ -27,3 +27,4 @@ emacs ~/.pbuilderrc
 echo "On every slave, git pull + create the symlink from $NAME for deboostrap"
 echo "also ignore the new distro in pbuilder-hookdir/D23-add-repo-for-default"
 echo "Please also create llvm-defaults-$NAME"
+echo "in the sync job, restrict to where it can run master||korcula probably"
