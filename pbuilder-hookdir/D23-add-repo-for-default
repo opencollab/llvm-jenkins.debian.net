@@ -1,6 +1,6 @@
 #!/bin/sh
 set -ex
-apt-get install --assume-yes --no-install-recommends lsb-release
+apt-get install --assume-yes --no-install-recommends lsb-release wget
 DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
 if test "$DIST" != "sid" -a "$DIST" != "stretch" -a "$DIST" != "buster" -a "$DIST" != "xenial" -a "$DIST" != "yakkety" -a "$DIST" != "zesty" -a "$DIST" != "artful"; then

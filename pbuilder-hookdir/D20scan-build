@@ -3,6 +3,7 @@
 set -ex
 
 if echo "$DEB_BUILD_OPTIONS" | grep "scan-build"; then
+    apt-get install --yes --no-install-recommends --force-yes wget
     echo "deb http://apt.llvm.org/unstable/ llvm-toolchain main" >> /etc/apt/sources.list
     wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -
     apt-get update
