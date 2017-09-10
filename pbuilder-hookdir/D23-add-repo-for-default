@@ -5,7 +5,7 @@ DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
 if test "$DIST" != "sid" -a "$DIST" != "stretch" -a "$DIST" != "buster" -a "$DIST" != "xenial" -a "$DIST" != "yakkety" -a "$DIST" != "zesty" -a "$DIST" != "artful"; then
     echo "deb http://apt.llvm.org/$DIST/ llvm-toolchain-$DIST main" > /etc/apt/sources.list.d/llvm.list
-    wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -
+    wget --no-check-certificate -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -
 #    echo "APT::Get::AllowUnauthenticated yes;" > /etc/apt/apt.conf.d/99auth
     apt-get update
 fi
