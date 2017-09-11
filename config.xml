@@ -178,50 +178,6 @@
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>3.8</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-        <string>llvm-toolchain-3.8-binaries</string>
-        <string>llvm-toolchain-3.8-source</string>
-        <string>llvm-toolchain-3.8-source-trigger</string>
-        <string>llvm-toolchain-jessie-3.8-binaries</string>
-        <string>llvm-toolchain-jessie-3.8-source</string>
-        <string>llvm-toolchain-jessie-3.8-source-trigger</string>
-        <string>llvm-toolchain-precise-3.8-binaries</string>
-        <string>llvm-toolchain-precise-3.8-source</string>
-        <string>llvm-toolchain-precise-3.8-source-trigger</string>
-        <string>llvm-toolchain-trusty-3.8-binaries</string>
-        <string>llvm-toolchain-trusty-3.8-source</string>
-        <string>llvm-toolchain-trusty-3.8-source-trigger</string>
-        <string>llvm-toolchain-utopic-3.8-binaries</string>
-        <string>llvm-toolchain-utopic-3.8-source</string>
-        <string>llvm-toolchain-utopic-3.8-source-trigger</string>
-        <string>llvm-toolchain-vivid-3.8-binaries</string>
-        <string>llvm-toolchain-vivid-3.8-source</string>
-        <string>llvm-toolchain-vivid-3.8-source-trigger</string>
-        <string>llvm-toolchain-wily-3.8-binaries</string>
-        <string>llvm-toolchain-wily-3.8-source</string>
-        <string>llvm-toolchain-wily-3.8-source-trigger</string>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*3.8.*</includeRegex>
-      <recurse>false</recurse>
-      <statusFilter>true</statusFilter>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
       <name>Ubuntu Xenial</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
@@ -240,29 +196,6 @@
         <hudson.views.BuildButtonColumn/>
       </columns>
       <includeRegex>.*xenial.*</includeRegex>
-      <recurse>false</recurse>
-      <statusFilter>true</statusFilter>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
-      <name>3.9</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*3.9.*</includeRegex>
       <recurse>false</recurse>
       <statusFilter>true</statusFilter>
     </listView>
@@ -401,6 +334,52 @@
         <hudson.views.BuildButtonColumn/>
       </columns>
       <includeRegex>.*-sync</includeRegex>
+      <recurse>false</recurse>
+      <statusFilter>true</statusFilter>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>trunk</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>llvm-toolchain-artful-binaries</string>
+        <string>llvm-toolchain-artful-source</string>
+        <string>llvm-toolchain-binaries</string>
+        <string>llvm-toolchain-jessie-binaries</string>
+        <string>llvm-toolchain-jessie-source</string>
+        <string>llvm-toolchain-precise-binaries</string>
+        <string>llvm-toolchain-precise-source</string>
+        <string>llvm-toolchain-source</string>
+        <string>llvm-toolchain-stretch-binaries</string>
+        <string>llvm-toolchain-stretch-source</string>
+        <string>llvm-toolchain-trusty-binaries</string>
+        <string>llvm-toolchain-trusty-source</string>
+        <string>llvm-toolchain-utopic-binaries</string>
+        <string>llvm-toolchain-utopic-source</string>
+        <string>llvm-toolchain-vivid-binaries</string>
+        <string>llvm-toolchain-vivid-source</string>
+        <string>llvm-toolchain-wily-binaries</string>
+        <string>llvm-toolchain-wily-source</string>
+        <string>llvm-toolchain-xenial-binaries</string>
+        <string>llvm-toolchain-xenial-source</string>
+        <string>llvm-toolchain-yakkety-binaries</string>
+        <string>llvm-toolchain-yakkety-source</string>
+        <string>llvm-toolchain-zesty-binaries</string>
+        <string>llvm-toolchain-zesty-source</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
       <recurse>false</recurse>
       <statusFilter>true</statusFilter>
     </listView>
