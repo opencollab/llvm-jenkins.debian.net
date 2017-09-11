@@ -78,6 +78,7 @@
         <hudson.views.BuildButtonColumn/>
       </columns>
       <recurse>false</recurse>
+      <statusFilter>true</statusFilter>
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
@@ -109,6 +110,7 @@
       </columns>
       <includeRegex>.*trusty.*</includeRegex>
       <recurse>false</recurse>
+      <statusFilter>true</statusFilter>
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
@@ -140,6 +142,7 @@
       </columns>
       <includeRegex>.*jessie.*</includeRegex>
       <recurse>false</recurse>
+      <statusFilter>true</statusFilter>
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
@@ -171,6 +174,7 @@
       </columns>
       <includeRegex>llvm-defaults.*</includeRegex>
       <recurse>false</recurse>
+      <statusFilter>true</statusFilter>
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
@@ -214,6 +218,7 @@
       </columns>
       <includeRegex>.*3.8.*</includeRegex>
       <recurse>false</recurse>
+      <statusFilter>true</statusFilter>
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
@@ -236,6 +241,7 @@
       </columns>
       <includeRegex>.*xenial.*</includeRegex>
       <recurse>false</recurse>
+      <statusFilter>true</statusFilter>
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
@@ -258,6 +264,7 @@
       </columns>
       <includeRegex>.*3.9.*</includeRegex>
       <recurse>false</recurse>
+      <statusFilter>true</statusFilter>
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
@@ -280,6 +287,7 @@
       </columns>
       <includeRegex>.*4.0.*</includeRegex>
       <recurse>false</recurse>
+      <statusFilter>true</statusFilter>
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
@@ -302,6 +310,7 @@
       </columns>
       <includeRegex>.*zesty.*</includeRegex>
       <recurse>false</recurse>
+      <statusFilter>true</statusFilter>
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
@@ -324,6 +333,7 @@
       </columns>
       <includeRegex>.*artful.*</includeRegex>
       <recurse>false</recurse>
+      <statusFilter>true</statusFilter>
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
@@ -346,6 +356,7 @@
       </columns>
       <includeRegex>.*5.0.*</includeRegex>
       <recurse>false</recurse>
+      <statusFilter>true</statusFilter>
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
@@ -368,6 +379,30 @@
       </columns>
       <includeRegex>.*stretch.*</includeRegex>
       <recurse>false</recurse>
+      <statusFilter>true</statusFilter>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>sync</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*-sync</includeRegex>
+      <recurse>false</recurse>
+      <statusFilter>true</statusFilter>
     </listView>
   </views>
   <primaryView>all</primaryView>
