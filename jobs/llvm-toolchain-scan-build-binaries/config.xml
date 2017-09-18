@@ -58,6 +58,7 @@ Only build amd64</description>
       <command>export DEB_BUILD_OPTIONS=&quot;scan-build parallel=7&quot;
 export BUILD_ONLY=true
 CURRENT_PATH=$(pwd)
+if test ! -d $REPOSITORY; then echo "$REPOSITORY is not mounted"; exit 1; fi
 /usr/bin/build-and-provide-package
 cd /srv/repository/
 rm -rf scan-build

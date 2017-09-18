@@ -51,6 +51,7 @@
       <command>export DEB_BUILD_OPTIONS=&quot;parallel=7&quot;
 export REPOSITORY=&quot;/srv/repository/wily&quot;
 export REPOS=llvm-toolchain-wily-4.0
+if test ! -d $REPOSITORY; then echo "$REPOSITORY is not mounted"; exit 1; fi
 /usr/bin/build-and-provide-package</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>

@@ -61,6 +61,7 @@ Only build amd64</description>
     <hudson.tasks.Shell>
       <command>export DEB_BUILD_OPTIONS=&quot;codecoverage parallel=7&quot;
 export BUILD_ONLY=true
+if test ! -d $REPOSITORY; then echo "$REPOSITORY is not mounted"; exit 1; fi
 /usr/bin/build-and-provide-package
 # In some cases (and I don&apos;t know why), the code coverage is only working on a few directory.
 # Disable the upload in this case
