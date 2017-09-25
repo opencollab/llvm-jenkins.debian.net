@@ -49,7 +49,7 @@
 export REPOSITORY=&quot;/srv/repository/jessie&quot;
 export REPOS=llvm-toolchain-jessie
 export SKIP_REMOVAL=true
-if test ! -d $REPOSITORY; then echo "$REPOSITORY is not mounted"; exit 1; fi
+if test ! -d $REPOSITORY; then mount "$(dirname "$REPOSITORY")"; fi
 /usr/bin/build-and-provide-package</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>

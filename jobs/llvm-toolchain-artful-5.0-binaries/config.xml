@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <matrix-project plugin="matrix-project@1.11">
   <actions/>
-  <description></description>
+  <description>Not building i386 because of https://bugs.launchpad.net/ubuntu/+source/reprepro/+bug/799889 for now</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <jenkins.model.BuildDiscarderProperty>
@@ -12,17 +12,6 @@
         <artifactNumToKeep>1</artifactNumToKeep>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
-    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
-      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
-      <throttleEnabled>false</throttleEnabled>
-      <throttleOption>project</throttleOption>
-      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
-      <matrixOptions>
-        <throttleMatrixBuilds>true</throttleMatrixBuilds>
-        <throttleMatrixConfigurations>false</throttleMatrixConfigurations>
-      </matrixOptions>
-      <paramsToUseForLimit></paramsToUseForLimit>
-    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -36,7 +25,6 @@
       <name>architecture</name>
       <values>
         <string>amd64</string>
-        <string>i386</string>
       </values>
     </hudson.matrix.TextAxis>
     <hudson.matrix.TextAxis>
@@ -62,7 +50,7 @@
       <command>export DEB_BUILD_OPTIONS=&quot;parallel=7&quot;
 export REPOSITORY=&quot;/srv/repository/artful&quot;
 export REPOS=llvm-toolchain-artful-5.0
-if test ! -d $REPOSITORY; then echo "$REPOSITORY is not mounted"; exit 1; fi
+if test ! -d $REPOSITORY; then echo &quot;$REPOSITORY is not mounted&quot;; exit 1; fi
 /usr/bin/build-and-provide-package</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>

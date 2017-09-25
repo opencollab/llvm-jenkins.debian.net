@@ -58,7 +58,7 @@ Only build amd64</description>
       <command>export DEB_BUILD_OPTIONS=&quot;scan-build parallel=7&quot;
 export BUILD_ONLY=true
 CURRENT_PATH=$(pwd)
-if test ! -d $REPOSITORY; then echo "$REPOSITORY is not mounted"; exit 1; fi
+if test ! -d $REPOSITORY; then echo &quot;$REPOSITORY is not mounted&quot;; exit 1; fi
 /usr/bin/build-and-provide-package
 cd /srv/repository/
 rm -rf scan-build
@@ -67,7 +67,8 @@ tar zxvf $CURRENT_PATH/scan-build.tar.gz
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>cd /srv/repository/scan-build/
-/usr/bin/rsync --delay-updates --stats --delete -r * sledru@llvm.org:/opt/reports/scan-build</command>
+/usr/bin/rsync --delay-updates --stats --delete -r * sledru@llvm.org:/opt/reports/scan-build/
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>

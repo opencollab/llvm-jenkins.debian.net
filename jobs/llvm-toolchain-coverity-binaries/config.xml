@@ -72,7 +72,7 @@
       <command>export DEB_BUILD_OPTIONS=&quot;coverity parallel=7&quot;
 export BUILD_ONLY=true
 sudo /opt/install-coverity.sh 
-if test ! -d $REPOSITORY; then echo "$REPOSITORY is not mounted"; exit 1; fi
+if test ! -d $REPOSITORY; then mount "$(dirname "$REPOSITORY")"; fi
 /usr/bin/build-and-provide-package</command>
     </hudson.tasks.Shell>
   </builders>
