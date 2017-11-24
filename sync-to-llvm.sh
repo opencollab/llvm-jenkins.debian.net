@@ -1,5 +1,11 @@
 #!/bin/bash -v
 
+WHOAMI=$(whoami)
+
+if test $WHOAMI != "jenkins"; then
+	echo "should be run under jenkins"
+fi
+
 if test $# -ne 1; then
 	echo "Wrong number of args."
 	echo "Syntax: $0 <repository>"
@@ -21,7 +27,7 @@ time ssh $TARGET rm -rf $BASE_TARGETDIR/$REPOSITORY.back
 echo "Copy the current repo to a new directory to be updated"
 time ssh $TARGET cp -R $BASE_TARGETDIR/$REPOSITORY $BASE_TARGETDIR/$REPOSITORY.back
 echo "Sync the data"
-time /usr/bin/rsync --delay-updates --info=progress2 --block-size=131072 --protocol=29 --times --delete -v --stats -r $BASE_LOCALDIR/$REPOSITORY/* $TARGET:$BASE_TARGETDIR/$REPOSITORY.back/
+time /usr/bin/rsync --update --info=progress2 --times --delete -v --stats -r $BASE_LOCALDIR/$REPOSITORY/* $TARGET:$BASE_TARGETDIR/$REPOSITORY.back/
 echo "Kill the current repo (by renaming it)"
 time ssh $TARGET mv $BASE_TARGETDIR/$REPOSITORY $BASE_TARGETDIR/$REPOSITORY.1
 echo "Move the new repo to the actual dir"
