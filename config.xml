@@ -4,7 +4,7 @@
     <string>hudsonHomeIsFull</string>
     <string>OldData</string>
   </disabledAdministrativeMonitors>
-  <version>2.6</version>
+  <version>2.89.2</version>
   <numExecutors>1</numExecutors>
   <mode>EXCLUSIVE</mode>
   <useSecurity>true</useSecurity>
@@ -153,6 +153,8 @@
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>llvm-defaults-binaries</string>
+        <string>llvm-defaults-bionic-binary</string>
+        <string>llvm-defaults-bionic-source</string>
         <string>llvm-defaults-jessie-source</string>
         <string>llvm-defaults-precise-source</string>
         <string>llvm-defaults-source</string>
@@ -382,6 +384,50 @@
       </columns>
       <recurse>false</recurse>
       <statusFilter>true</statusFilter>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>6.0</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*6.0.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>bionic</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*bionic.*</includeRegex>
+      <recurse>false</recurse>
     </listView>
   </views>
   <primaryView>all</primaryView>
