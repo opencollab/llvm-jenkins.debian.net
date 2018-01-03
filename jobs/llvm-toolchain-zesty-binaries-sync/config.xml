@@ -12,7 +12,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-zesty-binaries, llvm-toolchain-zesty-3.9-binaries, llvm-toolchain-zesty-4.0-binaries, llvm-toolchain-zesty-5.0-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-zesty-binaries, llvm-toolchain-zesty-3.9-binaries, llvm-toolchain-zesty-4.0-binaries, llvm-toolchain-zesty-5.0-binaries, llvm-toolchain-zesty-6.0-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

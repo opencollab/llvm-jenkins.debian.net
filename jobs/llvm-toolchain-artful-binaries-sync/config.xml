@@ -12,7 +12,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-artful-binaries, llvm-toolchain-artful-3.9-binaries, llvm-toolchain-artful-5.0-binaries, llvm-toolchain-artful-4.0-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-artful-binaries, llvm-toolchain-artful-3.9-binaries, llvm-toolchain-artful-5.0-binaries, llvm-toolchain-artful-4.0-binaries, llvm-toolchain-artful-6.0-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

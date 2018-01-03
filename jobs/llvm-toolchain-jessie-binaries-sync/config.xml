@@ -12,7 +12,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-jessie-binaries, llvm-toolchain-jessie-4.0-binaries, llvm-toolchain-jessie-3.9-binaries, llvm-toolchain-jessie-3.8-binaries, llvm-toolchain-jessie-5.0-binaries</upstreamProjects>
+      <upstreamProjects>llvm-toolchain-jessie-binaries, llvm-toolchain-jessie-4.0-binaries, llvm-toolchain-jessie-3.9-binaries, llvm-toolchain-jessie-3.8-binaries, llvm-toolchain-jessie-5.0-binaries, llvm-toolchain-jessie-6.0-binaries</upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
