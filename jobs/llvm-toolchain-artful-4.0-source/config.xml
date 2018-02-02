@@ -10,7 +10,7 @@
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties/>
-  <scm class="hudson.scm.SubversionSCM" plugin="subversion@2.7.2">
+  <scm class="hudson.scm.SubversionSCM" plugin="subversion@2.10.2">
     <locations>
       <hudson.scm.SubversionSCM_-ModuleLocation>
         <remote>svn://anonscm.debian.org/svn/pkg-llvm/llvm-toolchain/branches/4.0</remote>
@@ -27,9 +27,10 @@
     <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater"/>
     <ignoreDirPropChanges>false</ignoreDirPropChanges>
     <filterChangelog>false</filterChangelog>
+    <quietOperation>false</quietOperation>
   </scm>
   <canRoam>true</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>

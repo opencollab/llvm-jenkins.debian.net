@@ -203,52 +203,6 @@
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>4.0</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*4.0.*</includeRegex>
-      <recurse>false</recurse>
-      <statusFilter>true</statusFilter>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
-      <name>Ubuntu Zesty</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*zesty.*</includeRegex>
-      <recurse>false</recurse>
-      <statusFilter>true</statusFilter>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
       <name>Ubuntu Artful</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
@@ -409,7 +363,7 @@
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>bionic</name>
+      <name>Ubuntu Bionic</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>

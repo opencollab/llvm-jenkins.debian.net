@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<matrix-project plugin="matrix-project@1.11">
+<matrix-project plugin="matrix-project@1.12">
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
@@ -12,21 +12,10 @@
         <artifactNumToKeep>1</artifactNumToKeep>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
-    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
-      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
-      <throttleEnabled>false</throttleEnabled>
-      <throttleOption>project</throttleOption>
-      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
-      <matrixOptions>
-        <throttleMatrixBuilds>true</throttleMatrixBuilds>
-        <throttleMatrixConfigurations>false</throttleMatrixConfigurations>
-      </matrixOptions>
-      <paramsToUseForLimit></paramsToUseForLimit>
-    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <triggers/>
@@ -47,7 +36,7 @@
     </hudson.matrix.TextAxis>
   </axes>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.39">
       <project>llvm-toolchain-jessie-4.0-source</project>
       <filter>*</filter>
       <target></target>
@@ -62,7 +51,7 @@
       <command>export DEB_BUILD_OPTIONS=&quot;parallel=7&quot;
 export REPOSITORY=&quot;/srv/repository/jessie&quot;
 export REPOS=llvm-toolchain-jessie-4.0
-if test ! -d $REPOSITORY; then mount "$(dirname "$REPOSITORY")"; fi
+if test ! -d $REPOSITORY; then mount &quot;$(dirname &quot;$REPOSITORY&quot;)&quot;; fi
 /usr/bin/build-and-provide-package</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
@@ -79,7 +68,7 @@ if test ! -d $REPOSITORY; then mount "$(dirname "$REPOSITORY")"; fi
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.21">
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.23">
       <testResults>**/lintian.xml</testResults>
       <keepLongStdio>false</keepLongStdio>
       <healthScaleFactor>1.0</healthScaleFactor>
