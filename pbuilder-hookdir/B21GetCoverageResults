@@ -12,10 +12,7 @@ else
 	cmd='cp ../codecoverage.tar.gz /tmp/buildd/'
 	echo $cmd
 	eval $cmd
-	cmd='mkdir -p /tmp/buildd/codecoverage/; cp ../codecoverage.tar.gz /tmp/buildd/codecoverage/'
-	echo $cmd
-	eval $cmd
-	cmd='ls -alh $(pwd)/../codecoverage.tar.gz /tmp/buildd/codecoverage.tar.gz /buildd/codecoverage/codecoverage.tar.gz'
+	cmd='ls -alh $(pwd)/../codecoverage.tar.gz /tmp/buildd/codecoverage.tar.gz'
 	echo $cmd
 	eval $cmd
 
