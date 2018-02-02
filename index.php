@@ -24,9 +24,9 @@ function getLastRevision($version) {
    return $matches[1];
 }
 
-$stableBranch="4.0";
-$qualificationBranch="5.0";
-$devBranch="6.0";
+$stableBranch="5.0";
+$qualificationBranch="6.0";
+$devBranch="7";
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -49,7 +49,7 @@ $devBranch="6.0";
 
 <div class="rel_boxtext">
 
-  <p>The goal is to provide Debian and Ubuntu nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64 and i386 and for both the stable, qualification and development branches (currently <?=$stableBranch?>, <?=$qualificationBranch?> and <?=$devBranch?>).</p>
+  <p>The goal is to provide Debian and Ubuntu nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64 and i386 (except for recent Ubuntu) and for both the stable, qualification and development branches (currently <?=$stableBranch?>, <?=$qualificationBranch?> and <?=$devBranch?>).</p>
 <p>The packages provide <a href="http://llvm.org/">LLVM</a> + <a href="http://clang.llvm.org/">Clang</a> + <a href="http://compiler-rt.llvm.org/">compiler-rt</a> + <a href="http://polly.llvm.org/">polly</a> + <a href="http://lldb.llvm.org/">LLDB</a> + <a href="http://lld.llvm.org/">LLD</a> + <a href="http://llvm.org/docs/LibFuzzer.html">libFuzzer</a></p>
 </div>
 
@@ -145,9 +145,10 @@ deb-src http://apt.llvm.org/zesty/ llvm-toolchain-zesty-<?=$stableBranch?> main
 deb http://apt.llvm.org/zesty/ llvm-toolchain-zesty-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/zesty/ llvm-toolchain-zesty-<?=$qualificationBranch?> main
 </pre>
-<!--
+
 Artful (17.10) - <small>Last update : <?=getLastUpdate("artful");?> / Revision: <?=getLastRevision("artful")?></small>
 <pre>
+# i386 not available
 deb http://apt.llvm.org/artful/ llvm-toolchain-artful main
 deb-src http://apt.llvm.org/artful/ llvm-toolchain-artful main
 # <?=$stableBranch?>
@@ -159,7 +160,21 @@ deb-src http://apt.llvm.org/artful/ llvm-toolchain-artful-<?=$stableBranch?> mai
 deb http://apt.llvm.org/artful/ llvm-toolchain-artful-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/artful/ llvm-toolchain-artful-<?=$qualificationBranch?> main
 </pre>
--->
+
+Bionic (18.04) - <small>Last update : <?=getLastUpdate("bionic");?> / Revision: <?=getLastRevision("bionic")?></small>
+<pre>
+# i386 not available
+deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic main
+deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
+</pre>
 </div>
 
 <div class="rel_section">Install<br />(stable branch)</div>
@@ -308,6 +323,10 @@ Changes:
   * precise, wily & yakkety removed from the webpage
   * artful added to the webpage
 
+- Jan 22th 2018
+  * 4.0 is dead, 7 enavbled
+  * Moved from X.0 => X
+  * Bionic enabled
 -->
 <p style="font-size: smaller;">
      Contact: <a href="mailto:sylvestre@debian.org">Sylvestre Ledru</a>
