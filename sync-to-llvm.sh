@@ -21,7 +21,7 @@ if test ! -d $BASE_LOCALDIR/$REPOSITORY; then
 	exit 1
 fi
 find $BASE_LOCALDIR -type d | xargs chmod 755
-find $BASE_LOCALDIR -type f ! -name sync-to-llvm.sh | xargs -I {}  -d '\n' chmod 644 "{}"
+find $BASE_LOCALDIR -type f ! -name sync-to-llvm.sh | xargs -I {}  -d '\n' chmod 644 "{}" || true
 echo "Delete potential old directory"
 time ssh $TARGET rm -rf $BASE_TARGETDIR/$REPOSITORY.back
 echo "Copy the current repo to a new directory to be updated"
