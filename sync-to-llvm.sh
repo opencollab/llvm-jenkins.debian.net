@@ -1,5 +1,5 @@
 #!/bin/bash -v
-
+set -e
 WHOAMI=$(whoami)
 
 if test $WHOAMI != "jenkins"; then
