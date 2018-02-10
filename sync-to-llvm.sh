@@ -25,9 +25,9 @@ find $BASE_LOCALDIR -type f ! -name sync-to-llvm.sh | xargs -I {}  -d '\n' chmod
 echo "Delete potential old directory"
 time ssh $TARGET rm -rf $BASE_TARGETDIR/$REPOSITORY.back
 echo "Copy the current repo to a new directory to be updated"
-time ssh $TARGET cp -R $BASE_TARGETDIR/$REPOSITORY $BASE_TARGETDIR/$REPOSITORY.back
+time ssh $TARGET cp -Rp $BASE_TARGETDIR/$REPOSITORY $BASE_TARGETDIR/$REPOSITORY.back
 echo "Sync the data"
-time /usr/bin/rsync --update --info=progress2 --times --delete -v --stats -r $BASE_LOCALDIR/$REPOSITORY/* $TARGET:$BASE_TARGETDIR/$REPOSITORY.back/
+time /usr/bin/rsync -a --info=progress2 --times --delete -v --stats -r $BASE_LOCALDIR/$REPOSITORY/* $TARGET:$BASE_TARGETDIR/$REPOSITORY.back/
 echo "Kill the current repo (by renaming it)"
 time ssh $TARGET mv $BASE_TARGETDIR/$REPOSITORY $BASE_TARGETDIR/$REPOSITORY.1
 echo "Move the new repo to the actual dir"
