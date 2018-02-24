@@ -55,7 +55,7 @@ H 22 * * *</spec>
       <command>rm -f ./* || true</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>/usr/bin/generate-svn-snapshot
+      <command>/usr/bin/generate-git-snapshot
 </command>
     </hudson.tasks.Shell>
   </builders>
