@@ -50,7 +50,7 @@
     <hudson.tasks.Shell>
       <command>export PRE_SOURCE_HOOK=&quot;source/debian/orig-tar.sh release_50&quot;
 export DISTRIBUTION=yakkety
-/usr/bin/generate-svn-snapshot
+/usr/bin/generate-git-snapshot
 </command>
     </hudson.tasks.Shell>
   </builders>

@@ -41,7 +41,7 @@
     <hudson.tasks.Shell>
       <command>export PRE_SOURCE_HOOK=&quot;source/debian/orig-tar.sh release_38&quot;
 export DISTRIBUTION=unstable
-/usr/bin/generate-svn-snapshot
+/usr/bin/generate-git-snapshot
 </command>
     </hudson.tasks.Shell>
   </builders>

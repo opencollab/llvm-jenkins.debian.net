@@ -46,7 +46,7 @@
     <hudson.tasks.Shell>
       <command>export PRE_SOURCE_HOOK=source/debian/orig-tar.sh
 export DISTRIBUTION=precise
-/usr/bin/generate-svn-snapshot
+/usr/bin/generate-git-snapshot
 </command>
     </hudson.tasks.Shell>
   </builders>
