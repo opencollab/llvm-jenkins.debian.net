@@ -18,7 +18,7 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>https://salsa.debian.org/pkg-llvm-team/llvm-toolchain.git</url>
+        <url>https://salsa.debian.org/pkg-llvm-team/llvm-defaults.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
