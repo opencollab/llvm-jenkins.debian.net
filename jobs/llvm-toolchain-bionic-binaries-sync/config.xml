@@ -26,7 +26,7 @@
   <builders>
     <hudson.tasks.Shell>
       <command>
-/srv/repository/sync-to-llvm.sh bionic
+bash /srv/repository/sync-to-llvm.sh bionic
 </command>
     </hudson.tasks.Shell>
   </builders>

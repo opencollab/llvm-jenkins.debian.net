@@ -26,7 +26,7 @@
   <builders>
     <hudson.tasks.Shell>
       <command>
-/srv/repository/sync-to-llvm.sh precise</command>
+bash /srv/repository/sync-to-llvm.sh precise</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>

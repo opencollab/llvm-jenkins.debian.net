@@ -25,7 +25,7 @@
   <builders>
     <hudson.tasks.Shell>
       <command>
-/srv/repository/sync-to-llvm.sh zesty
+bash /srv/repository/sync-to-llvm.sh zesty
 </command>
     </hudson.tasks.Shell>
   </builders>
