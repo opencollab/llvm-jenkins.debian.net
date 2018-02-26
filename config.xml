@@ -60,6 +60,12 @@
         <string>llvm-toolchain-4.0-binaries</string>
         <string>llvm-toolchain-4.0-source</string>
         <string>llvm-toolchain-4.0-source-trigger</string>
+        <string>llvm-toolchain-5.0-binaries</string>
+        <string>llvm-toolchain-5.0-source</string>
+        <string>llvm-toolchain-5.0-source-trigger</string>
+        <string>llvm-toolchain-6.0-binaries</string>
+        <string>llvm-toolchain-6.0-source</string>
+        <string>llvm-toolchain-6.0-source-trigger</string>
         <string>llvm-toolchain-binaries</string>
         <string>llvm-toolchain-binaries-sync</string>
         <string>llvm-toolchain-codecoverage-binaries</string>
