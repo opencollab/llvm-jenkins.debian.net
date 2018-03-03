@@ -226,8 +226,13 @@ To retrieve the archive signature:
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -<br />
 # Fingerprint:  6084 F3CF 814B 57C1 CF12  EFD5 15CF 4D18 AF4F 7421
 </p><br />
-
-To install just clang and lldb (<?=$devBranch?> release):
+We also provide meta packages to move from a major version to the other.<br />
+For example, to automatically upgrade to the current major:
+  <p class="www_code">
+apt-get install clang lld # clang-<?=$devBranch?> lld-<?=$devBranch?> can be added to automatically install the most recent version of the package.
+  </p>
+<br />
+To install just clang, lld and lldb (<?=$devBranch?> release):
   <p class="www_code">
 apt-get install clang-<?=$devBranch?> lldb-<?=$devBranch?> lld-<?=$devBranch?>
 </p>
