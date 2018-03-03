@@ -193,7 +193,7 @@ apt-get install clang-<?=$stableBranch?> lldb-<?=$stableBranch?>
 To install all packages:<br />
 <p class="www_code">
 
-apt-get install clang-<?=$stableBranch?> clang-<?=$stableBranch?>-doc libclang-common-<?=$stableBranch?>-dev libclang-<?=$stableBranch?>-dev libclang1-<?=$stableBranch?> libclang1-<?=$stableBranch?>-dbg libllvm-<?=$stableBranch?>-ocaml-dev libllvm<?=$stableBranch?> libllvm<?=$stableBranch?>-dbg lldb-<?=$stableBranch?> llvm-<?=$stableBranch?> llvm-<?=$stableBranch?>-dev llvm-<?=$stableBranch?>-doc llvm-<?=$stableBranch?>-examples llvm-<?=$stableBranch?>-runtime clang-format-<?=$stableBranch?> python-clang-<?=$stableBranch?> libfuzzer-<?=$stableBranch?>-dev
+apt-get install clang-<?=$stableBranch?> clang-tools-<?=$stableBranch?> clang-<?=$stableBranch?>-doc libclang-common-<?=$stableBranch?>-dev libclang-<?=$stableBranch?>-dev libclang1-<?=$stableBranch?> libclang1-<?=$stableBranch?>-dbg libllvm-<?=$stableBranch?>-ocaml-dev libllvm<?=$stableBranch?> libllvm<?=$stableBranch?>-dbg lldb-<?=$stableBranch?> llvm-<?=$stableBranch?> llvm-<?=$stableBranch?>-dev llvm-<?=$stableBranch?>-doc llvm-<?=$stableBranch?>-examples llvm-<?=$stableBranch?>-runtime clang-format-<?=$stableBranch?> python-clang-<?=$stableBranch?> libfuzzer-<?=$stableBranch?>-dev
 </p>
 </div>
 
@@ -213,7 +213,7 @@ apt-get install clang-<?=$qualificationBranch?> lldb-<?=$qualificationBranch?> l
 To install all packages:<br />
 <p class="www_code">
 
-apt-get install clang-<?=$qualificationBranch?> clang-<?=$qualificationBranch?>-doc libclang-common-<?=$qualificationBranch?>-dev libclang-<?=$qualificationBranch?>-dev libclang1-<?=$qualificationBranch?> libclang1-<?=$qualificationBranch?>-dbg libllvm-<?=$qualificationBranch?>-ocaml-dev libllvm<?=$qualificationBranch?> libllvm<?=$qualificationBranch?>-dbg lldb-<?=$qualificationBranch?> llvm-<?=$qualificationBranch?> llvm-<?=$qualificationBranch?>-dev llvm-<?=$qualificationBranch?>-doc llvm-<?=$qualificationBranch?>-examples llvm-<?=$qualificationBranch?>-runtime clang-format-<?=$qualificationBranch?> python-clang-<?=$qualificationBranch?> lldb-<?=$qualificationBranch?>-dev lld-<?=$qualificationBranch?> libfuzzer-<?=$qualificationBranch?>-dev
+apt-get install clang-<?=$qualificationBranch?> clang-tools-<?=$qualificationBranch?> clang-<?=$qualificationBranch?>-doc libclang-common-<?=$qualificationBranch?>-dev libclang-<?=$qualificationBranch?>-dev libclang1-<?=$qualificationBranch?> libclang1-<?=$qualificationBranch?>-dbg libllvm-<?=$qualificationBranch?>-ocaml-dev libllvm<?=$qualificationBranch?> libllvm<?=$qualificationBranch?>-dbg lldb-<?=$qualificationBranch?> llvm-<?=$qualificationBranch?> llvm-<?=$qualificationBranch?>-dev llvm-<?=$qualificationBranch?>-doc llvm-<?=$qualificationBranch?>-examples llvm-<?=$qualificationBranch?>-runtime clang-format-<?=$qualificationBranch?> python-clang-<?=$qualificationBranch?> lldb-<?=$qualificationBranch?>-dev lld-<?=$qualificationBranch?> libfuzzer-<?=$qualificationBranch?>-dev
 </p>
 
 </div>
@@ -235,7 +235,7 @@ apt-get install clang-<?=$devBranch?> lldb-<?=$devBranch?> lld-<?=$devBranch?>
 To install all packages:<br />
 <p class="www_code">
 
-apt-get install clang-<?=$devBranch?> clang-<?=$devBranch?>-doc libclang-common-<?=$devBranch?>-dev libclang-<?=$devBranch?>-dev libclang1-<?=$devBranch?> libclang1-<?=$devBranch?>-dbg libllvm-<?=$devBranch?>-ocaml-dev libllvm<?=$devBranch?> libllvm<?=$devBranch?>-dbg lldb-<?=$devBranch?> llvm-<?=$devBranch?> llvm-<?=$devBranch?>-dev llvm-<?=$devBranch?>-doc llvm-<?=$devBranch?>-examples llvm-<?=$devBranch?>-runtime clang-format-<?=$devBranch?> python-clang-<?=$devBranch?> liblldb-<?=$devBranch?>-dbg lld-<?=$devBranch?> libfuzzer-<?=$devBranch?>-dev
+apt-get install clang-<?=$devBranch?> clang-tools-<?=$devBranch?> clang-<?=$devBranch?>-doc libclang-common-<?=$devBranch?>-dev libclang-<?=$devBranch?>-dev libclang1-<?=$devBranch?> libclang1-<?=$devBranch?>-dbg libllvm-<?=$devBranch?>-ocaml-dev libllvm<?=$devBranch?> libllvm<?=$devBranch?>-dbg lldb-<?=$devBranch?> llvm-<?=$devBranch?> llvm-<?=$devBranch?>-dev llvm-<?=$devBranch?>-doc llvm-<?=$devBranch?>-examples llvm-<?=$devBranch?>-runtime clang-format-<?=$devBranch?> python-clang-<?=$devBranch?> liblldb-<?=$devBranch?>-dbg lld-<?=$devBranch?> libfuzzer-<?=$devBranch?>-dev
 </p>
 
 </div>
