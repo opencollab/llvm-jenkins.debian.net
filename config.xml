@@ -4,7 +4,11 @@
     <string>hudsonHomeIsFull</string>
     <string>OldData</string>
   </disabledAdministrativeMonitors>
-  <version>2.89.2</version>
+  <version>2.89.4</version>
+  <installState class="jenkins.install.InstallState$5">
+    <isSetupComplete>true</isSetupComplete>
+    <name>RESTART</name>
+  </installState>
   <numExecutors>1</numExecutors>
   <mode>EXCLUSIVE</mode>
   <useSecurity>true</useSecurity>
@@ -167,7 +171,11 @@
         <string>llvm-defaults-trusty-source</string>
         <string>llvm-defaults-vivid-source</string>
         <string>llvm-defaults-wily-source</string>
+        <string>llvm-defaults-xenial-binaries</string>
+        <string>llvm-defaults-xenial-source</string>
+        <string>llvm-defaults-yakkety-binaries</string>
         <string>llvm-defaults-yakkety-source</string>
+        <string>llvm-defaults-zesty-binaries</string>
         <string>llvm-defaults-zesty-source</string>
       </jobNames>
       <jobFilters/>
