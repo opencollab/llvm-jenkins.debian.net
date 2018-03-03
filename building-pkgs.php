@@ -61,21 +61,21 @@ Building a snapshot package by hand
   development branch. In that scenario, follow the following steps:</p>
 
   <ol>
-    <li><p>Checkout the llvm-toolchain source package.</p>
-      <p>The source package is maintained in SVN, you can retrieve it using the
+    <li><p>Clone the llvm-toolchain source package.</p>
+      <p>The source package is maintained in git, you can retrieve it using the
         <i>debcheckout</i> command,</p>
       <p class="www_code">
-        $ debcheckout svn://anonscm.debian.org/svn/pkg-llvm/llvm-toolchain/
+        $ git clone https://salsa.debian.org/pkg-llvm-team/llvm-toolchain.git -b snapshot snapshot
       </p></li>
     <li><p>Retrieve the latest snapshot and create original tarballs.</p>
-      <p>From the branches/ directory run the orig-tar.sh script,</p>
+      <p>Run the orig-tar.sh script,</p>
       <p class="www_code">$ sh snapshot/debian/orig-tar.sh</p>
       <p>which will retrieve the latest version for each LLVM subproject
         (llvm, clang, lldb, etc.) from the main development SVN and repack
         it as a set of tarballs.</p></li>
     <li><p>Unpack the original tarballs and apply quilt Debian patches.</p>
-      <p>From the branches/ directory run the unpack.sh script,</p>
-      <p class="www_code">$ sh unpack.sh</p>
+      <p>run the unpack.sh script,</p>
+      <p class="www_code">$ sh snapshot/debian/unpack.sh</p>
       <p>which will unpack the source tree inside a new directory such as
         <i>branches/llvm-toolchain-snapshot_3.9~svn268942</i>.
         Depending on the current snapshot version number and svn release,
