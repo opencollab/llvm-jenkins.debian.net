@@ -108,7 +108,16 @@ Building a snapshot package by hand
   <p>The Debian package for each LLVM point release is maintained as a separate
     SVN branch in the branches/ directory. For example, the 3.8 release lives at
     branches/3.8.</p>
-  <p>The current snapshot release is maintained at branches/snapshot.</p>
+  <p>The current snapshot release is maintained at branches/snapshot.</p>  <h2>Organization of the repository</h2>
+
+  <h2>Clone all branches</h2>
+  <p>
+  <p class="www_code">
+     for f in 4.0 5.0 6.0 7.0 snapshot; do<br />
+         git clone git@salsa.debian.org:pkg-llvm-team/llvm-toolchain.git -b $f $f;<br />
+     done
+  </p>
+  </p>
 
   <h2>Additional maintainer scripts</h2>
   <p>The script <i>qualify-clang.sh</i> that is found at the SVN root should
