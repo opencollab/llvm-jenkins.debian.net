@@ -255,7 +255,7 @@ Bugs should be reported on the <a href="http://llvm.org/bugs/enter_bug.cgi?produ
 
 <h2>Workflow</h2>
      Twice a day, each jenkins job will checkout the debian/ directory necessary to build the packages. The repository is available on the Debian hosting infrastructure:
-<a href="http://anonscm.debian.org/viewvc/pkg-llvm/llvm-toolchain/branches/">http://anonscm.debian.org/viewvc/pkg-llvm/llvm-toolchain/branches/</a>.
+<a href="https://salsa.debian.org/pkg-llvm-team/llvm-toolchain/">https://salsa.debian.org/pkg-llvm-team/llvm-toolchain/</a>.
 
      In the <i>llvm-toolchain-*-source</i>, the following tasks will be performed:
 <ul>
@@ -271,7 +271,7 @@ Then, the job <i>llvm-toolchain-X-binary</i> will:
 <li>Launch lintian, the Debian static analyzer</li>
 <li>Publish the result on the LLVM repository</li>
 </ul>
-Note that a <a href="http://anonscm.debian.org/viewvc/pkg-llvm/llvm-toolchain/branches/snapshot/debian/patches/">few patches</a> are applied over the
+Note that a <a href="https://salsa.debian.org/pkg-llvm-team/llvm-toolchain/tree/snapshot/debian/patches/">few patches</a> are applied over the
 LLVM tarballs (and should be merged upstream at some point).
 </div>
 
