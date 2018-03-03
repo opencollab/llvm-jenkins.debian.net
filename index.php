@@ -248,7 +248,7 @@ apt-get install clang-<?=$devBranch?> clang-tools-<?=$devBranch?> clang-<?=$devB
 <div class="rel_boxtext">
 Packages are rebuilt against the trunk of the various LLVM projects.<br />
      They are rebuild through a Jenkins instance:<br />
-<a href="http://llvm-jenkins.debian.net">http://llvm-jenkins.debian.net</a>
+<a href="https://llvm-jenkins.debian.net">https://llvm-jenkins.debian.net</a>
 
 <h2>Bugs</h2>
 Bugs should be reported on the <a href="http://llvm.org/bugs/enter_bug.cgi?product=Packaging">LLVM bug tracker</a> (deb packages).
