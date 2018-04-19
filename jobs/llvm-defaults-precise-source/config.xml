@@ -49,7 +49,7 @@ H 22 * * *</spec>
     <hudson.tasks.Shell>
       <command>
 export DISTRIBUTION=precise
-/usr/bin/generate-svn-snapshot
+/usr/bin/generate-git-snapshot
 </command>
     </hudson.tasks.Shell>
   </builders>

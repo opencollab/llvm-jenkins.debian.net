@@ -5,14 +5,15 @@
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.scm.NullSCM"/>
-  <canRoam>true</canRoam>
+  <assignedNode>!blade02</assignedNode>
+  <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-artful-binaries, llvm-toolchain-artful-3.9-binaries, llvm-toolchain-artful-3.8-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-artful-binaries, llvm-toolchain-artful-3.9-binaries, llvm-toolchain-artful-5.0-binaries, llvm-toolchain-artful-4.0-binaries, llvm-toolchain-artful-6.0-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -25,20 +26,16 @@
   <builders>
     <hudson.tasks.Shell>
       <command>
-/srv/repository/sync-to-llvm.sh artful
+bash /srv/repository/sync-to-llvm.sh artful
 </command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.17">
+    <hudson.tasks.Mailer plugin="mailer@1.20">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
-  <buildWrappers>
-    <org.jenkinsci.plugin.Diskcheck plugin="diskcheck@0.26">
-      <failOnError>false</failOnError>
-    </org.jenkinsci.plugin.Diskcheck>
-  </buildWrappers>
+  <buildWrappers/>
 </project>

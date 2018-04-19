@@ -48,6 +48,7 @@
 export REPOSITORY=&quot;/srv/repository/unstable&quot;
 export REPOS=llvm-toolchain
 export SKIP_REMOVAL=true
+if test ! -d $REPOSITORY; then mount "$(dirname "$REPOSITORY")"; fi
 /usr/bin/build-and-provide-package</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>

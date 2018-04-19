@@ -7,7 +7,7 @@
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>master || korcula</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -26,19 +26,15 @@
   <builders>
     <hudson.tasks.Shell>
       <command>
-/srv/repository/sync-to-llvm.sh yakkety</command>
+bash /srv/repository/sync-to-llvm.sh yakkety</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.18">
+    <hudson.tasks.Mailer plugin="mailer@1.20">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
-  <buildWrappers>
-    <org.jenkinsci.plugin.Diskcheck plugin="diskcheck@0.26">
-      <failOnError>false</failOnError>
-    </org.jenkinsci.plugin.Diskcheck>
-  </buildWrappers>
+  <buildWrappers/>
 </project>

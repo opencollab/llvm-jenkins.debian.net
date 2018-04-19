@@ -53,6 +53,8 @@ export REPOSITORY=&quot;/srv/repository/precise&quot;
 export REPOS=llvm-toolchain-precise
 # backport of gcc 4.8
 export OTHERMIRROR=&quot;deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu precise main&quot;
+export SKIP_PACKAGE_FROM_REMOVAL="llvm llvm-runtime llvm-dev llvm-defaults lldb lld libllvm-ocaml-dev libclang1 libclang-dev clang clang-tidy clang-format"
+if test ! -d $REPOSITORY; then mount "$(dirname "$REPOSITORY")"; fi
 /usr/bin/build-and-provide-package</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
