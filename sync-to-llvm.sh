@@ -1,4 +1,4 @@
-#!/bin/bash -v
+#!/bin/bash
 set -e
 WHOAMI=$(whoami)
 
@@ -34,3 +34,18 @@ echo "Move the new repo to the actual dir"
 time ssh $TARGET mv $BASE_TARGETDIR/$REPOSITORY.back $BASE_TARGETDIR/$REPOSITORY
 echo "Delete the old repo"
 time ssh $TARGET rm -rf $BASE_TARGETDIR/$REPOSITORY.1
+
+key="TO UDPATE"
+if test "$REPOSITORY" == "unstable"; then
+    REPOSITORY_CODE=""
+else
+    REPOSITORY_CODE="-$REPOSITORY"
+fi
+url="binary-i386/Packages.gz binary-amd64/Packages.gz binary-i386/Packages binary-amd64/Packages binary-i386/Release binary-amd64/Release"
+for f in $url; do
+curl -XPOST -H "Fastly-Key:$key" https://api.fastly.com/purge/apt.llvm.org/$REPOSITORY/dists/llvm-toolchain$REPOSITORY_CODE/main/$f
+done
+url="InRelease Release Release.gpg"
+for f in $url; do
+curl -XPOST -H "Fastly-Key:$key" https://api.fastly.com/purge/apt.llvm.org/$REPOSITORY/dists/llvm-toolchain$REPOSITORY_CODE/$f
+done
