@@ -27,7 +27,7 @@ function getLastRevision($version) {
 $stableBranch="5.0";
 $qualificationBranch="6.0";
 $devBranch="7";
-
+$isQualification=false;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
                       "http://www.w3.org/TR/html4/strict.dtd">
@@ -49,7 +49,7 @@ $devBranch="7";
 
 <div class="rel_boxtext">
 
-  <p>The goal is to provide Debian and Ubuntu nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64 and i386 (except for recent Ubuntu) and for both the stable, qualification and development branches (currently <?=$stableBranch?>, <?=$qualificationBranch?> and <?=$devBranch?>).</p>
+  <p>The goal is to provide Debian and Ubuntu nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64 and i386 (except for recent Ubuntu) and for both the stable, <?php if ($isQualification) {?>qualification<?php } else {?>old-stable<?php } ?> and development branches (currently <?=$stableBranch?>, <?=$qualificationBranch?> and <?=$devBranch?>).</p>
 <p>The packages provide <a href="http://llvm.org/">LLVM</a> + <a href="http://clang.llvm.org/">Clang</a> + <a href="http://compiler-rt.llvm.org/">compiler-rt</a> + <a href="http://polly.llvm.org/">polly</a> + <a href="http://lldb.llvm.org/">LLDB</a> + <a href="http://lld.llvm.org/">LLD</a> + <a href="http://llvm.org/docs/LibFuzzer.html">libFuzzer</a></p>
 </div>
 
@@ -177,7 +177,7 @@ deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranc
 </pre>
 </div>
 
-<div class="rel_section">Install<br />(stable branch)</div>
+<div class="rel_section">Install<br />(<?php if (!$isQualification) {?>old-<?php } ?>stable branch)</div>
 <div class="rel_boxtext">
 To retrieve the archive signature:
   <p class="www_code">
@@ -197,7 +197,7 @@ apt-get install clang-<?=$stableBranch?> clang-tools-<?=$stableBranch?> clang-<?
 </p>
 </div>
 
-<div class="rel_section">Install<br />(qualification branch)</div>
+<div class="rel_section">Install<br />(<?php if ($isQualification) {?>qualification<?php } else {?>stable<?php } ?> branch)</div>
 <div class="rel_boxtext">
 To retrieve the archive signature:
   <p class="www_code">
