@@ -132,20 +132,6 @@ deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-<?=$qualificationBranch?> 
 deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-<?=$qualificationBranch?> main
 </pre>
 
-Zesty (17.04) - <small>Last update : <?=getLastUpdate("zesty");?> / Revision: <?=getLastRevision("zesty")?></small>
-<pre>
-deb http://apt.llvm.org/zesty/ llvm-toolchain-zesty main
-deb-src http://apt.llvm.org/zesty/ llvm-toolchain-zesty main
-# <?=$stableBranch?>
-
-deb http://apt.llvm.org/zesty/ llvm-toolchain-zesty-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/zesty/ llvm-toolchain-zesty-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
-
-deb http://apt.llvm.org/zesty/ llvm-toolchain-zesty-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/zesty/ llvm-toolchain-zesty-<?=$qualificationBranch?> main
-</pre>
-
 Artful (17.10) - <small>Last update : <?=getLastUpdate("artful");?> / Revision: <?=getLastRevision("artful")?></small>
 <pre>
 # i386 not available
