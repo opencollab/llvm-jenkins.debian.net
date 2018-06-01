@@ -318,6 +318,9 @@ Changes:
   * 4.0 is dead, 7 enavbled
   * Moved from X.0 => X
   * Bionic enabled
+
+- Jun 1st 2019
+  * Remove zesty
 -->
 <p style="font-size: smaller;">
      Contact: <a href="mailto:sylvestre@debian.org">Sylvestre Ledru</a>
