@@ -9,3 +9,8 @@ if test "$DIST" != "sid" -a "$DIST" != "stretch" -a "$DIST" != "buster" -a "$DIS
 #    echo "APT::Get::AllowUnauthenticated yes;" > /etc/apt/apt.conf.d/99auth
     apt-get update
 fi
+if test "$DIST" == "jessie"; then
+    # for python-recommonmark
+    echo "deb http://ftp.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/jessie-backport.list
+    apt-get update
+fi
