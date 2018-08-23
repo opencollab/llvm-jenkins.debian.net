@@ -9,7 +9,7 @@ if test "$DIST" = "precise" -o "$DIST" = "quantal" -o "$DIST" = "wheezy" -o "$DI
 	echo "APT::Get::AllowUnauthenticated yes;" > /etc/apt/apt.conf.d/99auth
 	apt-get update
 fi
-if test "$DIST" == "trusty" -o  "$DIST" == "xenial"; then
+if test "$DIST" = "trusty" -o  "$DIST" = "xenial"; then
     apt-get install python-pkg-resources  python-docutils  --assume-yes --no-install-recommends
     wget http://mirrors.kernel.org/ubuntu/pool/universe/r/recommonmark/python-recommonmark_0.4.0+ds-2_all.deb
     wget http://mirrors.kernel.org/ubuntu/pool/universe/c/commonmark-bkrs/python-commonmark-bkrs_0.5.4+ds-1_all.deb
