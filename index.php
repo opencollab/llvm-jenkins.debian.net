@@ -176,18 +176,18 @@ To install just clang, lld and lldb (<?=$stableBranch?> release):
 apt-get install clang-<?=$stableBranch?> lldb-<?=$stableBranch?> lld-<?=$stableBranch?>
 </p>
 <br />
-To install all packages:<br />
+To install all key packages:<br />
 <p class="www_code">
-# LLVM
-apt-get install libllvm-<?=$stableBranch?>-ocaml-dev libllvm<?=$stableBranch?> llvm-<?=$stableBranch?> llvm-<?=$stableBranch?>-dev llvm-<?=$stableBranch?>-doc llvm-<?=$stableBranch?>-examples llvm-<?=$stableBranch?>-runtime
-# Clang and co
-apt-get install clang-<?=$stableBranch?> clang-tools-<?=$stableBranch?> clang-<?=$stableBranch?>-doc libclang-common-<?=$stableBranch?>-dev libclang-<?=$stableBranch?>-dev libclang1-<?=$stableBranch?> clang-format-<?=$stableBranch?> python-clang-<?=$stableBranch?>
-# libfuzzer
-apt-get install libfuzzer-<?=$stableBranch?>-dev
-# lldb
-apt-get install lldb-<?=$stableBranch?>
-# lld (linker)
-apt-get install lld-<?=$stableBranch?>
+<b># LLVM</b><br />
+apt-get install libllvm-<?=$stableBranch?>-ocaml-dev libllvm<?=$stableBranch?> llvm-<?=$stableBranch?> llvm-<?=$stableBranch?>-dev llvm-<?=$stableBranch?>-doc llvm-<?=$stableBranch?>-examples llvm-<?=$stableBranch?>-runtime<br />
+<b># Clang and co</b><br />
+apt-get install clang-<?=$stableBranch?> clang-tools-<?=$stableBranch?> clang-<?=$stableBranch?>-doc libclang-common-<?=$stableBranch?>-dev libclang-<?=$stableBranch?>-dev libclang1-<?=$stableBranch?> clang-format-<?=$stableBranch?> python-clang-<?=$stableBranch?><br />
+<b># libfuzzer</b><br />
+apt-get install libfuzzer-<?=$stableBranch?>-dev<br />
+<b># lldb</b><br />
+apt-get install lldb-<?=$stableBranch?><br />
+<b># lld (linker)</b><br />
+apt-get install lld-<?=$stableBranch?><br />
 </p>
 </div>
 
@@ -204,22 +204,22 @@ To install just clang, lld and lldb (<?=$qualificationBranch?> release):
 apt-get install clang-<?=$qualificationBranch?> lldb-<?=$qualificationBranch?> lld-<?=$qualificationBranch?>
 </p>
 <br />
-To install all packages:<br />
+To install all key packages:<br />
 <p class="www_code">
-# LLVM
-apt-get install libllvm-<?=$qualificationBranch?>-ocaml-dev libllvm<?=$qualificationBranch?> llvm-<?=$qualificationBranch?> llvm-<?=$qualificationBranch?>-dev llvm-<?=$qualificationBranch?>-doc llvm-<?=$qualificationBranch?>-examples llvm-<?=$qualificationBranch?>-runtime
-# Clang and co
-apt-get install clang-<?=$qualificationBranch?> clang-tools-<?=$qualificationBranch?> clang-<?=$qualificationBranch?>-doc libclang-common-<?=$qualificationBranch?>-dev libclang-<?=$qualificationBranch?>-dev libclang1-<?=$qualificationBranch?> clang-format-<?=$qualificationBranch?> python-clang-<?=$qualificationBranch?>
-# libfuzzer
-apt-get install libfuzzer-<?=$qualificationBranch?>-dev
-# lldb
-apt-get install lldb-<?=$qualificationBranch?>
-# lld
-apt-get install lld-<?=$qualificationBranch?>
-# libc++
-apt-get install libc++-<?=$qualificationBranch?>-dev libc++-<?=$qualificationBranch?>-dev
-# OpenMP
-apt-get install libomp-<?=$qualificationBranch?>-dev
+<b># LLVM</b><br />
+apt-get install libllvm-<?=$qualificationBranch?>-ocaml-dev libllvm<?=$qualificationBranch?> llvm-<?=$qualificationBranch?> llvm-<?=$qualificationBranch?>-dev llvm-<?=$qualificationBranch?>-doc llvm-<?=$qualificationBranch?>-examples llvm-<?=$qualificationBranch?>-runtime<br />
+<b># Clang and co</b><br />
+apt-get install clang-<?=$qualificationBranch?> clang-tools-<?=$qualificationBranch?> clang-<?=$qualificationBranch?>-doc libclang-common-<?=$qualificationBranch?>-dev libclang-<?=$qualificationBranch?>-dev libclang1-<?=$qualificationBranch?> clang-format-<?=$qualificationBranch?> python-clang-<?=$qualificationBranch?><br />
+<b># libfuzzer</b><br />
+apt-get install libfuzzer-<?=$qualificationBranch?>-dev<br />
+<b># lldb</b><br />
+apt-get install lldb-<?=$qualificationBranch?><br />
+<b># lld (linker)</b><br />
+apt-get install lld-<?=$qualificationBranch?><br />
+<b># libc++</b><br />
+apt-get install libc++-<?=$qualificationBranch?>-dev libc++-<?=$qualificationBranch?>-dev<br />
+<b># OpenMP</b><br />
+apt-get install libomp-<?=$qualificationBranch?>-dev<br />
 </p>
 
 </div>
@@ -243,22 +243,22 @@ To install just clang, lld and lldb (<?=$devBranch?> release):
 apt-get install clang-<?=$devBranch?> lldb-<?=$devBranch?> lld-<?=$devBranch?>
 </p>
 <br />
-To install all packages:<br />
+To install all key packages:<br />
 <p class="www_code">
-# LLVM
-apt-get install libllvm-<?=$devBranch?>-ocaml-dev libllvm<?=$devBranch?> llvm-<?=$devBranch?> llvm-<?=$devBranch?>-dev llvm-<?=$devBranch?>-doc llvm-<?=$devBranch?>-examples llvm-<?=$devBranch?>-runtime
-# Clang and co
-apt-get install clang-<?=$devBranch?> clang-tools-<?=$devBranch?> clang-<?=$devBranch?>-doc libclang-common-<?=$devBranch?>-dev libclang-<?=$devBranch?>-dev libclang1-<?=$devBranch?> clang-format-<?=$devBranch?> python-clang-<?=$devBranch?>
-# libfuzzer
-apt-get install libfuzzer-<?=$devBranch?>-dev
-# lldb
-apt-get install lldb-<?=$devBranch?>
-# lldb
-apt-get install lld-<?=$devBranch?>
-# libc++
-apt-get install libc++-<?=$devBranch?>-dev libc++-<?=$devBranch?>-dev
-# OpenMP
-apt-get install libomp-<?=$devBranch?>-dev
+<b># LLVM</b><br />
+apt-get install libllvm-<?=$devBranch?>-ocaml-dev libllvm<?=$devBranch?> llvm-<?=$devBranch?> llvm-<?=$devBranch?>-dev llvm-<?=$devBranch?>-doc llvm-<?=$devBranch?>-examples llvm-<?=$devBranch?>-runtime<br />
+<b># Clang and co</b><br />
+apt-get install clang-<?=$devBranch?> clang-tools-<?=$devBranch?> clang-<?=$devBranch?>-doc libclang-common-<?=$devBranch?>-dev libclang-<?=$devBranch?>-dev libclang1-<?=$devBranch?> clang-format-<?=$devBranch?> python-clang-<?=$devBranch?><br />
+<b># libfuzzer</b><br />
+apt-get install libfuzzer-<?=$devBranch?>-dev<br />
+<b># lldb</b><br />
+apt-get install lldb-<?=$devBranch?><br />
+<b># lld (linker)</b><br />
+apt-get install lld-<?=$devBranch?><br />
+<b># libc++</b><br />
+apt-get install libc++-<?=$devBranch?>-dev libc++-<?=$devBranch?>-dev<br />
+<b># OpenMP</b><br />
+apt-get install libomp-<?=$devBranch?>-dev<br />
 </p>
 
 </div>
