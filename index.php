@@ -1,26 +1,26 @@
 <?php
-function getLastUpdate($version) {
+function getLastUpdate($distro) {
    $base="/data/apt/www";
-   if ($version!="unstable") {
-     $fullpath=$base."/${version}/dists/llvm-toolchain-{$version}/Release";
+   if ($distro!="unstable") {
+     $fullpath=$base."/${distro}/dists/llvm-toolchain-{$distro}/Release";
    } else {
-     $fullpath=$base."/${version}/dists/llvm-toolchain/Release";
+     $fullpath=$base."/${distro}/dists/llvm-toolchain/Release";
    }
    $handle = fopen($fullpath, "r");
    $contents = fread($handle, filesize($fullpath));
    preg_match("/Date: (.*)/",$contents,$matches);
    return $matches[1];
 }
-function getLastRevision($version) {
+function getLastRevision($distro) {
    $base="/data/apt/www";
-   if ($version!="unstable") {
-     $fullpath=$base."/${version}/dists/llvm-toolchain-{$version}/main/binary-amd64/Packages";
+   if ($distro!="unstable") {
+     $fullpath=$base."/${distro}/dists/llvm-toolchain-{$distro}/main/binary-amd64/Packages";
    } else {
-     $fullpath=$base."/${version}/dists/llvm-toolchain/main/binary-amd64/Packages";
+     $fullpath=$base."/${distro}/dists/llvm-toolchain/main/binary-amd64/Packages";
    }
    $handle = fopen($fullpath, "r");
    $contents = fread($handle, filesize($fullpath));
-   preg_match("/Version: .*~svn(.*)-/",$contents,$matches);
+   preg_match("/Distro: .*~svn(.*)-/",$contents,$matches);
    return $matches[1];
 }
 
