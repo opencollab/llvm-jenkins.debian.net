@@ -269,7 +269,7 @@ Packages are rebuilt against the trunk of the various LLVM projects.<br />
 <a href="https://llvm-jenkins.debian.net">https://llvm-jenkins.debian.net</a>
 
 <h2>Bugs</h2>
-Bugs should be reported on the <a href="http://llvm.org/bugs/enter_bug.cgi?product=Packaging">LLVM bug tracker</a> (deb packages).
+Bugs should be reported on the <a href="https://llvm.org/bugs/enter_bug.cgi?product=Packaging">LLVM bug tracker</a> (deb packages).
 
 <h2>Workflow</h2>
      Twice a day, each jenkins job will checkout the debian/ directory necessary to build the packages. The repository is available on the Debian hosting infrastructure:
@@ -298,8 +298,8 @@ LLVM tarballs (and should be merged upstream at some point).
 <div class="rel_boxtext">
 With the Jenkins instance, several reports are produced:
 <ul>
-<li><a href="http://llvm.org/reports/scan-build/">Scan build report</a></li>
-<li><a href="http://llvm.org/reports/coverage/">Code coverage</a></li>
+<li><a href="https://llvm.org/reports/scan-build/">Scan build report</a></li>
+<li><a href="https://llvm.org/reports/coverage/">Code coverage</a></li>
 <li><a href="https://scan.coverity.com/projects/llvm">Coverity reports</a></li>
 </ul>
 </div>
@@ -363,7 +363,7 @@ Changes:
 -->
 <p style="font-size: smaller;">
      Contact: <a href="mailto:sylvestre@debian.org">Sylvestre Ledru</a>
-<br />Build infra by <a href="http://www.irill.org/">IRILL</a> / Hosting by LLVM Foundation / CDN by <a href="http://www.fastly.com">Fastly</a>
+<br />Build infra by <a href="https://www.irill.org/">IRILL</a> / Hosting by LLVM Foundation / CDN by <a href="http://www.fastly.com">Fastly</a>
 </p>
 
 </div> <!-- rel_container -->
