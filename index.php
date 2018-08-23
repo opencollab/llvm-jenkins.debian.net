@@ -24,10 +24,10 @@ function getLastRevision($version) {
    return $matches[1];
 }
 
-$stableBranch="5.0";
-$qualificationBranch="6.0";
-$devBranch="7";
-$isQualification=false;
+$stableBranch="6.0";
+$qualificationBranch="7";
+$devBranch="8";
+$isQualification=true;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
                       "http://www.w3.org/TR/html4/strict.dtd">
@@ -171,15 +171,23 @@ wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -<br />
 # Fingerprint:  6084 F3CF 814B 57C1 CF12  EFD5 15CF 4D18 AF4F 7421
 </p><br />
 
-To install just clang and lldb (<?=$stableBranch?> release):
+To install just clang, lld and lldb (<?=$stableBranch?> release):
   <p class="www_code">
-apt-get install clang-<?=$stableBranch?> lldb-<?=$stableBranch?>
+apt-get install clang-<?=$stableBranch?> lldb-<?=$stableBranch?> lld-<?=$stableBranch?>
 </p>
 <br />
 To install all packages:<br />
 <p class="www_code">
-
-apt-get install clang-<?=$stableBranch?> clang-tools-<?=$stableBranch?> clang-<?=$stableBranch?>-doc libclang-common-<?=$stableBranch?>-dev libclang-<?=$stableBranch?>-dev libclang1-<?=$stableBranch?> libllvm-<?=$stableBranch?>-ocaml-dev libllvm<?=$stableBranch?> lldb-<?=$stableBranch?> llvm-<?=$stableBranch?> llvm-<?=$stableBranch?>-dev llvm-<?=$stableBranch?>-doc llvm-<?=$stableBranch?>-examples llvm-<?=$stableBranch?>-runtime clang-format-<?=$stableBranch?> python-clang-<?=$stableBranch?> libfuzzer-<?=$stableBranch?>-dev
+# LLVM
+apt-get install libllvm-<?=$stableBranch?>-ocaml-dev libllvm<?=$stableBranch?> llvm-<?=$stableBranch?> llvm-<?=$stableBranch?>-dev llvm-<?=$stableBranch?>-doc llvm-<?=$stableBranch?>-examples llvm-<?=$stableBranch?>-runtime
+# Clang and co
+apt-get install clang-<?=$stableBranch?> clang-tools-<?=$stableBranch?> clang-<?=$stableBranch?>-doc libclang-common-<?=$stableBranch?>-dev libclang-<?=$stableBranch?>-dev libclang1-<?=$stableBranch?> clang-format-<?=$stableBranch?> python-clang-<?=$stableBranch?>
+# libfuzzer
+apt-get install libfuzzer-<?=$stableBranch?>-dev
+# lldb
+apt-get install lldb-<?=$stableBranch?>
+# lld (linker)
+apt-get install lld-<?=$stableBranch?>
 </p>
 </div>
 
@@ -191,15 +199,27 @@ wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -<br />
 # Fingerprint:  6084 F3CF 814B 57C1 CF12  EFD5 15CF 4D18 AF4F 7421
 </p><br />
 
-To install just clang and lldb (<?=$qualificationBranch?> release):
+To install just clang, lld and lldb (<?=$qualificationBranch?> release):
   <p class="www_code">
 apt-get install clang-<?=$qualificationBranch?> lldb-<?=$qualificationBranch?> lld-<?=$qualificationBranch?>
 </p>
 <br />
 To install all packages:<br />
 <p class="www_code">
-
-apt-get install clang-<?=$qualificationBranch?> clang-tools-<?=$qualificationBranch?> clang-<?=$qualificationBranch?>-doc libclang-common-<?=$qualificationBranch?>-dev libclang-<?=$qualificationBranch?>-dev libclang1-<?=$qualificationBranch?> libllvm-<?=$qualificationBranch?>-ocaml-dev libllvm<?=$qualificationBranch?> lldb-<?=$qualificationBranch?> llvm-<?=$qualificationBranch?> llvm-<?=$qualificationBranch?>-dev llvm-<?=$qualificationBranch?>-doc llvm-<?=$qualificationBranch?>-examples llvm-<?=$qualificationBranch?>-runtime clang-format-<?=$qualificationBranch?> python-clang-<?=$qualificationBranch?> lldb-<?=$qualificationBranch?>-dev lld-<?=$qualificationBranch?> libfuzzer-<?=$qualificationBranch?>-dev
+# LLVM
+apt-get install libllvm-<?=$qualificationBranch?>-ocaml-dev libllvm<?=$qualificationBranch?> llvm-<?=$qualificationBranch?> llvm-<?=$qualificationBranch?>-dev llvm-<?=$qualificationBranch?>-doc llvm-<?=$qualificationBranch?>-examples llvm-<?=$qualificationBranch?>-runtime
+# Clang and co
+apt-get install clang-<?=$qualificationBranch?> clang-tools-<?=$qualificationBranch?> clang-<?=$qualificationBranch?>-doc libclang-common-<?=$qualificationBranch?>-dev libclang-<?=$qualificationBranch?>-dev libclang1-<?=$qualificationBranch?> clang-format-<?=$qualificationBranch?> python-clang-<?=$qualificationBranch?>
+# libfuzzer
+apt-get install libfuzzer-<?=$qualificationBranch?>-dev
+# lldb
+apt-get install lldb-<?=$qualificationBranch?>
+# lld
+apt-get install lld-<?=$qualificationBranch?>
+# libc++
+apt-get install libc++-<?=$qualificationBranch?>-dev libc++-<?=$qualificationBranch?>-dev
+# OpenMP
+apt-get install libomp-<?=$qualificationBranch?>-dev
 </p>
 
 </div>
@@ -225,8 +245,20 @@ apt-get install clang-<?=$devBranch?> lldb-<?=$devBranch?> lld-<?=$devBranch?>
 <br />
 To install all packages:<br />
 <p class="www_code">
-
-apt-get install clang-<?=$devBranch?> clang-tools-<?=$devBranch?> clang-<?=$devBranch?>-doc libclang-common-<?=$devBranch?>-dev libclang-<?=$devBranch?>-dev libclang1-<?=$devBranch?> libllvm-<?=$devBranch?>-ocaml-dev libllvm<?=$devBranch?> lldb-<?=$devBranch?> llvm-<?=$devBranch?> llvm-<?=$devBranch?>-dev llvm-<?=$devBranch?>-doc llvm-<?=$devBranch?>-examples llvm-<?=$devBranch?>-runtime clang-format-<?=$devBranch?> python-clang-<?=$devBranch?> lld-<?=$devBranch?> libfuzzer-<?=$devBranch?>-dev
+# LLVM
+apt-get install libllvm-<?=$devBranch?>-ocaml-dev libllvm<?=$devBranch?> llvm-<?=$devBranch?> llvm-<?=$devBranch?>-dev llvm-<?=$devBranch?>-doc llvm-<?=$devBranch?>-examples llvm-<?=$devBranch?>-runtime
+# Clang and co
+apt-get install clang-<?=$devBranch?> clang-tools-<?=$devBranch?> clang-<?=$devBranch?>-doc libclang-common-<?=$devBranch?>-dev libclang-<?=$devBranch?>-dev libclang1-<?=$devBranch?> clang-format-<?=$devBranch?> python-clang-<?=$devBranch?>
+# libfuzzer
+apt-get install libfuzzer-<?=$devBranch?>-dev
+# lldb
+apt-get install lldb-<?=$devBranch?>
+# lldb
+apt-get install lld-<?=$devBranch?>
+# libc++
+apt-get install libc++-<?=$devBranch?>-dev libc++-<?=$devBranch?>-dev
+# OpenMP
+apt-get install libomp-<?=$devBranch?>-dev
 </p>
 
 </div>
@@ -315,12 +347,19 @@ Changes:
   * artful added to the webpage
 
 - Jan 22th 2018
-  * 4.0 is dead, 7 enavbled
+  * 4.0 is dead, 7 enabled
   * Moved from X.0 => X
   * Bionic enabled
 
-- Jun 1st 2019
+- Jun 1st 2018
   * Remove zesty
+
+- Aug 23th 2018
+  * 5 is dead, 8 enabled
+  * split of the install steps
+  * libc++ from 7
+  * openmp from 7
+
 -->
 <p style="font-size: smaller;">
      Contact: <a href="mailto:sylvestre@debian.org">Sylvestre Ledru</a>
