@@ -278,7 +278,7 @@ Bugs should be reported on the <a href="https://llvm.org/bugs/enter_bug.cgi?prod
      In the <i>llvm-toolchain-*-source</i>, the following tasks will be performed:
 <ul>
 <li>upstream sources will be checkout</li>
-     <li>tarballs will be created. They are named: <ul><li>llvm-toolchain_X.Y~svn123456.orig-lldb.tar.bz2</li><li>llvm-toolchain_X.Y~svn123456.orig-compiler-rt.tar.bz2</li><li>llvm-toolchain_X.Y~svn123456.orig.tar.bz2</li><li>llvm-toolchain_X.Y~svn123456.orig-clang.tar.bz2</li><li>llvm-toolchain_X.Y~svn123456.orig-polly.tar.bz2</li></ul></li>
+     <li>tarballs will be created. They are named: <ul><li>llvm-toolchain_X.Y~svn123456.orig-lldb.tar.bz2</li><li>llvm-toolchain_X.Y~svn123456.orig-compiler-rt.tar.bz2</li><li>llvm-toolchain_X.Y~svn123456.orig.tar.bz2</li><li>llvm-toolchain_X.Y~svn123456.orig-clang.tar.bz2</li><li>llvm-toolchain_X.Y~svn123456.orig-polly.tar.bz2</li><li>...</li></ul></li>
 <li>Debian .dsc package description is created</li>
 <li>Start the jenkins job <i>llvm-toolchain-X-binary</i></li>
 </ul>
