@@ -239,29 +239,6 @@
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>5.0</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*5.0.*</includeRegex>
-      <recurse>false</recurse>
-      <statusFilter>true</statusFilter>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
       <name>Debian Stretch</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
