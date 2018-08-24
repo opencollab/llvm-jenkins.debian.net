@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -ex
-apt-get install --assume-yes --no-install-recommends lsb-release
+apt-get install --assume-yes --no-install-recommends lsb-release wget
 DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
 if test "$DIST" = "precise" -o "$DIST" = "quantal" -o "$DIST" = "wheezy" -o "$DIST" = "trusty"; then
@@ -9,3 +9,11 @@ if test "$DIST" = "precise" -o "$DIST" = "quantal" -o "$DIST" = "wheezy" -o "$DI
 	echo "APT::Get::AllowUnauthenticated yes;" > /etc/apt/apt.conf.d/99auth
 	apt-get update
 fi
+if test "$DIST" = "trusty" -o  "$DIST" = "xenial"; then
+# python-recommonmark isn't available on old ubuntu, download and install them
+    apt-get install python-pkg-resources  python-docutils  --assume-yes --no-install-recommends
+    wget http://mirrors.kernel.org/ubuntu/pool/universe/r/recommonmark/python-recommonmark_0.4.0+ds-2_all.deb
+    wget http://mirrors.kernel.org/ubuntu/pool/universe/c/commonmark-bkrs/python-commonmark-bkrs_0.5.4+ds-1_all.deb
+    dpkg -i python-commonmark-bkrs_0.5.4+ds-1_all.deb python-recommonmark_0.4.0+ds-2_all.deb
+fi
+
