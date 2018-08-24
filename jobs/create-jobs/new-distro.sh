@@ -27,8 +27,8 @@ chown jenkins. /srv/repository/$NAME
 
 emacs ~/.pbuilderrc
 echo "On every slave, git pull + create the symlink from $NAME for deboostrap"
-echo "also ignore the new distro in pbuilder-hookdir/D23-add-repo-for-default"
 echo "Please also create llvm-defaults-$NAME"
 echo "in the sync job, restrict to where it can run master||korcula probably"
-echo "also delete llvm-toolchain-$NAME-source-trigger and update the cron in the job" 
+echo "remove i386 in case of ubuntu distro"
+echo "also delete llvm-toolchain-$NAME-source-trigger and update the cron in the job"
 echo "Add the new version in /srv/salt/llvm-slave.sls on ursae for /usr/share/debootstrap/scripts"
