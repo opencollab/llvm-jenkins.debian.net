@@ -9,6 +9,7 @@ if test "$DIST" = "precise" -o "$DIST" = "quantal" -o "$DIST" = "wheezy" -o "$DI
 	echo "APT::Get::AllowUnauthenticated yes;" > /etc/apt/apt.conf.d/99auth
 	apt-get update
 fi
+
 if test "$DIST" = "trusty" -o  "$DIST" = "xenial"; then
 # python-recommonmark isn't available on old ubuntu, download and install them
     apt-get install python-pkg-resources  python-docutils  --assume-yes --no-install-recommends
@@ -17,3 +18,7 @@ if test "$DIST" = "trusty" -o  "$DIST" = "xenial"; then
     dpkg -i python-commonmark-bkrs_0.5.4+ds-1_all.deb python-recommonmark_0.4.0+ds-2_all.deb
 fi
 
+if test "$DIST" = "trusty"; then
+    wget http://mirrors.kernel.org/ubuntu/pool/universe/s/sphinx/python-sphinx_1.3.6-2ubuntu1_all.deb http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx/sphinx-common_1.3.6-2ubuntu1_all.deb  http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx/libjs-sphinxdoc_1.3.6-2ubuntu1_all.deb
+    dpkg -i python-sphinx_1.3.6-2ubuntu1_all.deb sphinx-common_1.3.6-2ubuntu1_all.deb libjs-sphinxdoc_1.3.6-2ubuntu1_all.deb
+fi
