@@ -14,7 +14,7 @@
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.7.0">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.8.0">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -23,7 +23,7 @@
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>*/snapshot</name>
+        <name>refs/heads/snapshot</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -55,8 +55,7 @@ H 22 * * *</spec>
       <command>rm -f ./* || true</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>
-export DISTRIBUTION=stretch
+      <command>export DISTRIBUTION=stretch
 /usr/bin/generate-git-snapshot
 </command>
     </hudson.tasks.Shell>

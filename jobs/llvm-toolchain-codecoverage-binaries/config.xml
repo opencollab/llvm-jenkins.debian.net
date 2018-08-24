@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<matrix-project plugin="matrix-project@1.11">
+<matrix-project plugin="matrix-project@1.12">
   <actions/>
   <description>Build the necessary arguments for the code coverage&#xd;
 Run all the tests&#xd;
@@ -42,11 +42,12 @@ Only build amd64</description>
       <name>label</name>
       <values>
         <string>korcula</string>
+        <string>master</string>
       </values>
     </hudson.matrix.LabelAxis>
   </axes>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.39">
       <project>llvm-toolchain-source</project>
       <filter>*</filter>
       <target></target>
@@ -61,7 +62,7 @@ Only build amd64</description>
     <hudson.tasks.Shell>
       <command>export DEB_BUILD_OPTIONS=&quot;codecoverage parallel=7&quot;
 export BUILD_ONLY=true
-if test ! -d $REPOSITORY; then mount "$(dirname "$REPOSITORY")"; fi
+if test ! -d $REPOSITORY; then mount &quot;$(dirname &quot;$REPOSITORY&quot;)&quot;; fi
 /usr/bin/build-and-provide-package
 # In some cases (and I don&apos;t know why), the code coverage is only working on a few directory.
 # Disable the upload in this case
