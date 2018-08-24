@@ -31,3 +31,10 @@ if test "$DIST" = "trusty"; then
     dpkg -i *.deb
     rm *.deb
 fi
+
+
+if test "$DIST" = "jessie"; then
+    # for python-recommonmark
+    echo "deb http://ftp.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/jessie-backport.list
+    apt-get update
+fi
