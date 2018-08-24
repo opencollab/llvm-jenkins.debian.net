@@ -16,9 +16,18 @@ if test "$DIST" = "trusty" -o  "$DIST" = "xenial"; then
     wget http://mirrors.kernel.org/ubuntu/pool/universe/r/recommonmark/python-recommonmark_0.4.0+ds-2_all.deb
     wget http://mirrors.kernel.org/ubuntu/pool/universe/c/commonmark-bkrs/python-commonmark-bkrs_0.5.4+ds-1_all.deb
     dpkg -i python-commonmark-bkrs_0.5.4+ds-1_all.deb python-recommonmark_0.4.0+ds-2_all.deb
+    rm *.deb
 fi
 
 if test "$DIST" = "trusty"; then
-    wget http://mirrors.kernel.org/ubuntu/pool/universe/s/sphinx/python-sphinx_1.3.6-2ubuntu1_all.deb http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx/sphinx-common_1.3.6-2ubuntu1_all.deb  http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx/libjs-sphinxdoc_1.3.6-2ubuntu1_all.deb
-    dpkg -i python-sphinx_1.3.6-2ubuntu1_all.deb sphinx-common_1.3.6-2ubuntu1_all.deb libjs-sphinxdoc_1.3.6-2ubuntu1_all.deb
+    # ugly workaround to install a correct version of sphinx
+    # otherwise fails with:
+    # Exception occurred:
+    # File "/usr/lib/python2.7/dist-packages/sphinx/util/__init__.py", line 94, in get_matching_docs
+    #    suffixpattern = '*' + suffix
+    # TypeError: cannot concatenate 'str' and 'list' objects
+    apt-get install python-sphinx python-babel
+    wget http://mirrors.kernel.org/ubuntu/pool/universe/s/sphinx/python-sphinx_1.3.6-2ubuntu1_all.deb http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx/sphinx-common_1.3.6-2ubuntu1_all.deb  http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx/libjs-sphinxdoc_1.3.6-2ubuntu1_all.deb http://mirrors.kernel.org/ubuntu/pool/universe/a/alabaster/python-alabaster_0.7.7-1_all.deb http://mirrors.kernel.org/ubuntu/pool/universe/s/sphinx-rtd-theme/python-sphinx-rtd-theme_0.1.9-1_all.deb http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx-rtd-theme/sphinx-rtd-theme-common_0.1.9-1_all.deb http://mirrors.kernel.org/ubuntu/pool/main/j/jquery/libjs-jquery_1.11.3+dfsg-4_all.deb http://mirrors.kernel.org/ubuntu/pool/main/p/pygments/python-pygments_2.1+dfsg-1_all.deb
+    dpkg -i *.deb
+    rm *.deb
 fi
