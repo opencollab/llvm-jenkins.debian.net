@@ -23,7 +23,7 @@
   <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
   <workspaceDir>${ITEM_ROOTDIR}/workspace</workspaceDir>
   <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
-  <systemMessage>See &lt;a href=&quot;http://apt.llvm.org/&quot;&gt;apt.llvm.org&lt;/a&gt; and &lt;a href=&quot;http://blog.llvm.org/2013/04/llvm-debianubuntu-nightly-packages.html&quot;&gt;the blog post&lt;/a&gt;&#xd;
+  <systemMessage>See &lt;a href=&quot;https://apt.llvm.org/&quot;&gt;apt.llvm.org&lt;/a&gt; and &lt;a href=&quot;http://blog.llvm.org/2013/04/llvm-debianubuntu-nightly-packages.html&quot;&gt;the blog post&lt;/a&gt;&#xd;
 &lt;br /&gt;Contact: sylvestre@debian.org</systemMessage>
   <markupFormatter class="hudson.markup.RawHtmlMarkupFormatter" plugin="antisamy-markup-formatter@1.5">
     <disableSyntaxHighlighting>false</disableSyntaxHighlighting>
@@ -163,7 +163,6 @@
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>llvm-defaults-binaries</string>
-        <string>llvm-defaults-bionic-binary</string>
         <string>llvm-defaults-bionic-source</string>
         <string>llvm-defaults-jessie-source</string>
         <string>llvm-defaults-precise-source</string>
@@ -235,29 +234,6 @@
         <hudson.views.BuildButtonColumn/>
       </columns>
       <includeRegex>.*artful.*</includeRegex>
-      <recurse>false</recurse>
-      <statusFilter>true</statusFilter>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
-      <name>5.0</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*5.0.*</includeRegex>
       <recurse>false</recurse>
       <statusFilter>true</statusFilter>
     </listView>
@@ -397,9 +373,35 @@
       <includeRegex>.*bionic.*</includeRegex>
       <recurse>false</recurse>
     </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>7</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*-7-.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
   </views>
   <primaryView>all</primaryView>
   <slaveAgentPort>0</slaveAgentPort>
+  <disabledAgentProtocols>
+    <string>JNLP-connect</string>
+    <string>JNLP2-connect</string>
+  </disabledAgentProtocols>
   <label></label>
   <nodeProperties/>
   <globalNodeProperties/>

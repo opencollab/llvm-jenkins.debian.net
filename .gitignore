@@ -30,4 +30,6 @@ users/
 .subversion/
 *.log
 cache/
-
+logs/
+plugins/
+nodes/
