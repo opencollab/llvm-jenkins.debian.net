@@ -10,7 +10,7 @@ DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME
     "unstable" "testing" "stable" "buster")
 
 # List of Ubuntu suites. Update these when needed.
-UBUNTU_SUITES=("bionic" "artful" "zesty" "yakkety" "xenial" "wily" "vivid" "utopic" "trusty" "saucy" "raring" "quantal" "precise" "oneiric" "natty" "lucid" "hardy")
+UBUNTU_SUITES=("cosmic" "bionic" "artful" "zesty" "yakkety" "xenial" "wily" "vivid" "utopic" "trusty" "saucy" "raring" "quantal" "precise" "oneiric" "natty" "lucid" "hardy")
 
 # Mirrors to use. Update these to your preferred mirror.
 DEBIAN_MIRROR="ftp.fr.debian.org"
