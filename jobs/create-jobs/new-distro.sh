@@ -1,12 +1,12 @@
-ie#!/bin/bash
+#!/bin/bash
 
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root" 1>&2
    exit 1
 fi
-NAME="bionic"
+NAME="cosmic"
 
-VERSIONS=( 5.0 6.0 snapshot)
+VERSIONS=( 6.0 7 snapshot)
 for v in "${VERSIONS[@]}"
 do
         echo $v
