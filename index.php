@@ -168,7 +168,23 @@ deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$stableBranch?> mai
 deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
 </pre>
+
+Cosmic (18.10) - <small>Last update : <?=getLastUpdate("cosmic");?> / Revision: <?=getLastRevision("cosmic")?></small>
+<pre>
+# i386 not available
+deb http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic main
+deb-src http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$qualificationBranch?> main
+</pre>
 </div>
+
 
 <div class="rel_section">Install<br />(<?php if (!$isQualification) {?>old-<?php } ?>stable branch)</div>
 <div class="rel_boxtext">
@@ -366,7 +382,7 @@ Changes:
   * split of the install steps
   * libc++ from 7
   * openmp from 7
-
+  * cosmic enabled
 -->
 <p style="font-size: smaller;">
      Contact: <a href="mailto:sylvestre@debian.org">Sylvestre Ledru</a>
