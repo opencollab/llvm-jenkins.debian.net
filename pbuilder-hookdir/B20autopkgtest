@@ -65,6 +65,7 @@ if ! which autopkgtest > /dev/null ; then
   ${ADT_OPTIONS:-} --- adt-virt-null || EXIT=$?
 else 
   $newpid_name autopkgtest \
+  -B \
   --output-dir /tmp/buildd/autopkgtest.out \
   --summary-file /tmp/buildd/autopkgtest.summary \
   /tmp/buildd/*/ \
