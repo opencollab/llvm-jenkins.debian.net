@@ -240,7 +240,7 @@ apt-get install lldb-<?=$qualificationBranch?><br />
 <b># lld (linker)</b><br />
 apt-get install lld-<?=$qualificationBranch?><br />
 <b># libc++</b><br />
-apt-get install libc++-<?=$qualificationBranch?>-dev libc++-<?=$qualificationBranch?>-dev<br />
+apt-get install libc++-<?=$qualificationBranch?>-dev libc++abi-<?=$qualificationBranch?>-dev<br />
 <b># OpenMP</b><br />
 apt-get install libomp-<?=$qualificationBranch?>-dev<br />
 </p>
@@ -279,7 +279,7 @@ apt-get install lldb-<?=$devBranch?><br />
 <b># lld (linker)</b><br />
 apt-get install lld-<?=$devBranch?><br />
 <b># libc++</b><br />
-apt-get install libc++-<?=$devBranch?>-dev libc++-<?=$devBranch?>-dev<br />
+apt-get install libc++-<?=$devBranch?>-dev libc++abi-<?=$devBranch?>-dev<br />
 <b># OpenMP</b><br />
 apt-get install libomp-<?=$devBranch?>-dev<br />
 </p>
