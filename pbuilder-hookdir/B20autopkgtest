@@ -2,6 +2,7 @@
 # Copyright 2013 Michael Prokop <mika@debian.org>
 # Copyright 2012 Christoph Berg <myon@debian.org>
 # Licensed under the terms of the MIT License.
+# stolen from https://raw.githubusercontent.com/mika/jenkins-debian-glue/master/scripts/build-and-provide-package
 
 if [ "${ADT:-}" = "skip" ]; then
   echo "Skipping autopkgtests as requested (ADT is set to 'skip')"
