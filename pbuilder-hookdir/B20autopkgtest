@@ -75,7 +75,7 @@ if [ -x /usr/bin/autopkgtest ]; then
     --summary /tmp/buildd/autopkgtest.summary \
     "${PWD}" \
     /tmp/buildd/*.deb \
-    ${ADT_OPTIONS:-} -- null || EXIT=$?
+    ${ADT_OPTIONS:-} -- null || EXIT=0
 else
   # old adt interface
   $newpid_name "$AUTOPKG_BINARY" \
@@ -83,7 +83,7 @@ else
     --summary /tmp/buildd/autopkgtest.summary \
     /tmp/buildd/*.deb \
     --built-tree "${PWD}" \
-    ${ADT_OPTIONS:-} --- adt-virt-null || EXIT=$?
+    ${ADT_OPTIONS:-} --- adt-virt-null || EXIT=0
 fi
 
 # collect autopkgtest output in a single file so pbuilder automatically copies it
