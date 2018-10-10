@@ -35,7 +35,7 @@ Only build amd64</description>
     <hudson.matrix.TextAxis>
       <name>distribution</name>
       <values>
-        <string>stretch</string>
+        <string>buster</string>
       </values>
     </hudson.matrix.TextAxis>
     <hudson.matrix.LabelAxis>
