@@ -71,6 +71,8 @@
         <string>llvm-toolchain-6.0-source</string>
         <string>llvm-toolchain-6.0-source-trigger</string>
         <string>llvm-toolchain-7-binaries</string>
+        <string>llvm-toolchain-7-bootstrap-binaries</string>
+        <string>llvm-toolchain-7-bootstrap-source</string>
         <string>llvm-toolchain-7-source</string>
         <string>llvm-toolchain-7-source-trigger</string>
         <string>llvm-toolchain-binaries</string>
