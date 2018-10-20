@@ -7,5 +7,5 @@ if echo "$DEB_BUILD_OPTIONS" | grep "scan-build"; then
     echo "deb http://apt.llvm.org/unstable/ llvm-toolchain main" >> /etc/apt/sources.list
     wget --no-check-certificate -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -
     apt-get update
-    apt-get install --yes --no-install-recommends --force-yes clang-tools
+    apt-get install --yes --no-install-recommends --force-yes clang-tools-8
 fi
