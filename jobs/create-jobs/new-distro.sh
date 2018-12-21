@@ -4,7 +4,7 @@ if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root" 1>&2
    exit 1
 fi
-NAME="cosmic"
+NAME="disco"
 
 VERSIONS=( 6.0 7 snapshot)
 for v in "${VERSIONS[@]}"
@@ -26,6 +26,7 @@ mkdir  -p /srv/repository/$NAME
 chown jenkins. /srv/repository/$NAME
 
 emacs ~/.pbuilderrc
+echo "commit ~/.pbuilderrc"
 echo "On every slave, git pull + create the symlink from $NAME for deboostrap"
 echo "Please also create llvm-defaults-$NAME"
 echo "in the sync job, restrict to where it can run master||korcula probably"
