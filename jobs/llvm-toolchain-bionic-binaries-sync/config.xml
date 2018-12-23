@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-bionic-binaries, llvm-toolchain-bionic-5.0-binaries, llvm-toolchain-bionic-6.0-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-bionic-binaries, llvm-toolchain-bionic-5.0-binaries, llvm-toolchain-bionic-6.0-binaries, llvm-toolchain-bionic-7-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -31,7 +31,7 @@ bash /srv/repository/sync-to-llvm.sh bionic
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.20">
+    <hudson.tasks.Mailer plugin="mailer@1.21">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>

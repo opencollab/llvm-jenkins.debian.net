@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-xenial-binaries, llvm-toolchain-xenial-4.0-binaries, llvm-toolchain-xenial-3.9-binaries, llvm-toolchain-xenial-3.8-binaries, llvm-defaults-xenial-binaries, llvm-toolchain-xenial-5.0-binaries, llvm-toolchain-xenial-6.0-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-xenial-binaries, llvm-toolchain-xenial-4.0-binaries, llvm-toolchain-xenial-3.9-binaries, llvm-toolchain-xenial-3.8-binaries, llvm-defaults-xenial-binaries, llvm-toolchain-xenial-5.0-binaries, llvm-toolchain-xenial-6.0-binaries, llvm-toolchain-xenial-7-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -30,7 +30,7 @@ bash /srv/repository/sync-to-llvm.sh xenial</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.20">
+    <hudson.tasks.Mailer plugin="mailer@1.21">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
