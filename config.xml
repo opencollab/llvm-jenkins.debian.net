@@ -1,14 +1,11 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <hudson>
   <disabledAdministrativeMonitors>
     <string>hudsonHomeIsFull</string>
     <string>OldData</string>
   </disabledAdministrativeMonitors>
-  <version>2.89.4</version>
-  <installState class="jenkins.install.InstallState$5">
-    <isSetupComplete>true</isSetupComplete>
-    <name>RESTART</name>
-  </installState>
+  <version>2.150.1</version>
+  <installStateName>RESTART</installStateName>
   <numExecutors>1</numExecutors>
   <mode>EXCLUSIVE</mode>
   <useSecurity>true</useSecurity>
@@ -221,29 +218,6 @@
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>Ubuntu Artful</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*artful.*</includeRegex>
-      <recurse>false</recurse>
-      <statusFilter>true</statusFilter>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
       <name>Debian Stretch</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
@@ -299,6 +273,12 @@
         <string>llvm-toolchain-artful-binaries</string>
         <string>llvm-toolchain-artful-source</string>
         <string>llvm-toolchain-binaries</string>
+        <string>llvm-toolchain-bionic-binaries</string>
+        <string>llvm-toolchain-bionic-source</string>
+        <string>llvm-toolchain-cosmic-binaries</string>
+        <string>llvm-toolchain-cosmic-source</string>
+        <string>llvm-toolchain-disco-binaries</string>
+        <string>llvm-toolchain-disco-source</string>
         <string>llvm-toolchain-jessie-binaries</string>
         <string>llvm-toolchain-jessie-source</string>
         <string>llvm-toolchain-precise-binaries</string>
