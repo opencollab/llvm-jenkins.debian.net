@@ -15,9 +15,9 @@
       <spec></spec>
       <upstreamProjects>llvm-toolchain-xenial-binaries, llvm-toolchain-xenial-4.0-binaries, llvm-toolchain-xenial-3.9-binaries, llvm-toolchain-xenial-3.8-binaries, llvm-defaults-xenial-binaries, llvm-toolchain-xenial-5.0-binaries, llvm-toolchain-xenial-6.0-binaries, llvm-toolchain-xenial-7-binaries, </upstreamProjects>
       <threshold>
-        <name>SUCCESS</name>
-        <ordinal>0</ordinal>
-        <color>BLUE</color>
+        <name>UNSTABLE</name>
+        <ordinal>1</ordinal>
+        <color>YELLOW</color>
         <completeBuild>true</completeBuild>
       </threshold>
     </jenkins.triggers.ReverseBuildTrigger>
