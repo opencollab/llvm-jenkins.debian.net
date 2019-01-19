@@ -211,6 +211,10 @@ apt-get install libfuzzer-<?=$stableBranch?>-dev<br />
 apt-get install lldb-<?=$stableBranch?><br />
 <b># lld (linker)</b><br />
 apt-get install lld-<?=$stableBranch?><br />
+<b># libc++</b><br />
+apt-get install libc++-<?=$stableBranch?>-dev libc++abi-<?=$stableBranch?>-dev<br />
+<b># OpenMP</b><br />
+apt-get install libomp-<?=$stableBranch?>-dev<br />
 </p>
 </div>
 
