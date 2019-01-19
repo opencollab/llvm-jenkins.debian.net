@@ -56,7 +56,8 @@ $isQualification=true;
 
 <div class="rel_boxtext">
 Jan 19th 2019 - Branch 8 created<br />
-Jan 19th 2018 - Ubuntu Disco (19.10) support
+Jan 19th 2019 - Ubuntu Disco (19.10) support<br />
+Jan 19th 2019 - Artful jobs disabled (but packages still available)<br />
 </div>
 
 <div class="rel_section">Debian</div>
@@ -391,7 +392,7 @@ Changes:
  - Jan 19th 2019
   * 6 is dead, 9 enabled
   * Ubuntu Disco (19.10) support
-  * Remove artful
+  * artful removed
 -->
 <p style="font-size: smaller;">
      Contact: <a href="mailto:sylvestre@debian.org">Sylvestre Ledru</a>
