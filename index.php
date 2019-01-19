@@ -167,6 +167,22 @@ deb-src http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$stableBranch?> mai
 deb http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$qualificationBranch?> main
 </pre>
+
+Disco (19.04) - <small>Last update : <?=getLastUpdate("disco");?> / Revision: <?=getLastRevision("disco")?></small>
+<pre>
+# i386 not available
+deb http://apt.llvm.org/disco/ llvm-toolchain-disco main
+deb-src http://apt.llvm.org/disco/ llvm-toolchain-disco main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/disco/ llvm-toolchain-disco-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/disco/ llvm-toolchain-disco-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/disco/ llvm-toolchain-disco-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/disco/ llvm-toolchain-disco-<?=$qualificationBranch?> main
+</pre>
+
 </div>
 
 
