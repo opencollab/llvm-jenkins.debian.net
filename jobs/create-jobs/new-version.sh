@@ -15,3 +15,4 @@ do
 	echo "sed -i -e 's|llvm-toolchain$d-binaries,|llvm-toolchain$d-binaries, llvm-toolchain$d-$VERSION-binaries,|' ../llvm-toolchain$d-binaries-sync/config.xml"
 done
 echo "update the sync job to upload the version"
+echo "Disable i386 on recent versions of Ubuntu"
