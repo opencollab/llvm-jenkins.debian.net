@@ -106,7 +106,7 @@ deb-src http://apt.llvm.org/unstable/ llvm-toolchain-<?=$qualificationBranch?> m
 <div class="rel_section">Ubuntu</div>
 <div class="rel_boxtext">
 <a href="https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test">gcc backport (ppa)</a> is necessary on Trusty (for libstdc++).<br />
-Precise, Quantal, Raring, Saucy and Utopic are no longer supported by Ubuntu.<br />
+Precise, Quantal, Raring, Saucy, Utopic and Artful are no longer supported by Ubuntu. Repo remains available<br />
 <br />
 
      Trusty (14.04) - <small>Last update : <?=getLastUpdate("trusty");?> / Revision: <?=getLastRevision("trusty")?></small>
@@ -136,21 +136,6 @@ deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-<?=$stableBranch?> mai
 
 deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-<?=$qualificationBranch?> main
-</pre>
-
-Artful (17.10) - <small>Last update : <?=getLastUpdate("artful");?> / Revision: <?=getLastRevision("artful")?></small>
-<pre>
-# i386 not available
-deb http://apt.llvm.org/artful/ llvm-toolchain-artful main
-deb-src http://apt.llvm.org/artful/ llvm-toolchain-artful main
-# <?=$stableBranch?>
-
-deb http://apt.llvm.org/artful/ llvm-toolchain-artful-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/artful/ llvm-toolchain-artful-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
-
-deb http://apt.llvm.org/artful/ llvm-toolchain-artful-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/artful/ llvm-toolchain-artful-<?=$qualificationBranch?> main
 </pre>
 
 Bionic (18.04) - <small>Last update : <?=getLastUpdate("bionic");?> / Revision: <?=getLastRevision("bionic")?></small>
