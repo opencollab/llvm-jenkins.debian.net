@@ -387,6 +387,11 @@ Changes:
   * libc++ from 7
   * openmp from 7
   * cosmic enabled
+
+ - Jan 19th 2019
+  * 6 is dead, 9 enabled
+  * Ubuntu Disco (19.10) support
+  * Remove artful
 -->
 <p style="font-size: smaller;">
      Contact: <a href="mailto:sylvestre@debian.org">Sylvestre Ledru</a>
