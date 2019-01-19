@@ -20,7 +20,7 @@ function getLastRevision($distro) {
    }
    $handle = fopen($fullpath, "r");
    $contents = fread($handle, filesize($fullpath));
-   preg_match("/Distro: .*~svn(.*)-/",$contents,$matches);
+   preg_match("/Version: .*~svn(.*)-/",$contents,$matches);
    return $matches[1];
 }
 
