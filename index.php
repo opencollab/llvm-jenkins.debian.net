@@ -52,14 +52,13 @@ $isQualification=true;
   <p>The goal is to provide Debian and Ubuntu nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64 and i386 (except for recent Ubuntu) and for both the stable, <?php if ($isQualification) {?>qualification<?php } else {?>old-stable<?php } ?> and development branches (currently <?=$stableBranch?>, <?=$qualificationBranch?> and <?=$devBranch?>).</p>
 <p>The packages provide <a href="https://llvm.org/">LLVM</a> + <a href="https://clang.llvm.org/">Clang</a> + <a href="https://compiler-rt.llvm.org/">compiler-rt</a> + <a href="https://polly.llvm.org/">polly</a> + <a href="https://lldb.llvm.org/">LLDB</a> + <a href="https://lld.llvm.org/">LLD</a> + <a href="https://llvm.org/docs/LibFuzzer.html">libFuzzer</a> + <a href="https://libcxx.llvm.org/">libc++</a> + <a href="https://libcxxabi.llvm.org/">libc++abi</a> + <a href="https://openmp.llvm.org/">openmp</a></p>
 </div>
-<!--
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
-August 23th 2018 - Thanks to the work of Reshabh Sharma as part of the <a href="https://summerofcode.withgoogle.com/">Goole Summer of Code 2018</a>, libc++, libc++abi and OpenMP external packages have been merged into the llvm-toolchain packages (starting with version 7).<br />
-August 23th 2018 - LLVM version 5 is replaced by version 8.
+Jan 19th 2019 - Branch 8 created<br />
+Jan 19th 2018 - Ubuntu Disco (19.10) support
 </div>
-                                                                                                                                                                                                                                                                                         -->
+
 <div class="rel_section">Debian</div>
 
 <div class="rel_boxtext">
