@@ -24,9 +24,9 @@ function getLastRevision($distro) {
    return $matches[1];
 }
 
-$stableBranch="6.0";
-$qualificationBranch="7";
-$devBranch="8";
+$stableBranch="7";
+$qualificationBranch="8";
+$devBranch="9";
 $isQualification=true;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
