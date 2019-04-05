@@ -9,7 +9,7 @@ if test "$DIST" = "precise" -o "$DIST" = "trusty" -o "$DIST" = "wily" -o "$DIST"
 	if test "$ARCH" = "i686"; then
 		ARCH="i386"
 	fi
-	curl -o cmake.tar.gz  http://sylvestre.ledru.info/bordel/cmake-3.4.3-Linux-$ARCH.tar.gz
+	curl -o cmake.tar.gz  http://sylvestre.ledru.info/bordel/cmake-3.5.2-Linux-$ARCH.tar.gz
 	tar zxvf cmake.tar.gz
 	mv cmake-* cmake
 fi
