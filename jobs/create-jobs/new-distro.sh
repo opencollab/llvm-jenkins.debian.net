@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 NAME="disco"
 
-VERSIONS=( 6.0 7 snapshot)
+VERSIONS=( 7 8 snapshot)
 for v in "${VERSIONS[@]}"
 do
         echo $v
