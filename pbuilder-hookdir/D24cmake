@@ -4,7 +4,7 @@ cd /tmp/
 apt-get install --yes --no-install-recommends --force-yes curl
 DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
-if test "$DIST" = "precise" -o "$DIST" = "trusty" -o "$DIST" = "wily" -o "$DIST" = "jessie"; then
+if test "$DIST" = "precise" -o "$DIST" = "trusty" -o "$DIST" = "wily"; then
 	ARCH=$(uname -m)
 	if test "$ARCH" = "i686"; then
 		ARCH="i386"
