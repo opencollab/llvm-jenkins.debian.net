@@ -4,7 +4,7 @@
     <string>hudsonHomeIsFull</string>
     <string>OldData</string>
   </disabledAdministrativeMonitors>
-  <version>2.150.1</version>
+  <version>2.150.2</version>
   <installStateName>RESTART</installStateName>
   <numExecutors>1</numExecutors>
   <mode>EXCLUSIVE</mode>
@@ -121,38 +121,6 @@
         <hudson.views.BuildButtonColumn/>
       </columns>
       <includeRegex>.*trusty.*</includeRegex>
-      <recurse>false</recurse>
-      <statusFilter>true</statusFilter>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
-      <name>Debian Jessie</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-        <string>llvm-defaults-jessie-source</string>
-        <string>llvm-toolchain-jessie-3.7-binaries</string>
-        <string>llvm-toolchain-jessie-3.7-source</string>
-        <string>llvm-toolchain-jessie-3.7-source-trigger</string>
-        <string>llvm-toolchain-jessie-3.8-binaries</string>
-        <string>llvm-toolchain-jessie-3.8-source</string>
-        <string>llvm-toolchain-jessie-3.8-source-trigger</string>
-        <string>llvm-toolchain-jessie-binaries</string>
-        <string>llvm-toolchain-jessie-source</string>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*jessie.*</includeRegex>
       <recurse>false</recurse>
       <statusFilter>true</statusFilter>
     </listView>
@@ -316,28 +284,6 @@
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>6.0</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*6.0.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
       <name>Ubuntu Bionic</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
@@ -378,28 +324,6 @@
         <hudson.views.BuildButtonColumn/>
       </columns>
       <includeRegex>.*-7-.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
-      <name>Ubuntu Cosmic</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*cosmic.*</includeRegex>
       <recurse>false</recurse>
     </listView>
     <listView>
