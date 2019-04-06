@@ -26,7 +26,7 @@ mkdir  -p /srv/repository/$NAME
 chown jenkins. /srv/repository/$NAME
 
 emacs ~/.pbuilderrc
-echo "commit ~/.pbuilderrc"
+echo "commit ~jenkins/pbuilderrc"
 echo "On every slave, git pull + create the symlink from $NAME for deboostrap"
 echo "Please also create llvm-defaults-$NAME"
 echo "in the sync job, restrict to where it can run master||korcula probably"
