@@ -57,6 +57,7 @@ $isQualification=true;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Apr 07th 2019 - Debian Buster (10) added<br />
 Apr 06th 2019 - Ubuntu cosmic disabled<br />
 Apr 06th 2019 - Debian Jessie (oldstable) <a href="https://lists.debian.org/debian-backports-announce/2018/07/msg00000.html">no longer</a> maintained<br />
 Jan 19th 2019 - Branch 8 created<br />
@@ -78,6 +79,18 @@ deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$stableBranch?> m
 # <?=$qualificationBranch?> 
 deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$qualificationBranch?> main
+</pre>
+
+Buster (Debian testing) - <small>Last update : <?=getLastUpdate("buster");?> / Revision: <?=getLastRevision("buster")?></small>
+<pre>
+deb http://apt.llvm.org/buster/ llvm-toolchain-buster main
+deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster main
+# <?=$stableBranch?> 
+deb http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$stableBranch?> main
+# <?=$qualificationBranch?> 
+deb http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$qualificationBranch?> main
 </pre>
 
 
