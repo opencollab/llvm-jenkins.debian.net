@@ -34,3 +34,5 @@ echo "remove i386 in case of ubuntu distro"
 echo "also delete llvm-toolchain-$NAME-source-trigger and update the cron in the job"
 echo "Add the new version in /srv/salt/llvm-slave.sls on ursae for /usr/share/debootstrap/scripts"
 echo "Update llvm-toolchain-$NAME-binaries-sync to fix the version to sync"
+echo "Update the version (not snapshot) to add the 0 of the branch in the orig-tar.sh script (ex: release_70 instead of release_7)"
+
