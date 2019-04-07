@@ -41,7 +41,7 @@
     </hudson.model.AllView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>Debian unstable</name>
+      <name>Debian 11 - unstable</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
@@ -49,21 +49,6 @@
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>llvm-defaults-binaries</string>
         <string>llvm-defaults-source</string>
-        <string>llvm-toolchain-3.7-binaries</string>
-        <string>llvm-toolchain-3.7-source</string>
-        <string>llvm-toolchain-3.7-source-trigger</string>
-        <string>llvm-toolchain-3.8-binaries</string>
-        <string>llvm-toolchain-3.8-source</string>
-        <string>llvm-toolchain-3.8-source-trigger</string>
-        <string>llvm-toolchain-3.9-binaries</string>
-        <string>llvm-toolchain-3.9-source</string>
-        <string>llvm-toolchain-3.9-source-trigger</string>
-        <string>llvm-toolchain-4.0-binaries</string>
-        <string>llvm-toolchain-4.0-source</string>
-        <string>llvm-toolchain-4.0-source-trigger</string>
-        <string>llvm-toolchain-5.0-binaries</string>
-        <string>llvm-toolchain-5.0-source</string>
-        <string>llvm-toolchain-5.0-source-trigger</string>
         <string>llvm-toolchain-6.0-binaries</string>
         <string>llvm-toolchain-6.0-source</string>
         <string>llvm-toolchain-6.0-source-trigger</string>
@@ -186,7 +171,7 @@
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>Debian Stretch</name>
+      <name>Debian 9 - Stretch</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
@@ -368,6 +353,28 @@
         <hudson.views.BuildButtonColumn/>
       </columns>
       <includeRegex>.*-8.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Debian 10 - Buster</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*buster.*</includeRegex>
       <recurse>false</recurse>
     </listView>
   </views>
