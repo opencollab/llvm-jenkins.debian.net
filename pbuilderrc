@@ -13,7 +13,7 @@ DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME
 UBUNTU_SUITES=("disco" "cosmic" "bionic" "artful" "zesty" "yakkety" "xenial" "wily" "vivid" "utopic" "trusty" "saucy" "raring" "quantal" "precise" "oneiric" "natty" "lucid" "hardy")
 
 # Mirrors to use. Update these to your preferred mirror.
-DEBIAN_MIRROR="ftp.fr.debian.org"
+DEBIAN_MIRROR="deb.debian.org"
 UBUNTU_MIRROR="www-ftp.lip6.fr/pub/linux/distributions/"
 
 # Optionally use the changelog of a package to determine the suite to use if
