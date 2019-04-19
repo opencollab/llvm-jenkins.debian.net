@@ -18,6 +18,7 @@ function getLastRevision($distro) {
    } else {
      $fullpath=$base."/${distro}/dists/llvm-toolchain/main/binary-amd64/Packages";
    }
+//echo $fullpath;
    $handle = fopen($fullpath, "r");
    $contents = fread($handle, filesize($fullpath));
    preg_match("/Version: .*~svn(.*)-/",$contents,$matches);
@@ -34,7 +35,7 @@ $isQualification=true;
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>LLVM Debian/Ubuntu nightly packages</title>
+  <title>LLVM Debian/Ubuntu packages</title>
   <link rel="stylesheet" type="text/css" href="//llvm.org/llvm.css">
 </head>
 <body>
@@ -50,13 +51,17 @@ $isQualification=true;
 <div class="rel_boxtext">
 
   <p>The goal is to provide Debian and Ubuntu nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64 and i386 (except for recent Ubuntu) and for both the stable, <?php if ($isQualification) {?>qualification<?php } else {?>old-stable<?php } ?> and development branches (currently <?=$stableBranch?>, <?=$qualificationBranch?> and <?=$devBranch?>).</p>
+<p>Packages are built using stage2 and extremely similar to the one shipping in Debian & Ubuntu.</p>
 <p>The packages provide <a href="https://llvm.org/">LLVM</a> + <a href="https://clang.llvm.org/">Clang</a> + <a href="https://compiler-rt.llvm.org/">compiler-rt</a> + <a href="https://polly.llvm.org/">polly</a> + <a href="https://lldb.llvm.org/">LLDB</a> + <a href="https://lld.llvm.org/">LLD</a> + <a href="https://llvm.org/docs/LibFuzzer.html">libFuzzer</a> + <a href="https://libcxx.llvm.org/">libc++</a> + <a href="https://libcxxabi.llvm.org/">libc++abi</a> + <a href="https://openmp.llvm.org/">openmp</a></p>
 </div>
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Apr 07th 2019 - Debian Buster (10) added<br />
+Apr 06th 2019 - Ubuntu cosmic disabled<br />
+Apr 06th 2019 - Debian Jessie (oldstable) <a href="https://lists.debian.org/debian-backports-announce/2018/07/msg00000.html">no longer</a> maintained<br />
 Jan 19th 2019 - Branch 8 created<br />
-Jan 19th 2019 - Ubuntu Disco (19.10) support<br />
+Jan 19th 2019 - Ubuntu Disco (19.04) support<br />
 Jan 19th 2019 - Artful jobs disabled (but packages still available)<br />
 </div>
 
@@ -64,19 +69,7 @@ Jan 19th 2019 - Artful jobs disabled (but packages still available)<br />
 
 <div class="rel_boxtext">
 
-Jessie (Debian old stable) - <small>Last update : <?=getLastUpdate("jessie");?> / Revision: <?=getLastRevision("jessie")?></small>
-<pre>
-deb http://apt.llvm.org/jessie/ llvm-toolchain-jessie main
-deb-src http://apt.llvm.org/jessie/ llvm-toolchain-jessie main
-# <?=$stableBranch?> 
-deb http://apt.llvm.org/jessie/ llvm-toolchain-jessie-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/jessie/ llvm-toolchain-jessie-<?=$stableBranch?> main
-# <?=$qualificationBranch?> 
-deb http://apt.llvm.org/jessie/ llvm-toolchain-jessie-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/jessie/ llvm-toolchain-jessie-<?=$qualificationBranch?> main
-</pre>
-
-Stretch (Debian stable) - <small>Last update : <?=getLastUpdate("stretch");?> / Revision: <?=getLastRevision("stretch")?></small>
+Stretch (Debian 9 - stable) - <small>Last update : <?=getLastUpdate("stretch");?> / Revision: <?=getLastRevision("stretch")?></small>
 <pre>
 deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch main
 deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch main
@@ -86,6 +79,18 @@ deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$stableBranch?> m
 # <?=$qualificationBranch?> 
 deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$qualificationBranch?> main
+</pre>
+
+Buster (Debian 10 - testing) - <small>Last update : <?=getLastUpdate("buster");?> / Revision: <?=getLastRevision("buster")?></small>
+<pre>
+deb http://apt.llvm.org/buster/ llvm-toolchain-buster main
+deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster main
+# <?=$stableBranch?> 
+deb http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$stableBranch?> main
+# <?=$qualificationBranch?> 
+deb http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$qualificationBranch?> main
 </pre>
 
 
@@ -107,7 +112,7 @@ deb-src http://apt.llvm.org/unstable/ llvm-toolchain-<?=$qualificationBranch?> m
 <div class="rel_section">Ubuntu</div>
 <div class="rel_boxtext">
 <a href="https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test">gcc backport (ppa)</a> is necessary on Trusty (for libstdc++).<br />
-Precise, Quantal, Raring, Saucy, Utopic and Artful are no longer supported by Ubuntu. Repo remains available<br />
+Precise, Quantal, Raring, Saucy, Utopic, Artful and Cosmic are no longer supported by Ubuntu. Repo remains available<br />
 <br />
 
      Trusty (14.04) - <small>Last update : <?=getLastUpdate("trusty");?> / Revision: <?=getLastRevision("trusty")?></small>
@@ -152,21 +157,6 @@ deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$stableBranch?> mai
 
 deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
-</pre>
-
-Cosmic (18.10) - <small>Last update : <?=getLastUpdate("cosmic");?> / Revision: <?=getLastRevision("cosmic")?></small>
-<pre>
-# i386 not available
-deb http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic main
-deb-src http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic main
-# <?=$stableBranch?>
-
-deb http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
-
-deb http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$qualificationBranch?> main
 </pre>
 
 Disco (19.04) - <small>Last update : <?=getLastUpdate("disco");?> / Revision: <?=getLastRevision("disco")?></small>

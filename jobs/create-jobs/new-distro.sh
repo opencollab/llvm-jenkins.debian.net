@@ -4,9 +4,9 @@ if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root" 1>&2
    exit 1
 fi
-NAME="disco"
+NAME="buster"
 
-VERSIONS=( 6.0 7 snapshot)
+VERSIONS=( 7 8 snapshot)
 for v in "${VERSIONS[@]}"
 do
         echo $v
@@ -26,7 +26,7 @@ mkdir  -p /srv/repository/$NAME
 chown jenkins. /srv/repository/$NAME
 
 emacs ~/.pbuilderrc
-echo "commit ~/.pbuilderrc"
+echo "commit ~jenkins/pbuilderrc"
 echo "On every slave, git pull + create the symlink from $NAME for deboostrap"
 echo "Please also create llvm-defaults-$NAME"
 echo "in the sync job, restrict to where it can run master||korcula probably"
@@ -35,3 +35,5 @@ echo "also delete llvm-toolchain-$NAME-source-trigger and update the cron in the
 echo "Add the new version in /srv/salt/llvm-slave.sls on ursae for /usr/share/debootstrap/scripts"
 echo "Update llvm-toolchain-$NAME-binaries-sync to fix the version to sync"
 echo "Update the update of the build in the main job llvm-toolchain-$NAME-source"
+echo "Update the version (not snapshot) to add the 0 of the branch in the orig-tar.sh script (ex: release_70 instead of release_7)"
+
