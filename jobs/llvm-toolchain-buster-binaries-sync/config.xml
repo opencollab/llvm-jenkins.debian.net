@@ -12,7 +12,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-buster-binaries, llvm-toolchain-buster-7-binaries, llvm-toolchain-buster-8-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-buster-binaries, llvm-toolchain-buster-7-binaries, llvm-toolchain-buster-8-binaries, llvm-toolchain-buster-9-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

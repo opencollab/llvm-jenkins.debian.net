@@ -7,13 +7,13 @@
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>!blade02</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-cosmic-binaries, llvm-toolchain-cosmic-6.0-binaries, llvm-toolchain-cosmic-7-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-cosmic-binaries, llvm-toolchain-cosmic-8-binaries, llvm-toolchain-cosmic-7-binaries, llvm-toolchain-cosmic-9-binaries, </upstreamProjects>
       <threshold>
         <name>UNSTABLE</name>
         <ordinal>1</ordinal>
