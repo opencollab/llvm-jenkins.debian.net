@@ -1,0 +1,4 @@
+[submodule "install-tests/bats"]
+	path = install-tests/bats
+	url = https://github.com/sstephenson/bats.git
+	branch = v0.4.0
