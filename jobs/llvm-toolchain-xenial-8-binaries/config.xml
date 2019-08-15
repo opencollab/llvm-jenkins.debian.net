@@ -43,7 +43,7 @@
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>export DEB_BUILD_OPTIONS=&quot;parallel=7&quot;
+      <command>export DEB_BUILD_OPTIONS=&quot;parallel=7 nocheck&quot;
 export REPOSITORY=&quot;/srv/repository/xenial&quot;
 export REPOS=llvm-toolchain-xenial-8
 /usr/bin/build-and-provide-package</command>

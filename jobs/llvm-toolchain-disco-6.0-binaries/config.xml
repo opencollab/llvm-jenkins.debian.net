@@ -42,7 +42,7 @@
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>export DEB_BUILD_OPTIONS=&quot;parallel=7&quot;
+      <command>export DEB_BUILD_OPTIONS=&quot;parallel=7 nocheck&quot;
 export REPOSITORY=&quot;/srv/repository/disco&quot;
 export REPOS=llvm-toolchain-disco-6.0
 /usr/bin/build-and-provide-package</command>
