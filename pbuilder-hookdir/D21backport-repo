@@ -28,20 +28,20 @@ if test "$DIST" = "trusty"; then
     # File "/usr/lib/python2.7/dist-packages/sphinx/util/__init__.py", line 94, in get_matching_docs
     #    suffixpattern = '*' + suffix
     # TypeError: cannot concatenate 'str' and 'list' objects
-    apt-get install python3-babel python3-jinja2 python3-markupsafe python3-six python3-tz python-babel python-six   fonts-font-awesome fonts-lato libjs-modernizr --assume-yes --no-install-recommends
-    wget http://mirrors.kernel.org/ubuntu/pool/universe/s/sphinx/python-sphinx_1.3.6-2ubuntu1.2_all.deb \
-     http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx/sphinx-common_1.3.6-2ubuntu1.2_all.deb \
-     http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx/libjs-sphinxdoc_1.3.6-2ubuntu1.2_all.deb \
-     http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx/python3-sphinx_1.3.6-2ubuntu1.2_all.deb \
-     http://mirrors.kernel.org/ubuntu/pool/universe/a/alabaster/python-alabaster_0.7.7-1_all.deb \
-     http://mirrors.kernel.org/ubuntu/pool/universe/s/sphinx-rtd-theme/python-sphinx-rtd-theme_0.1.9-1_all.deb \
-     http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx-rtd-theme/sphinx-rtd-theme-common_0.1.9-1_all.deb \
-     http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx-rtd-theme/python3-sphinx-rtd-theme_0.1.9-1_all.deb \
-     http://mirrors.kernel.org/ubuntu/pool/main/j/jquery/libjs-jquery_1.11.3+dfsg-4_all.deb \
-     http://mirrors.kernel.org/ubuntu/pool/main/p/pygments/python-pygments_2.1+dfsg-1_all.deb \
-     http://mirrors.kernel.org/ubuntu/pool/main/p/pygments/python3-pygments_2.1+dfsg-1_all.deb \
-     http://mirrors.kernel.org/ubuntu/pool/main/a/alabaster/python3-alabaster_0.7.7-1_all.deb
-
+    #apt-get install python3-babel python3-jinja2 python3-markupsafe python3-six python3-tz python-babel python-six fonts-font-awesome fonts-lato libjs-modernizr --assume-yes --no-install-recommends
+    apt install python3-sphinx
+    wget http://mirrors.edge.kernel.org/ubuntu/pool/main/s/sphinx/python3-sphinx_1.3.6-2ubuntu1_all.deb \
+    http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx/sphinx-common_1.3.6-2ubuntu1_all.deb \
+    http://mirrors.kernel.org/ubuntu/pool/main/p/pygments/python3-pygments_2.1+dfsg-1_all.deb
+    http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx-rtd-theme/sphinx-rtd-theme-common_0.1.9-1_all.deb \
+    http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx-rtd-theme/python3-sphinx-rtd-theme_0.1.9-1_all.deb \
+    http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx/libjs-sphinxdoc_1.3.6-2ubuntu1_all.deb  \
+    http://mirrors.kernel.org/ubuntu/pool/main/j/jquery/libjs-jquery_1.11.3+dfsg-4_all.deb \
+    http://mirrors.kernel.org/ubuntu/pool/main/m/modernizr/libjs-modernizr_2.6.2+ds1-1ubuntu1_all.deb \
+    http://mirrors.kernel.org/ubuntu/pool/universe/a/alabaster/python-alabaster_0.7.7-1_all.deb \
+    http://mirrors.kernel.org/ubuntu/pool/main/f/fonts-lato/fonts-lato_2.0-1_all.deb \
+    http://mirrors.kernel.org/ubuntu/pool/main/f/fonts-font-awesome/fonts-font-awesome_4.5.0~dfsg-1_all.deb
+f
     dpkg -i *.deb
     rm *.deb
 fi
