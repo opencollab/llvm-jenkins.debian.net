@@ -29,7 +29,7 @@ if test "$DIST" = "trusty"; then
     #    suffixpattern = '*' + suffix
     # TypeError: cannot concatenate 'str' and 'list' objects
     #apt-get install python3-babel python3-jinja2 python3-markupsafe python3-six python3-tz python-babel python-six fonts-font-awesome fonts-lato libjs-modernizr --assume-yes --no-install-recommends
-    apt install python3-sphinx
+    apt-get install  python3-sphinx --assume-yes
     wget http://mirrors.edge.kernel.org/ubuntu/pool/main/s/sphinx/python3-sphinx_1.3.6-2ubuntu1_all.deb \
     http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx/sphinx-common_1.3.6-2ubuntu1_all.deb \
     http://mirrors.kernel.org/ubuntu/pool/main/p/pygments/python3-pygments_2.1+dfsg-1_all.deb
