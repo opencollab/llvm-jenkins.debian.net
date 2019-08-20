@@ -25,9 +25,9 @@ function getLastRevision($distro) {
    return $matches[1];
 }
 
-$stableBranch="7";
-$qualificationBranch="8";
-$devBranch="9";
+$stableBranch="8";
+$qualificationBranch="9";
+$devBranch="10";
 $isQualification=true;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -57,8 +57,9 @@ $isQualification=true;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Aug 20th 2019 - Ubuntu Trusty remove (EOL)<br />
+Aug 01th 2019 - Snapshot becomes 10, branch 9 created<br />
 Apr 07th 2019 - Debian Buster (10) added<br />
-Apr 06th 2019 - Ubuntu cosmic disabled<br />
 Apr 06th 2019 - Debian Jessie (oldstable) <a href="https://lists.debian.org/debian-backports-announce/2018/07/msg00000.html">no longer</a> maintained<br />
 Jan 19th 2019 - Branch 8 created<br />
 Jan 19th 2019 - Ubuntu Disco (19.04) support<br />
@@ -69,7 +70,7 @@ Jan 19th 2019 - Artful jobs disabled (but packages still available)<br />
 
 <div class="rel_boxtext">
 
-Stretch (Debian 9 - stable) - <small>Last update : <?=getLastUpdate("stretch");?> / Revision: <?=getLastRevision("stretch")?></small>
+Stretch (Debian 9 - oldstable) - <small>Last update : <?=getLastUpdate("stretch");?> / Revision: <?=getLastRevision("stretch")?></small>
 <pre>
 deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch main
 deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch main
@@ -81,7 +82,7 @@ deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$qualificationBranch?
 deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$qualificationBranch?> main
 </pre>
 
-Buster (Debian 10 - testing) - <small>Last update : <?=getLastUpdate("buster");?> / Revision: <?=getLastRevision("buster")?></small>
+Buster (Debian 10 - stable) - <small>Last update : <?=getLastUpdate("buster");?> / Revision: <?=getLastRevision("buster")?></small>
 <pre>
 deb http://apt.llvm.org/buster/ llvm-toolchain-buster main
 deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster main
@@ -111,24 +112,9 @@ deb-src http://apt.llvm.org/unstable/ llvm-toolchain-<?=$qualificationBranch?> m
 </div>
 <div class="rel_section">Ubuntu</div>
 <div class="rel_boxtext">
-<a href="https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test">gcc backport (ppa)</a> is necessary on Trusty (for libstdc++).<br />
-Precise, Quantal, Raring, Saucy, Utopic, Artful and Cosmic are no longer supported by Ubuntu. Repo remains available<br />
+<!--<a href="https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test">gcc backport (ppa)</a> is necessary on Trusty (for libstdc++).<br />-->
+Precise, Quantal, Raring, Saucy, Utopic and Artful are no longer supported by Ubuntu. Repo remains available<br />
 <br />
-
-     Trusty (14.04) - <small>Last update : <?=getLastUpdate("trusty");?> / Revision: <?=getLastRevision("trusty")?></small>
-<pre>
-deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty main
-deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty main
-# <?=$stableBranch?> 
-deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty-<?=$stableBranch?> main
-# <?=$qualificationBranch?> 
-deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty-<?=$qualificationBranch?> main
-
-# Also add the following for the appropriate libstdc++
-deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu trusty main
-</pre>
 
 Xenial (16.04) - <small>Last update : <?=getLastUpdate("xenial");?> / Revision: <?=getLastRevision("xenial")?></small>
 <pre>
@@ -158,6 +144,22 @@ deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$stableBranch?> mai
 deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
 </pre>
+
+Cosmic (18.10) - <small>Last update : <?=getLastUpdate("cosmic");?> / Revision: <?=getLastRevision("cosmic")?></small>
+<pre>
+# i386 not available
+deb http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic main
+deb-src http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$qualificationBranch?> main
+</pre>
+
 
 Disco (19.04) - <small>Last update : <?=getLastUpdate("disco");?> / Revision: <?=getLastRevision("disco")?></small>
 <pre>
