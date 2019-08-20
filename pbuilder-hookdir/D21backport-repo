@@ -4,13 +4,13 @@ set -ex
 apt-get install --assume-yes --no-install-recommends lsb-release wget
 DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
-if test "$DIST" = "precise" -o "$DIST" = "quantal" -o "$DIST" = "wheezy" -o "$DIST" = "trusty"; then
+if test "$DIST" = "precise" -o "$DIST" = "quantal" -o "$DIST" = "wheezy"; then
 	echo "deb http://clang.ecranbleu.org/apt/$ID-$DIST $DIST main" > /etc/apt/sources.list.d/libbackport.list
 	echo "APT::Get::AllowUnauthenticated yes;" > /etc/apt/apt.conf.d/99auth
 	apt-get update
 fi
 
-if test "$DIST" = "trusty" -o  "$DIST" = "xenial"; then
+if test "$DIST" = "xenial"; then
 # python-recommonmark isn't available on old ubuntu, download and install them
     apt-get install python3-pkg-resources  python3-docutils  python-pkg-resources  python-docutils  --assume-yes --no-install-recommends
     wget http://mirrors.kernel.org/ubuntu/pool/universe/r/recommonmark/python-recommonmark_0.4.0+ds-2_all.deb
@@ -21,27 +21,3 @@ if test "$DIST" = "trusty" -o  "$DIST" = "xenial"; then
     rm *.deb
 fi
 
-if test "$DIST" = "trusty"; then
-    # ugly workaround to install a correct version of sphinx
-    # otherwise fails with:
-    # Exception occurred:
-    # File "/usr/lib/python2.7/dist-packages/sphinx/util/__init__.py", line 94, in get_matching_docs
-    #    suffixpattern = '*' + suffix
-    # TypeError: cannot concatenate 'str' and 'list' objects
-    #apt-get install python3-babel python3-jinja2 python3-markupsafe python3-six python3-tz python-babel python-six fonts-font-awesome fonts-lato libjs-modernizr --assume-yes --no-install-recommends
-    apt-get install  python3-sphinx --assume-yes
-    wget http://mirrors.edge.kernel.org/ubuntu/pool/main/s/sphinx/python3-sphinx_1.3.6-2ubuntu1_all.deb \
-    http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx/sphinx-common_1.3.6-2ubuntu1_all.deb \
-    http://mirrors.kernel.org/ubuntu/pool/main/p/pygments/python3-pygments_2.1+dfsg-1_all.deb \
-    http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx-rtd-theme/sphinx-rtd-theme-common_0.1.9-1_all.deb \
-    http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx-rtd-theme/python3-sphinx-rtd-theme_0.1.9-1_all.deb \
-    http://mirrors.kernel.org/ubuntu/pool/main/s/sphinx/libjs-sphinxdoc_1.3.6-2ubuntu1_all.deb  \
-    http://mirrors.kernel.org/ubuntu/pool/main/j/jquery/libjs-jquery_1.11.3+dfsg-4_all.deb \
-    http://mirrors.kernel.org/ubuntu/pool/main/m/modernizr/libjs-modernizr_2.6.2+ds1-1ubuntu1_all.deb \
-    http://mirrors.kernel.org/ubuntu/pool/universe/a/alabaster/python-alabaster_0.7.7-1_all.deb \
-    http://mirrors.kernel.org/ubuntu/pool/main/f/fonts-lato/fonts-lato_2.0-1_all.deb \
-    http://mirrors.kernel.org/ubuntu/pool/main/f/fonts-font-awesome/fonts-font-awesome_4.5.0~dfsg-1_all.deb
-
-    dpkg -i *.deb
-    rm *.deb
-fi
