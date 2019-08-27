@@ -36,7 +36,7 @@
     </hudson.matrix.TextAxis>
   </axes>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.42">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.42.1">
       <project>llvm-toolchain-source</project>
       <filter>*</filter>
       <target></target>
@@ -48,7 +48,7 @@
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>export DEB_BUILD_OPTIONS=&quot;parallel=7 nochecks&quot;
+      <command>export DEB_BUILD_OPTIONS=&quot;parallel=7 nocheck&quot;
 export REPOSITORY=&quot;/srv/repository/unstable&quot;
 export REPOS=llvm-toolchain
 export SKIP_PACKAGE_FROM_REMOVAL=&quot;llvm llvm-runtime llvm-dev llvm-defaults lldb lld libllvm-ocaml-dev libclang1 libclang-dev clang clang-tidy clang-format&quot;
@@ -69,13 +69,13 @@ if test ! -d $REPOSITORY; then mount &quot;$(dirname &quot;$REPOSITORY&quot;)&qu
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.27">
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.28">
       <testResults>**/lintian.xml</testResults>
       <keepLongStdio>false</keepLongStdio>
       <healthScaleFactor>1.0</healthScaleFactor>
       <allowEmptyResults>false</allowEmptyResults>
     </hudson.tasks.junit.JUnitResultArchiver>
-    <hudson.tasks.Mailer plugin="mailer@1.23">
+    <hudson.tasks.Mailer plugin="mailer@1.24">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>

@@ -4,9 +4,9 @@
     <string>hudsonHomeIsFull</string>
     <string>OldData</string>
   </disabledAdministrativeMonitors>
-  <version>2.150.2</version>
+  <version>2.176.2</version>
   <installStateName>RESTART</installStateName>
-  <numExecutors>1</numExecutors>
+  <numExecutors>0</numExecutors>
   <mode>EXCLUSIVE</mode>
   <useSecurity>true</useSecurity>
   <authorizationStrategy class="hudson.security.FullControlOnceLoggedInAuthorizationStrategy">
@@ -74,38 +74,6 @@
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
       </columns>
-      <recurse>false</recurse>
-      <statusFilter>true</statusFilter>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
-      <name>Ubuntu Trusty</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-        <string>llvm-defaults-trusty-source</string>
-        <string>llvm-toolchain-trusty-3.7-binaries</string>
-        <string>llvm-toolchain-trusty-3.7-source</string>
-        <string>llvm-toolchain-trusty-3.7-source-trigger</string>
-        <string>llvm-toolchain-trusty-3.8-binaries</string>
-        <string>llvm-toolchain-trusty-3.8-source</string>
-        <string>llvm-toolchain-trusty-3.8-source-trigger</string>
-        <string>llvm-toolchain-trusty-binaries</string>
-        <string>llvm-toolchain-trusty-source</string>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*trusty.*</includeRegex>
       <recurse>false</recurse>
       <statusFilter>true</statusFilter>
     </listView>
@@ -291,28 +259,6 @@
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>7</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*-7-.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
       <name>Ubuntu Disco</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
@@ -375,6 +321,50 @@
         <hudson.views.BuildButtonColumn/>
       </columns>
       <includeRegex>.*buster.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Ubuntu Cosmic</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*cosmic.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>9</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*9.*</includeRegex>
       <recurse>false</recurse>
     </listView>
   </views>
