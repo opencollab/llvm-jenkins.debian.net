@@ -1,12 +1,16 @@
 #!/bin/bash
+################################################################################
+# Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+# See https://llvm.org/LICENSE.txt for license information.
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+################################################################################
+#
 # This script will install the llvm toolchain on the different 
 # Debian and Ubuntu versions
 
-# TODO: add optional parameter to select llvm version.
-
 set -eux
 
-# read command line argument
+# read optional command line argument
 LLVM_VERSION=9
 if [ "$#" -eq 1 ]; then
     LLVM_VERSION=$1
