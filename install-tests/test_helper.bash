@@ -14,7 +14,6 @@ build_run(){
   fi
   mkdir -p tmp
   cp ../llvm.sh test_installation.sh tmp
-  cp test_installation.sh tmp
   cp -r sample_project tmp
   
   # build the docker image from the distro folder
