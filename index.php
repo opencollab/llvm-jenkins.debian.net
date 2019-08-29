@@ -177,15 +177,16 @@ deb-src http://apt.llvm.org/disco/ llvm-toolchain-disco-<?=$qualificationBranch?
 </pre>
 
 </div>
-
+<a href="#" id="default_pkg" style="visibility: hidden">default_pkg</a>
 <div class="rel_section">Default packages</div>
 <div class="rel_boxtext">
-          To make sure always the most recent versions of the packages are installed, we are providing some default packages. To install all of them (currently version <?=$devBranch?>):
+          To make sure always the most recent versions of the packages are installed, we are providing some default packages.<br />To install all of them (currently version <?=$devBranch?>):
 <p class="www_code">
         apt-get install clang-format clang-tidy clang-tools clang clangd libc++-dev libc++1 libc++abi-dev libc++abi1 libclang-dev libclang1 liblldb-dev libllvm-ocaml-dev libomp-dev libomp5 lld lldb llvm-dev llvm-runtime llvm python-clang
 </p>
 </div>
-</div>
+
+<a href="#" id="install_stable" style="visibility: hidden">install_stable</a>
 <div class="rel_section">Install<br />(<?php if (!$isQualification) {?>old-<?php } ?>stable branch)</div>
 <div class="rel_boxtext">
 To retrieve the archive signature:
@@ -217,6 +218,8 @@ apt-get install libc++-<?=$stableBranch?>-dev libc++abi-<?=$stableBranch?>-dev<b
 apt-get install libomp-<?=$stableBranch?>-dev<br />
 </p>
 </div>
+
+<a href="#" id="install_qualification" style="visibility: hidden">install_qualification</a>
 
 <div class="rel_section">Install<br />(<?php if ($isQualification) {?>qualification<?php } else {?>stable<?php } ?> branch)</div>
 <div class="rel_boxtext">
@@ -252,6 +255,7 @@ apt-get install libomp-<?=$qualificationBranch?>-dev<br />
 </div>
 
 
+<a href="#" id="install_dev" style="visibility: hidden">install_dev</a>
 <div class="rel_section">Install<br />(development branch)</div>
 <div class="rel_boxtext">
 To retrieve the archive signature:
