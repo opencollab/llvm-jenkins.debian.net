@@ -16,8 +16,8 @@ if [ "$#" -eq 1 ]; then
     LLVM_VERSION=$1
 fi
 
-DISTRO=$(lsb_release -a | grep "Distributor ID" | awk '{print $3}')
-VERSION=$(lsb_release -a | grep Release | awk '{print $2}')
+DISTRO=$(lsb_release -is)
+VERSION=$(lsb_release -sr)
 DIST_VERSION="${DISTRO}_${VERSION}"
 
 if [[ $EUID -ne 0 ]]; then
@@ -42,6 +42,7 @@ declare -A APT_REPOS
 APT_REPOS["Debian_9.9"]="deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch$LLVM_VERSION_STRING main"
 APT_REPOS["Debian_10"]="deb http://apt.llvm.org/buster/ llvm-toolchain-buster$LLVM_VERSION_STRING main"
 APT_REPOS["Debian_unstable"]="deb http://apt.llvm.org/unstable/ llvm-toolchain$LLVM_VERSION_STRING main"
+APT_REPOS["Debian_testing"]="deb http://apt.llvm.org/unstable/ llvm-toolchain$LLVM_VERSION_STRING main"
 APT_REPOS["Ubuntu_16.04"]="deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial$LLVM_VERSION_STRING main"
 APT_REPOS["Ubuntu_18.04"]="deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic$LLVM_VERSION_STRING main"
 APT_REPOS["Ubuntu_18.10"]="deb http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic$LLVM_VERSION_STRING main"
