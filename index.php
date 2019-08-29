@@ -71,7 +71,7 @@ For convenience there is an automatic installation script available that install
 <div class="rel_boxtext">
 To install the latest stable version:
 <pre>
-sh -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 </pre>
 <br />
 
