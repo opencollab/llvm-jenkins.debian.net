@@ -6,7 +6,7 @@ VERSION=$1
 
 # bulid the demo project
 cd /build/sample_project
-export CC=clang-${VERSION}
+export CXX=clang++-${VERSION}
 make clean
 make
 

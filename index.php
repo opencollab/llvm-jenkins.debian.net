@@ -71,13 +71,13 @@ For convenience there is an automatic installation script available that install
 <div class="rel_boxtext">
 To install the latest stable version:
 <pre>
-sh -c "$(wget -O - http://apt.lvm.org/llvm.sh)"
+sh -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 </pre>
 <br />
 
 To install a specific version of LLVM:
 <pre>
-wget http://apt.lvm.org/llvm.sh
+wget https://apt.llvm.org/llvm.sh
 chmod +x llvm.sh
 sudo ./llvm.sh &lt;version number&gt;
 </pre>
