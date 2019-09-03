@@ -66,6 +66,24 @@ Jan 19th 2019 - Ubuntu Disco (19.04) support<br />
 Jan 19th 2019 - Artful jobs disabled (but packages still available)<br />
 </div>
 
+<div class="rel_section">Automatic installation script</div>
+For convenience there is an automatic installation script available that installs LLVM for you.
+
+<div class="rel_boxtext">
+To install the latest stable version:
+<pre>
+bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+</pre>
+<br />
+
+To install a specific version of LLVM:
+<pre>
+wget https://apt.llvm.org/llvm.sh
+chmod +x llvm.sh
+sudo ./llvm.sh &lt;version number&gt;
+</pre>
+</div>
+
 <div class="rel_section">Debian</div>
 
 <div class="rel_boxtext">

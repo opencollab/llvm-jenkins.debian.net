@@ -29,3 +29,11 @@ Wait for a while
 to install everything
 
 6) On the blade, start the jenkins node with */home/jenkins/run-slave.sh*
+
+## Reporting bugs
+
+Please report bug at [https://bugs.llvm.org/enter_bug.cgi?product=Packaging].
+
+## llvm.sh - installation script
+
+If you have any changes to the llvm.sh script, please run the [installation tests](install-tests/README.md) before submitting.

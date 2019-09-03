@@ -1,3 +1,6 @@
+install-tests/tmp
+install-tests/tests.bats
+install-tests/test.log
 jobs/llvm-toolchain-*/lastStable
 jobs/llvm-toolchain-*/workspace/
 jobs/llvm-toolchain-*/builds/
