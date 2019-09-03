@@ -67,9 +67,9 @@ Jan 19th 2019 - Artful jobs disabled (but packages still available)<br />
 </div>
 
 <div class="rel_section">Automatic installation script</div>
-For convenience there is an automatic installation script available that installs LLVM for you.
-
 <div class="rel_boxtext">
+For convenience there is an automatic installation script available that installs LLVM for you.<br />
+
 To install the latest stable version:
 <pre>
 bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
