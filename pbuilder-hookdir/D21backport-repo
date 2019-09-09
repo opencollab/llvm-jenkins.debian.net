@@ -21,3 +21,8 @@ if test "$DIST" = "xenial"; then
     rm *.deb
 fi
 
+if test "$DIST" = "sid"; then
+    # Install gcc 8 by end
+    # Work in the debian ci but not in our config
+    apt-get install g++-8  --assume-yes --no-install-recommends
+fi
