@@ -51,6 +51,7 @@
       <command>export DEB_BUILD_OPTIONS=&quot;parallel=7 nocheck&quot;
 export REPOSITORY=&quot;/srv/repository/buster&quot;
 export REPOS=llvm-toolchain-buster-8
+export SKIP_PACKAGE_FROM_REMOVAL=&quot;llvm llvm-runtime llvm-dev llvm-defaults lldb lld libllvm-ocaml-dev libclang1 libclang-dev clang clang-tidy clang-format clangd&quot;
 /usr/bin/build-and-provide-package</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
