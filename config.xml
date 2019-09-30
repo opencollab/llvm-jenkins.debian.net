@@ -4,7 +4,7 @@
     <string>hudsonHomeIsFull</string>
     <string>OldData</string>
   </disabledAdministrativeMonitors>
-  <version>2.176.2</version>
+  <version>2.190.1</version>
   <installStateName>RESTART</installStateName>
   <numExecutors>0</numExecutors>
   <mode>EXCLUSIVE</mode>
@@ -22,7 +22,7 @@
   <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
   <systemMessage>See &lt;a href=&quot;https://apt.llvm.org/&quot;&gt;apt.llvm.org&lt;/a&gt; and &lt;a href=&quot;http://blog.llvm.org/2013/04/llvm-debianubuntu-nightly-packages.html&quot;&gt;the blog post&lt;/a&gt;&#xd;
 &lt;br /&gt;Contact: sylvestre@debian.org</systemMessage>
-  <markupFormatter class="hudson.markup.RawHtmlMarkupFormatter" plugin="antisamy-markup-formatter@1.5">
+  <markupFormatter class="hudson.markup.RawHtmlMarkupFormatter" plugin="antisamy-markup-formatter@1.6">
     <disableSyntaxHighlighting>false</disableSyntaxHighlighting>
   </markupFormatter>
   <jdks/>
