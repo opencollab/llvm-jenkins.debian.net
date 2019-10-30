@@ -11,7 +11,7 @@ for v in "${VERSIONS[@]}"
 do
         echo $v
         v_without_dot=$(echo $v|sed -e "s|\.||g")
-        sh create-new-job.sh $NAME $v release_$v_without_dot $v
+        sh create-new-job.sh $NAME $v release/$v_without_dot $v
         chown -R jenkins. llvm-toolchain-*
 done
 

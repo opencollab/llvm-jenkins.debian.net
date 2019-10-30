@@ -1,4 +1,4 @@
-sh create-new-job.sh unstable 3.5 release_35 3.5
+sh create-new-job.sh unstable 3.5 release/9.x 3.5
 
 update the perm
 
