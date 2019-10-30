@@ -49,14 +49,9 @@
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>llvm-defaults-binaries</string>
         <string>llvm-defaults-source</string>
-        <string>llvm-toolchain-6.0-binaries</string>
-        <string>llvm-toolchain-6.0-source</string>
-        <string>llvm-toolchain-6.0-source-trigger</string>
-        <string>llvm-toolchain-7-binaries</string>
-        <string>llvm-toolchain-7-bootstrap-binaries</string>
-        <string>llvm-toolchain-7-bootstrap-source</string>
-        <string>llvm-toolchain-7-source</string>
-        <string>llvm-toolchain-7-source-trigger</string>
+        <string>llvm-toolchain-9-binaries</string>
+        <string>llvm-toolchain-9-source</string>
+        <string>llvm-toolchain-9-source-trigger</string>
         <string>llvm-toolchain-binaries</string>
         <string>llvm-toolchain-binaries-sync</string>
         <string>llvm-toolchain-codecoverage-binaries</string>
