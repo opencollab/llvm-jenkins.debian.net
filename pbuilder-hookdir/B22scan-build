@@ -8,7 +8,9 @@ if test $dir_nb -ne 1; then
 	rm -rf $dir
 fi
 
-if test ! -d /tmp/scan-build-*/; then
+dir=$(ls -1 /tmp/scan-build-*|head -1)
+echo "We think it is $dir"
+if test ! -d $dir; then
     echo "No scan-build report found; skipping"
     exit 0
 fi
@@ -21,7 +23,7 @@ fi
 cmd='cd /tmp/'
 echo $cmd
 eval $cmd
-cmd="mv scan-build-* scan-build"
+cmd="mv $dir scan-build"
 echo $cmd
 eval $cmd
 cmd='tar czvf /tmp/buildd/scan-build.tar.gz scan-build/'
