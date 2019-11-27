@@ -28,7 +28,7 @@ function getLastRevision($distro) {
 $stableBranch="8";
 $qualificationBranch="9";
 $devBranch="10";
-$isQualification=true;
+$isQualification=false;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
                       "http://www.w3.org/TR/html4/strict.dtd">
@@ -57,6 +57,7 @@ $isQualification=true;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Oct 30th 2019 - Ubuntu Eoan (19.10) support<br />
 Aug 20th 2019 - Ubuntu Trusty remove (EOL)<br />
 Aug 01th 2019 - Snapshot becomes 10, branch 9 created<br />
 Apr 07th 2019 - Debian Buster (10) added<br />
@@ -193,6 +194,24 @@ deb-src http://apt.llvm.org/disco/ llvm-toolchain-disco-<?=$stableBranch?> main
 deb http://apt.llvm.org/disco/ llvm-toolchain-disco-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/disco/ llvm-toolchain-disco-<?=$qualificationBranch?> main
 </pre>
+
+
+Eoan (19.10) - <small>Last update : <?=getLastUpdate("eoan");?> / Revision: <?=getLastRevision("eoan")?></small>
+<pre>
+# i386 not available
+deb http://apt.llvm.org/eoan/ llvm-toolchain-eoan main
+deb-src http://apt.llvm.org/eoan/ llvm-toolchain-eoan main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/eoan/ llvm-toolchain-eoan-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/eoan/ llvm-toolchain-eoan-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+<!--
+deb http://apt.llvm.org/eoan/ llvm-toolchain-eoan-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/eoan/ llvm-toolchain-eoan-<?=$qualificationBranch?> main
+-->
+</pre>
+
 
 </div>
 <a href="#" id="default_pkg" style="visibility: hidden">default_pkg</a>
