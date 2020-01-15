@@ -10,6 +10,20 @@
 
 set -eux
 
+# Check for required tools
+needed_binaries=(lsb_release wget add-apt-repository)
+missing_binaries=()
+for binary in "${needed_binaries[@]}"; do
+    if ! which $binary &>/dev/null ; then
+        missing_binaries+=($binary)
+    fi
+done
+if [[ ${#missing_binaries[@]} -gt 0 ]] ; then
+    echo "You are missing some tools this script requires: ${missing_binaries[@]}"
+    echo "(hint: apt install lsb-release wget software-properties-common)"
+    exit 4
+fi
+
 # read optional command line argument
 LLVM_VERSION=9
 if [ "$#" -eq 1 ]; then
