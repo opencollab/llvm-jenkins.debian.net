@@ -57,8 +57,9 @@ $isQualification=false;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Sun 19th 2020 - Ubuntu Cosmic removed (EOL)<br />
 Oct 30th 2019 - Ubuntu Eoan (19.10) support<br />
-Aug 20th 2019 - Ubuntu Trusty remove (EOL)<br />
+Aug 20th 2019 - Ubuntu Trusty removed (EOL)<br />
 Aug 01th 2019 - Snapshot becomes 10, branch 9 created<br />
 Apr 07th 2019 - Debian Buster (10) added<br />
 Apr 06th 2019 - Debian Jessie (oldstable) <a href="https://lists.debian.org/debian-backports-announce/2018/07/msg00000.html">no longer</a> maintained<br />
@@ -163,22 +164,6 @@ deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$stableBranch?> mai
 deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
 </pre>
-
-Cosmic (18.10) - <small>Last update : <?=getLastUpdate("cosmic");?> / Revision: <?=getLastRevision("cosmic")?></small>
-<pre>
-# i386 not available
-deb http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic main
-deb-src http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic main
-# <?=$stableBranch?>
-
-deb http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
-
-deb http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/cosmic/ llvm-toolchain-cosmic-<?=$qualificationBranch?> main
-</pre>
-
 
 Disco (19.04) - <small>Last update : <?=getLastUpdate("disco");?> / Revision: <?=getLastRevision("disco")?></small>
 <pre>
@@ -380,60 +365,6 @@ Building the latest nightly snapshot
   <a href="./building-pkgs.php">Building LLVM packages from source</a> is documented in a dedicated page.
 </div>
 
-<!--
-Changes:
-
-- Oct 6th 2015:
-  * Debian wheezy removed
-  * Ubuntu Utopic removed (EOL)
-  * Fix a typo in vivid
-
-- Oct 13th 2015:
-  * Add wily
-
-- Feb 14th 2016:
-  * 3.8 added / snapshot moved to 3.9
-  * Ubuntu vivid removed (EOL)
-  * switch to cmake for 3.8 & 3.9
-  * Wily added
-
-- Jul 20th 2016:
-  * 3.7 dead, 4.0 enabled
-
-- Jan 15 2017
-  * 3.8 dead, 5.0 enabled
-  * zesty added
-  * lld added
-
-- May 23 2017
-  * artful enabled
-
-- July 28 2017
-  * 3.9 is dead, 6.0 enabled
-  * stretch added
-  * precise, wily & yakkety removed from the webpage
-  * artful added to the webpage
-
-- Jan 22th 2018
-  * 4.0 is dead, 7 enabled
-  * Moved from X.0 => X
-  * Bionic enabled
-
-- Jun 1st 2018
-  * Remove zesty
-
-- Aug 23th 2018
-  * 5 is dead, 8 enabled
-  * split of the install steps
-  * libc++ from 7
-  * openmp from 7
-  * cosmic enabled
-
- - Jan 19th 2019
-  * 6 is dead, 9 enabled
-  * Ubuntu Disco (19.10) support
-  * artful removed
--->
 <p style="font-size: smaller;">
      Contact: <a href="mailto:sylvestre@debian.org">Sylvestre Ledru</a>
 <br />Build infra by <a href="https://www.irill.org/">IRILL</a> / Hosting by LLVM Foundation / CDN by <a href="http://www.fastly.com">Fastly</a>
