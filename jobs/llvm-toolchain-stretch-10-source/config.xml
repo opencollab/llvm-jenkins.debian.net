@@ -45,7 +45,7 @@
       <command>rm -f ./* || true</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>export PRE_SOURCE_HOOK=&quot;source/debian/orig-tar.sh release/100&quot;
+      <command>export PRE_SOURCE_HOOK=&quot;source/debian/orig-tar.sh release/10.x&quot;
 export GBP_OPTS=&quot;-nc --git-force-create --git-ignore-new --git-ignore-branch -S -us -uc --git-verbose --git-builder=/bin/true --git-cleaner=/bin/true --git-export-dir=   --git-tarball-dir=. --git-no-create-orig&quot;
 export SKIP_GIT_CLEANUP=true
 export DISTRIBUTION=stretch
