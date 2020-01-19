@@ -21,7 +21,7 @@ function getLastRevision($distro) {
 //echo $fullpath;
    $handle = fopen($fullpath, "r");
    $contents = fread($handle, filesize($fullpath));
-   preg_match("/Version: .*~svn(.*)-/",$contents,$matches);
+   preg_match("/Version: .*~(.*)-/",$contents,$matches);
    return $matches[1];
 }
 
@@ -133,7 +133,7 @@ deb-src http://apt.llvm.org/unstable/ llvm-toolchain-<?=$qualificationBranch?> m
 <div class="rel_section">Ubuntu</div>
 <div class="rel_boxtext">
 <!--<a href="https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test">gcc backport (ppa)</a> is necessary on Trusty (for libstdc++).<br />-->
-Precise, Quantal, Raring, Saucy, Utopic, Artful and Trusty are no longer supported by Ubuntu. Repo remains available<br />
+Precise, Quantal, Raring, Saucy, Utopic, Artful, Cosmic and Trusty are no longer supported by Ubuntu. Repo remains available<br />
 <br />
 
 Xenial (16.04) - <small>Last update : <?=getLastUpdate("xenial");?> / Revision: <?=getLastRevision("xenial")?></small>
