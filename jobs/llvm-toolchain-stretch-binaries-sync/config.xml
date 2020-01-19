@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description></description>
@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-stretch-binaries, llvm-toolchain-stretch-5.0-binaries, llvm-toolchain-stretch-6.0-binaries, llvm-toolchain-stretch-7-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-stretch-binaries, llvm-toolchain-stretch-8-binaries, llvm-toolchain-stretch-9-binaries, llvm-toolchain-stretch-10-binaries, </upstreamProjects>
       <threshold>
         <name>UNSTABLE</name>
         <ordinal>1</ordinal>
@@ -31,7 +31,7 @@ bash /srv/repository/sync-to-llvm.sh stretch
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.21">
+    <hudson.tasks.Mailer plugin="mailer@1.29">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>

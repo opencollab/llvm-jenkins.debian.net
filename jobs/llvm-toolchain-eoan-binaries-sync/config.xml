@@ -12,7 +12,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-eoan-binaries, llvm-toolchain-eoan-8-binaries, llvm-toolchain-eoan-9-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-eoan-binaries, llvm-toolchain-eoan-8-binaries, llvm-toolchain-eoan-9-binaries, llvm-toolchain-eoan-10-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -30,7 +30,7 @@
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.28">
+    <hudson.tasks.Mailer plugin="mailer@1.29">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
