@@ -191,8 +191,6 @@
         <string>llvm-toolchain-binaries</string>
         <string>llvm-toolchain-bionic-binaries</string>
         <string>llvm-toolchain-bionic-source</string>
-        <string>llvm-toolchain-cosmic-binaries</string>
-        <string>llvm-toolchain-cosmic-source</string>
         <string>llvm-toolchain-disco-binaries</string>
         <string>llvm-toolchain-disco-source</string>
         <string>llvm-toolchain-jessie-binaries</string>
@@ -320,28 +318,6 @@
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>Ubuntu Cosmic</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*cosmic.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
       <name>9</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
@@ -382,6 +358,28 @@
         <hudson.views.BuildButtonColumn/>
       </columns>
       <includeRegex>.*eoan.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>10</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*10.*</includeRegex>
       <recurse>false</recurse>
     </listView>
   </views>
