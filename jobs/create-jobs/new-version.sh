@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "Fix the template to move from svn to git"
+exit 1
 VERSION="10"
 VERSION_2="100"
 DISTROS=( unstable buster stretch xenial bionic disco eoan )
