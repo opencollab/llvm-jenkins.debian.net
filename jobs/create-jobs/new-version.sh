@@ -1,6 +1,6 @@
 #!/bin/bash
-VERSION="9"
-VERSION_2="90"
+VERSION="10"
+VERSION_2="100"
 DISTROS=( unstable buster stretch xenial bionic disco eoan )
 for d in "${DISTROS[@]}"
 do
