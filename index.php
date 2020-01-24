@@ -25,9 +25,9 @@ function getLastRevision($distro) {
    return $matches[1];
 }
 
-$stableBranch="8";
-$qualificationBranch="9";
-$devBranch="10";
+$stableBranch="9";
+$qualificationBranch="10";
+$devBranch="11";
 $isQualification=false;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -57,6 +57,7 @@ $isQualification=false;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Fri 23th 2020 - Snapshot becomes 11, branch 10 created<br />
 Sun 19th 2020 - Ubuntu Cosmic removed (EOL)<br />
 Oct 30th 2019 - Ubuntu Eoan (19.10) support<br />
 Aug 20th 2019 - Ubuntu Trusty removed (EOL)<br />
