@@ -46,7 +46,7 @@ Only build amd64</description>
     </hudson.matrix.LabelAxis>
   </axes>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.42.1">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.43">
       <project>llvm-toolchain-source</project>
       <filter>*</filter>
       <target></target>
@@ -72,7 +72,7 @@ tar zxvf $CURRENT_PATH/scan-build.tar.gz
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.28">
+    <hudson.tasks.Mailer plugin="mailer@1.29">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
