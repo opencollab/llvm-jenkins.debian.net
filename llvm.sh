@@ -11,7 +11,7 @@
 set -eux
 
 # read optional command line argument
-LLVM_VERSION=9
+LLVM_VERSION=10
 if [ "$#" -eq 1 ]; then
     LLVM_VERSION=$1
 fi
