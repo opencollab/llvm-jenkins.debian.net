@@ -26,9 +26,9 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 declare -A LLVM_VERSION_PATTERNS
-LLVM_VERSION_PATTERNS[8]="-8"
 LLVM_VERSION_PATTERNS[9]="-9"
-LLVM_VERSION_PATTERNS[10]=""
+LLVM_VERSION_PATTERNS[10]="-10"
+LLVM_VERSION_PATTERNS[11]=""
 
 if [ ! ${LLVM_VERSION_PATTERNS[$LLVM_VERSION]+_} ]; then
     echo "This script does not support LLVM version $LLVM_VERSION"
