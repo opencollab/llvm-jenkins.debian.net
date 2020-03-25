@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 ################################################################################
 #
-# This script will install the llvm toolchain on the different 
+# This script will install the llvm toolchain on the different
 # Debian and Ubuntu versions
 
 set -eux
@@ -21,7 +21,7 @@ VERSION=$(lsb_release -sr)
 DIST_VERSION="${DISTRO}_${VERSION}"
 
 if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root!" 
+   echo "This script must be run as root!"
    exit 1
 fi
 
@@ -57,5 +57,5 @@ esac
 # install everything
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
 add-apt-repository "${REPO_NAME}"
-apt-get update 
+apt-get update
 apt-get install -y clang-$LLVM_VERSION lldb-$LLVM_VERSION lld-$LLVM_VERSION clangd-$LLVM_VERSION
