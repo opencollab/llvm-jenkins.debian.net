@@ -47,7 +47,7 @@ case "$DIST_VERSION" in
     Ubuntu_18.04 )    REPO_NAME="deb http://apt.llvm.org/bionic/   llvm-toolchain-bionic$LLVM_VERSION_STRING  main" ;;
     Ubuntu_18.10 )    REPO_NAME="deb http://apt.llvm.org/cosmic/   llvm-toolchain-cosmic$LLVM_VERSION_STRING  main" ;;
     Ubuntu_19.04 )    REPO_NAME="deb http://apt.llvm.org/disco/    llvm-toolchain-disco$LLVM_VERSION_STRING   main" ;;
-    Ubuntu_19.10 )    REPO_NAME="deb http://apt.llvm.org/eoan/     llvm-toolchain-eoan$LLVM_VERSION_STRING    main" ;;
+     Ubuntu_19.10 )   REPO_NAME="deb http://apt.llvm.org/eoan/     llvm-toolchain-eoan$LLVM_VERSION_STRING    main" ;;
     * )
         echo "Distribution '$DISTRO' in version '$VERSION' is not supported by this script (${DIST_VERSION})."
         exit 2
