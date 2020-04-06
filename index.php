@@ -57,6 +57,7 @@ $isQualification=false;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Apr 06th 2020 - Ubuntu Focal (20.04) support<br />
 Jan 23th 2020 - Snapshot becomes 11, branch 10 created<br />
 Jan 19th 2020 - Ubuntu Cosmic removed (EOL)<br />
 Oct 30th 2019 - Ubuntu Eoan (19.10) support<br />
@@ -198,6 +199,20 @@ deb-src http://apt.llvm.org/eoan/ llvm-toolchain-eoan-<?=$qualificationBranch?> 
 -->
 </pre>
 
+Focal (20.04) - <small>Last update : <?=getLastUpdate("focal");?> / Revision: <?=getLastRevision("focal")?></small>
+<pre>
+# i386 not available
+deb http://apt.llvm.org/focal/ llvm-toolchain-focal main
+deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
+</pre>
 
 </div>
 <a href="#" id="default_pkg" style="visibility: hidden">default_pkg</a>
