@@ -57,8 +57,8 @@ $isQualification=false;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
-Fri 23th 2020 - Snapshot becomes 11, branch 10 created<br />
-Sun 19th 2020 - Ubuntu Cosmic removed (EOL)<br />
+Jan 23th 2020 - Snapshot becomes 11, branch 10 created<br />
+Jan 19th 2020 - Ubuntu Cosmic removed (EOL)<br />
 Oct 30th 2019 - Ubuntu Eoan (19.10) support<br />
 Aug 20th 2019 - Ubuntu Trusty removed (EOL)<br />
 Aug 01th 2019 - Snapshot becomes 10, branch 9 created<br />
