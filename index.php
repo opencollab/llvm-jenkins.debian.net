@@ -193,10 +193,9 @@ deb-src http://apt.llvm.org/eoan/ llvm-toolchain-eoan main
 deb http://apt.llvm.org/eoan/ llvm-toolchain-eoan-<?=$stableBranch?> main
 deb-src http://apt.llvm.org/eoan/ llvm-toolchain-eoan-<?=$stableBranch?> main
 # <?=$qualificationBranch?>
-<!--
+
 deb http://apt.llvm.org/eoan/ llvm-toolchain-eoan-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/eoan/ llvm-toolchain-eoan-<?=$qualificationBranch?> main
--->
 </pre>
 
 Focal (20.04) - <small>Last update : <?=getLastUpdate("focal");?> / Revision: <?=getLastRevision("focal")?></small>
