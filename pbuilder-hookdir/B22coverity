@@ -15,7 +15,7 @@ else
 	actualsize=$(du -k /tmp/buildd/llvm.tgz | cut -f 1)
 	if [ $actualsize -ge $minimumsize ]; then
 		apt-get install --yes --no-install-recommends --force-yes curl ca-certificates
-		curl --form project=llvm --form token=pass \
+		curl --form project=llvm --form token=IcZw6jNXoeVFDe34wf1WPQ \
 		    --form email=sylvestre@debian.org \
 		    --form file=@/tmp/buildd/llvm.tgz \
 		    --form version=$(date "+%Y-%m-%d_%H-%M-%S") \
