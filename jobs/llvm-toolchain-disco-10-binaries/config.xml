@@ -35,7 +35,7 @@
     </hudson.matrix.TextAxis>
   </axes>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.43">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.43.1">
       <project>llvm-toolchain-disco-10-source</project>
       <filter>*</filter>
       <target></target>
@@ -73,8 +73,8 @@ export SKIP_PACKAGE_FROM_REMOVAL=&quot;llvm llvm-runtime llvm-dev llvm-defaults 
       <healthScaleFactor>1.0</healthScaleFactor>
       <allowEmptyResults>false</allowEmptyResults>
     </hudson.tasks.junit.JUnitResultArchiver>
-    <hudson.tasks.Mailer plugin="mailer@1.29">
-      <recipients>sylvestre@debian.org</recipients>
+    <hudson.tasks.Mailer plugin="mailer@1.30">
+      <recipients>sylvestre@debian.org leandro.nunes@arm.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
