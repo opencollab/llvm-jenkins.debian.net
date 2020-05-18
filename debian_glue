@@ -106,7 +106,7 @@ KEY_ID=AF4F7421
 
 # Enable ccache (compiler cache for fast recompilation of C/C++ code)
 # to speed up builds.
-# USE_CCACHE=true
+USE_CCACHE=true
 
 # Specify the format (as accepted by the 'date' command) for the generated
 # build timestamp.
