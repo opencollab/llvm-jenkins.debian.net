@@ -2,6 +2,6 @@
 
 set -ex
 
-#apt-get install --yes --no-install-recommends --force-yes ccache
+apt-get install --yes --no-install-recommends --force-yes ccache
 #mkdir -p /var/cache/pbuilder/ccache/
 #chmod -R 777 /var/cache/pbuilder/ccache
