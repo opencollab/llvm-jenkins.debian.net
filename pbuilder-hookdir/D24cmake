@@ -4,12 +4,12 @@ cd /tmp/
 apt-get install --yes --no-install-recommends --force-yes curl
 DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
-if test "$DIST" = "wily"; then
+if test "$DIST" = "wily" -o "$DIST" = "stretch" -o "$DIST" = "xenial"; then
 	ARCH=$(uname -m)
 	if test "$ARCH" = "i686"; then
 		ARCH="i386"
 	fi
-	curl -o cmake.tar.gz  http://sylvestre.ledru.info/bordel/cmake-3.5.2-Linux-$ARCH.tar.gz
+	curl -o cmake.tar.gz  http://sylvestre.ledru.info/bordel/cmake-3.18.0-Linux-$ARCH.tar.gz
 	tar zxvf cmake.tar.gz
 	mv cmake-* cmake
 fi
