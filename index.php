@@ -21,13 +21,13 @@ function getLastRevision($distro) {
 //echo $fullpath;
    $handle = fopen($fullpath, "r");
    $contents = fread($handle, filesize($fullpath));
-   preg_match("/Version: .*~(.*)-/",$contents,$matches);
-   return $matches[1];
+   preg_match("/Version: .*~++(.*)-/",$contents,$matches);
+   return str_replace("++", "", $matches[1]);
 }
 
-$stableBranch="9";
-$qualificationBranch="10";
-$devBranch="11";
+$stableBranch="10";
+$qualificationBranch="11";
+$devBranch="12";
 $isQualification=false;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -57,6 +57,8 @@ $isQualification=false;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Jul 15th 2020 - Snapshot becomes 12, branch 11 created<br />
+Apr 14th 2020 - Ubuntu Disco removed (EOL)<br />
 Apr 06th 2020 - Ubuntu Focal (20.04) support<br />
 Jan 23th 2020 - Snapshot becomes 11, branch 10 created<br />
 Jan 19th 2020 - Ubuntu Cosmic removed (EOL)<br />
@@ -166,22 +168,6 @@ deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$stableBranch?> mai
 deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
 </pre>
-
-Disco (19.04) - <small>Last update : <?=getLastUpdate("disco");?> / Revision: <?=getLastRevision("disco")?></small>
-<pre>
-# i386 not available
-deb http://apt.llvm.org/disco/ llvm-toolchain-disco main
-deb-src http://apt.llvm.org/disco/ llvm-toolchain-disco main
-# <?=$stableBranch?>
-
-deb http://apt.llvm.org/disco/ llvm-toolchain-disco-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/disco/ llvm-toolchain-disco-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
-
-deb http://apt.llvm.org/disco/ llvm-toolchain-disco-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/disco/ llvm-toolchain-disco-<?=$qualificationBranch?> main
-</pre>
-
 
 Eoan (19.10) - <small>Last update : <?=getLastUpdate("eoan");?> / Revision: <?=getLastRevision("eoan")?></small>
 <pre>
