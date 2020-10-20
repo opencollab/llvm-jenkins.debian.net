@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -ex
+apt-get update --allow-releaseinfo-change
+
