@@ -1,5 +1,5 @@
 <?xml version='1.1' encoding='UTF-8'?>
-<matrix-project plugin="matrix-project@1.14">
+<matrix-project plugin="matrix-project@1.17">
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
@@ -44,12 +44,13 @@
   </axes>
   <combinationFilter>(label==&quot;arm64&quot;).implies(architecture==&quot;arm64&quot;) &amp;&amp; (label==&quot;amd64&quot;).implies(architecture==&quot;amd64&quot;)</combinationFilter>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.44">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.45">
       <project>llvm-toolchain-bionic-10-source</project>
       <filter>*</filter>
       <target></target>
       <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.TriggeredBuildSelector">
+        <fallbackToLastSuccessful>true</fallbackToLastSuccessful>
         <upstreamFilterStrategy>UseGlobalSetting</upstreamFilterStrategy>
         <allowUpstreamDependencies>false</allowUpstreamDependencies>
       </selector>
@@ -58,13 +59,16 @@
     <hudson.tasks.Shell>
       <command>export DEB_BUILD_OPTIONS=&quot;parallel=7 nocheck&quot;
 export REPOSITORY=&quot;/srv/repository/bionic&quot;
+export ARCHITECTURES=&quot;amd64 i386 source arm64&quot; 
 export REPOS=llvm-toolchain-bionic-10
 export SKIP_PACKAGE_FROM_REMOVAL=&quot;llvm llvm-runtime llvm-dev llvm-defaults lldb lld libllvm-ocaml-dev libclang1 libclang-dev clang clang-tidy clang-format clangd&quot;
 /usr/bin/build-and-provide-package</command>
+      <configuredLocalRules/>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>mkdir -p report
 /usr/bin/lintian-junit-report *.dsc &gt; report/lintian.xml</command>
+      <configuredLocalRules/>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
@@ -75,6 +79,7 @@ export SKIP_PACKAGE_FROM_REMOVAL=&quot;llvm llvm-runtime llvm-dev llvm-defaults 
       <fingerprint>false</fingerprint>
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
+      <followSymlinks>true</followSymlinks>
     </hudson.tasks.ArtifactArchiver>
     <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.29">
       <testResults>**/lintian.xml</testResults>
@@ -111,7 +116,7 @@ export SKIP_PACKAGE_FROM_REMOVAL=&quot;llvm llvm-runtime llvm-dev llvm-defaults 
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
   </buildWrappers>
   <executionStrategy class="hudson.matrix.DefaultMatrixExecutionStrategyImpl">
-    <runSequentially>true</runSequentially>
+    <runSequentially>false</runSequentially>
     <touchStoneCombinationFilter></touchStoneCombinationFilter>
     <touchStoneResultCondition>
       <name>SUCCESS</name>
