@@ -5,7 +5,7 @@
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.scm.NullSCM"/>
-  <assignedNode>!blade02</assignedNode>
+  <assignedNode>!blade02 &amp;&amp; !arm64-build-1</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -25,8 +25,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>
-bash /srv/repository/sync-to-llvm.sh xenial</command>
+      <command>bash /srv/repository/sync-to-llvm.sh xenial</command>
+      <configuredLocalRules/>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
