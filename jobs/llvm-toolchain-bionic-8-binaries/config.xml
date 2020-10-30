@@ -1,5 +1,5 @@
 <?xml version='1.1' encoding='UTF-8'?>
-<matrix-project plugin="matrix-project@1.13">
+<matrix-project plugin="matrix-project@1.17">
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
@@ -15,7 +15,7 @@
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <triggers/>
@@ -35,7 +35,7 @@
     </hudson.matrix.TextAxis>
   </axes>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.41">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.45">
       <project>llvm-toolchain-bionic-8-source</project>
       <filter>*</filter>
       <target></target>
@@ -52,10 +52,12 @@ export REPOSITORY=&quot;/srv/repository/bionic&quot;
 export REPOS=llvm-toolchain-bionic-8
 export SKIP_PACKAGE_FROM_REMOVAL=&quot;$SKIP_PKG_RM&quot;
 /usr/bin/build-and-provide-package</command>
+      <configuredLocalRules/>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>mkdir -p report
 /usr/bin/lintian-junit-report *.dsc &gt; report/lintian.xml</command>
+      <configuredLocalRules/>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
@@ -66,19 +68,20 @@ export SKIP_PACKAGE_FROM_REMOVAL=&quot;$SKIP_PKG_RM&quot;
       <fingerprint>false</fingerprint>
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
+      <followSymlinks>true</followSymlinks>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.26.1">
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.29">
       <testResults>**/lintian.xml</testResults>
       <keepLongStdio>false</keepLongStdio>
       <healthScaleFactor>1.0</healthScaleFactor>
       <allowEmptyResults>false</allowEmptyResults>
     </hudson.tasks.junit.JUnitResultArchiver>
-    <hudson.tasks.Mailer plugin="mailer@1.23">
+    <hudson.tasks.Mailer plugin="mailer@1.32">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
-    <hudson.plugins.ws__cleanup.WsCleanup plugin="ws-cleanup@0.37">
+    <hudson.plugins.ws__cleanup.WsCleanup plugin="ws-cleanup@0.38">
       <patterns class="empty-list"/>
       <deleteDirs>false</deleteDirs>
       <skipWhenFailed>false</skipWhenFailed>
@@ -94,7 +97,7 @@ export SKIP_PACKAGE_FROM_REMOVAL=&quot;$SKIP_PKG_RM&quot;
     </hudson.plugins.ws__cleanup.WsCleanup>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.37">
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.38">
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
