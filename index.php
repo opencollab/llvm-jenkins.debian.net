@@ -57,6 +57,8 @@ $isQualification=false;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Nov 01th 2020 - Ubuntu Groovy (20.10) & Hirsute (21.04) support<br />
+Nov 01th 2020 - Ubuntu Eoan removed (EOL)<br />
 Jul 15th 2020 - Snapshot becomes 12, branch 11 created<br />
 Apr 14th 2020 - Ubuntu Disco removed (EOL)<br />
 Apr 06th 2020 - Ubuntu Focal (20.04) support<br />
@@ -137,10 +139,10 @@ deb-src http://apt.llvm.org/unstable/ llvm-toolchain-<?=$qualificationBranch?> m
 <div class="rel_section">Ubuntu</div>
 <div class="rel_boxtext">
 <!--<a href="https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test">gcc backport (ppa)</a> is necessary on Trusty (for libstdc++).<br />-->
-Precise, Quantal, Raring, Saucy, Utopic, Artful, Cosmic and Trusty are no longer supported by Ubuntu. Repo remains available<br />
+Precise, Quantal, Raring, Saucy, Utopic, Artful, Cosmic, Eoan and Trusty are no longer supported by Ubuntu. Repo remains available<br />
 <br />
 
-Xenial (16.04) - <small>Last update : <?=getLastUpdate("xenial");?> / Revision: <?=getLastRevision("xenial")?></small>
+Xenial LTS (16.04) - <small>Last update : <?=getLastUpdate("xenial");?> / Revision: <?=getLastRevision("xenial")?></small>
 <pre>
 deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main
 deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial main
@@ -154,7 +156,7 @@ deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-<?=$qualificationBranch?> 
 deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-<?=$qualificationBranch?> main
 </pre>
 
-Bionic (18.04) - <small>Last update : <?=getLastUpdate("bionic");?> / Revision: <?=getLastRevision("bionic")?></small>
+Bionic LTS (18.04) - <small>Last update : <?=getLastUpdate("bionic");?> / Revision: <?=getLastRevision("bionic")?></small>
 <pre>
 # i386 not available
 deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic main
@@ -169,22 +171,7 @@ deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> 
 deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
 </pre>
 
-Eoan (19.10) - <small>Last update : <?=getLastUpdate("eoan");?> / Revision: <?=getLastRevision("eoan")?></small>
-<pre>
-# i386 not available
-deb http://apt.llvm.org/eoan/ llvm-toolchain-eoan main
-deb-src http://apt.llvm.org/eoan/ llvm-toolchain-eoan main
-# <?=$stableBranch?>
-
-deb http://apt.llvm.org/eoan/ llvm-toolchain-eoan-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/eoan/ llvm-toolchain-eoan-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
-
-deb http://apt.llvm.org/eoan/ llvm-toolchain-eoan-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/eoan/ llvm-toolchain-eoan-<?=$qualificationBranch?> main
-</pre>
-
-Focal (20.04) - <small>Last update : <?=getLastUpdate("focal");?> / Revision: <?=getLastRevision("focal")?></small>
+Focal (20.04) LTS - <small>Last update : <?=getLastUpdate("focal");?> / Revision: <?=getLastRevision("focal")?></small>
 <pre>
 # i386 not available
 deb http://apt.llvm.org/focal/ llvm-toolchain-focal main
@@ -197,6 +184,36 @@ deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$stableBranch?> main
 
 deb http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
+
+</pre>
+Groovy (20.10) - <small>Last update : <?=getLastUpdate("groovy");?> / Revision: <?=getLastRevision("groovy")?></small>
+<pre>
+# i386 not available
+deb http://apt.llvm.org/groovy/ llvm-toolchain-groovy main
+deb-src http://apt.llvm.org/groovy/ llvm-toolchain-groovy main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/groovy/ llvm-toolchain-groovy-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/groovy/ llvm-toolchain-groovy-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/groovy/ llvm-toolchain-groovy-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/groovy/ llvm-toolchain-groovy-<?=$qualificationBranch?> main
+</pre>
+
+Hirsute (21.04) - <small>Last update : <?=getLastUpdate("hirsute");?> / Revision: <?=getLastRevision("hirsute")?></small>
+<pre>
+# i386 not available
+deb http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute main
+deb-src http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute-<?=$qualificationBranch?> main
 </pre>
 
 </div>
