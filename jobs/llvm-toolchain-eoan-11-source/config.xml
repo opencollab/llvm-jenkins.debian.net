@@ -35,7 +35,7 @@
     </extensions>
   </scm>
   <canRoam>true</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
@@ -43,6 +43,7 @@
   <builders>
     <hudson.tasks.Shell>
       <command>rm -f ./* || true</command>
+      <configuredLocalRules/>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>export PRE_SOURCE_HOOK=&quot;source/debian/orig-tar.sh release/11.x&quot;
@@ -51,6 +52,7 @@ export SKIP_GIT_CLEANUP=true
 export DISTRIBUTION=eoan
 /usr/bin/generate-git-snapshot
 </command>
+      <configuredLocalRules/>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
