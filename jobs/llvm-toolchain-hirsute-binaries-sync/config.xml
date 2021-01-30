@@ -12,7 +12,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-hirsute-binaries, llvm-toolchain-hirsute-10-binaries, llvm-toolchain-hirsute-11-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-hirsute-binaries, llvm-toolchain-hirsute-10-binaries, llvm-toolchain-hirsute-11-binaries,  llvm-toolchain-hirsute-12-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -31,7 +31,7 @@
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.32">
+    <hudson.tasks.Mailer plugin="mailer@1.32.1">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>

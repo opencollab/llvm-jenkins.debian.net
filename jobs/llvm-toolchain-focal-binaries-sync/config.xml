@@ -12,7 +12,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-focal-binaries, llvm-toolchain-focal-10-binaries, llvm-toolchain-focal-9-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-focal-binaries, llvm-toolchain-focal-10-binaries, llvm-toolchain-focal-9-binaries, llvm-toolchain-focal-12-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -27,10 +27,11 @@
       <command>
 /srv/repository/sync-to-llvm.sh focal
 </command>
+      <configuredLocalRules/>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.30">
+    <hudson.tasks.Mailer plugin="mailer@1.32.1">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
