@@ -75,7 +75,12 @@ if $(echo ${DEBIAN_SUITES[@]} | grep -q $DIST); then
     fi
 elif $(echo ${UBUNTU_SUITES[@]} | grep -q $DIST); then
     # Ubuntu configuration
-    MIRRORSITE="http://$UBUNTU_MIRROR/Ubuntu/archive/"
+    if [ "${ARCH}" != 'i386' ] && [ "${ARCH}" != 'amd64' ]; then
+        # other archs
+        MIRRORSITE="http://$UBUNTU_MIRROR/"
+    else
+        MIRRORSITE="http://$UBUNTU_MIRROR/Ubuntu/archive/"
+    fi
     COMPONENTS="main restricted universe multiverse"
 else
     echo "Unknown distribution: $DIST"
