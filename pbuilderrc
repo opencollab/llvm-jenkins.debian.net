@@ -12,9 +12,15 @@ DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME
 # List of Ubuntu suites. Update these when needed.
 UBUNTU_SUITES=("hirsute" "groovy" "focal" "eoan" "disco" "cosmic" "bionic" "artful" "zesty" "yakkety" "xenial" "wily" "vivid" "utopic" "trusty" "saucy" "raring" "quantal" "precise" "oneiric" "natty" "lucid" "hardy")
 
+
 # Mirrors to use. Update these to your preferred mirror.
 DEBIAN_MIRROR="deb.debian.org"
-UBUNTU_MIRROR="www-ftp.lip6.fr/pub/linux/distributions/"
+
+if [ "${ARCH}" != 'i386' ] && [ "${ARCH}" != 'amd64' ]; then
+    UBUNTU_MIRROR="ports.ubuntu.com/ubuntu-ports/"
+else
+    UBUNTU_MIRROR="www-ftp.lip6.fr/pub/linux/distributions/"
+fi
 
 # Optionally use the changelog of a package to determine the suite to use if
 # none set.
