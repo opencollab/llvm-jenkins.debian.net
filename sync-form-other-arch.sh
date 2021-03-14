@@ -9,7 +9,7 @@ fi
 
 DISTRO=$1
 HOST=$2
-#rsync -avzh jenkins@$HOST:/srv/repository/$DISTRO/ /tmp/tmp-$DISTRO/
+rsync -avzh --delete jenkins@$HOST:/srv/repository/$DISTRO/ /tmp/tmp-$DISTRO/
 if ! test -d /tmp/tmp-$DISTRO/pool/main/; then
         echo "Distro $DISTRO not existing yet"
         exit 0
