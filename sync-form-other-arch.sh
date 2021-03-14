@@ -18,7 +18,7 @@ fi
 
 for f in /tmp/tmp-$DISTRO/dists/llvm-*/main/binary-$ARCH/; do
 	echo $f
-	VERSION=$(echo $f|sed -e "s|/tmp/tmp-$DISTRO/dists/llvm-toolchain-$DISTRO-\(.*\)/.*|\1|g")
+        VERSION=$(echo $f|sed -e "s|/tmp/tmp-$DISTRO/dists/llvm-toolchain-$DISTRO-\([[:digit:]]\+\)/.*|\1|g")
 	echo "VERSION $VERSION"
         if test -z $VERSION; then
                 echo "VERSION not found"
