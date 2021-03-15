@@ -1,7 +1,7 @@
 #!/bin/sh
 set -ex
 cd /tmp/
-apt-get install --yes --no-install-recommends --force-yes curl
+apt-get install --yes --no-install-recommends --force-yes curl libssl-dev
 DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
 if test "$DIST" = "stretch" -o "$DIST" = "xenial" -o "$DIST" = "bionic"; then
