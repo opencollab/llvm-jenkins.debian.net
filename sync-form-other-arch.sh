@@ -20,13 +20,27 @@ for f in /tmp/tmp-$DISTRO/dists/llvm-*/main/binary-$ARCH/; do
 	echo $f
         VERSION=$(echo $f|sed -e "s|/tmp/tmp-$DISTRO/dists/llvm-toolchain-$DISTRO-\([[:digit:]]\+\)/.*|\1|g")
 	echo "VERSION $VERSION"
-        if test -z $VERSION; then
+	re='^[0-9]+$'
+	if ! [[ $VERSION =~ $re ]] ; then
+            # maybe debian unstable
+            VERSION=$(echo $f|sed -e "s|/tmp/tmp-$DISTRO/dists/llvm-toolchain-\([[:digit:]]\+\)/.*|\1|g")
+            if ! [[ $VERSION =~ $re ]] ; then
                 echo "VERSION not found"
                 exit 0
-        fi
-	reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$DISTRO-$VERSION /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-$VERSION/*deb
+            fi
+	fi
+	if test $DISTRO == "unstable"; then
+	    reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$VERSION /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-$VERSION/*deb
+	else
+            reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$DISTRO-$VERSION /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-$VERSION/*deb
+	fi
 done
 
 if test -d /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain/; then
-	reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$DISTRO /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain/*deb
+    if test $DISTRO == "unstable"; then
+	reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain/*deb
+    else
+        reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$DISTRO /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain/*deb
+    fi
+
 fi
