@@ -25,9 +25,9 @@ function getLastRevision($distro) {
    return str_replace("++", "", $matches[1]);
 }
 
-$stableBranch="10";
-$qualificationBranch="11";
-$devBranch="12";
+$stableBranch="11";
+$qualificationBranch="12";
+$devBranch="13";
 $isQualification=false;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -57,8 +57,10 @@ $isQualification=false;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
-Nov 01th 2020 - Ubuntu Groovy (20.10) & Hirsute (21.04) support<br />
-Nov 01th 2020 - Ubuntu Eoan removed (EOL)<br />
+Feb 01st 2021 - Snapshot becomes 13, branch 12 created<br />
+Feb 01st 2021 - Debian Bullseye (11) added<br />
+Nov 01st 2020 - Ubuntu Groovy (20.10) & Hirsute (21.04) support<br />
+Nov 01st 2020 - Ubuntu Eoan removed (EOL)<br />
 Jul 15th 2020 - Snapshot becomes 12, branch 11 created<br />
 Apr 14th 2020 - Ubuntu Disco removed (EOL)<br />
 Apr 06th 2020 - Ubuntu Focal (20.04) support<br />
@@ -66,8 +68,8 @@ Jan 23th 2020 - Snapshot becomes 11, branch 10 created<br />
 Jan 19th 2020 - Ubuntu Cosmic removed (EOL)<br />
 Oct 30th 2019 - Ubuntu Eoan (19.10) support<br />
 Aug 20th 2019 - Ubuntu Trusty removed (EOL)<br />
-Aug 01th 2019 - Snapshot becomes 10, branch 9 created<br />
-Apr 07th 2019 - Debian Buster (10) added<br />
+Aug 01st 2019 - Snapshot becomes 10, branch 9 created<br />
+Apr 07th 2019 - Debian buster (10) added<br />
 Apr 06th 2019 - Debian Jessie (oldstable) <a href="https://lists.debian.org/debian-backports-announce/2018/07/msg00000.html">no longer</a> maintained<br />
 Jan 19th 2019 - Branch 8 created<br />
 Jan 19th 2019 - Ubuntu Disco (19.04) support<br />
@@ -118,6 +120,18 @@ deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$stableBranch?> mai
 # <?=$qualificationBranch?> 
 deb http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$qualificationBranch?> main
+</pre>
+
+Bullseye (Debian 11 -  next stable) - <small>Last update : <?=getLastUpdate("bullseye");?> / Revision: <?=getLastRevision("bullseye")?></small>
+<pre>
+deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
+deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
+# <?=$stableBranch?> 
+deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$stableBranch?> main
+# <?=$qualificationBranch?> 
+deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranch?> main
 </pre>
 
 
