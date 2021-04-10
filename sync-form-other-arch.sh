@@ -25,10 +25,10 @@ for f in /tmp/tmp-$DISTRO/dists/llvm-*/main/binary-$ARCH/; do
             # maybe debian unstable
             VERSION=$(echo $f|sed -e "s|/tmp/tmp-$DISTRO/dists/llvm-toolchain-\([[:digit:]]\+\)/.*|\1|g")
             if ! [[ $VERSION =~ $re ]] ; then
-                echo "VERSION not found"
-                exit 0
+                echo "Probaby the nightly version"
             fi
 	fi
+    # Import of the stable and stabilisation version
 	if test $DISTRO == "unstable"; then
 	    reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$VERSION /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-$VERSION/*deb
 	else
@@ -36,11 +36,11 @@ for f in /tmp/tmp-$DISTRO/dists/llvm-*/main/binary-$ARCH/; do
 	fi
 done
 
+# Import of the nightly builds
 if test -d /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain/; then
     if test $DISTRO == "unstable"; then
-	reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain/*deb
+	    reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain/*deb
     else
-        reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$DISTRO /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain/*deb
+        reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$DISTRO /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-$DISTRO/*deb
     fi
-
 fi
