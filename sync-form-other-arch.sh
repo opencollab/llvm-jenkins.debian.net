@@ -43,6 +43,8 @@ if test -d /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain/ -o -d /tmp/tmp-$DISTRO/p
         if test -d /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain/; then
             # In case snapshot hasn't been built yet
             reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain/*deb
+        else
+            echo "snapshot doesn't exist yet"
         fi
     else
         reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$DISTRO /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-snapshot/*deb
