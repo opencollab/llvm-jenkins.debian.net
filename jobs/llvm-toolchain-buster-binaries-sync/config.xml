@@ -24,7 +24,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>
+      <command>bash ~/sync-form-other-arch.sh buster $HOST_S390X s390x
+
 /srv/repository/sync-to-llvm.sh buster
 </command>
       <configuredLocalRules/>

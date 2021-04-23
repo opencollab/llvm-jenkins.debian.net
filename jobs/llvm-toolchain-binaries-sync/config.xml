@@ -24,7 +24,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>
+      <command>bash ~/sync-form-other-arch.sh unstable $HOST_S390X s390x
 bash /srv/repository/sync-to-llvm.sh unstable</command>
       <configuredLocalRules/>
     </hudson.tasks.Shell>
