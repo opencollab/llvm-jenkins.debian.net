@@ -5,8 +5,7 @@
     <string>OldData</string>
     <string>hudson.diagnosis.ReverseProxySetupMonitor</string>
   </disabledAdministrativeMonitors>
-  <version>2.263.3</version>
-  <installStateName>RESTART</installStateName>
+  <version>2.277.1</version>
   <numExecutors>0</numExecutors>
   <mode>EXCLUSIVE</mode>
   <useSecurity>true</useSecurity>
@@ -43,6 +42,7 @@
     <listView>
       <owner class="hudson" reference="../../.."/>
       <name>Ubuntu Bionic</name>
+      <description>EOL April, 2023</description>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
@@ -65,6 +65,7 @@
     <listView>
       <owner class="hudson" reference="../../.."/>
       <name>Debian 10 - Buster</name>
+      <description>EOL June, 2024 </description>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
@@ -131,6 +132,7 @@
     <listView>
       <owner class="hudson" reference="../../.."/>
       <name>Ubuntu Focal</name>
+      <description>EOL April, 2025</description>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
@@ -174,28 +176,6 @@
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>Ubuntu Xenial</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*xenial.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
       <name>Debian sid</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
@@ -235,6 +215,7 @@
     <listView>
       <owner class="hudson" reference="../../.."/>
       <name>Ubuntu Groovy</name>
+      <description>EOL July, 2020</description>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
@@ -257,6 +238,7 @@
     <listView>
       <owner class="hudson" reference="../../.."/>
       <name>Ubuntu Hirsute</name>
+      <description>EOL January 2022 </description>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
@@ -342,6 +324,51 @@
       <includeRegex>.*bullseye.*</includeRegex>
       <recurse>false</recurse>
     </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>defaults</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*defaults.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Debian 9 stretch</name>
+      <description>EOL June 30, 2022</description>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*stretch.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
   </views>
   <primaryView>all</primaryView>
   <slaveAgentPort>0</slaveAgentPort>
@@ -362,9 +389,11 @@
           <default>
             <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../../../../views/listView/jobNames/comparator"/>
           </default>
-          <int>2</int>
+          <int>3</int>
           <string></string>
           <string></string>
+          <string>HOST_S390X</string>
+          <string>148.100.84.86</string>
           <string>SKIP_PKG_RM</string>
           <string>llvm llvm-runtime llvm-dev llvm-defaults lldb lld libllvm-ocaml-dev libclang1 libclang-dev clang clang-tidy clang-format clangd</string>
         </tree-map>
