@@ -57,17 +57,18 @@ $isQualification=false;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Mar 28th 2021 - Ubuntu Xenial (16.04) disabled (EOL)<br />
 Feb 01st 2021 - Snapshot becomes 13, branch 12 created<br />
 Feb 01st 2021 - Debian Bullseye (11) added<br />
 Nov 01st 2020 - Ubuntu Groovy (20.10) & Hirsute (21.04) support<br />
-Nov 01st 2020 - Ubuntu Eoan removed (EOL)<br />
+Nov 01st 2020 - Ubuntu Eoan disabled (EOL)<br />
 Jul 15th 2020 - Snapshot becomes 12, branch 11 created<br />
-Apr 14th 2020 - Ubuntu Disco removed (EOL)<br />
+Apr 14th 2020 - Ubuntu Disco disabled (EOL)<br />
 Apr 06th 2020 - Ubuntu Focal (20.04) support<br />
 Jan 23th 2020 - Snapshot becomes 11, branch 10 created<br />
-Jan 19th 2020 - Ubuntu Cosmic removed (EOL)<br />
+Jan 19th 2020 - Ubuntu Cosmic disabled (EOL)<br />
 Oct 30th 2019 - Ubuntu Eoan (19.10) support<br />
-Aug 20th 2019 - Ubuntu Trusty removed (EOL)<br />
+Aug 20th 2019 - Ubuntu Trusty disabled (EOL)<br />
 Aug 01st 2019 - Snapshot becomes 10, branch 9 created<br />
 Apr 07th 2019 - Debian buster (10) added<br />
 Apr 06th 2019 - Debian Jessie (oldstable) <a href="https://lists.debian.org/debian-backports-announce/2018/07/msg00000.html">no longer</a> maintained<br />
