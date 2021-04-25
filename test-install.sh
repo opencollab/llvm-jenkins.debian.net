@@ -22,17 +22,21 @@ for d in $DISTRO; do
 		echo $TEMPLATE|sed -e "s|@DISTRO@|-$d|g" -e "s|@DISTRO_PATH@|$d|g" >> $d.list
 	else
                 echo $TEMPLATE|sed -e "s|@DISTRO@||g" -e "s|@DISTRO_PATH@|$d|g" >> $d.list
-	fi
-	if test "$d" == "focal" -o "$d" == "groovy"; then
-		# focal needs universe ?!
-		echo "deb http://ports.ubuntu.com/ubuntu-ports $d universe" >> $d.list
-	fi
-	for v in $VERSION; do
-		if test $v == "9" -o $v == "10"; then
-			if test "$d" == bullseye; then
-				continue
-			fi
-		fi
+     fi
+     if test "$d" == "focal" -o "$d" == "groovy" -o "$d" == "hirsute"; then
+          # focal & groovy need universe
+        if test "$(arch)" == "s390x"; then
+            echo "deb http://ports.ubuntu.com/ubuntu-ports $d universe" >> $d.list
+        else
+            echo "deb http://www-ftp.lip6.fr/pub/linux/distributions/Ubuntu/ $d universe"  >> $d.list
+        fi
+     fi
+     for v in $VERSION; do
+          if test $v == "9" -o $v == "10"; then
+               if test "$d" == bullseye; then
+                    continue
+               fi
+          fi
                 if test $v == "9" -a $d == "groovy"; then
                         continue
                 fi
