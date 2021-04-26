@@ -6,6 +6,7 @@ VERSION="9 10 11 12"
 
 for d in $DISTRO; do
     if test ! -d $d.chroot; then
+        echo "Create $d chroot"
         sudo debootstrap $d $d.chroot
     fi
     if test ! -e $0.chroot/proc/uptime; then
