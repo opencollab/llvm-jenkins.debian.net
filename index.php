@@ -57,6 +57,7 @@ $isQualification=false;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+May 10th 2021 - Debian strech disabled (quite old). If you are still using, <a href="mailto:sylvestre@debian.org">mail me</a><br />
 May 01st 2021 - libclc packages generated from 12. Thanks to Timo Aaltonen<br />
 Apr 25th 2021 - S390X support added<br />
 Mar 28th 2021 - Ubuntu Xenial (16.04) disabled (EOL)<br />
@@ -100,18 +101,6 @@ sudo ./llvm.sh &lt;version number&gt;
 <div class="rel_section">Debian</div>
 
 <div class="rel_boxtext">
-
-Stretch (Debian 9 - oldstable) - <small>Last update : <?=getLastUpdate("stretch");?> / Revision: <?=getLastRevision("stretch")?></small>
-<pre>
-deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch main
-deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch main
-# <?=$stableBranch?> 
-deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$stableBranch?> main
-# <?=$qualificationBranch?> 
-deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$qualificationBranch?> main
-</pre>
 
 Buster (Debian 10 - stable) - <small>Last update : <?=getLastUpdate("buster");?> / Revision: <?=getLastRevision("buster")?></small>
 <pre>
