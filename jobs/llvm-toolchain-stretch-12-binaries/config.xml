@@ -15,7 +15,7 @@
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <triggers/>
@@ -26,7 +26,6 @@
       <values>
         <string>amd64</string>
         <string>i386</string>
-        <string>s390x</string>
       </values>
     </hudson.matrix.TextAxis>
     <hudson.matrix.TextAxis>
@@ -40,11 +39,9 @@
       <values>
         <string>amd64</string>
         <string>i386</string>
-        <string>s390x</string>
       </values>
     </hudson.matrix.LabelAxis>
   </axes>
-  <combinationFilter>(label==&quot;arm64&quot;).implies(architecture==&quot;arm64&quot;) &amp;&amp; (label==&quot;amd64&quot;).implies(architecture==&quot;amd64&quot;) &amp;&amp; (label==&quot;i386&quot;).implies(architecture==&quot;i386&quot;) &amp;&amp; (label==&quot;s390x&quot;).implies(architecture==&quot;s390x&quot;)</combinationFilter>
   <builders>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.46">
       <project>llvm-toolchain-stretch-12-source</project>
