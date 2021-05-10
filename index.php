@@ -148,20 +148,6 @@ deb-src http://apt.llvm.org/unstable/ llvm-toolchain-<?=$qualificationBranch?> m
 Precise, Quantal, Raring, Saucy, Utopic, Artful, Cosmic, Eoan and Trusty are no longer supported by Ubuntu. Repo remains available<br />
 <br />
 
-Xenial LTS (16.04) - <small>Last update : <?=getLastUpdate("xenial");?> / Revision: <?=getLastRevision("xenial")?></small>
-<pre>
-deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main
-deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial main
-# <?=$stableBranch?>
-
-deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
-
-deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-<?=$qualificationBranch?> main
-</pre>
-
 Bionic LTS (18.04) - <small>Last update : <?=getLastUpdate("bionic");?> / Revision: <?=getLastRevision("bionic")?></small>
 <pre>
 # i386 not available
