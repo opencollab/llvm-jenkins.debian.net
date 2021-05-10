@@ -50,13 +50,15 @@ $isQualification=false;
 
 <div class="rel_boxtext">
 
-  <p>The goal is to provide Debian and Ubuntu nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64 and i386 (except for recent Ubuntu) and for both the stable, <?php if ($isQualification) {?>qualification<?php } else {?>old-stable<?php } ?> and development branches (currently <?=$stableBranch?>, <?=$qualificationBranch?> and <?=$devBranch?>).</p>
+  <p>The goal is to provide Debian and Ubuntu nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64, i386 (except for recent Ubuntu) and S390X. This for both the stable, <?php if ($isQualification) {?>qualification<?php } else {?>old-stable<?php } ?> and development branches (currently <?=$stableBranch?>, <?=$qualificationBranch?> and <?=$devBranch?>).</p>
 <p>Packages are built using stage2 and extremely similar to the one shipping in Debian & Ubuntu.</p>
-<p>The packages provide <a href="https://llvm.org/">LLVM</a> + <a href="https://clang.llvm.org/">Clang</a> + <a href="https://compiler-rt.llvm.org/">compiler-rt</a> + <a href="https://polly.llvm.org/">polly</a> + <a href="https://lldb.llvm.org/">LLDB</a> + <a href="https://lld.llvm.org/">LLD</a> + <a href="https://llvm.org/docs/LibFuzzer.html">libFuzzer</a> + <a href="https://libcxx.llvm.org/">libc++</a> + <a href="https://libcxxabi.llvm.org/">libc++abi</a> + <a href="https://openmp.llvm.org/">openmp</a></p>
+<p>The packages provide <a href="https://llvm.org/">LLVM</a> + <a href="https://clang.llvm.org/">Clang</a> + <a href="https://compiler-rt.llvm.org/">compiler-rt</a> + <a href="https://polly.llvm.org/">polly</a> + <a href="https://lldb.llvm.org/">LLDB</a> + <a href="https://lld.llvm.org/">LLD</a> + <a href="https://llvm.org/docs/LibFuzzer.html">libFuzzer</a> + <a href="https://libcxx.llvm.org/">libc++</a> + <a href="https://libcxxabi.llvm.org/">libc++abi</a> + <a href="https://openmp.llvm.org/">openmp</a> + <a href="https://libclc.llvm.org/">libclc</a></p>
 </div>
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+May 01st 2021 - libclc packages generated from 12. Thanks to Timo Aaltonen<br />
+Apr 25th 2021 - S390X support added<br />
 Mar 28th 2021 - Ubuntu Xenial (16.04) disabled (EOL)<br />
 Feb 01st 2021 - Snapshot becomes 13, branch 12 created<br />
 Feb 01st 2021 - Debian Bullseye (11) added<br />
@@ -305,6 +307,8 @@ apt-get install lld-<?=$qualificationBranch?><br />
 apt-get install libc++-<?=$qualificationBranch?>-dev libc++abi-<?=$qualificationBranch?>-dev<br />
 <b># OpenMP</b><br />
 apt-get install libomp-<?=$qualificationBranch?>-dev<br />
+<b># libclc</b><br />
+apt-get install libclc-<?=$qualificationBranch?>-dev<br />
 </p>
 
 </div>
@@ -345,6 +349,8 @@ apt-get install lld-<?=$devBranch?><br />
 apt-get install libc++-<?=$devBranch?>-dev libc++abi-<?=$devBranch?>-dev<br />
 <b># OpenMP</b><br />
 apt-get install libomp-<?=$devBranch?>-dev<br />
+<b># libclc</b><br />
+apt-get install libclc-<?=$devBranch?>-dev<br />
 </p>
 
 </div>
