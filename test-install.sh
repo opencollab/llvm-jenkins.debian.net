@@ -1,9 +1,21 @@
 #!/bin/bash
 set -e
 
+# If no argument provided, test all
+# If 2 are provided, distro + version
+
 DISTRO="buster bullseye unstable bionic focal groovy hirsute"
 VERSION="9 10 11 12"
+VERSION_NEXT="13"
 
+if test $# -eq 2; then
+    DISTRO=$1
+    VERSION=$2
+fi
+echo "DISTRO = $DISTRO"
+echo "VERSION = $VERSION"
+
+# Create the chroots
 for d in $DISTRO; do
     if test ! -d $d.chroot; then
         echo "Create $d chroot"
@@ -11,6 +23,9 @@ for d in $DISTRO; do
     fi
     if test ! -e $0.chroot/proc/uptime; then
         sudo mount -t proc /proc $d.chroot/proc || true
+    fi
+    if test ! -e $0.chroot/dev/shm; then
+        sudo mount --bind /dev/shm "$d.chroot/dev/shm" || true
     fi
 done
 
@@ -32,26 +47,32 @@ for d in $DISTRO; do
             echo "deb http://www-ftp.lip6.fr/pub/linux/distributions/Ubuntu/ $d universe"  >> $d.list
         fi
     fi
-    for v in $VERSION; do
-        if test $v == "9" -o $v == "10"; then
-            if test "$d" == bullseye; then
+
+    if test $VERSION != "$VERSION_NEXT"; then
+        # If the user entered the current trunk
+        # Skip this
+        for v in $VERSION; do
+            if test $v == "9" -o $v == "10"; then
+                if test "$d" == bullseye; then
+                    continue
+                fi
+            fi
+            if test $v == "9" -a $d == "groovy"; then
                 continue
             fi
-        fi
-        if test $v == "9" -a $d == "groovy"; then
-            continue
-        fi
-        if test $v == "9" -a $d == "hirsute"; then
-            continue
-        fi
+            if test $v == "9" -a $d == "hirsute"; then
+                continue
+            fi
 
-        if test "$d" != "unstable"; then
-            echo $TEMPLATE_VERSION|sed -e "s|@DISTRO@|-$d|g" -e "s|@DISTRO_PATH@|$d|g" -e "s|@VERSION@|$v|g" >> $d.list
-        else
-            echo $TEMPLATE_VERSION|sed -e "s|@DISTRO@||g" -e "s|@DISTRO_PATH@|$d|g" -e "s|@VERSION@|$v|g" >> $d.list
-        fi
-    done
-    sudo cp $d.list $d.chroot/etc/apt/sources.list.d/clang.list
+            if test "$d" != "unstable"; then
+                echo $TEMPLATE_VERSION|sed -e "s|@DISTRO@|-$d|g" -e "s|@DISTRO_PATH@|$d|g" -e "s|@VERSION@|$v|g" >> $d.list
+            else
+                echo $TEMPLATE_VERSION|sed -e "s|@DISTRO@||g" -e "s|@DISTRO_PATH@|$d|g" -e "s|@VERSION@|$v|g" >> $d.list
+            fi
+        done
+        sudo cp $d.list $d.chroot/etc/apt/sources.list.d/clang.list
+    fi
+
 
     echo "
      Package: *
@@ -60,7 +81,11 @@ for d in $DISTRO; do
     sudo cp $d.pref /etc/apt/preferences.d/local-pin-900
 done
 
-VERSION="$VERSION 13"
+if test $# -ne 2; then
+    # No version specified, install also 13
+    VERSION="$VERSION $VERSION_NEXT"
+fi
+
 for d in $DISTRO; do
     echo "========= Install on $d"
     PKG=""
@@ -78,20 +103,46 @@ for d in $DISTRO; do
             continue
         fi
 
-        PKG="$PKG clang-$v"
+        PKG="$PKG clang-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev"
         CMD="clang-$v --version; $CMD"
     done
     echo "
      set -e
-     apt install -y wget gnupg
+     apt install -y wget gnupg git cmake
      wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -
      apt update
      apt install -y $PKG --no-install-recommends
      $CMD
-#     apt --purge remove -y $PKG
-#     apt -y autoremove
+     bash /root/run-testsuite.sh
      " > $d-script.sh
+    echo "
+     set -e
+     rm -rf check
+     git clone https://github.com/opencollab/llvm-toolchain-integration-test-suite.git check
+     cd check
+     mkdir build && cd build &&
+     cmake -DLIT=/usr/lib/llvm-$v/build/utils/lit/lit.py \
+          -DCLANG_BINARY=/usr/bin/clang-$v \
+          -DCLANGXX_BINARY=/usr/bin/clang++-$v \
+          -DCLANG_TIDY_BINARY=/usr/bin/clang-tidy-$v \
+          -DCLANG_FORMAT_BINARY=/usr/bin/clang-format-$v \
+          -DLLD_BINARY=/usr/bin/lld-$v \
+          -DLLDB_BINARY=/usr/bin/lldb-$v \
+          -DLLVMCONFIG_BINARY=/usr/bin/llvm-config-$v \
+          -DOPT_BINARY=/usr/bin/opt-$v \
+          -DSCANBUILD=/usr/bin/scan-build-$v \
+          -DCLANG_TIDY_BINARY=/usr/bin/clang-tidy-$v \
+          -DSCANVIEW=/usr/bin/scan-view-$v \
+          -DLLVMNM=/usr/bin/llvm-nm-$v \
+          -DLLVMPROFDATA=/usr/bin/llvm-profdata-$v \
+          -DENABLE_COMPILER_RT=OFF \
+          -DENABLE_LIBCXX=ON \
+          ../ && \
+          make check
+     " > $d-run-testsuite.sh
+
     sudo cp $d-script.sh $d.chroot/root/install.sh
+    sudo cp $d-run-testsuite.sh $d.chroot/root/run-testsuite.sh
     sudo chroot $d.chroot/ /bin/bash -c "bash /root/install.sh"
 done
 
