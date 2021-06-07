@@ -71,8 +71,6 @@ for d in $DISTRO; do
         fi
     done
     sudo cp $d.list $d.chroot/etc/apt/sources.list.d/clang.list
-fi
-
 
     echo "
      Package: *
