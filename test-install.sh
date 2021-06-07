@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -e -v
 
 # If no argument provided, test all
 # If 2 are provided, distro + version
