@@ -48,30 +48,30 @@ for d in $DISTRO; do
         fi
     fi
 
-    if test $VERSION != "$VERSION_NEXT"; then
-        # If the user entered the current trunk
-        # Skip this
-        for v in $VERSION; do
-            if test $v == "9" -o $v == "10"; then
-                if test "$d" == bullseye; then
-                    continue
-                fi
-            fi
-            if test $v == "9" -a $d == "groovy"; then
+    for v in $VERSION; do
+        if test $v == "9" -o $v == "10"; then
+            if test "$d" == bullseye; then
                 continue
             fi
-            if test $v == "9" -a $d == "hirsute"; then
-                continue
-            fi
-
+        fi
+        if test $v == "9" -a $d == "groovy"; then
+            continue
+        fi
+        if test $v == "9" -a $d == "hirsute"; then
+            continue
+        fi
+        if test $VERSION != "$VERSION_NEXT"; then
+            # If the user entered the current trunk
+            # Skip this
             if test "$d" != "unstable"; then
                 echo $TEMPLATE_VERSION|sed -e "s|@DISTRO@|-$d|g" -e "s|@DISTRO_PATH@|$d|g" -e "s|@VERSION@|$v|g" >> $d.list
             else
                 echo $TEMPLATE_VERSION|sed -e "s|@DISTRO@||g" -e "s|@DISTRO_PATH@|$d|g" -e "s|@VERSION@|$v|g" >> $d.list
             fi
-        done
-        sudo cp $d.list $d.chroot/etc/apt/sources.list.d/clang.list
-    fi
+        fi
+    done
+    sudo cp $d.list $d.chroot/etc/apt/sources.list.d/clang.list
+fi
 
 
     echo "
