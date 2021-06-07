@@ -27,6 +27,9 @@ for d in $DISTRO; do
     if test ! -e $0.chroot/dev/shm; then
         sudo mount --bind /dev/shm "$d.chroot/dev/shm" || true
     fi
+    if test ! -e $0.chroot/dev/pts; then
+        sudo mount --bind /dev/pts "$d.chroot/dev/pts" || true
+    fi
 done
 
 TEMPLATE="deb http://apt.llvm.org/@DISTRO_PATH@/ llvm-toolchain@DISTRO@ main"
