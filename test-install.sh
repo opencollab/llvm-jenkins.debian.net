@@ -108,7 +108,8 @@ for d in $DISTRO; do
     done
     echo "
      set -e
-     apt install -y wget gnupg git cmake
+     # Install necessary package to setup + run the testsuite
+     apt install -y wget gnupg git cmake g++
      wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -
      apt update
      apt install -y $PKG --no-install-recommends
