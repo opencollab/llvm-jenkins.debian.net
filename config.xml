@@ -5,7 +5,7 @@
     <string>OldData</string>
     <string>hudson.diagnosis.ReverseProxySetupMonitor</string>
   </disabledAdministrativeMonitors>
-  <version>2.277.1</version>
+  <version>2.277.4</version>
   <numExecutors>0</numExecutors>
   <mode>EXCLUSIVE</mode>
   <useSecurity>true</useSecurity>
@@ -190,13 +190,16 @@
         <string>llvm-toolchain-11-binaries</string>
         <string>llvm-toolchain-11-source</string>
         <string>llvm-toolchain-11-source-trigger</string>
-        <string>llvm-toolchain-8-binaries</string>
-        <string>llvm-toolchain-8-source</string>
-        <string>llvm-toolchain-8-source-trigger</string>
+        <string>llvm-toolchain-12-binaries</string>
+        <string>llvm-toolchain-12-source</string>
+        <string>llvm-toolchain-12-source-trigger</string>
         <string>llvm-toolchain-9-binaries</string>
         <string>llvm-toolchain-9-source</string>
         <string>llvm-toolchain-9-source-trigger</string>
         <string>llvm-toolchain-binaries</string>
+        <string>llvm-toolchain-binaries-11-integration-test</string>
+        <string>llvm-toolchain-binaries-12-integration-test</string>
+        <string>llvm-toolchain-binaries-integration-test</string>
         <string>llvm-toolchain-binaries-sync</string>
         <string>llvm-toolchain-source</string>
       </jobNames>
@@ -346,29 +349,6 @@
       <includeRegex>.*defaults.*</includeRegex>
       <recurse>false</recurse>
     </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
-      <name>Debian 9 stretch</name>
-      <description>EOL June 30, 2022</description>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*stretch.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
   </views>
   <primaryView>all</primaryView>
   <slaveAgentPort>0</slaveAgentPort>
@@ -389,9 +369,7 @@
           <default>
             <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../../../../views/listView/jobNames/comparator"/>
           </default>
-          <int>3</int>
-          <string></string>
-          <string></string>
+          <int>2</int>
           <string>HOST_S390X</string>
           <string>148.100.84.86</string>
           <string>SKIP_PKG_RM</string>
