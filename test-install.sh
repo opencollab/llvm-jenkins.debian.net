@@ -8,9 +8,44 @@ DISTRO="buster bullseye unstable bionic focal groovy hirsute"
 VERSION="9 10 11 12"
 VERSION_NEXT="13"
 
-if test $# -eq 2; then
-    DISTRO=$1
-    VERSION=$2
+if test $# -eq 1; then
+    JOB_NAME=$1
+
+    # Can be:
+    # * llvm-toolchain-binaries-11-integration-test
+    # * llvm-toolchain-binaries-12-integration-test
+    # * llvm-toolchain-binaries-integration-test
+    # * llvm-toolchain-binaries-bullseye-11-integration-test
+    # * llvm-toolchain-binaries-bullseye-12-integration-test
+    # * llvm-toolchain-binaries-bullseye-integration-test
+    # * ...
+
+    if echo $JOB_NAME|grep -E "llvm-toolchain-binaries-.*-integration-test"; then
+        # Main for all distro but unstable
+        DISTRO=$(echo $JOB_NAME|sed -e "s|llvm-toolchain-binaries-\(.*\)-integration-test|\1|g")
+        VERSION=$MAIN_VERSION
+    fi
+
+
+    if echo $JOB_NAME|grep -E "llvm-toolchain-binaries-.*-[0-9]*-integration-test"; then
+        # ex: llvm-toolchain-binaries-bullseye-11-integration-test
+        DISTRO=$(echo $JOB_NAME|sed -e "s|llvm-toolchain-binaries-\(.*\)-\(.*\)-integration-test|\1|g")
+        VERSION=$(echo $JOB_NAME|sed -e "s|llvm-toolchain-binaries-\(.*\)-\(.*\)-integration-test|\2|g")
+    fi
+
+
+    if test "$JOB_NAME" = "llvm-toolchain-binaries-integration-test"; then
+        # Special case for Debian unstable with main
+        DISTRO=unstable
+        VERSION=$MAIN_VERSION
+    fi
+
+    if echo $JOB_NAME|grep -E "llvm-toolchain-binaries-[0-9]*-integration-test"; then
+        # Debian unstable for non main
+        DISTRO=unstable
+        VERSION=$(echo $JOB_NAME|sed -e "s|llvm-toolchain-binaries-\(.*\)-integration-test|\1|g")
+    fi
+
 fi
 echo "DISTRO = $DISTRO"
 echo "VERSION = $VERSION"
