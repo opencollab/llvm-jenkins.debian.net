@@ -117,7 +117,7 @@ for d in $DISTRO; do
     sudo cp $d.pref /etc/apt/preferences.d/local-pin-900
 done
 
-if test $# -ne 2; then
+if test $# -ne 1; then
     # No version specified, install also 13
     VERSION="$VERSION $VERSION_NEXT"
 fi
