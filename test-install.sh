@@ -148,6 +148,7 @@ for d in $DISTRO; do
      apt install -y wget gnupg git cmake g++
      wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -
      apt update
+     echo \"Install $PKG\"
      apt install -y $PKG --no-install-recommends
      $CMD
      bash /root/run-testsuite.sh
