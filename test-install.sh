@@ -1,9 +1,56 @@
 #!/bin/bash
-set -e
+set -e -v
+
+# If no argument provided, test all
+# If 2 are provided, distro + version
 
 DISTRO="buster bullseye unstable bionic focal groovy hirsute"
 VERSION="9 10 11 12"
+VERSION_NEXT="13"
 
+if test $# -eq 1; then
+    JOB_NAME=$1
+
+    # Can be:
+    # * llvm-toolchain-binaries-11-integration-test
+    # * llvm-toolchain-binaries-12-integration-test
+    # * llvm-toolchain-binaries-integration-test
+    # * llvm-toolchain-binaries-bullseye-11-integration-test
+    # * llvm-toolchain-binaries-bullseye-12-integration-test
+    # * llvm-toolchain-binaries-bullseye-integration-test
+    # * ...
+
+    if echo $JOB_NAME|grep -E "llvm-toolchain-binaries-.*-integration-test"; then
+        # Main for all distro but unstable
+        DISTRO=$(echo $JOB_NAME|sed -e "s|llvm-toolchain-binaries-\(.*\)-integration-test|\1|g")
+        VERSION=$VERSION_NEXT
+    fi
+
+
+    if echo $JOB_NAME|grep -E "llvm-toolchain-binaries-.*-[0-9]*-integration-test"; then
+        # ex: llvm-toolchain-binaries-bullseye-11-integration-test
+        DISTRO=$(echo $JOB_NAME|sed -e "s|llvm-toolchain-binaries-\(.*\)-\(.*\)-integration-test|\1|g")
+        VERSION=$(echo $JOB_NAME|sed -e "s|llvm-toolchain-binaries-\(.*\)-\(.*\)-integration-test|\2|g")
+    fi
+
+
+    if test "$JOB_NAME" = "llvm-toolchain-binaries-integration-test"; then
+        # Special case for Debian unstable with main
+        DISTRO=unstable
+        VERSION=$VERSION_NEXT
+    fi
+
+    if echo $JOB_NAME|grep -E "llvm-toolchain-binaries-[0-9]*-integration-test"; then
+        # Debian unstable for non main
+        DISTRO=unstable
+        VERSION=$(echo $JOB_NAME|sed -e "s|llvm-toolchain-binaries-\(.*\)-integration-test|\1|g")
+    fi
+
+fi
+echo "DISTRO = $DISTRO"
+echo "VERSION = $VERSION"
+
+# Create the chroots
 for d in $DISTRO; do
     if test ! -d $d.chroot; then
         echo "Create $d chroot"
@@ -11,6 +58,12 @@ for d in $DISTRO; do
     fi
     if test ! -e $0.chroot/proc/uptime; then
         sudo mount -t proc /proc $d.chroot/proc || true
+    fi
+    if test ! -e $0.chroot/dev/shm; then
+        sudo mount --bind /dev/shm "$d.chroot/dev/shm" || true
+    fi
+    if test ! -e $0.chroot/dev/pts; then
+        sudo mount --bind /dev/pts "$d.chroot/dev/pts" || true
     fi
 done
 
@@ -24,7 +77,7 @@ for d in $DISTRO; do
     else
         echo $TEMPLATE|sed -e "s|@DISTRO@||g" -e "s|@DISTRO_PATH@|$d|g" >> $d.list
     fi
-    if test "$d" == "focal" -o "$d" == "groovy" -o "$d" == "hirsute"; then
+    if test "$d" == "bionic" -o "$d" == "focal" -o "$d" == "groovy" -o "$d" == "hirsute"; then
         # focal & groovy need universe
         if test "$(arch)" == "s390x"; then
             echo "deb http://ports.ubuntu.com/ubuntu-ports $d universe" >> $d.list
@@ -32,6 +85,7 @@ for d in $DISTRO; do
             echo "deb http://www-ftp.lip6.fr/pub/linux/distributions/Ubuntu/ $d universe"  >> $d.list
         fi
     fi
+
     for v in $VERSION; do
         if test $v == "9" -o $v == "10"; then
             if test "$d" == bullseye; then
@@ -44,11 +98,14 @@ for d in $DISTRO; do
         if test $v == "9" -a $d == "hirsute"; then
             continue
         fi
-
-        if test "$d" != "unstable"; then
-            echo $TEMPLATE_VERSION|sed -e "s|@DISTRO@|-$d|g" -e "s|@DISTRO_PATH@|$d|g" -e "s|@VERSION@|$v|g" >> $d.list
-        else
-            echo $TEMPLATE_VERSION|sed -e "s|@DISTRO@||g" -e "s|@DISTRO_PATH@|$d|g" -e "s|@VERSION@|$v|g" >> $d.list
+        if test $VERSION != "$VERSION_NEXT"; then
+            # If the user entered the current trunk
+            # Skip this
+            if test "$d" != "unstable"; then
+                echo $TEMPLATE_VERSION|sed -e "s|@DISTRO@|-$d|g" -e "s|@DISTRO_PATH@|$d|g" -e "s|@VERSION@|$v|g" >> $d.list
+            else
+                echo $TEMPLATE_VERSION|sed -e "s|@DISTRO@||g" -e "s|@DISTRO_PATH@|$d|g" -e "s|@VERSION@|$v|g" >> $d.list
+            fi
         fi
     done
     sudo cp $d.list $d.chroot/etc/apt/sources.list.d/clang.list
@@ -60,7 +117,11 @@ for d in $DISTRO; do
     sudo cp $d.pref /etc/apt/preferences.d/local-pin-900
 done
 
-VERSION="$VERSION 13"
+if test $# -ne 1; then
+    # No version specified, install also 13
+    VERSION="$VERSION $VERSION_NEXT"
+fi
+
 for d in $DISTRO; do
     echo "========= Install on $d"
     PKG=""
@@ -78,20 +139,48 @@ for d in $DISTRO; do
             continue
         fi
 
-        PKG="$PKG clang-$v"
+        PKG="$PKG clang-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev"
         CMD="clang-$v --version; $CMD"
     done
     echo "
      set -e
-     apt install -y wget gnupg
+     # Install necessary package to setup + run the testsuite
+     apt install -y wget gnupg git cmake g++
      wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -
      apt update
+     echo \"Install $PKG\"
      apt install -y $PKG --no-install-recommends
      $CMD
-#     apt --purge remove -y $PKG
-#     apt -y autoremove
+     bash /root/run-testsuite.sh
      " > $d-script.sh
+    echo "
+     set -e
+     rm -rf check
+     git clone https://github.com/opencollab/llvm-toolchain-integration-test-suite.git check
+     cd check
+     mkdir build && cd build &&
+     cmake -DLIT=/usr/lib/llvm-$v/build/utils/lit/lit.py \
+          -DCLANG_BINARY=/usr/bin/clang-$v \
+          -DCLANGXX_BINARY=/usr/bin/clang++-$v \
+          -DCLANG_TIDY_BINARY=/usr/bin/clang-tidy-$v \
+          -DCLANG_FORMAT_BINARY=/usr/bin/clang-format-$v \
+          -DLLD_BINARY=/usr/bin/lld-$v \
+          -DLLDB_BINARY=/usr/bin/lldb-$v \
+          -DLLVMCONFIG_BINARY=/usr/bin/llvm-config-$v \
+          -DOPT_BINARY=/usr/bin/opt-$v \
+          -DSCANBUILD=/usr/bin/scan-build-$v \
+          -DCLANG_TIDY_BINARY=/usr/bin/clang-tidy-$v \
+          -DSCANVIEW=/usr/bin/scan-view-$v \
+          -DLLVMNM=/usr/bin/llvm-nm-$v \
+          -DLLVMPROFDATA=/usr/bin/llvm-profdata-$v \
+          -DENABLE_COMPILER_RT=OFF \
+          -DENABLE_LIBCXX=ON \
+          ../ && \
+          make check
+     " > $d-run-testsuite.sh
+
     sudo cp $d-script.sh $d.chroot/root/install.sh
+    sudo cp $d-run-testsuite.sh $d.chroot/root/run-testsuite.sh
     sudo chroot $d.chroot/ /bin/bash -c "bash /root/install.sh"
 done
 
