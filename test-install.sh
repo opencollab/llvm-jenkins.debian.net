@@ -84,6 +84,10 @@ for d in $DISTRO; do
         else
             echo "deb http://www-ftp.lip6.fr/pub/linux/distributions/Ubuntu/ $d universe"  >> $d.list
         fi
+        if test "$d" == "bionic"; then
+            # need a recent version of libstdc++
+            echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/ppa/ubuntu $d main " >> $d.list
+        fi
     fi
 
     for v in $VERSION; do
