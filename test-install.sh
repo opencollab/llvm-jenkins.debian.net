@@ -151,6 +151,7 @@ for d in $DISTRO; do
      # Install necessary package to setup + run the testsuite
      apt install -y wget gnupg git cmake g++
      wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -
+     wget 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x60C317803A41BA51845E371A1E9377A2BA9EF27F' -O out && apt-key add out && rm out
      apt update
      echo \"Install $PKG\"
      apt install -y $PKG --no-install-recommends
