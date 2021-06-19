@@ -160,6 +160,7 @@ for d in $DISTRO; do
         echo "
              apt install -y software-properties-common
              add-apt-repository -y ppa:ubuntu-toolchain-r/test
+             apt install -y libstdc++-8-dev
         " >> $d-script.sh
     fi
 
