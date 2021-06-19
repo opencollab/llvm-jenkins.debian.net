@@ -115,13 +115,6 @@ for d in $DISTRO; do
      Pin: origin apt.llvm.org
      Pin-Priority: 1000" > $d.pref
     sudo cp $d.pref /etc/apt/preferences.d/local-pin-900
-    if test "$d" == "bionic"; then
-        echo "
-             Package: *
-             Pin: origin apt.llvm.org
-             Pin-Priority: 1000" > $d.pref
-        sudo cp $d.pref /etc/apt/preferences.d/local-pin-900
-    fi
 done
 
 if test $# -ne 1; then
