@@ -152,6 +152,8 @@ for d in $DISTRO; do
 
     echo "
          set -e
+         apt install -y wget gnupg git cmake g++
+         wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -
     " > $d-script.sh
 
     if test "$d" == bionic; then
@@ -163,8 +165,6 @@ for d in $DISTRO; do
 
     echo "
      # Install necessary package to setup + run the testsuite
-     apt install -y wget gnupg git cmake g++
-     wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -
      apt update
      echo \"Install $PKG\"
      apt install -y $PKG --no-install-recommends
