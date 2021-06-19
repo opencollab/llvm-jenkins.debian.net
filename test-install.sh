@@ -156,6 +156,7 @@ for d in $DISTRO; do
 
     if test "$d" == bionic; then
         echo "
+             apt install -y software-properties-common
              add-apt-repository -y ppa:ubuntu-toolchain-r/test
         " >> $d-script.sh
     fi
