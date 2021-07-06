@@ -1,5 +1,5 @@
 #!/bin/sh
-
+set -e -v
 d=$1
 PATH_CHROOT=$d.chroot
 
@@ -17,12 +17,12 @@ if test ! -e $0.chroot/dev/pts; then
         mount --bind /dev/pts "$d.chroot/dev/pts" || true
 fi
 
-if test ! -d $d.chroot; then
+if test ! -d PATH_CHROOT; then
 	echo "chroot $PATH_CHROOT not found"
     exit 1
 fi
 
-cat > $d.chroot/root/run.sh <<GLOBALEOF
+cat > PATH_CHROOT/root/run.sh <<GLOBALEOF
 set -e
 set -v
 
@@ -35,5 +35,5 @@ GLOBALEOF
 
 chroot $PATH_CHROOT/ bash ./root/run.sh
 
-cp $d.chroot/root/go/src/github.com/sigstore/rekor/cmd/rekor-cli/rekor .
+cp PATH_CHROOT/root/go/src/github.com/sigstore/rekor/cmd/rekor-cli/rekor .
 ./rekor version
