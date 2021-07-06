@@ -21,10 +21,17 @@ cat > $PATH_CHROOT/root/run.sh <<GLOBALEOF
 set -e
 set -v
 
+
+
 apt install -y golang git
-while ! go get -u -t -v github.com/sigstore/rekor/cmd/rekor-cli
+max_retry=5
+counter=0
+until go get -u -t -v github.com/sigstore/rekor/cmd/rekor-cli
 do
-  echo "Try again"
+   sleep 1
+   [[ counter -eq $max_retry ]] && echo "Failed!" && exit 1
+   echo "Trying again. Try #$counter"
+   ((counter++))
 done
 
 cd $GOPATH/src/github.com/sigstore/rekor/cmd/rekor-cli
