@@ -2,6 +2,7 @@
 
 set -e -v
 d=$1
+architecture=$2
 PATH_CHROOT=$d.chroot.$architecture
 
 if test ! -d $PATH_CHROOT; then
