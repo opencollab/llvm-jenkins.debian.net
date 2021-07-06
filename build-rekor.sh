@@ -27,7 +27,7 @@ apt install -y golang git
 git clone https://github.com/sigstore/rekor.git rekor-cli
 cd rekor-cli
 go mod download
-go build -v -o rekor
+go build -v -o rekor cmd/rekor-cli
 cp rekor /usr/local/bin/
 GLOBALEOF
 
