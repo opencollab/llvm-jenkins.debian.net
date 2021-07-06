@@ -3,6 +3,20 @@
 d=$1
 PATH_CHROOT=$d.chroot
 
+if test ! -d $d.chroot; then
+        echo "Create $d chroot"
+        debootstrap $d $d.chroot
+fi
+if test ! -e $0.chroot/proc/uptime; then
+        mount -t proc /proc $d.chroot/proc || true
+fi
+if test ! -e $0.chroot/dev/shm; then
+        mount --bind /dev/shm "$d.chroot/dev/shm" || true
+fi
+if test ! -e $0.chroot/dev/pts; then
+        mount --bind /dev/pts "$d.chroot/dev/pts" || true
+fi
+
 if test ! -f $d.chroot; then
 	echo "chroot $PATH_CHROOT not found"
     exit 1
