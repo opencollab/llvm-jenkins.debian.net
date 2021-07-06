@@ -17,7 +17,7 @@ if test ! -e $0.chroot/dev/pts; then
         mount --bind /dev/pts "$d.chroot/dev/pts" || true
 fi
 
-if test ! -f $d.chroot; then
+if test ! -d $d.chroot; then
 	echo "chroot $PATH_CHROOT not found"
     exit 1
 fi
