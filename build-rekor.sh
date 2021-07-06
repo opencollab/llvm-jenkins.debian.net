@@ -39,4 +39,6 @@ GLOBALEOF
 chroot $PATH_CHROOT/ bash ./root/run.sh
 
 cp $PATH_CHROOT/root/go/src/github.com/sigstore/rekor/cmd/rekor-cli/rekor .
+ls -al rekor
+file rekor
 ./rekor version
