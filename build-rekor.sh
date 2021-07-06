@@ -2,20 +2,20 @@
 
 set -e -v
 d=$1
-PATH_CHROOT=$d.chroot
+PATH_CHROOT=$d.chroot.$architecture
 
-if test ! -d $d.chroot; then
-        echo "Create $d chroot"
-        debootstrap $d $d.chroot
+if test ! -d $PATH_CHROOT; then
+        echo "Create $PATH_CHROOT chroot"
+        debootstrap --arch $architecture $d $PATH_CHROOT
 fi
-if test ! -e $0.chroot/proc/uptime; then
-        mount -t proc /proc $d.chroot/proc || true
+if test ! -e $PATH_CHROOT/proc/uptime; then
+        mount -t proc /proc $PATH_CHROOT/proc || true
 fi
-if test ! -e $0.chroot/dev/shm; then
-        mount --bind /dev/shm "$d.chroot/dev/shm" || true
+if test ! -e $PATH_CHROOT/dev/shm; then
+        mount --bind /dev/shm "$PATH_CHROOT/dev/shm" || true
 fi
-if test ! -e $0.chroot/dev/pts; then
-        mount --bind /dev/pts "$d.chroot/dev/pts" || true
+if test ! -e $PATH_CHROOT/dev/pts; then
+        mount --bind /dev/pts "$PATH_CHROOT/dev/pts" || true
 fi
 
 cat > $PATH_CHROOT/root/run.sh <<GLOBALEOF
