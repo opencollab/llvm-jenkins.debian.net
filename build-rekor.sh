@@ -18,6 +18,7 @@ if test ! -e $0.chroot/dev/pts; then
 fi
 
 cat > $PATH_CHROOT/root/run.sh <<GLOBALEOF
+#!/bin/bash
 set -e
 set -v
 
@@ -29,7 +30,7 @@ counter=0
 until go get -u -t -v github.com/sigstore/rekor/cmd/rekor-cli
 do
    sleep 1
-   [[ counter -eq $max_retry ]] && echo "Failed!" && exit 1
+   [[ $counter -eq $max_retry ]] && echo "Failed!" && exit 1
    echo "Trying again. Try #$counter"
    ((counter++))
 done
