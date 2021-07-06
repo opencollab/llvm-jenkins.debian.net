@@ -38,10 +38,10 @@ GLOBALEOF
 
 chroot $PATH_CHROOT/ bash ./root/run.sh
 
-cp $PATH_CHROOT/root/go/src/github.com/sigstore/rekor/cmd/rekor-cli/rekor .
-ls -al rekor
-file rekor
+cp $PATH_CHROOT/root/go/src/github.com/sigstore/rekor/cmd/rekor-cli/rekor rekor.$architecture
+ls -al rekor.$architecture
+file rekor.$architecture
 if test $architecture != "i386"; then
     # Don't run it on i386 as it runs on amd64
-    ./rekor version
+    ./rekor.$architecture version
 fi
