@@ -32,7 +32,6 @@ git clone https://github.com/sigstore/rekor.git rekor-cli
 go get -u -t -v github.com/sigstore/rekor/cmd/rekor-cli
 cd \$GOPATH/src/github.com/sigstore/rekor/cmd/rekor-cli
 go build -v -o rekor
-cp rekor /usr/local/bin/
 GLOBALEOF
 
 chroot $PATH_CHROOT/ bash ./root/run.sh
