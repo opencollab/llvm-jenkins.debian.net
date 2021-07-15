@@ -176,6 +176,7 @@ for d in $DISTRO; do
           -DCLANGXX_BINARY=/usr/bin/clang++-$v \
           -DCLANG_TIDY_BINARY=/usr/bin/clang-tidy-$v \
           -DCLANG_FORMAT_BINARY=/usr/bin/clang-format-$v \
+          -DCLANG_FORMAT_DIFF_BINARY=/usr/bin/clang-format-diff-$v \
           -DLLD_BINARY=/usr/bin/lld-$v \
           -DLLDB_BINARY=/usr/bin/lldb-$v \
           -DLLVMCONFIG_BINARY=/usr/bin/llvm-config-$v \
