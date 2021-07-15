@@ -182,9 +182,13 @@ for d in $DISTRO; do
           -DLLVMCONFIG_BINARY=/usr/bin/llvm-config-$v \
           -DOPT_BINARY=/usr/bin/opt-$v \
           -DSCANBUILD=/usr/bin/scan-build-$v \
+          -DSCANBUILDPY=/usr/bin/scan-build-py-$v \
           -DCLANG_TIDY_BINARY=/usr/bin/clang-tidy-$v \
           -DSCANVIEW=/usr/bin/scan-view-$v \
           -DLLVMNM=/usr/bin/llvm-nm-$v \
+          -DLLC=/usr/bin/llc-$v \
+          -DLLI=/usr/bin/lli-$v \
+          -DOPT=/usr/bin/opt-$v \
           -DLLVMPROFDATA=/usr/bin/llvm-profdata-$v \
           -DENABLE_COMPILER_RT=OFF \
           -DENABLE_LIBCXX=ON \
