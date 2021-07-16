@@ -139,7 +139,7 @@ for d in $DISTRO; do
             continue
         fi
 
-        PKG="$PKG clang-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev libclang-$v-dev libclang-cpp$v-dev"
+        PKG="$PKG clang-$v clangd-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev libclang-$v-dev libclang-cpp$v-dev"
         CMD="clang-$v --version; $CMD"
     done
 
@@ -173,6 +173,7 @@ for d in $DISTRO; do
      mkdir build && cd build &&
      cmake -DLIT=/usr/lib/llvm-$v/build/utils/lit/lit.py \
           -DCLANG_BINARY=/usr/bin/clang-$v \
+          -DCLANGD_BINARY=/usr/bin/clangd-$v \
           -DCLANGXX_BINARY=/usr/bin/clang++-$v \
           -DCLANG_TIDY_BINARY=/usr/bin/clang-tidy-$v \
           -DCLANG_FORMAT_BINARY=/usr/bin/clang-format-$v \
