@@ -190,7 +190,7 @@ for d in $DISTRO; do
           -DLLI=/usr/bin/lli-$v \
           -DOPT=/usr/bin/opt-$v \
           -DLLVMPROFDATA=/usr/bin/llvm-profdata-$v \
-          -DENABLE_COMPILER_RT=OFF \
+          -DENABLE_COMPILER_RT=ON \
           -DENABLE_LIBCXX=ON \
           ../ && \
           make check
