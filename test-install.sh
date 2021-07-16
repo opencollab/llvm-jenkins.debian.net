@@ -166,7 +166,7 @@ for d in $DISTRO; do
      bash /root/run-testsuite.sh
      " >> $d-script.sh
     echo "
-     set -e
+     set -e -v
      rm -rf check
      git clone https://github.com/opencollab/llvm-toolchain-integration-test-suite.git check
      cd check
