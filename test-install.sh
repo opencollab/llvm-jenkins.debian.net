@@ -195,7 +195,7 @@ for d in $DISTRO; do
           ../ && \
           make check
      " > $d-run-testsuite.sh
-
+    cat  $d-run-testsuite.sh
     sudo cp $d-script.sh $d.chroot/root/install.sh
     sudo cp $d-run-testsuite.sh $d.chroot/root/run-testsuite.sh
     sudo chroot $d.chroot/ /bin/bash -c "bash /root/install.sh"
