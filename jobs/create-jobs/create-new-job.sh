@@ -5,19 +5,19 @@
 
 if test $# -ne 4; then
     echo "Syntax:"
-    echo "$0 distribution name SVNbranch_upstream SVNbranch_debian"
+    echo "$0 distribution name GITbranch_upstream GITbranch_debian"
     exit 1
 fi
 
 DISTRIBUTION=$1
 NAME=$2
-SVNBRANCHUPSTREAM=$3
-SVNBRANCHDEBIAN=$4
+GITBRANCHUPSTREAM=$3
+GITBRANCHDEBIAN=$4
 
 # We create 3 jobs:
-# llvm-toolchain-precise-google-stable-binaries
-# llvm-toolchain-precise-google-stable-source-trigger
-# llvm-toolchain-precise-google-stable-source
+# llvm-toolchain-precise-stable-binaries
+# llvm-toolchain-precise-stable-source-trigger
+# llvm-toolchain-precise-stable-source
 
 
 if test "$DISTRIBUTION" = unstable; then
@@ -26,7 +26,7 @@ else
 	if test "$NAME" = snapshot; then
 		# For a new ubuntu distro
                 JOBNAME="llvm-toolchain-$DISTRIBUTION"
-		SVNBRANCHUPSTREAM=""
+		GITBRANCHUPSTREAM=""
 	else
 		JOBNAME="llvm-toolchain-$DISTRIBUTION-$NAME"
 	fi
@@ -58,9 +58,9 @@ mkdir -p $JOBNAME_TRIGGER
 mkdir -p /srv/repository/$DISTRIBUTION
 chown jenkins. /srv/repository/$DISTRIBUTION
 
-sed -e "s|@NAME@|$JOBNAME_TRIGGER|g" -e "s|@NAME_SOURCE@|$JOBNAME_SOURCE|g" -e "s|@BRANCH@|$SVNBRANCHUPSTREAM|g" -e "s|@BRANCH_DEBIAN@|$SVNBRANCHDEBIAN|g" $JOBNAME_TRIGGER_TEMPLATE > $JOBNAME_TRIGGER/config.xml
+sed -e "s|@NAME@|$JOBNAME_TRIGGER|g" -e "s|@NAME_SOURCE@|$JOBNAME_SOURCE|g" -e "s|@BRANCH@|$GITBRANCHUPSTREAM|g" -e "s|@BRANCH_DEBIAN@|$GITBRANCHDEBIAN|g" $JOBNAME_TRIGGER_TEMPLATE > $JOBNAME_TRIGGER/config.xml
 
-sed -e "s|@NAME_BINARY@|$JOBNAME_BINARY|g" -e "s|@BRANCH@|$SVNBRANCHUPSTREAM|g" -e "s|@DISTRIBUTION@|$DISTRIBUTION|g" -e "s|@BRANCH_DEBIAN@|$SVNBRANCHDEBIAN|g" $JOBNAME_SOURCE_TEMPLATE > $JOBNAME_SOURCE/config.xml
+sed -e "s|@NAME_BINARY@|$JOBNAME_BINARY|g" -e "s|@BRANCH@|$GITBRANCHUPSTREAM|g" -e "s|@DISTRIBUTION@|$DISTRIBUTION|g" -e "s|@BRANCH_DEBIAN@|$GITBRANCHDEBIAN|g" $JOBNAME_SOURCE_TEMPLATE > $JOBNAME_SOURCE/config.xml
 
 sed -e "s|@NAME_SOURCE@|$JOBNAME_SOURCE|g" -e "s|@NAME@|$JOBNAME_BINARY|g" -e "s|@JOBNAME@|$JOBNAME|g" -e "s|@BRANCH@|$GITBRANCHUPSTREAM|g" -e "s|@DISTRIBUTION@|$DISTRIBUTION|g" $JOBNAME_BINARY_TEMPLATE > $JOBNAME_BINARY/config.xml
 
