@@ -78,7 +78,7 @@ for d in $DISTRO; do
         echo $TEMPLATE|sed -e "s|@DISTRO@||g" -e "s|@DISTRO_PATH@|$d|g" >> $d.list
     fi
     if test "$d" == "bionic" -o "$d" == "focal" -o "$d" == "groovy" -o "$d" == "hirsute"; then
-        # focal & groovy need universe
+        # focal, groovy, etc need universe
         if test "$(arch)" == "s390x"; then
             echo "deb http://ports.ubuntu.com/ubuntu-ports $d universe" >> $d.list
         else
@@ -139,46 +139,66 @@ for d in $DISTRO; do
             continue
         fi
 
-        PKG="$PKG clang-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev"
+        PKG="$PKG clang-$v clangd-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev libclang-$v-dev libclang-cpp$v-dev python"
+	# temporary workaround to make scan-build-py work
+	PKG="$PKG clang"
         CMD="clang-$v --version; $CMD"
     done
+
     echo "
-     set -e
+         set -e
+         apt install -y wget gnupg git cmake g++
+         wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -
+    " > $d-script.sh
+
+    if test "$d" == bionic; then
+        echo "
+             apt install -y software-properties-common
+             add-apt-repository -y ppa:ubuntu-toolchain-r/test
+             apt install -y libstdc++-8-dev
+        " >> $d-script.sh
+    fi
+
+    echo "
      # Install necessary package to setup + run the testsuite
-     apt install -y wget gnupg git cmake g++
-     wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -
      apt update
      echo \"Install $PKG\"
      apt install -y $PKG --no-install-recommends
      $CMD
      bash /root/run-testsuite.sh
-     " > $d-script.sh
+     " >> $d-script.sh
     echo "
-     set -e
+     set -e -v
      rm -rf check
      git clone https://github.com/opencollab/llvm-toolchain-integration-test-suite.git check
      cd check
      mkdir build && cd build &&
      cmake -DLIT=/usr/lib/llvm-$v/build/utils/lit/lit.py \
           -DCLANG_BINARY=/usr/bin/clang-$v \
+          -DCLANGD_BINARY=/usr/bin/clangd-$v \
           -DCLANGXX_BINARY=/usr/bin/clang++-$v \
           -DCLANG_TIDY_BINARY=/usr/bin/clang-tidy-$v \
           -DCLANG_FORMAT_BINARY=/usr/bin/clang-format-$v \
+          -DCLANG_FORMAT_DIFF_BINARY=/usr/bin/clang-format-diff-$v \
           -DLLD_BINARY=/usr/bin/lld-$v \
           -DLLDB_BINARY=/usr/bin/lldb-$v \
           -DLLVMCONFIG_BINARY=/usr/bin/llvm-config-$v \
           -DOPT_BINARY=/usr/bin/opt-$v \
           -DSCANBUILD=/usr/bin/scan-build-$v \
+          -DSCANBUILDPY=/usr/bin/scan-build-py-$v \
           -DCLANG_TIDY_BINARY=/usr/bin/clang-tidy-$v \
           -DSCANVIEW=/usr/bin/scan-view-$v \
           -DLLVMNM=/usr/bin/llvm-nm-$v \
+          -DLLC=/usr/bin/llc-$v \
+          -DLLI=/usr/bin/lli-$v \
+          -DOPT=/usr/bin/opt-$v \
           -DLLVMPROFDATA=/usr/bin/llvm-profdata-$v \
-          -DENABLE_COMPILER_RT=OFF \
+          -DENABLE_COMPILER_RT=ON \
           -DENABLE_LIBCXX=ON \
           ../ && \
           make check
      " > $d-run-testsuite.sh
-
+    cat  $d-run-testsuite.sh
     sudo cp $d-script.sh $d.chroot/root/install.sh
     sudo cp $d-run-testsuite.sh $d.chroot/root/run-testsuite.sh
     sudo chroot $d.chroot/ /bin/bash -c "bash /root/install.sh"

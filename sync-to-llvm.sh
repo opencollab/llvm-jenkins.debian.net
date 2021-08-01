@@ -58,13 +58,17 @@ if test "$REPOSITORY" == "unstable"; then
 else
     REPOSITORY_CODE="-$REPOSITORY"
 fi
-url="binary-i386/Packages.gz binary-amd64/Packages.gz binary-i386/Packages binary-amd64/Packages binary-i386/Release binary-amd64/Release"
-for f in $url; do
-curl -XPOST -H "Fastly-Key:$key" https://api.fastly.com/purge/apt.llvm.org/$REPOSITORY/dists/llvm-toolchain$REPOSITORY_CODE/main/$f
+archs="i386 amd64 s390x"
+for f in $arch; do
+    url="binary-$arch/Packages.gz binary-$arch/Packages binary-$arch/Release binary-$arch/Release"
+    for f in $url; do
+        curl -XPOST -H "Fastly-Key:$key" https://api.fastly.com/purge/apt.llvm.org/$REPOSITORY/dists/llvm-toolchain$REPOSITORY_CODE/main/$f
+    done
 done
 url="InRelease Release Release.gpg"
 for f in $url; do
-curl -XPOST -H "Fastly-Key:$key" https://api.fastly.com/purge/apt.llvm.org/$REPOSITORY/dists/llvm-toolchain$REPOSITORY_CODE/$f
+    curl -XPOST -H "Fastly-Key:$key" https://api.fastly.com/purge/apt.llvm.org/$REPOSITORY/dists/llvm-toolchain$REPOSITORY_CODE/$f
 done
+
 curl -XPOST -H "Fastly-Key:$key" https://api.fastly.com/purge/apt.llvm.org/$REPOSITORY/
 
