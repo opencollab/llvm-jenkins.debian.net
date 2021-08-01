@@ -42,7 +42,8 @@ JOBNAME_BINARY_SYNC_TEMPLATE="binary-sync-template.xml"
 JOBNAME_TRIGGER=$JOBNAME"-source-trigger"
 JOBNAME_TRIGGER_TEMPLATE="trigger-template.xml"
 
-JOBNAME_INTEGRATION_TEST=$JOBNAME"-integration-test-binaries"
+# ex: llvm-toolchain-binaries-12-integration-test
+JOBNAME_INTEGRATION_TEST=$JOBNAME"-integration-test"
 JOBNAME_INTEGRATION_TEST_TEMPLATE="integration-test-template.xml"
 
 

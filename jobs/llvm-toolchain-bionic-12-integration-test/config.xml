@@ -21,7 +21,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-bionic-binaries-sync, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-bionic-binaries-sync</upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -55,7 +55,7 @@ sudo /bin/rm -rf install-all || true
       <configuredLocalRules/>
     </hudson.tasks.Shell>
   </builders>
-      <publishers>
+  <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.34">
       <recipients>syivestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
