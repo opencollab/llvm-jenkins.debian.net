@@ -70,7 +70,7 @@ if test "$NAME" = snapshot; then
 	sed -e "s|@DISTRIBUTION@|$DISTRIBUTION|g" $JOBNAME_BINARY_SYNC_TEMPLATE > $JOBNAME_BINARY_SYNC/config.xml
 fi
 
-chown -R jenkins.nogroup $JOBNAME_SOURCE $JOBNAME_BINARY $JOBNAME_TRIGGER
+chown -R jenkins.nogroup $JOBNAME_SOURCE $JOBNAME_BINARY $JOBNAME_TRIGGER $JOBNAME_INTEGRATION_TEST
 
 if test "$NAME" = snapshot; then
 	chown -R jenkins.nogroup $JOBNAME_BINARY_SYNC
