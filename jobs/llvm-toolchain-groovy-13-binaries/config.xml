@@ -22,7 +22,7 @@
       <name>architecture</name>
       <values>
         <string>amd64</string>
-	<string>s390x</string>
+        <string>s390x</string>
       </values>
     </hudson.matrix.TextAxis>
     <hudson.matrix.TextAxis>
@@ -31,7 +31,16 @@
         <string>groovy</string>
       </values>
     </hudson.matrix.TextAxis>
++    <hudson.matrix.LabelAxis>
++      <name>label</name>
++      <values>
++        <string>amd64</string>
++        <string>i386</string>
++        <string>s390x</string>
++      </values>
++    </hudson.matrix.LabelAxis>
   </axes>
+  <combinationFilter>(label==&quot;arm64&quot;).implies(architecture==&quot;arm64&quot;) &amp;&amp; (label==&quot;amd64&quot;).implies(architecture==&quot;amd64&quot;) &amp;&amp; (label==&quot;i386&quot;).implies(architecture==&quot;i386&quot;) &amp;&amp; (label==&quot;s390x&quot;).implies(architecture==&quot;s390x&quot;)</combinationFilter>
   <builders>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38">
       <project>llvm-toolchain-groovy-13-source</project>
