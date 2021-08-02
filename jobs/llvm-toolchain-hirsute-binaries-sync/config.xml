@@ -12,7 +12,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-hirsute-binaries,llvm-toolchain-hirsute-10-binaries,llvm-toolchain-hirsute-11-binaries,llvm-toolchain-hirsute-12-binaries</upstreamProjects>
+      <upstreamProjects>llvm-toolchain-hirsute-binaries,llvm-toolchain-hirsute-10-binaries,llvm-toolchain-hirsute-11-binaries,llvm-toolchain-hirsute-12-binaries, llvm-toolchain-hirsute-13-binaries</upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
