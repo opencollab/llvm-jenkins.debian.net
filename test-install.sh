@@ -5,8 +5,8 @@ set -e -v
 # If 2 are provided, distro + version
 
 DISTRO="buster bullseye unstable bionic focal groovy hirsute"
-VERSION="9 10 11 12"
-VERSION_NEXT="13"
+VERSION="9 10 11 12 13"
+VERSION_NEXT="14"
 
 if test $# -eq 1; then
     JOB_NAME=$1
