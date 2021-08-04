@@ -129,13 +129,16 @@ for d in $DISTRO; do
     for v in $VERSION; do
         if test $v == "9" -o $v == "10"; then
             if test "$d" == bullseye; then
+                # 9 and 10 aren't supported for this distro
                 continue
             fi
         fi
         if test $v == "9" -a $d == "groovy"; then
+            # 9 isn't supported for this distro
             continue
         fi
         if test $v == "9" -a $d == "hirsute"; then
+            # 9 isn't supported for this distro
             continue
         fi
 
