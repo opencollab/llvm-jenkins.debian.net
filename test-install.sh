@@ -13,38 +13,38 @@ if test $# -eq 1; then
     echo "JOB_NAME passed = $JOB_NAME"
 
     # Can be:
-    # * llvm-toolchain-binaries-11-integration-test
-    # * llvm-toolchain-binaries-12-integration-test
-    # * llvm-toolchain-binaries-integration-test
-    # * llvm-toolchain-binaries-bullseye-11-integration-test
-    # * llvm-toolchain-binaries-bullseye-12-integration-test
-    # * llvm-toolchain-binaries-bullseye-integration-test
+    # * llvm-toolchain-11-integration-test
+    # * llvm-toolchain-12-integration-test
+    # * llvm-toolchain-integration-test
+    # * llvm-toolchain-bullseye-11-integration-test
+    # * llvm-toolchain-bullseye-12-integration-test
+    # * llvm-toolchain-bullseye-integration-test
     # * ...
 
-    if echo $JOB_NAME|grep -E "llvm-toolchain-binaries-.*-integration-test"; then
+    if echo $JOB_NAME|grep -E "llvm-toolchain-.*-integration-test"; then
         # Main for all distro but unstable
-        DISTRO=$(echo $JOB_NAME|sed -e "s|llvm-toolchain-binaries-\(.*\)-integration-test|\1|g")
+        DISTRO=$(echo $JOB_NAME|sed -e "s|llvm-toolchain-\(.*\)-integration-test|\1|g")
         VERSION=$VERSION_NEXT
     fi
 
 
-    if echo $JOB_NAME|grep -E "llvm-toolchain-binaries-.*-[0-9]*-integration-test"; then
-        # ex: llvm-toolchain-binaries-bullseye-11-integration-test
-        DISTRO=$(echo $JOB_NAME|sed -e "s|llvm-toolchain-binaries-\(.*\)-\(.*\)-integration-test|\1|g")
-        VERSION=$(echo $JOB_NAME|sed -e "s|llvm-toolchain-binaries-\(.*\)-\(.*\)-integration-test|\2|g")
+    if echo $JOB_NAME|grep -E "llvm-toolchain-.*-[0-9]*-integration-test"; then
+        # ex: llvm-toolchain-bullseye-11-integration-test
+        DISTRO=$(echo $JOB_NAME|sed -e "s|llvm-toolchain-\(.*\)-\(.*\)-integration-test|\1|g")
+        VERSION=$(echo $JOB_NAME|sed -e "s|llvm-toolchain-\(.*\)-\(.*\)-integration-test|\2|g")
     fi
 
 
-    if test "$JOB_NAME" = "llvm-toolchain-binaries-integration-test"; then
+    if test "$JOB_NAME" = "llvm-toolchain-integration-test"; then
         # Special case for Debian unstable with main
         DISTRO=unstable
         VERSION=$VERSION_NEXT
     fi
 
-    if echo $JOB_NAME|grep -E "llvm-toolchain-binaries-[0-9]*-integration-test"; then
+    if echo $JOB_NAME|grep -E "llvm-toolchain-[0-9]*-integration-test"; then
         # Debian unstable for non main
         DISTRO=unstable
-        VERSION=$(echo $JOB_NAME|sed -e "s|llvm-toolchain-binaries-\(.*\)-integration-test|\1|g")
+        VERSION=$(echo $JOB_NAME|sed -e "s|llvm-toolchain-\(.*\)-integration-test|\1|g")
     fi
 
 fi
