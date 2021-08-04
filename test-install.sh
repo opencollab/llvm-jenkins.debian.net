@@ -98,7 +98,7 @@ for d in $DISTRO; do
         if test $v == "9" -a $d == "hirsute"; then
             continue
         fi
-        if test $VERSION != "$VERSION_NEXT"; then
+        if test $v != "$VERSION_NEXT"; then
             # If the user entered the current trunk
             # Skip this
             if test "$d" != "unstable"; then
