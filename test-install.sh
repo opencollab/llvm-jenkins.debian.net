@@ -10,6 +10,7 @@ VERSION_NEXT="14"
 
 if test $# -eq 1; then
     JOB_NAME=$1
+    echo "JOB_NAME passed = $JOB_NAME"
 
     # Can be:
     # * llvm-toolchain-binaries-11-integration-test
