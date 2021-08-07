@@ -143,7 +143,11 @@ for d in $DISTRO; do
             continue
         fi
 
-        PKG="$PKG clang-$v clangd-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev libclang-$v-dev libclang-cpp$v-dev python libunwind-$v-dev"
+        PKG="$PKG clang-$v clangd-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev libclang-$v-dev libclang-cpp$v-dev python"
+        if test $v -gt 11; then
+            # libunwind isn't packaged for -11
+            PKG="$PKG libunwind-$v-dev"
+        fi
 	    # temporary workaround to make scan-build-py work
 	    PKG="$PKG clang"
         CMD="clang-$v --version; $CMD"
