@@ -52,12 +52,13 @@ $isQualification=false;
 
   <p>The goal is to provide Debian and Ubuntu nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64, i386 (except for recent Ubuntu) and S390X. This for both the stable, <?php if ($isQualification) {?>qualification<?php } else {?>old-stable<?php } ?> and development branches (currently <?=$stableBranch?>, <?=$qualificationBranch?> and <?=$devBranch?>).</p>
 <p>Packages are built using stage2 and extremely similar to the one shipping in Debian & Ubuntu.</p>
-<p>The packages provide <a href="https://llvm.org/">LLVM</a> + <a href="https://clang.llvm.org/">Clang</a> + <a href="https://compiler-rt.llvm.org/">compiler-rt</a> + <a href="https://polly.llvm.org/">polly</a> + <a href="https://lldb.llvm.org/">LLDB</a> + <a href="https://lld.llvm.org/">LLD</a> + <a href="https://llvm.org/docs/LibFuzzer.html">libFuzzer</a> + <a href="https://libcxx.llvm.org/">libc++</a> + <a href="https://libcxxabi.llvm.org/">libc++abi</a> + <a href="https://openmp.llvm.org/">openmp</a> + <a href="https://libclc.llvm.org/">libclc</a></p>
+<p>The packages provide <a href="https://llvm.org/">LLVM</a> + <a href="https://clang.llvm.org/">Clang</a> + <a href="https://compiler-rt.llvm.org/">compiler-rt</a> + <a href="https://polly.llvm.org/">polly</a> + <a href="https://lldb.llvm.org/">LLDB</a> + <a href="https://lld.llvm.org/">LLD</a> + <a href="https://llvm.org/docs/LibFuzzer.html">libFuzzer</a> + <a href="https://libcxx.llvm.org/">libc++</a> + <a href="https://libcxxabi.llvm.org/">libc++abi</a> + <a href="https://openmp.llvm.org/">openmp</a> + <a href="https://libclc.llvm.org/">libclc</a> + <a href="https://github.com/llvm/llvm-project/tree/main/libunwind">libunwind</a></p>
 </div>
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
 Aug 2nd  2021 - Snapshot becomes 14, branch 13 created<br />
+Aug 2nd  2021 - libunwind packages are generated (libunwind-XX & libunwind-XX-dev)
 May 10th 2021 - Debian strech disabled (quite old). If you are still using, <a href="mailto:sylvestre@debian.org">mail me</a><br />
 May 01st 2021 - libclc packages generated from 12. Thanks to Timo Aaltonen<br />
 Apr 25th 2021 - S390X support added<br />
@@ -249,6 +250,10 @@ apt-get install lld-<?=$stableBranch?><br />
 apt-get install libc++-<?=$stableBranch?>-dev libc++abi-<?=$stableBranch?>-dev<br />
 <b># OpenMP</b><br />
 apt-get install libomp-<?=$stableBranch?>-dev<br />
+<b># libclc</b><br />
+apt-get install libclc-<?=$stableBranch?>-dev<br />
+<b># libunwind</b><br />
+apt-get install libunwind-<?=$stableBranch?>-dev<br />
 </p>
 </div>
 
@@ -285,6 +290,8 @@ apt-get install libc++-<?=$qualificationBranch?>-dev libc++abi-<?=$qualification
 apt-get install libomp-<?=$qualificationBranch?>-dev<br />
 <b># libclc</b><br />
 apt-get install libclc-<?=$qualificationBranch?>-dev<br />
+<b># libunwind</b><br />
+apt-get install libunwind-<?=$qualificationBranch?>-dev<br />
 </p>
 
 </div>
@@ -327,6 +334,8 @@ apt-get install libc++-<?=$devBranch?>-dev libc++abi-<?=$devBranch?>-dev<br />
 apt-get install libomp-<?=$devBranch?>-dev<br />
 <b># libclc</b><br />
 apt-get install libclc-<?=$devBranch?>-dev<br />
+<b># libunwind</b><br />
+apt-get install libunwind-<?=$devBranch?>-dev<br />
 </p>
 
 </div>
