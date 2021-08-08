@@ -25,9 +25,9 @@ function getLastRevision($distro) {
    return str_replace("++", "", $matches[1]);
 }
 
-$stableBranch="11";
-$qualificationBranch="12";
-$devBranch="13";
+$stableBranch="12";
+$qualificationBranch="13";
+$devBranch="14";
 $isQualification=false;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -57,6 +57,7 @@ $isQualification=false;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Aug 2nd  2021 - Snapshot becomes 14, branch 13 created<br />
 May 10th 2021 - Debian strech disabled (quite old). If you are still using, <a href="mailto:sylvestre@debian.org">mail me</a><br />
 May 01st 2021 - libclc packages generated from 12. Thanks to Timo Aaltonen<br />
 Apr 25th 2021 - S390X support added<br />
