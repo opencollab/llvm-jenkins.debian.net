@@ -57,8 +57,9 @@ $isQualification=false;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
-Aug 02nd 2021 - Snapshot becomes 14, branch 13 created<br />
-Aug 02nd 2021 - libunwind packages are generated (libunwind-XX & libunwind-XX-dev)<br />
+Aug 01st 2021 - Snapshot becomes 14, branch 13 created<br />
+Aug 01st 2021 - libunwind packages are generated (libunwind-XX & libunwind-XX-dev)<br />
+Jul 25th 2021 - Packages are tested against the <a href="https://github.com/opencollab/llvm-toolchain-integration-test-suite/">LLVM integration test suite</a><br />
 May 10th 2021 - Debian strech disabled (quite old). If you are still using, <a href="mailto:sylvestre@debian.org">mail me</a><br />
 May 01st 2021 - libclc packages generated from 12. Thanks to Timo Aaltonen<br />
 Apr 25th 2021 - S390X support added<br />
