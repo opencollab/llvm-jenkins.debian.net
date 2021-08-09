@@ -33,7 +33,7 @@ git clone https://github.com/sigstore/rekor.git rekor-cli
 go get -u -t -v github.com/sigstore/rekor/cmd/rekor-cli
 cd \$GOPATH/src/github.com/sigstore/rekor/cmd/rekor-cli
 go build -v -o rekor
-find /root/go/src/github.com/sigstore/rekor/cmd/rekor-cli/
+find  /root/go/src/github.com/sigstore/ -executable -type f
 strip /root/go/src/github.com/sigstore/rekor/cmd/rekor-cli/rekor
 GLOBALEOF
 
