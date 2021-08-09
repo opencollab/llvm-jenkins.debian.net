@@ -26,20 +26,18 @@ set -v
 export GOPATH=~/go/
 rm -rf rekor-cli $GOPATH
 
-apt install -y golang git
+apt install -y golang-1.16-go git make
 
 git clone https://github.com/sigstore/rekor.git rekor-cli
-
-go get -u -t -v github.com/sigstore/rekor/cmd/rekor-cli
-cd \$GOPATH/src/github.com/sigstore/rekor/cmd/rekor-cli
-go build -v -o rekor
-find  /root/go/src/github.com/sigstore/ -executable -type f
-strip /root/go/src/github.com/sigstore/rekor/cmd/rekor-cli/rekor
+cd rekor-cli
+export PATH=/usr/lib/go-1.16/bin/:$PATH
+make rekor-cli
+strip rekor-cli
 GLOBALEOF
 
 chroot $PATH_CHROOT/ bash ./root/run.sh
 
-cp $PATH_CHROOT/root/go/src/github.com/sigstore/rekor/cmd/rekor-cli/rekor rekor
+cp $PATH_CHROOT/root/rekor-cli/rekor-cli rekor
 ls -al rekor
 file rekor
 if test $architecture != "i386"; then
