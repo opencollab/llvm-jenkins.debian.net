@@ -23,14 +23,16 @@ cat > $PATH_CHROOT/root/run.sh <<GLOBALEOF
 #!/bin/bash
 set -v
 
+cd /root/
+export PATH=/usr/lib/go-1.16/bin/:$PATH
 export GOPATH=~/go/
-rm -rf rekor-cli $GOPATH
+rm -rf /rekor-cli rekor-cli $GOPATH
 
 apt install -y golang-1.16-go git make
 
 git clone https://github.com/sigstore/rekor.git rekor-cli
 cd rekor-cli
-export PATH=/usr/lib/go-1.16/bin/:$PATH
+
 make rekor-cli
 strip rekor-cli
 GLOBALEOF
