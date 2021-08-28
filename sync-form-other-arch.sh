@@ -29,15 +29,21 @@ for f in /tmp/tmp-$DISTRO/dists/llvm-*/main/binary-$ARCH/; do
                 break
             fi
     fi
+    # Workaround: don't import libclc (provided by amd64)
+    # checksum differences otherwise
+    rm -f /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain*/libclc-*deb
+
     # Import of the stable and stabilisation version
     if test $DISTRO == "unstable"; then
         reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$VERSION /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-$VERSION/*deb
     else
-            reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$DISTRO-$VERSION /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-$VERSION/*deb
+	echo reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$DISTRO-$VERSION /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-$VERSION/*deb
+        reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$DISTRO-$VERSION /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-$VERSION/*deb
     fi
 done
 
 # Import of the nightly builds
+
 if test -d /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain/ -o -d /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-snapshot/; then
     if test $DISTRO == "unstable"; then
         reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-snapshot/*deb
