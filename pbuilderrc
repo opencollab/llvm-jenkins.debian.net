@@ -1,16 +1,16 @@
 # Codenames for Debian suites according to their alias. Update these when
 # needed.
 UNSTABLE_CODENAME="sid"
-TESTING_CODENAME="stretch"
-STABLE_CODENAME="jessie"
+TESTING_CODENAME="bookworm"
+STABLE_CODENAME="bullseye"
 #STABLE_BACKPORTS_SUITE="$STABLE_CODENAME-backports"
 
 # List of Debian suites.
 DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME
-    "unstable" "testing" "stable" "buster" "bullseye")
+    "unstable" "testing" "stable" "buster" "bullseye" "bookworm")
 
 # List of Ubuntu suites. Update these when needed.
-UBUNTU_SUITES=("hirsute" "groovy" "focal" "eoan" "disco" "cosmic" "bionic" "artful" "zesty" "yakkety" "xenial" "wily" "vivid" "utopic" "trusty" "saucy" "raring" "quantal" "precise" "oneiric" "natty" "lucid" "hardy")
+UBUNTU_SUITES=("impish" "hirsute" "groovy" "focal" "eoan" "disco" "cosmic" "bionic" "artful" "zesty" "yakkety" "xenial" "wily" "vivid" "utopic" "trusty" "saucy" "raring" "quantal" "precise" "oneiric" "natty" "lucid" "hardy")
 
 
 # Mirrors to use. Update these to your preferred mirror.
