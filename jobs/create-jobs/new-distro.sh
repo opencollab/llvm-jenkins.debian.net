@@ -28,11 +28,12 @@ chown jenkins. /srv/repository/$NAME
 emacs ~/.pbuilderrc
 echo "commit ~jenkins/pbuilderrc"
 echo "On every slave, git pull + create the symlink from $NAME for deboostrap"
-echo "in the sync job, restrict to where it can run master||korcula probably"
 echo "remove i386 in case of ubuntu distro"
 echo "also delete llvm-toolchain-$NAME-source-trigger and update the cron in the job"
 echo "Add the new version in /srv/salt/llvm-slave.sls on ursae for /usr/share/debootstrap/scripts"
 echo "Update llvm-toolchain-$NAME-binaries-sync to fix the version to sync"
 echo "Update the update of the build in the main job llvm-toolchain-$NAME-source"
-echo "Update the version (not snapshot) to add the 0 of the branch in the orig-tar.sh script (ex: release_70 instead of release_7)"
-
+echo "Update the version (not snapshot) to add the .x of the branch name in the orig-tar.sh script (ex: release/12.x instead of release/12)"
+echo "in /srv/repository/$NAME/conf/* maybe copy the configuration from other repo to avoid s390x issues"
+echo "create the filter view"
+echo "start the jobs in jenkins"
