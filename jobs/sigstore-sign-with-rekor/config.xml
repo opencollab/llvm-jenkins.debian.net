@@ -1,0 +1,58 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <assignedNode>master</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <hudson.triggers.TimerTrigger>
+      <spec>@daily</spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.46.1">
+      <project>sigstore-generate-rekor/architecture=amd64,label=amd64</project>
+      <filter>rekor</filter>
+      <target>/srv/rekor/</target>
+      <excludes></excludes>
+      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
+      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
+    </hudson.plugins.copyartifact.CopyArtifact>
+    <hudson.tasks.Shell>
+      <command>chmod +x /srv/rekor/rekor
+ls -al /srv/rekor/rekor
+/srv/rekor/rekor version
+LIST=$(find /srv/repository/ -iname &apos;*.dsc&apos; -o -iname &apos;*.xz&apos;)
+
+for f in $LIST; do 
+echo $f;
+mkdir -p /srv/rekor/$(dirname $f)/
+
+if test ! -f /srv/rekor/$f.asc; then
+    gpg --batch --yes --armor -u sylvestre@debian.org --output /srv/rekor/$f.asc --detach-sig $f
+fi
+
+url=https://apt.llvm.org/$(echo $f|sed -e &quot;s|/srv/repository/||g&quot;)
+if  curl --output /dev/null --silent --head --fail $url; then
+    /srv/rekor/rekor upload --rekor_server https://rekor.sigstore.dev --signature /srv/rekor/$f.asc --public-key ~/mypublickey.key --artifact $url
+    /srv/rekor/rekor verify --rekor_server https://rekor.sigstore.dev --signature /srv/rekor/$f.asc --public-key ~/mypublickey.key --artifact $url
+else 
+    echo &quot;$url failed&quot; &gt;&gt; /tmp/fail.txt
+fi
+done
+
+cat /tmp/fail.txt
+rm /tmp/fail.txt</command>
+      <configuredLocalRules/>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>
