@@ -4,9 +4,9 @@ if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root" 1>&2
    exit 1
 fi
-NAME="bullseye"
+NAME="impish"
 
-VERSIONS=(  11 12 snapshot)
+VERSIONS=(12 13 snapshot)
 for v in "${VERSIONS[@]}"
 do
         echo $v
