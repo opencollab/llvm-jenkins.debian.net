@@ -59,7 +59,7 @@ sudo /bin/rm -rf install-all || true
   </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.34">
-      <recipients>syivestre@debian.org</recipients>
+      <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
