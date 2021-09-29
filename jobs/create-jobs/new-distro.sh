@@ -28,6 +28,7 @@ chown jenkins. /srv/repository/$NAME
 emacs ~/.pbuilderrc
 echo "commit ~jenkins/pbuilderrc"
 echo "On every slave, git pull + create the symlink from $NAME for deboostrap"
+echo "including other archs"
 echo "remove i386 in case of ubuntu distro"
 echo "also delete llvm-toolchain-$NAME-source-trigger and update the cron in the job"
 echo "Add the new version in /srv/salt/llvm-slave.sls on ursae for /usr/share/debootstrap/scripts"
