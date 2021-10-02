@@ -2,6 +2,8 @@
 set -e
 
 # Update the gcloud image
+
+# List what we have
 gcloud compute instances list
 
 # Start the VM
