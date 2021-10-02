@@ -61,7 +61,7 @@ Only build amd64</description>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>export DEB_BUILD_OPTIONS=&quot;codecoverage parallel=7&quot;
+      <command>export DEB_BUILD_OPTIONS=&quot;codecoverage &quot;
 export BUILD_ONLY=true
 if test ! -d $REPOSITORY; then mount &quot;$(dirname &quot;$REPOSITORY&quot;)&quot;; fi
 /usr/bin/build-and-provide-package
