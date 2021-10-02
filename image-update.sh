@@ -20,12 +20,12 @@ gcloud compute instances stop debian-build-node
 
 # Retrieve the current image
 gcloud compute images list --filter="name~'image-debian-node-.*'" &> out.log
-NODEID=$(grep "image-debian-node" out.log|awk '{print $1}'||cut -d- -f4)
-NEW_NODE=i=$((NODEID+1))
+NODEID=$(grep "image-debian-node" out.log|awk '{print $1}'|cut -d- -f4)
+NEW_NODE=$((NODEID+1))
 # Create the new image
 gcloud compute images create image-debian-node-$NEW_NODE --source-disk=debian-build-node
 # Obsolete the old one
-gcloud compute images deprecate  image-debian-node-$NODEID --state=OBSOLETE --replacement=image-debian-node-$NEW_NODE
+gcloud compute images deprecate image-debian-node-$NODEID --state=OBSOLETE --replacement=image-debian-node-$NEW_NODE
 
 echo "Update jenkins on http://URL/configureClouds/"
 rm out.log
