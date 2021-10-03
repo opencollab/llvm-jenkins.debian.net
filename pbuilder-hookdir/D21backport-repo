@@ -12,14 +12,3 @@ if test "$DIST" = "bionic"; then
     apt-get update
     apt-get install g++-10 --assume-yes --no-install-recommends
 fi
-
-if test "$DIST" = "xenial"; then
-# python-recommonmark isn't available on old ubuntu, download and install them
-    apt-get install python3-pkg-resources  python3-docutils  python-pkg-resources  python-docutils  --assume-yes --no-install-recommends
-    wget http://mirrors.kernel.org/ubuntu/pool/universe/r/recommonmark/python-recommonmark_0.4.0+ds-2_all.deb
-    wget http://mirrors.kernel.org/ubuntu/pool/universe/c/commonmark-bkrs/python-commonmark-bkrs_0.5.4+ds-1_all.deb
-    wget http://mirrors.kernel.org/ubuntu/pool/universe/r/recommonmark/python3-recommonmark_0.4.0+ds-2_all.deb
-    wget http://mirrors.kernel.org/ubuntu/pool/universe/c/commonmark-bkrs/python3-commonmark-bkrs_0.5.4+ds-1_all.deb
-    dpkg -i python*-commonmark-bkrs_0.5.4+ds-1_all.deb python*-recommonmark_0.4.0+ds-2_all.deb
-    rm *.deb
-fi
