@@ -5,6 +5,14 @@ apt-get install --assume-yes --no-install-recommends lsb-release wget
 DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
 
+if test "$DIST" = "bionic"; then
+    # Install gcc 10 to get C++ 20 features
+    apt install -y software-properties-common
+    add-apt-repository -y ppa:ubuntu-toolchain-r/test
+    apt-get update
+    apt-get install g++-10 --assume-yes --no-install-recommends
+fi
+
 if test "$DIST" = "xenial"; then
 # python-recommonmark isn't available on old ubuntu, download and install them
     apt-get install python3-pkg-resources  python3-docutils  python-pkg-resources  python-docutils  --assume-yes --no-install-recommends
@@ -14,10 +22,4 @@ if test "$DIST" = "xenial"; then
     wget http://mirrors.kernel.org/ubuntu/pool/universe/c/commonmark-bkrs/python3-commonmark-bkrs_0.5.4+ds-1_all.deb
     dpkg -i python*-commonmark-bkrs_0.5.4+ds-1_all.deb python*-recommonmark_0.4.0+ds-2_all.deb
     rm *.deb
-fi
-
-if test "$DIST" = "sid"; then
-    # Install gcc 8 by end
-    # Work in the debian ci but not in our config
-    apt-get install g++-8  --assume-yes --no-install-recommends
 fi
