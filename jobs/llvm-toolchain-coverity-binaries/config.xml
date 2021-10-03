@@ -62,7 +62,7 @@
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>export DEB_BUILD_OPTIONS=&quot;coverity parallel=7&quot;
+      <command>export DEB_BUILD_OPTIONS=&quot;coverity &quot;
 export BUILD_ONLY=true
 #sudo /opt/install-coverity.sh 
 if test ! -d $REPOSITORY; then mount &quot;$(dirname &quot;$REPOSITORY&quot;)&quot;; fi

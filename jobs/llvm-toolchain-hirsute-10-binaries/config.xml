@@ -56,7 +56,7 @@
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>export DEB_BUILD_OPTIONS=&quot;parallel=7 nocheck&quot;
+      <command>export DEB_BUILD_OPTIONS=&quot;nocheck&quot;
 export REPOSITORY=&quot;/srv/repository/hirsute&quot;
 export ARCHITECTURES=&quot;amd64 source s390x&quot; 
 export REPOS=llvm-toolchain-hirsute-10

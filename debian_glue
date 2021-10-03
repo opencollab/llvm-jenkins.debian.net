@@ -6,7 +6,7 @@
 # signed and the keyring that holds the public key (REPOSITORY_KEYRING)
 # must be set.
 # Expected format: DEADBEEF
-KEY_ID=AF4F7421
+KEY_ID=6084F3CF814B57C1CF12EFD515CF4D18AF4F7421
 # KEY_ID=
 
 # If TRUNK_RELEASE is set then the package(s) of the repository

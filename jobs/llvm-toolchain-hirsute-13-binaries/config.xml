@@ -52,7 +52,7 @@
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>export DEB_BUILD_OPTIONS=&quot;parallel=7 nocheck&quot;
+      <command>export DEB_BUILD_OPTIONS=&quot;nocheck&quot;
 export REPOSITORY=&quot;/srv/repository/hirsute&quot;
 export REPOS=llvm-toolchain-hirsute-13
 export SKIP_PACKAGE_FROM_REMOVAL=&quot;llvm llvm-runtime llvm-dev llvm-defaults lldb lld libllvm-ocaml-dev libclang1 libclang-dev clang clang-tidy clang-format clangd&quot;

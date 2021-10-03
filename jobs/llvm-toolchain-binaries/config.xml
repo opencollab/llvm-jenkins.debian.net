@@ -58,7 +58,7 @@
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>export DEB_BUILD_OPTIONS=&quot;parallel=7 nocheck&quot;
+      <command>export DEB_BUILD_OPTIONS=&quot;nocheck&quot;
 export REPOSITORY=&quot;/srv/repository/unstable&quot;
 export REPOS=llvm-toolchain
 export SKIP_PACKAGE_FROM_REMOVAL=&quot;$SKIP_PKG_RM&quot;

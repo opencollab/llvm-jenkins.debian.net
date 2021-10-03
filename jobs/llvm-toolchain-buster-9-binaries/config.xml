@@ -58,7 +58,7 @@
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>export DEB_BUILD_OPTIONS=&quot;parallel=7 nocheck&quot;
+      <command>export DEB_BUILD_OPTIONS=&quot;nocheck&quot;
 export REPOSITORY=&quot;/srv/repository/buster&quot;
 export REPOS=llvm-toolchain-buster-9
 export ARCHITECTURES=&quot;amd64 i386 source s390x&quot; 

@@ -55,7 +55,7 @@ Only build amd64</description>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>export DEB_BUILD_OPTIONS=&quot;scan-build parallel=7 nocheck&quot;
+      <command>export DEB_BUILD_OPTIONS=&quot;scan-build nocheck&quot;
 export BUILD_ONLY=true
 CURRENT_PATH=$(pwd)
 if test ! -d $REPOSITORY; then echo &quot;$REPOSITORY is not mounted&quot;; exit 1; fi
