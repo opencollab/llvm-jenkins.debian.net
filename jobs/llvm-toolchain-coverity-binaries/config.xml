@@ -15,7 +15,7 @@
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -53,7 +53,7 @@
     </hudson.matrix.LabelAxis>
   </axes>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.46.1">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.46.2">
       <project>llvm-toolchain-source</project>
       <filter>*</filter>
       <target></target>
