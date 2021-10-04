@@ -65,7 +65,7 @@ export DISTRIBUTION=bullseye
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>*.gz,*.bz2,*.xz,*.deb,*.dsc,*.changes,lintian.txt</artifacts>
+      <artifacts>*.gz,*.bz2,*.xz,*.dsc,*.changes,lintian.txt</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>true</fingerprint>
