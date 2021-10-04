@@ -10,5 +10,5 @@ if test "$DIST" = "bionic"; then
     apt install -y software-properties-common
     add-apt-repository -y ppa:ubuntu-toolchain-r/test
     apt-get update
-    apt-get install g++-10 --assume-yes --no-install-recommends
+    apt-get install g++-11 --assume-yes --no-install-recommends
 fi
