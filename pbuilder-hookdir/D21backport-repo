@@ -6,7 +6,7 @@ DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
 
 if test "$DIST" = "bionic"; then
-    # Install gcc 10 to get C++ 20 features
+    # Install gcc 11 to get C++ 20 features
     apt install -y software-properties-common
     add-apt-repository -y ppa:ubuntu-toolchain-r/test
     apt-get update
