@@ -4,7 +4,7 @@ set -e -v
 # If no argument provided, test all
 # If 2 are provided, distro + version
 
-DISTRO="buster bullseye unstable bionic focal groovy hirsute"
+DISTRO="buster bullseye unstable bionic focal groovy hirsute impish"
 VERSION="10 11 12 13"
 VERSION_NEXT="14"
 
