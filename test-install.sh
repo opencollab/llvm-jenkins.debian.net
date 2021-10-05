@@ -51,11 +51,17 @@ fi
 echo "DISTRO = $DISTRO"
 echo "VERSION = $VERSION"
 
+MIRROR=""
+if test "$d" == "buster" -o "$d" == "bullseye" -o "$d" == "unstable"; then
+    # deb.debian.org is failing too often
+    MIRROR=http://cloudfront.debian.net/debian
+fi
+
 # Create the chroots
 for d in $DISTRO; do
     if test ! -d $d.chroot; then
         echo "Create $d chroot"
-        sudo debootstrap $d $d.chroot http://cloudfront.debian.net/debian
+        sudo debootstrap $d $d.chroot $MIRROR
     fi
     if test ! -e $0.chroot/proc/uptime; then
         sudo mount -t proc /proc $d.chroot/proc || true
