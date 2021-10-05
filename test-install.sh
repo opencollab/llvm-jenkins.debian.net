@@ -84,7 +84,7 @@ for d in $DISTRO; do
     else
         echo $TEMPLATE|sed -e "s|@DISTRO@||g" -e "s|@DISTRO_PATH@|$d|g" >> $d.list
     fi
-    if test "$d" == "bionic" -o "$d" == "focal" -o "$d" == "groovy" -o "$d" == "hirsute"; then
+    if test "$d" == "bionic" -o "$d" == "focal" -o "$d" == "groovy" -o "$d" == "hirsute" -o "$d" == "impish"; then
         # focal, groovy, etc need universe
         if test "$(arch)" == "s390x"; then
             echo "deb http://ports.ubuntu.com/ubuntu-ports $d universe" >> $d.list
@@ -105,6 +105,13 @@ for d in $DISTRO; do
         if test $v == "9" -a $d == "hirsute"; then
             continue
         fi
+
+        if test $v == "9" -o $v == "10" -o $v == "11"; then
+            if test "$d" == "impish"; then
+                continue
+            fi
+        fi
+
         if test $v != "$VERSION_NEXT"; then
             # If the user entered the current trunk
             # Skip this
@@ -147,6 +154,12 @@ for d in $DISTRO; do
         if test $v == "9" -a $d == "hirsute"; then
             # 9 isn't supported for this distro
             continue
+        fi
+        if test $v == "9" -o $v == "10" -o $v == "11"; then
+            if test "$d" == "impish"; then
+                # 9, 10 and 11 aren't supported for this distro
+                continue
+            fi
         fi
 
         PKG="$PKG clang-$v clangd-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev libclang-$v-dev libclang-cpp$v-dev python"
