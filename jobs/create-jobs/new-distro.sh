@@ -38,3 +38,4 @@ echo "Update the version (not snapshot) to add the .x of the branch name in the 
 echo "in /srv/repository/$NAME/conf/* maybe copy the configuration from other repo to avoid s390x issues"
 echo "create the filter view"
 echo "start the jobs in jenkins"
+echo "add it into test-install.sh"
