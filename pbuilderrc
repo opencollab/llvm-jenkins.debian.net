@@ -15,7 +15,7 @@ UBUNTU_SUITES=("impish" "hirsute" "groovy" "focal" "eoan" "disco" "cosmic" "bion
 
 # Mirrors to use. Update these to your preferred mirror.
 DEBIAN_MIRROR="deb.debian.org"
-DEBIAN_MIRROR="debian.proxad.net/"
+DEBIAN_MIRROR="cloudfront.debian.net/"
 
 if [ "${ARCH}" != 'i386' ] && [ "${ARCH}" != 'amd64' ]; then
     UBUNTU_MIRROR="ports.ubuntu.com/ubuntu-ports/"
