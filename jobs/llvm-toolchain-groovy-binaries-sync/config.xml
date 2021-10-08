@@ -5,7 +5,7 @@
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.scm.NullSCM"/>
-  <assignedNode>!(blade04 || blade06)</assignedNode>
+  <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-groovy-binaries,llvm-toolchain-groovy-12-binaries,llvm-toolchain-groovy-11-binaries,llvm-toolchain-groovy-10-binaries, llvm-toolchain-groovy-13-binaries</upstreamProjects>
+      <upstreamProjects>llvm-toolchain-groovy-binaries,llvm-toolchain-groovy-12-binaries,llvm-toolchain-groovy-11-binaries,llvm-toolchain-groovy-13-binaries</upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

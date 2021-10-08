@@ -28,15 +28,15 @@
     <hudson.matrix.LabelAxis>
       <name>label</name>
       <values>
-        <string>amd64</string>
-        <string>i386</string>
-        <string>s390x</string>
+        <java.lang.String>amd64</java.lang.String>
+        <java.lang.String>i386</java.lang.String>
+        <java.lang.String>s390x</java.lang.String>
       </values>
     </hudson.matrix.LabelAxis>
     <hudson.matrix.TextAxis>
       <name>architecture</name>
       <values>
-        <string>amd64</string>
+        <java.lang.String>amd64</java.lang.String>
       </values>
     </hudson.matrix.TextAxis>
   </axes>
