@@ -5,9 +5,15 @@ d=$1
 architecture=$2
 PATH_CHROOT=$d.chroot.$architecture
 
+MIRROR=""
+if test "$d" == "buster" -o "$d" == "bullseye" -o "$d" == "unstable"; then
+    # deb.debian.org is failing too often
+    MIRROR=http://cloudfront.debian.net/debian
+fi
+
 if test ! -d $PATH_CHROOT; then
         echo "Create $PATH_CHROOT chroot"
-        debootstrap --arch $architecture $d $PATH_CHROOT
+        debootstrap --arch $architecture $d $PATH_CHROOT $MIRROR
 fi
 if test ! -e $PATH_CHROOT/proc/uptime; then
         mount -t proc /proc $PATH_CHROOT/proc || true
