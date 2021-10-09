@@ -11,6 +11,7 @@ function getLastUpdate($distro) {
    preg_match("/Date: (.*)/",$contents,$matches);
    return $matches[1];
 }
+
 function getLastRevision($distro) {
    $base="/data/apt/www";
    if ($distro!="unstable") {
@@ -377,7 +378,6 @@ LLVM tarballs (and should be merged upstream at some point).
 With the Jenkins instance, several reports are produced:
 <ul>
 <li><a href="https://llvm.org/reports/scan-build/">Scan build report</a></li>
-<li><a href="https://llvm.org/reports/coverage/">Code coverage</a></li>
 <li><a href="https://scan.coverity.com/projects/llvm">Coverity reports</a></li>
 </ul>
 </div>
