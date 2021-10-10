@@ -29,5 +29,5 @@ gcloud compute images create image-debian-node-$NEW_NODE --source-disk=debian-bu
 # Obsolete the old one
 gcloud compute images deprecate image-debian-node-$NODEID --state=OBSOLETE --replacement=image-debian-node-$NEW_NODE
 
-echo "Update jenkins on http://URL/configureClouds/"
+echo "Update jenkins on https://llvm-jenkins.debian.net/configureClouds/"
 rm out.log
