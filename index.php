@@ -341,6 +341,23 @@ apt-get install libunwind-<?=$devBranch?>-dev<br />
 </p>
 
 </div>
+
+<div class="rel_section">Verification</div>
+
+<div class="rel_boxtext">
+Source and Debian tarballs and dsc files can be verified using sigstore/rekor.
+This can be done with:
+<p class="www_code">
+# example:
+file="llvm-toolchain-11_11.1.0~%2b%2b20210806091343%2b1fdec59bffc1-1~exp1~20210806071958.178.dsc"
+url="https://apt.llvm.org/unstable/pool/main/l/llvm-toolchain-11/$file"
+wget "$url".asc
+wget https://apt.llvm.org/sigstore.public.key
+rekor verify --rekor_server https://rekor.sigstore.dev --signature "$file".asc --public-key sigstore.public.key --artifact $url
+echo $?
+</p>
+</div>
+
 <div class="rel_section">Technical aspects</div>
 <div class="rel_boxtext">
 Packages are rebuilt against the trunk of the various LLVM projects.<br />
