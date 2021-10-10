@@ -11,7 +11,6 @@ function getLastUpdate($distro) {
    preg_match("/Date: (.*)/",$contents,$matches);
    return $matches[1];
 }
-
 function getLastRevision($distro) {
    $base="/data/apt/www";
    if ($distro!="unstable") {
