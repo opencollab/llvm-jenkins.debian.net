@@ -1,3 +1,4 @@
+#!/bin/bash
 ARCHS="amd64 i386"
 DEBIAN_DISTRO="buster bullseye unstable"
 UBUNTU_DISTRO="bionic focal groovy hirsute impish"
