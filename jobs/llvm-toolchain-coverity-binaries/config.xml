@@ -7,7 +7,7 @@
     <jenkins.model.BuildDiscarderProperty>
       <strategy class="hudson.tasks.LogRotator">
         <daysToKeep>-1</daysToKeep>
-        <numToKeep>3</numToKeep>
+        <numToKeep>10</numToKeep>
         <artifactDaysToKeep>3</artifactDaysToKeep>
         <artifactNumToKeep>3</artifactNumToKeep>
       </strategy>
