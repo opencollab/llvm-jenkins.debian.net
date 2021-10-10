@@ -5,8 +5,7 @@ DEBIAN_DISTRO="buster bullseye unstable"
 UBUNTU_DISTRO="bionic focal groovy hirsute impish"
 EXPORT_PATH="/home/jenkins/"
 GIT_BASE_URL=https://github.com/llvm/llvm-project
-GIT_TOOLCHAIN_CHECK=https://github.com/opencollab/llvm-toolchain-integration-tes
-t-suite.git
+GIT_TOOLCHAIN_CHECK=https://github.com/opencollab/llvm-toolchain-integration-test-suite.git
 
 if test -d $EXPORT_PATH/llvm-project; then
     echo "Updating repo in $EXPORT_PATH/llvm-project"
