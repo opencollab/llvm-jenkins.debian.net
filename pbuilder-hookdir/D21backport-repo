@@ -4,9 +4,16 @@ set -ex
 apt-get install --assume-yes --no-install-recommends lsb-release wget
 DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
+# Detect the LLVM version
+LLVM_VERSION=$(dpkg-parsechangelog | sed -rne "s,^Version: 1:([0-9]+).*,\1,p")
 
-if test "$DIST" = "bionic"; then
+echo "DIST = $DIST"
+echo "ID = $ID"
+echo "LLVM_VERSION = $LLVM_VERSION"
+
+if test "$DIST" = "bionic" -a $LLVM_VERSION -ge 14; then
     # Install gcc 11 to get C++ 20 features
+    # Only needed from llvm 14
     apt install -y software-properties-common
     add-apt-repository -y ppa:ubuntu-toolchain-r/test
     apt-get update
