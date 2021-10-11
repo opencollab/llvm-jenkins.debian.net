@@ -5,7 +5,9 @@ apt-get install --assume-yes --no-install-recommends lsb-release wget
 DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
 # Detect the LLVM version
-LLVM_VERSION=$(dpkg-parsechangelog | sed -rne "s,^Version: 1:([0-9]+).*,\1,p")
+
+PKG_DIR=$(readlink -f /build/*/debian/..)
+LLVM_VERSION=$(cd $PKG_DIR && dpkg-parsechangelog | sed -rne "s,^Version: 1:([0-9]+).*,\1,p")
 
 echo "DIST = $DIST"
 echo "ID = $ID"
