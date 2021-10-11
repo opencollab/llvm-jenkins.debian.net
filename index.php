@@ -106,7 +106,7 @@ sudo ./llvm.sh &lt;version number&gt;
 
 <div class="rel_boxtext">
 
-Buster (Debian 10 - stable) - <small>Last update : <?=getLastUpdate("buster");?> / Revision: <?=getLastRevision("buster")?></small>
+Buster (Debian 10 - oldstable) - <small>Last update : <?=getLastUpdate("buster");?> / Revision: <?=getLastRevision("buster")?></small>
 <pre>
 deb http://apt.llvm.org/buster/ llvm-toolchain-buster main
 deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster main
@@ -118,7 +118,7 @@ deb http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$qualificationBranch?> 
 deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$qualificationBranch?> main
 </pre>
 
-Bullseye (Debian 11 -  next stable) - <small>Last update : <?=getLastUpdate("bullseye");?> / Revision: <?=getLastRevision("bullseye")?></small>
+Bullseye (Debian 11 -  stable) - <small>Last update : <?=getLastUpdate("bullseye");?> / Revision: <?=getLastRevision("bullseye")?></small>
 <pre>
 deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
 deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
@@ -148,15 +148,15 @@ deb-src http://apt.llvm.org/unstable/ llvm-toolchain-<?=$qualificationBranch?> m
 </div>
 <div class="rel_section">Ubuntu</div>
 <div class="rel_boxtext">
-<!--<a href="https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test">gcc backport (ppa)</a> is necessary on Trusty (for libstdc++).<br />-->
-Precise, Quantal, Raring, Saucy, Utopic, Artful, Cosmic, Eoan and Trusty are no longer supported by Ubuntu. Repo remains available<br />
+Precise, Quantal, Raring, Saucy, Utopic, Artful, Cosmic, Eoan and Trusty are no longer supported by Ubuntu. Repo remains available but not updated.<br />
 <br />
-
+As i386 isn't supported by Ubuntu anymore, apt.llvm.org isn't either.<br />
+<br />
 Bionic LTS (18.04) - <small>Last update : <?=getLastUpdate("bionic");?> / Revision: <?=getLastRevision("bionic")?></small>
 <pre>
-# i386 not available
 deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic main
 deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic main
+# Needs 'sudo add-apt-repository ppa:ubuntu-toolchain-r/test' for libstdc++ with C++20 support
 # <?=$stableBranch?>
 
 deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$stableBranch?> main
@@ -169,7 +169,6 @@ deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranc
 
 Focal (20.04) LTS - <small>Last update : <?=getLastUpdate("focal");?> / Revision: <?=getLastRevision("focal")?></small>
 <pre>
-# i386 not available
 deb http://apt.llvm.org/focal/ llvm-toolchain-focal main
 deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal main
 # <?=$stableBranch?>
@@ -184,7 +183,6 @@ deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?
 </pre>
 Groovy (20.10) - <small>Last update : <?=getLastUpdate("groovy");?> / Revision: <?=getLastRevision("groovy")?></small>
 <pre>
-# i386 not available
 deb http://apt.llvm.org/groovy/ llvm-toolchain-groovy main
 deb-src http://apt.llvm.org/groovy/ llvm-toolchain-groovy main
 # <?=$stableBranch?>
@@ -199,7 +197,6 @@ deb-src http://apt.llvm.org/groovy/ llvm-toolchain-groovy-<?=$qualificationBranc
 
 Hirsute (21.04) - <small>Last update : <?=getLastUpdate("hirsute");?> / Revision: <?=getLastRevision("hirsute")?></small>
 <pre>
-# i386 not available
 deb http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute main
 deb-src http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute main
 # <?=$stableBranch?>
