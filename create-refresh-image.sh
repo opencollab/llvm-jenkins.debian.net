@@ -38,7 +38,7 @@ for d in $DEBIAN_DISTRO; do
         if test -d /var/cache/pbuilder/base-$d-$a.cow; then
             sudo DIST=$d ARCH=$a cowbuilder --update --basepath /var/cache/pbuilder/base-$d-$a.cow
         else
-            sudo DIST=$d ARCH=$a cowbuilder --create --basepath /var/cache/pbuilder/base-$d-$a.cow --distribution $d --debootstrap debootstrap --mirror http://cloudfront.debian.net//debian/ --architecture $a --debootstrapopts --arch --debootstrapopts amd64 --debootstrapopts --variant=buildd --hookdir /usr/share/jenkins-debian-glue/pbuilder-hookdir/
+            sudo DIST=$d ARCH=$a cowbuilder --create --basepath /var/cache/pbuilder/base-$d-$a.cow --distribution $d --debootstrap debootstrap --mirror http://cloudfront.debian.net//debian/ --architecture $a --debootstrapopts --arch --debootstrapopts $a --debootstrapopts --variant=buildd --hookdir /usr/share/jenkins-debian-glue/pbuilder-hookdir/
         fi
     done
 done
@@ -49,7 +49,7 @@ for d in $UBUNTU_DISTRO; do
     if test -d /var/cache/pbuilder/base-$d-$a.cow; then
         sudo DIST=$d ARCH=$a cowbuilder --update --basepath /var/cache/pbuilder/base-$d-$a.cow
     else
-        sudo DIST=$d ARCH=$a cowbuilder --create --basepath /var/cache/pbuilder/base-$d-$a.cow --distribution $d --debootstrap debootstrap --architecture $a --debootstrapopts --arch --debootstrapopts amd64 --debootstrapopts --variant=buildd --configfile=/tmp/configfile --hookdir /usr/share/jenkins-debian-glue/pbuilder-hookdir/
+        sudo DIST=$d ARCH=$a cowbuilder --create --basepath /var/cache/pbuilder/base-$d-$a.cow --distribution $d --debootstrap debootstrap --architecture $a --debootstrapopts --arch --debootstrapopts $a --debootstrapopts --variant=buildd --configfile=/tmp/configfile --hookdir /usr/share/jenkins-debian-glue/pbuilder-hookdir/
     fi
 done
 rm -f /tmp/configfile
