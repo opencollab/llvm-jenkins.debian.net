@@ -21,7 +21,6 @@ if test -d $EXPORT_PATH/llvm-toolchain-integration-test-suite; then
     echo "Updating repo in $EXPORT_PATH/llvm-toolchain-integration-test-suite"
     # Update it
     git pull
-    reset_repo $EXPORT_PATH/llvm-toolchain-integration-test-suite
 else
     echo "Clone llvm-toolchain-integration-test-suite into $EXPORT_PATH/llvm-toolchain-integration-test-suite"
     git clone $GIT_TOOLCHAIN_CHECK $EXPORT_PATH/llvm-toolchain-integration-test-suite
