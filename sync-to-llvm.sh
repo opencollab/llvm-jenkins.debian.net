@@ -58,17 +58,28 @@ if test "$REPOSITORY" == "unstable"; then
 else
     REPOSITORY_CODE="-$REPOSITORY"
 fi
-archs="i386 amd64 s390x"
-for f in $arch; do
-    url="binary-$arch/Packages.gz binary-$arch/Packages binary-$arch/Release binary-$arch/Release"
-    for f in $url; do
-        curl -XPOST -H "Fastly-Key:$key" https://api.fastly.com/purge/apt.llvm.org/$REPOSITORY/dists/llvm-toolchain$REPOSITORY_CODE/main/$f
-    done
+
+purge_url() {
+    API="https://api.fastly.com/purge"
+    curl -XPOST -H "Fastly-Key:$key" "$API/$1"
+    # Can fail with a 404 as we just purged it
+    curl -sLIXGET "https://$1" -H 'Fastly-Debug:1'
+    echo "we should get HIT=1 now:"
+    curl -sLIXGET "https://$1" -H 'Fastly-Debug:1'
+    echo ""
+
+}
+
+url="binary-i386/Packages.gz binary-amd64/Packages.gz binary-i386/Packages binary-amd64/Packages binary-i386/Release binary-amd64/Release"
+for f in $url; do
+	FULL_URL="apt.llvm.org/$REPOSITORY/dists/llvm-toolchain$REPOSITORY_CODE/main/$f"
+	purge_url $FULL_URL
 done
+
 url="InRelease Release Release.gpg"
 for f in $url; do
-    curl -XPOST -H "Fastly-Key:$key" https://api.fastly.com/purge/apt.llvm.org/$REPOSITORY/dists/llvm-toolchain$REPOSITORY_CODE/$f
+	FULL_URL="apt.llvm.org/$REPOSITORY/dists/llvm-toolchain$REPOSITORY_CODE/$f"
+        purge_url $FULL_URL
 done
-
-curl -XPOST -H "Fastly-Key:$key" https://api.fastly.com/purge/apt.llvm.org/$REPOSITORY/
-
+FULL_URL="apt.llvm.org/$REPOSITORY/"
+purge_url $FULL_URL
