@@ -61,24 +61,23 @@ fi
 
 purge_url() {
     API="https://api.fastly.com/purge"
+    echo "================= Purge $1"
     curl -XPOST -H "Fastly-Key:$key" "$API/$1"
+    echo ""
     # Can fail with a 404 as we just purged it
     curl -sLIXGET "https://$1" -H 'Fastly-Debug:1'
     echo "we should get HIT=1 now:"
     curl -sLIXGET "https://$1" -H 'Fastly-Debug:1'
     echo ""
+
 }
-
-url="binary-i386/Packages.gz binary-amd64/Packages.gz binary-i386/Packages binary-amd64/Packages binary-i386/Release binary-amd64/Release"
+cd /srv/repository/$REPOSITORY/dists/
+url=$(ls -1 llvm-toolchain*/main/{source,binary*}/* */*Release*)
+cd -
 for f in $url; do
-    FULL_URL="apt.llvm.org/$REPOSITORY/dists/llvm-toolchain$REPOSITORY_CODE/main/$f"
-    purge_url $FULL_URL
+	FULL_URL="apt.llvm.org/$REPOSITORY/dists/$f"
+	purge_url $FULL_URL
 done
 
-url="InRelease Release Release.gpg"
-for f in $url; do
-    FULL_URL="apt.llvm.org/$REPOSITORY/dists/llvm-toolchain$REPOSITORY_CODE/$f"
-    purge_url $FULL_URL
-done
 FULL_URL="apt.llvm.org/$REPOSITORY/"
 purge_url $FULL_URL
