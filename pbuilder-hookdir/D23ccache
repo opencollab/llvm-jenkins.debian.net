@@ -3,5 +3,7 @@
 set -ex
 
 apt-get install --yes --no-install-recommends --force-yes ccache
+# ccache stats
+ccache -s
 #mkdir -p /var/cache/pbuilder/ccache/
 #chmod -R 777 /var/cache/pbuilder/ccache
