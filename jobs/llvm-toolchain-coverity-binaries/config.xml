@@ -23,7 +23,7 @@
       <spec>@daily</spec>
     </hudson.triggers.TimerTrigger>
   </triggers>
-  <concurrentBuild>false</concurrentBuild>
+  <concurrentBuild>true</concurrentBuild>
   <axes>
     <hudson.matrix.TextAxis>
       <name>architecture</name>
