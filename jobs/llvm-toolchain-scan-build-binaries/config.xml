@@ -82,7 +82,7 @@ tar zxvf $CURRENT_PATH/scan-build.tar.gz
   </publishers>
   <buildWrappers/>
   <executionStrategy class="hudson.matrix.DefaultMatrixExecutionStrategyImpl">
-    <runSequentially>true</runSequentially>
+    <runSequentially>false</runSequentially>
     <touchStoneCombinationFilter></touchStoneCombinationFilter>
     <touchStoneResultCondition>
       <name>SUCCESS</name>

@@ -118,7 +118,7 @@ export SKIP_PACKAGE_FROM_REMOVAL=&quot;llvm llvm-runtime llvm-dev llvm-defaults 
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
   </buildWrappers>
   <executionStrategy class="hudson.matrix.DefaultMatrixExecutionStrategyImpl">
-    <runSequentially>true</runSequentially>
+    <runSequentially>false</runSequentially>
     <touchStoneCombinationFilter></touchStoneCombinationFilter>
     <touchStoneResultCondition>
       <name>SUCCESS</name>

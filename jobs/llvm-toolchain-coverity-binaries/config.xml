@@ -79,7 +79,7 @@ if test ! -d $REPOSITORY; then mount &quot;$(dirname &quot;$REPOSITORY&quot;)&qu
   </publishers>
   <buildWrappers/>
   <executionStrategy class="hudson.matrix.DefaultMatrixExecutionStrategyImpl">
-    <runSequentially>true</runSequentially>
+    <runSequentially>false</runSequentially>
     <touchStoneCombinationFilter></touchStoneCombinationFilter>
     <touchStoneResultCondition>
       <name>SUCCESS</name>
