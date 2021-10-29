@@ -23,6 +23,7 @@
       <values>
         <string>amd64</string>
         <string>s390x</string>
+        <string>arm64</string>
       </values>
     </hudson.matrix.TextAxis>
     <hudson.matrix.TextAxis>
@@ -37,6 +38,7 @@
 +        <string>amd64</string>
 +        <string>i386</string>
 +        <string>s390x</string>
+        <string>arm64</string>
 +      </values>
 +    </hudson.matrix.LabelAxis>
   </axes>
