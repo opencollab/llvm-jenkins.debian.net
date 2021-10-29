@@ -25,7 +25,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>bash ~/sync-form-other-arch.sh bullseye $HOST_S390X s390x
+      <command>bash ~/sync-form-other-arch.sh bullseye $HOST_ARM64 arm64
+bash ~/sync-form-other-arch.sh bullseye $HOST_S390X s390x
 /srv/repository/sync-to-llvm.sh bullseye
 </command>
       <configuredLocalRules/>
