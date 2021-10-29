@@ -26,6 +26,7 @@
   <builders>
     <hudson.tasks.Shell>
       <command>bash ~/sync-form-other-arch.sh hirsute $HOST_S390X s390x
+bash ~/sync-form-other-arch.sh hirsute $HOST_ARM64 arm64
 /srv/repository/sync-to-llvm.sh hirsute
 </command>
       <configuredLocalRules/>

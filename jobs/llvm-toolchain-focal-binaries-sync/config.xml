@@ -25,8 +25,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command># import s390x
-bash -v ~/sync-form-other-arch.sh focal $HOST_S390X s390x
+      <command>bash -v ~/sync-form-other-arch.sh focal $HOST_S390X s390x
+bash ~/sync-form-other-arch.sh focal $HOST_ARM64 arm64
 /srv/repository/sync-to-llvm.sh focal
 </command>
       <configuredLocalRules/>
