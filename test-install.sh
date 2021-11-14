@@ -169,6 +169,11 @@ for d in $DISTRO; do
                 # 9, 10 and 11 aren't supported for this distro
                 continue
             fi
+            if test "$(arch)" == "aarch64"; then
+                # no support before 12
+                continue
+            fi
+
         fi
 
         PKG="$PKG clang-$v clangd-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev libclang-$v-dev libclang-cpp$v-dev python"
