@@ -115,6 +115,10 @@ for d in $DISTRO; do
             if test "$d" == "impish"; then
                 continue
             fi
+            if test "$(arch)" == "aarch64"; then
+                # no support before 12
+                continue
+            fi
         fi
 
         if test $v != "$VERSION_NEXT"; then
@@ -235,4 +239,3 @@ for d in $DISTRO; do
     sudo cp $d-run-testsuite.sh $d.chroot/root/run-testsuite.sh
     sudo chroot $d.chroot/ /bin/bash -c "bash /root/install.sh"
 done
-
