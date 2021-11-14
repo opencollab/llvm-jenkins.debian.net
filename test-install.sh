@@ -79,14 +79,12 @@ TEMPLATE_VERSION="deb http://apt.llvm.org/@DISTRO_PATH@/ llvm-toolchain@DISTRO@-
 
 for d in $DISTRO; do
     echo "" > $d.list
-    if test $VERSION == $VERSION_NEXT; then
-        # Only include the snapshot repo when it is requested
-        # When we want X, only install X
-        if test "$d" != "unstable"; then
-            echo $TEMPLATE|sed -e "s|@DISTRO@|-$d|g" -e "s|@DISTRO_PATH@|$d|g" >> $d.list
-        else
-            echo $TEMPLATE|sed -e "s|@DISTRO@||g" -e "s|@DISTRO_PATH@|$d|g" >> $d.list
-        fi
+    # Only include the snapshot repo when it is requested
+    # When we want X, only install X
+    if test "$d" != "unstable"; then
+        echo $TEMPLATE|sed -e "s|@DISTRO@|-$d|g" -e "s|@DISTRO_PATH@|$d|g" >> $d.list
+    else
+        echo $TEMPLATE|sed -e "s|@DISTRO@||g" -e "s|@DISTRO_PATH@|$d|g" >> $d.list
     fi
 
     if test "$d" == "bionic" -o "$d" == "focal" -o "$d" == "groovy" -o "$d" == "hirsute" -o "$d" == "impish"; then
