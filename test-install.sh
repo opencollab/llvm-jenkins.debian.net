@@ -174,7 +174,11 @@ for d in $DISTRO; do
 
         fi
 
-        PKG="$PKG clang-$v clangd-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev libclang-$v-dev libclang-cpp$v-dev python"
+        PKG="$PKG clang-$v clangd-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev libclang-$v-dev libclang-cpp$v-dev"
+        if test "$d" != "unstable"; then
+            PKG="$PKG python"
+        fi
+
         if test $v -gt 11; then
             # libunwind isn't packaged for -11
             PKG="$PKG libunwind-$v-dev"
