@@ -14,11 +14,13 @@ IP=$(grep "external" out.log|awk '{print $5}')
 echo "Sleep until $IP is live"
 sleep 30s
 
-echo "sudo -s
+echo "# Commands that you might want to run
+sudo -s
 su - jenkins
 cd ~/llvm-project
 git pull
 cd ~/llvm-jenkins.debian.net.git
+git pull
 bash create-refresh-image.sh"
 ssh $IP
 
