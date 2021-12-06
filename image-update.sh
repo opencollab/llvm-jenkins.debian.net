@@ -13,6 +13,13 @@ gcloud compute instances start debian-build-node &> out.log
 IP=$(grep "external" out.log|awk '{print $5}')
 echo "Sleep until $IP is live"
 sleep 30s
+
+echo "sudo -s
+su - jenkins
+cd ~/llvm-project
+git pull
+cd ~/llvm-jenkins.debian.net.git
+bash create-refresh-image.sh"
 ssh $IP
 
 # hack on the vm
