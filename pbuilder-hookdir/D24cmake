@@ -13,3 +13,21 @@ if test "$DIST" = "stretch" -o "$DIST" = "xenial" -o "$DIST" = "bionic"; then
 	tar zxf cmake.tar.gz
 	mv cmake-* cmake
 fi
+
+# To port cmake to a diffferent arch
+# /sbin/deboostrap bionic bionic
+# chroot bionic
+# echo "deb-src http://ports.ubuntu.com/ubuntu-ports bionic main" >> /etc/apt/sources.list
+# apt update
+# apt-get build-dep cmake
+# apt install wget libssl-dev
+# wget https://github.com/Kitware/CMake/releases/download/v3.18.1/cmake-3.18.1.tar.gz
+# tar zxvf cmake-3.18.1.tar.gz
+# cd cmake-3.18.1
+# ./bootstrap --prefix=/tmp/cmake-3.18.1 && make -j $(nproc) && make install
+# export ARCH=aarch64
+# cd /tmp
+# strip cmake*/bin/*
+# tar zcvf cmake-3.18.1-Linux-$ARCH.tar.gz cmake-3.18.1
+# exit
+# scp bionic/tmp/*gz $HOST
