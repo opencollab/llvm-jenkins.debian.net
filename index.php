@@ -57,30 +57,16 @@ $isQualification=false;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Nov 02nd 2021 - Infra <a href="https://blog.llvm.org/posts/2021-11-02-apt.llvm.org-moving-from-physical-server-to-the-cloud/">moved to the cloud</a><br />
 Aug 01st 2021 - Snapshot becomes 14, branch 13 created<br />
 Aug 01st 2021 - libunwind packages are generated (libunwind-XX & libunwind-XX-dev)<br />
 Jul 25th 2021 - Packages are tested against the <a href="https://github.com/opencollab/llvm-toolchain-integration-test-suite/">LLVM integration test suite</a><br />
-May 10th 2021 - Debian stretch disabled (quite old). If you are still using, <a href="mailto:sylvestre@debian.org">mail me</a><br />
+May 10th 2021 - Debian strech disabled (quite old). If you are still using, <a href="mailto:sylvestre@debian.org">mail me</a><br />
 May 01st 2021 - libclc packages generated from 12. Thanks to Timo Aaltonen<br />
 Apr 25th 2021 - S390X support added<br />
 Mar 28th 2021 - Ubuntu Xenial (16.04) disabled (EOL)<br />
 Feb 01st 2021 - Snapshot becomes 13, branch 12 created<br />
 Feb 01st 2021 - Debian Bullseye (11) added<br />
-Nov 01st 2020 - Ubuntu Groovy (20.10) & Hirsute (21.04) support<br />
-Nov 01st 2020 - Ubuntu Eoan disabled (EOL)<br />
-Jul 15th 2020 - Snapshot becomes 12, branch 11 created<br />
-Apr 14th 2020 - Ubuntu Disco disabled (EOL)<br />
-Apr 06th 2020 - Ubuntu Focal (20.04) support<br />
-Jan 23th 2020 - Snapshot becomes 11, branch 10 created<br />
-Jan 19th 2020 - Ubuntu Cosmic disabled (EOL)<br />
-Oct 30th 2019 - Ubuntu Eoan (19.10) support<br />
-Aug 20th 2019 - Ubuntu Trusty disabled (EOL)<br />
-Aug 01st 2019 - Snapshot becomes 10, branch 9 created<br />
-Apr 07th 2019 - Debian buster (10) added<br />
-Apr 06th 2019 - Debian Jessie (oldstable) <a href="https://lists.debian.org/debian-backports-announce/2018/07/msg00000.html">no longer</a> maintained<br />
-Jan 19th 2019 - Branch 8 created<br />
-Jan 19th 2019 - Ubuntu Disco (19.04) support<br />
-Jan 19th 2019 - Artful jobs disabled (but packages still available)<br />
 </div>
 
 <div class="rel_section">Automatic installation script</div>
@@ -402,6 +388,28 @@ Building the latest nightly snapshot
 <div class="rel_boxtext">
   <a href="./building-pkgs.php">Building LLVM packages from source</a> is documented in a dedicated page.
 </div>
+
+<!--
+<div class="rel_section">News</div>
+
+<div class="rel_boxtext">
+Nov 01st 2020 - Ubuntu Groovy (20.10) & Hirsute (21.04) support<br />
+Nov 01st 2020 - Ubuntu Eoan disabled (EOL)<br />
+Jul 15th 2020 - Snapshot becomes 12, branch 11 created<br />
+Apr 14th 2020 - Ubuntu Disco disabled (EOL)<br />
+Apr 06th 2020 - Ubuntu Focal (20.04) support<br />
+Jan 23th 2020 - Snapshot becomes 11, branch 10 created<br />
+Jan 19th 2020 - Ubuntu Cosmic disabled (EOL)<br />
+Oct 30th 2019 - Ubuntu Eoan (19.10) support<br />
+Aug 20th 2019 - Ubuntu Trusty disabled (EOL)<br />
+Aug 01st 2019 - Snapshot becomes 10, branch 9 created<br />
+Apr 07th 2019 - Debian buster (10) added<br />
+Apr 06th 2019 - Debian Jessie (oldstable) <a href="https://lists.debian.org/debian-backports-announce/2018/07/msg00000.html">no longer</a> maintained<br />
+Jan 19th 2019 - Branch 8 created<br />
+Jan 19th 2019 - Ubuntu Disco (19.04) support<br />
+Jan 19th 2019 - Artful jobs disabled (but packages still available)<br />
+</div>
+-->
 
 <p style="font-size: smaller;">
      Contact: <a href="mailto:sylvestre@debian.org">Sylvestre Ledru</a>
