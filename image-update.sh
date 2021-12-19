@@ -20,7 +20,7 @@ su - jenkins
 cd ~/llvm-project
 git pull
 cd ~/llvm-jenkins.debian.net.git
-git pull
+git stash && git pull && git stash apply
 bash create-refresh-image.sh"
 ssh $IP
 
