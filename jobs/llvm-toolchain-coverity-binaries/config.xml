@@ -15,7 +15,7 @@
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -40,15 +40,7 @@
     <hudson.matrix.LabelAxis>
       <name>label</name>
       <values>
-        <string>blade01</string>
-        <string>blade02</string>
-        <string>blade03</string>
-        <string>blade04</string>
-        <string>blade05</string>
-        <string>blade06</string>
-        <string>blade07</string>
-        <string>blade08</string>
-        <string>blade09</string>
+        <string>amd64</string>
       </values>
     </hudson.matrix.LabelAxis>
   </axes>
