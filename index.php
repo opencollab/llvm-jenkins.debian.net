@@ -57,6 +57,7 @@ $isQualification=false;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Dec 23th 2021 - Ubuntu Groovy (20.10) disabled (EOL)<br />
 Dec 22nd 2021 - arm64 supported<br />
 Nov 02nd 2021 - Infra <a href="https://blog.llvm.org/posts/2021-11-02-apt.llvm.org-moving-from-physical-server-to-the-cloud/">moved to the cloud</a><br />
 Aug 01st 2021 - Snapshot becomes 14, branch 13 created<br />
@@ -166,19 +167,6 @@ deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$stableBranch?> main
 deb http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
 
-</pre>
-Groovy (20.10) - <small>Last update : <?=getLastUpdate("groovy");?> / Revision: <?=getLastRevision("groovy")?></small>
-<pre>
-deb http://apt.llvm.org/groovy/ llvm-toolchain-groovy main
-deb-src http://apt.llvm.org/groovy/ llvm-toolchain-groovy main
-# <?=$stableBranch?>
-
-deb http://apt.llvm.org/groovy/ llvm-toolchain-groovy-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/groovy/ llvm-toolchain-groovy-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
-
-deb http://apt.llvm.org/groovy/ llvm-toolchain-groovy-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/groovy/ llvm-toolchain-groovy-<?=$qualificationBranch?> main
 </pre>
 
 Hirsute (21.04) - <small>Last update : <?=getLastUpdate("hirsute");?> / Revision: <?=getLastRevision("hirsute")?></small>
@@ -324,23 +312,23 @@ apt-get install libunwind-<?=$devBranch?>-dev<br />
 </p>
 
 </div>
-
-<div class="rel_section">Verification</div>
+<!--
+<div class="rel_section">Verification using sigstore</div>
 
 <div class="rel_boxtext">
-Source and Debian tarballs and dsc files can be verified using sigstore/rekor.
+Source and Debian tarballs and dsc files can be verified using <a href="https://sigstore.github.io/">sigstore/rekor</a>.
 This can be done with:
 <p class="www_code">
-# example:
-file="llvm-toolchain-11_11.1.0~%2b%2b20210806091343%2b1fdec59bffc1-1~exp1~20210806071958.178.dsc"
-url="https://apt.llvm.org/unstable/pool/main/l/llvm-toolchain-11/$file"
-wget "$url".asc
-wget https://apt.llvm.org/sigstore.public.key
-rekor verify --rekor_server https://rekor.sigstore.dev --signature "$file".asc --public-key sigstore.public.key --artifact $url
+# example:<br />
+file="llvm-toolchain-11_11.1.0~%2b%2b20210806091343%2b1fdec59bffc1-1~exp1~20210806071958.178.dsc"<br />
+url="https://apt.llvm.org/unstable/pool/main/l/llvm-toolchain-11/$file"<br />
+wget "$url".asc<br />
+wget https://apt.llvm.org/sigstore.public.key<br />
+rekor verify --rekor_server https://rekor.sigstore.dev --signature "$file".asc --public-key sigstore.public.key --artifact $url<br />
 echo $?
 </p>
 </div>
-
+-->
 <div class="rel_section">Technical aspects</div>
 <div class="rel_boxtext">
 Packages are rebuilt against the trunk of the various LLVM projects.<br />
