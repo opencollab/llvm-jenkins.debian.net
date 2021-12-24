@@ -6,7 +6,7 @@ This folder contains a set of tests for the `llvm.sh` installation script. These
 
 Steps to run the tests on a Linux machine:
 * Install docker
-* run `git submodule init; git submodule fetch` as the tests depend on a bash test framework [BATS](https://github.com/sstephenson/bats).
+* run `git submodule init; git submodule update` as the tests depend on a bash test framework [BATS](https://github.com/sstephenson/bats).
 * Run `test.sh`. This will create a logfile at `test.log`
 
 ## How the tests work
