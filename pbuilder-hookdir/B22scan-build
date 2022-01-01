@@ -1,14 +1,11 @@
 #!/bin/sh
 set -v
 
-# Delete the configure scan-build results
-dir_nb=$(ls -1d /tmp/scan-build-*|wc -l)
-if test $dir_nb -ne 1; then
-	dir=`ls -1d /tmp/scan-build-*|head -1`
-	rm -rf $dir
-fi
+# debug:
+ls -al /tmp/
+ls -1d /tmp/scan-build-*
 
-dir=$(ls -1 /tmp/scan-build-*|head -1|cut -d: -f1)
+dir=$(ls -1d /tmp/scan-build-*|head -1|cut -d: -f1)
 echo "We think it is $dir"
 if test ! -d $dir; then
     echo "No scan-build report found; skipping"
