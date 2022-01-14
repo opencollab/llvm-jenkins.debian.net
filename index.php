@@ -336,7 +336,7 @@ Packages are rebuilt against the trunk of the various LLVM projects.<br />
 <a href="https://llvm-jenkins.debian.net">https://llvm-jenkins.debian.net</a>
 
 <h2>Bugs</h2>
-Bugs should be reported on the <a href="https://llvm.org/bugs/enter_bug.cgi?product=Packaging">LLVM bug tracker</a> (deb packages).
+Bugs should be reported on the <a href="https://github.com/llvm/llvm-project/labels/packaging">LLVM bug tracker</a> (label: packaging).
 
 <h2>Workflow</h2>
      Twice a day, each jenkins job will checkout the debian/ directory necessary to build the packages. The repository is available on the Debian hosting infrastructure:
