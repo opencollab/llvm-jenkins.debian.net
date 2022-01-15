@@ -213,7 +213,7 @@ To install all key packages:<br />
 <b># LLVM</b><br />
 apt-get install libllvm-<?=$stableBranch?>-ocaml-dev libllvm<?=$stableBranch?> llvm-<?=$stableBranch?> llvm-<?=$stableBranch?>-dev llvm-<?=$stableBranch?>-doc llvm-<?=$stableBranch?>-examples llvm-<?=$stableBranch?>-runtime<br />
 <b># Clang and co</b><br />
-apt-get install clang-<?=$stableBranch?> clang-tools-<?=$stableBranch?> clang-<?=$stableBranch?>-doc libclang-common-<?=$stableBranch?>-dev libclang-<?=$stableBranch?>-dev libclang1-<?=$stableBranch?> clang-format-<?=$stableBranch?> python-clang-<?=$stableBranch?> clangd-<?=$stableBranch?> <br />
+apt-get install clang-<?=$stableBranch?> clang-tools-<?=$stableBranch?> clang-<?=$stableBranch?>-doc libclang-common-<?=$stableBranch?>-dev libclang-<?=$stableBranch?>-dev libclang1-<?=$stableBranch?> clang-format-<?=$stableBranch?> python-clang-<?=$stableBranch?> clangd-<?=$stableBranch?> clang-tidy-<?=$stableBranch?> <br />
 <b># libfuzzer</b><br />
 apt-get install libfuzzer-<?=$stableBranch?>-dev<br />
 <b># lldb</b><br />
@@ -251,7 +251,7 @@ To install all key packages:<br />
 <b># LLVM</b><br />
 apt-get install libllvm-<?=$qualificationBranch?>-ocaml-dev libllvm<?=$qualificationBranch?> llvm-<?=$qualificationBranch?> llvm-<?=$qualificationBranch?>-dev llvm-<?=$qualificationBranch?>-doc llvm-<?=$qualificationBranch?>-examples llvm-<?=$qualificationBranch?>-runtime<br />
 <b># Clang and co</b><br />
-apt-get install clang-<?=$qualificationBranch?> clang-tools-<?=$qualificationBranch?> clang-<?=$qualificationBranch?>-doc libclang-common-<?=$qualificationBranch?>-dev libclang-<?=$qualificationBranch?>-dev libclang1-<?=$qualificationBranch?> clang-format-<?=$qualificationBranch?> python-clang-<?=$qualificationBranch?> clangd-<?=$qualificationBranch?><br />
+apt-get install clang-<?=$qualificationBranch?> clang-tools-<?=$qualificationBranch?> clang-<?=$qualificationBranch?>-doc libclang-common-<?=$qualificationBranch?>-dev libclang-<?=$qualificationBranch?>-dev libclang1-<?=$qualificationBranch?> clang-format-<?=$qualificationBranch?> python-clang-<?=$qualificationBranch?> clangd-<?=$qualificationBranch?> clang-tidy-<?=$qualificationBranch?><br />
 <b># libfuzzer</b><br />
 apt-get install libfuzzer-<?=$qualificationBranch?>-dev<br />
 <b># lldb</b><br />
@@ -297,7 +297,7 @@ To install all key packages:<br />
 <b># LLVM</b><br />
 apt-get install libllvm-<?=$devBranch?>-ocaml-dev libllvm<?=$devBranch?> llvm-<?=$devBranch?> llvm-<?=$devBranch?>-dev llvm-<?=$devBranch?>-doc llvm-<?=$devBranch?>-examples llvm-<?=$devBranch?>-runtime<br />
 <b># Clang and co</b><br />
-apt-get install clang-<?=$devBranch?> clang-tools-<?=$devBranch?> clang-<?=$devBranch?>-doc libclang-common-<?=$devBranch?>-dev libclang-<?=$devBranch?>-dev libclang1-<?=$devBranch?> clang-format-<?=$devBranch?> python-clang-<?=$devBranch?> clangd-<?=$devBranch?><br />
+apt-get install clang-<?=$devBranch?> clang-tools-<?=$devBranch?> clang-<?=$devBranch?>-doc libclang-common-<?=$devBranch?>-dev libclang-<?=$devBranch?>-dev libclang1-<?=$devBranch?> clang-format-<?=$devBranch?> python-clang-<?=$devBranch?> clangd-<?=$devBranch?> clang-tidy-<?=$devBranch?><br />
 <b># libfuzzer</b><br />
 apt-get install libfuzzer-<?=$devBranch?>-dev<br />
 <b># lldb</b><br />
