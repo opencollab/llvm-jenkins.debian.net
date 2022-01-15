@@ -57,6 +57,7 @@ $isQualification=false;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Jan 15th 2022 - Sources and dsc files are signed on <a href="#sigstore">sigstore</a><br />
 Dec 30th 2021 - <a href="https://mlir.llvm.org/">MLIR</a> packages added from 13<br />
 Dec 23th 2021 - Ubuntu Groovy (20.10) disabled (EOL)<br />
 Dec 22nd 2021 - arm64 supported<br />
@@ -318,30 +319,29 @@ apt-get install libmlir-<?=$devBranch?>-dev mlir-<?=$devBranch?>-tools<br />
 
 </div>
 
-<div class="rel_section">Verification using sigstore</div>
+<div id="sigstore" class="rel_section">Verification using sigstore</div>
 
 <div class="rel_boxtext">
-Source, Debian tarballs and dsc files can be verified using <a href="https://sigstore.github.io/">sigstore/rekor</a>.
+Source, Debian tarballs and dsc files can be verified using <a href="https://sigstore.github.io/">sigstore/rekor</a>.<br />
 This can be done with "rekor verify":
-<pre>
-
-file="llvm-toolchain-10_10.0.1~%2b%2b20210327072807%2bef32c611aa21-1~exp1~20210327183412.212.dsc"
-url="https://apt.llvm.org/unstable/pool/main/l/llvm-toolchain-10/$file"
-sig_file="$url.asc"
-wget --quiet https://apt.llvm.org/sigstore.public.key
-./rekor verify --rekor_server https://rekor.sigstore.dev --signature $sig_file --public-key sigstore.public.key --artifact $url
-echo $?
-</pre>
-
+<p class="www_code">
+file="llvm-toolchain-10_10.0.1~%2b%2b20210327072807%2bef32c611aa21-1~exp1~20210327183412.212.dsc"<br />
+url="https://apt.llvm.org/unstable/pool/main/l/llvm-toolchain-10/$file"<br />
+sig_file="$url.asc"<br />
+wget --quiet https://apt.llvm.org/sigstore.public.key<br />
+./rekor verify --rekor_server https://rekor.sigstore.dev --signature $sig_file --public-key sigstore.public.key --artifact $url<br />
+echo $?<br />
+</p>
+<br />
 
 Or with "rekor search":
-<pre>
-file="llvm-toolchain-10_10.0.1~++20210327072807+ef32c611aa21.orig.tar.xz"
-url="https://apt.llvm.org/unstable/pool/main/l/llvm-toolchain-10/$file"
-wget --quiet $url
-sha=$(sha256sum $file|awk '{print $1}')
-./rekor search --sha sha256:$sha --rekor_server https://rekor.sigstore.dev
-<pre>
+<p class="www_code">
+file="llvm-toolchain-10_10.0.1~++20210327072807+ef32c611aa21.orig.tar.xz"<br />
+url="https://apt.llvm.org/unstable/pool/main/l/llvm-toolchain-10/$file"<br />
+wget --quiet $url<br />
+sha=$(sha256sum $file|awk '{print $1}')<br />
+./rekor search --sha sha256:$sha --rekor_server https://rekor.sigstore.dev<br />
+</p>
 
 </div>
 
