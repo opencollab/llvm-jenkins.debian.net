@@ -321,17 +321,28 @@ apt-get install libmlir-<?=$devBranch?>-dev mlir-<?=$devBranch?>-tools<br />
 <div class="rel_section">Verification using sigstore</div>
 
 <div class="rel_boxtext">
-Source and Debian tarballs and dsc files can be verified using <a href="https://sigstore.github.io/">sigstore/rekor</a>.
-This can be done with:
-<p class="www_code">
-# example:<br />
-file="llvm-toolchain-11_11.1.0~%2b%2b20210806091343%2b1fdec59bffc1-1~exp1~20210806071958.178.dsc"<br />
-url="https://apt.llvm.org/unstable/pool/main/l/llvm-toolchain-11/$file"<br />
-wget "$url".asc<br />
-wget https://apt.llvm.org/sigstore.public.key<br />
-rekor verify --rekor_server https://rekor.sigstore.dev --signature "$file".asc --public-key sigstore.public.key --artifact $url<br />
+Source, Debian tarballs and dsc files can be verified using <a href="https://sigstore.github.io/">sigstore/rekor</a>.
+This can be done with "rekor verify":
+<pre>
+
+file="llvm-toolchain-10_10.0.1~%2b%2b20210327072807%2bef32c611aa21-1~exp1~20210327183412.212.dsc"
+url="https://apt.llvm.org/unstable/pool/main/l/llvm-toolchain-10/$file"
+sig_file="$url.asc"
+wget --quiet https://apt.llvm.org/sigstore.public.key
+./rekor verify --rekor_server https://rekor.sigstore.dev --signature $sig_file --public-key sigstore.public.key --artifact $url
 echo $?
-</p>
+</pre>
+
+
+Or with "rekor search":
+<pre>
+file="llvm-toolchain-10_10.0.1~++20210327072807+ef32c611aa21.orig.tar.xz"
+url="https://apt.llvm.org/unstable/pool/main/l/llvm-toolchain-10/$file"
+wget --quiet $url
+sha=$(sha256sum $file|awk '{print $1}')
+./rekor search --sha sha256:$sha --rekor_server https://rekor.sigstore.dev
+<pre>
+
 </div>
 -->
 <div class="rel_section">Technical aspects</div>
