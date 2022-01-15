@@ -317,7 +317,7 @@ apt-get install libmlir-<?=$devBranch?>-dev mlir-<?=$devBranch?>-tools<br />
 </p>
 
 </div>
-<!--
+
 <div class="rel_section">Verification using sigstore</div>
 
 <div class="rel_boxtext">
@@ -344,7 +344,7 @@ sha=$(sha256sum $file|awk '{print $1}')
 <pre>
 
 </div>
--->
+
 <div class="rel_section">Technical aspects</div>
 <div class="rel_boxtext">
 Packages are rebuilt against the trunk of the various LLVM projects.<br />
