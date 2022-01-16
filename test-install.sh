@@ -3,6 +3,7 @@ set -e -v
 
 # If no argument provided, test all
 # If 2 are provided, distro + version
+# If USE_SCRIPT=1 is set, use llvm.sh to install the packages
 
 DISTRO="buster bullseye unstable bionic focal groovy hirsute impish"
 VERSION="10 11 12 13"
@@ -73,6 +74,7 @@ for d in $DISTRO; do
         sudo mount --bind /dev/pts "$d.chroot/dev/pts" || true
     fi
 done
+
 
 TEMPLATE="deb http://apt.llvm.org/@DISTRO_PATH@/ llvm-toolchain@DISTRO@ main"
 TEMPLATE_VERSION="deb http://apt.llvm.org/@DISTRO_PATH@/ llvm-toolchain@DISTRO@-@VERSION@ main"
@@ -174,23 +176,26 @@ for d in $DISTRO; do
 
         fi
 
-        PKG="$PKG clang-$v clangd-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev libclang-$v-dev libclang-cpp$v-dev"
-        if test "$d" != "unstable"; then
-            PKG="$PKG python"
-        fi
+        if test -z "$USE_SCRIPT"; then
 
-        if test $v -gt 11; then
-            # libunwind isn't packaged for -11
-            PKG="$PKG libunwind-$v-dev"
+            PKG="$PKG clang-$v clangd-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev libclang-$v-dev libclang-cpp$v-dev"
+            if test "$d" != "unstable"; then
+                PKG="$PKG python"
+            fi
+
+            if test $v -gt 11; then
+                # libunwind isn't packaged for -11
+                PKG="$PKG libunwind-$v-dev"
+            fi
+	        # temporary workaround to make scan-build-py work
+	        PKG="$PKG clang"
+            CMD="clang-$v --version; $CMD"
         fi
-	    # temporary workaround to make scan-build-py work
-	    PKG="$PKG clang"
-        CMD="clang-$v --version; $CMD"
     done
 
     echo "
          set -e
-         apt install -y wget gnupg git cmake g++
+         apt install -y wget gnupg git cmake g++ lsb-release software-properties-common
          wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -
     " > $d-script.sh
 
@@ -201,15 +206,27 @@ for d in $DISTRO; do
              apt install -y libstdc++-8-dev
         " >> $d-script.sh
     fi
-
-    echo "
-     # Install necessary package to setup + run the testsuite
-     apt update
-     echo \"Install $PKG\"
-     apt install -y $PKG --no-install-recommends
-     $CMD
-     bash /root/run-testsuite.sh
+    if test -z "$USE_SCRIPT"; then
+        # install packages by hands
+        echo "
+             # Install necessary package to setup + run the testsuite
+             apt update
+             echo \"Install $PKG\"
+             apt install -y $PKG --no-install-recommends
+             $CMD
+             bash /root/run-testsuite.sh
+             apt remove --purge -y $PKG
      " >> $d-script.sh
+    else
+        # Test llvm.sh
+        echo "
+             # Install necessary package to setup + run the testsuite
+             wget https://apt.llvm.org/llvm.sh
+             chmod +x /root/llvm.sh
+             /root/llvm.sh $v all
+             bash /root/run-testsuite.sh
+     " >> $d-script.sh
+    fi
     echo "
      set -e -v
      rm -rf check
@@ -241,8 +258,10 @@ for d in $DISTRO; do
           ../ && \
           make check
      " > $d-run-testsuite.sh
-    cat  $d-run-testsuite.sh
+    cat $d-run-testsuite.sh
+    cat $d-script.sh
     sudo cp $d-script.sh $d.chroot/root/install.sh
+    sudo cp llvm.sh $d.chroot/root/llvm.sh
     sudo cp $d-run-testsuite.sh $d.chroot/root/run-testsuite.sh
     sudo chroot $d.chroot/ /bin/bash -c "bash /root/install.sh"
 done
