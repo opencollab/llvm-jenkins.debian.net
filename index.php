@@ -57,6 +57,7 @@ $isQualification=false;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Jan 16th 2022 - llvm.sh can now install all packages at once with the <a href="#llvmsh">'all' option</a><br />
 Jan 15th 2022 - Sources and dsc files are signed on <a href="#sigstore">sigstore</a><br />
 Dec 30th 2021 - <a href="https://mlir.llvm.org/">MLIR</a> packages added from 13<br />
 Dec 23th 2021 - Ubuntu Groovy (20.10) disabled (EOL)<br />
@@ -73,7 +74,7 @@ Feb 01st 2021 - Snapshot becomes 13, branch 12 created<br />
 Feb 01st 2021 - Debian Bullseye (11) added<br />
 </div>
 
-<div class="rel_section">Automatic installation script</div>
+<div class="rel_section" id="llvmsh">Automatic installation script</div>
 <div class="rel_boxtext">
 For convenience there is an automatic installation script available that installs LLVM for you.<br />
 
@@ -88,6 +89,15 @@ To install a specific version of LLVM:
 wget https://apt.llvm.org/llvm.sh
 chmod +x llvm.sh
 sudo ./llvm.sh &lt;version number&gt;
+</pre>
+
+To install all apt.llvm.org packages at once:
+<pre>
+wget https://apt.llvm.org/llvm.sh
+chmod +x llvm.sh
+sudo ./llvm.sh &lt;version number&gt; all
+# or
+sudo ./llvm.sh all
 </pre>
 </div>
 
