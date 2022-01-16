@@ -10,6 +10,8 @@
 
 set -eux
 
+CURRENT_LLVM_STABLE=13
+
 # Check for required tools
 needed_binaries=(lsb_release wget add-apt-repository)
 missing_binaries=()
@@ -26,9 +28,19 @@ fi
 
 # read optional command line argument
 # We default to the current stable branch of LLVM
-LLVM_VERSION=13
-if [ "$#" -eq 1 ]; then
+LLVM_VERSION=$CURRENT_LLVM_STABLE
+ALL=0
+if [ "$#" -ge 1 ]; then
     LLVM_VERSION=$1
+    if [ "$1" == "all" ]; then
+        # special case for ./llvm.sh all
+        LLVM_VERSION=$CURRENT_LLVM_STABLE
+        ALL=1
+    fi
+    if [ "$2" == "all" ]; then
+        # Install all packages
+        ALL=1
+    fi
 fi
 
 DISTRO=$(lsb_release -is)
@@ -86,4 +98,10 @@ esac
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
 add-apt-repository "${REPO_NAME}"
 apt-get update
-apt-get install -y clang-$LLVM_VERSION lldb-$LLVM_VERSION lld-$LLVM_VERSION clangd-$LLVM_VERSION
+PKG="clang-$LLVM_VERSION lldb-$LLVM_VERSION lld-$LLVM_VERSION clangd-$LLVM_VERSION"
+if [[ $ALL -eq 1 ]]; then
+    # same as in test-install.sh
+    # No worries if we have dups
+    PKG="$PKG clang-tidy-$LLVM_VERSION clang-format-$LLVM_VERSION clang-tools-$LLVM_VERSION llvm-$LLVM_VERSION-dev lld-$LLVM_VERSION lldb-$LLVM_VERSION llvm-$LLVM_VERSION-tools libomp-$LLVM_VERSION-dev libc++-$LLVM_VERSION-dev libc++abi-$LLVM_VERSION-dev libclang-common-$LLVM_VERSION-dev libclang-$LLVM_VERSION-dev libclang-cpp$LLVM_VERSION-dev"
+fi
+apt-get install -y $PKG
