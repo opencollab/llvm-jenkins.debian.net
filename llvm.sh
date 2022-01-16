@@ -25,6 +25,7 @@ if [[ ${#missing_binaries[@]} -gt 0 ]] ; then
 fi
 
 # read optional command line argument
+# We default to the current stable branch of LLVM
 LLVM_VERSION=13
 if [ "$#" -eq 1 ]; then
     LLVM_VERSION=$1
