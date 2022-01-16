@@ -261,7 +261,6 @@ for d in $DISTRO; do
     cat $d-run-testsuite.sh
     cat $d-script.sh
     sudo cp $d-script.sh $d.chroot/root/install.sh
-    sudo cp llvm.sh $d.chroot/root/llvm.sh
     sudo cp $d-run-testsuite.sh $d.chroot/root/run-testsuite.sh
     sudo chroot $d.chroot/ /bin/bash -c "bash /root/install.sh"
 done
