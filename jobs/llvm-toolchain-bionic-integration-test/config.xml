@@ -47,6 +47,9 @@ mkdir -p install-all
 cd install-all
 
 sudo ~/llvm-jenkins.debian.net.git/test-install.sh $JOB_NAME
+# Install with llvm.sh
+sudo USE_SCRIPT=1 ~/llvm-jenkins.debian.net.git/test-install.sh $JOB_NAME
+
 cd -
 sudo umount install-all/*.chroot/proc || true
 sudo umount install-all/*.chroot/dev/shm || true

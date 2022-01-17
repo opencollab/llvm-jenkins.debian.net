@@ -53,12 +53,12 @@ export SKIP_REMOVAL=true
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>mkdir -p report
-/usr/bin/lintian-junit-report *.dsc &gt; report/lintian.xml</command>
+/usr/bin/lintian-junit-report $(ls -Atr *.dsc | tail -1) &gt; report/lintian.xml</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>*.gz,*.bz2,*.xz,*.dsc,*.changes,lintian.txt</artifacts>
+      <artifacts>*.gz,*.bz2,*.xz,*.dsc,*.changes,lintian.xml</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
