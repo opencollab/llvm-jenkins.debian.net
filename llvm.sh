@@ -37,9 +37,11 @@ if [ "$#" -ge 1 ]; then
         LLVM_VERSION=$CURRENT_LLVM_STABLE
         ALL=1
     fi
-    if [ "$2" == "all" ]; then
-        # Install all packages
-        ALL=1
+    if [ "$#" -ge 2 ]; then
+      if [ "$2" == "all" ]; then
+          # Install all packages
+          ALL=1
+      fi
     fi
 fi
 
