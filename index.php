@@ -358,7 +358,7 @@ sha=$(sha256sum $file|awk '{print $1}')<br />
 <div class="rel_section">Technical aspects</div>
 <div class="rel_boxtext">
 Packages are rebuilt against the trunk of the various LLVM projects.<br />
-     They are rebuild through a Jenkins instance:<br />
+They are rebuild through a Jenkins instance:<br />
 <a href="https://llvm-jenkins.debian.net">https://llvm-jenkins.debian.net</a>
 
 <h2>Bugs</h2>
@@ -367,6 +367,9 @@ Bugs should be reported on the <a href="https://github.com/llvm/llvm-project/lab
 <h2>Workflow</h2>
      Twice a day, each jenkins job will checkout the debian/ directory necessary to build the packages. The repository is available on the Debian hosting infrastructure:
 <a href="https://salsa.debian.org/pkg-llvm-team/llvm-toolchain/">https://salsa.debian.org/pkg-llvm-team/llvm-toolchain/</a>.
+
+Sources of this page, llvm.sh and others scripts are available on github:<br />
+<a href="https://github.com/opencollab/llvm-jenkins.debian.net/">https://github.com/opencollab/llvm-jenkins.debian.net/</a>
 
      In the <i>llvm-toolchain-*-source</i>, the following tasks will be performed:
 <ul>
