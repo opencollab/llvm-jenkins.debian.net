@@ -221,6 +221,7 @@ for d in $DISTRO; do
         # Test llvm.sh
         echo "
              # Install necessary package to setup + run the testsuite
+             cd /root
              wget https://apt.llvm.org/llvm.sh
              chmod +x /root/llvm.sh
              /root/llvm.sh $v all
