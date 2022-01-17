@@ -11,9 +11,16 @@
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
-    <hudson.triggers.TimerTrigger>
-      <spec>@daily</spec>
-    </hudson.triggers.TimerTrigger>
+    <jenkins.triggers.ReverseBuildTrigger>
+      <spec></spec>
+      <upstreamProjects>llvm-toolchain-binaries-sync, llvm-toolchain-bionic-binaries-sync, llvm-toolchain-bullseye-binaries-sync, llvm-toolchain-buster-binaries-sync, llvm-toolchain-focal-binaries-sync, llvm-toolchain-hirsute-binaries-sync, llvm-toolchain-impish-binaries-sync</upstreamProjects>
+      <threshold>
+        <name>SUCCESS</name>
+        <ordinal>0</ordinal>
+        <color>BLUE</color>
+        <completeBuild>true</completeBuild>
+      </threshold>
+    </jenkins.triggers.ReverseBuildTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
@@ -29,28 +36,35 @@
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
       <command>REKOR_PATH=~/rekor
-REKOR_WS_PATH=/srv/repository/rekor/
 
-mkdir -p $REKOR_WS_PATH
+
 chmod +x $REKOR_PATH
 ls -al $REKOR_PATH
 $REKOR_PATH version
 LIST=$(find /srv/repository/ -iname &apos;*.dsc&apos; -o -iname &apos;*.xz&apos;)
 
-for f in $LIST; do 
-echo $f;
-mkdir -p $REKOR_WS_PATH/$(dirname $f)/
+ALREADY_PROCESS=/srv/repository/in_rekor.txt
 
-if test ! -f $REKOR_WS_PATH/$f.asc; then
-    gpg --batch --yes --armor -u sylvestre@debian.org --output $REKOR_WS_PATH/$f.asc --detach-sig $f
+for f in $LIST; do 
+echo $f
+sign=$f.asc
+dist_path=$(echo $f|sed -e &quot;s|/srv/repository/||g&quot;)
+
+if test ! -f $sign; then
+    gpg --batch --yes --armor -u sylvestre@debian.org --output /$sign --detach-sig $f
 fi
 
-url=https://apt.llvm.org/$(echo $f|sed -e &quot;s|/srv/repository/||g&quot;)
-if  curl --output /dev/null --silent --head --fail $url; then
-    $REKOR_PATH upload --rekor_server https://rekor.sigstore.dev --signature $REKOR_WS_PATH/$f.asc --public-key ~/sigstore.public.key --artifact $url
-    $REKOR_PATH verify --rekor_server https://rekor.sigstore.dev --signature $REKOR_WS_PATH/$f.asc --public-key ~/sigstore.public.key --artifact $url
-else 
-    echo &quot;$url failed&quot; &gt;&gt; /tmp/fail.txt
+if ! grep $sign $ALREADY_PROCESS; then
+    # hasn&apos;t been processed before, let&apos;s do it
+    url=https://apt.llvm.org/$dist_path
+    if  curl --output /dev/null --silent --head --fail $url; then
+        $REKOR_PATH upload --rekor_server https://rekor.sigstore.dev --signature $sign --public-key ~/sigstore.public.key --artifact $url
+        $REKOR_PATH verify --rekor_server https://rekor.sigstore.dev --signature $sign --public-key ~/sigstore.public.key --artifact $url
+        scp -o StrictHostKeyChecking=accept-new $sign apt@apt-origin.llvm.org:/data/apt/www/$dist_path.asc
+        echo $sign &gt;&gt; $ALREADY_PROCESS
+    else 
+        echo &quot;$url failed&quot; &gt;&gt; /tmp/fail.txt
+    fi
 fi
 done
 
@@ -60,7 +74,7 @@ rm /tmp/fail.txt</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.34">
+    <hudson.tasks.Mailer plugin="mailer@391.ve4a_38c1b_cf4b_">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>

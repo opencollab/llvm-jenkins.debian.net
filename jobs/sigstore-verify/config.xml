@@ -11,9 +11,16 @@
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
-    <hudson.triggers.TimerTrigger>
-      <spec>@daily</spec>
-    </hudson.triggers.TimerTrigger>
+    <jenkins.triggers.ReverseBuildTrigger>
+      <spec></spec>
+      <upstreamProjects>sigstore-sign-with-rekor, </upstreamProjects>
+      <threshold>
+        <name>SUCCESS</name>
+        <ordinal>0</ordinal>
+        <color>BLUE</color>
+        <completeBuild>true</completeBuild>
+      </threshold>
+    </jenkins.triggers.ReverseBuildTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
@@ -36,20 +43,24 @@
     <hudson.tasks.Shell>
       <command>set -e
 REKOR_PATH=~/rekor
-REKOR_WS_PATH=/srv/repository/rekor/
 
 chmod +x $REKOR_PATH
 ls -al $REKOR_PATH
 $REKOR_PATH version
-LIST=$(find /srv/repository/ -iname &apos;*.dsc&apos; -o -iname &apos;*.xz&apos;)
 
+
+LIST=$(find /srv/repository \( -iname &apos;*.dsc&apos; -o -iname &apos;*.xz&apos; \) -a -mtime -120)
+wget --quiet https://apt.llvm.org/sigstore.public.key
+SERVER=https://rekor.sigstore.dev
 for f in $LIST; do 
 echo $f;
 
 url=https://apt.llvm.org/$(echo $f|sed -e &quot;s|/srv/repository/||g&quot;)
 if  curl --output /dev/null --silent --head --fail $url; then
     sum=$(sha256sum $f|awk &apos;{print $1}&apos;)
-    $REKOR_PATH search --sha sha256:$sum --rekor_server https://rekor.sigstore.dev
+    $REKOR_PATH search --sha sha256:$sum --rekor_server $SERVER 
+    $REKOR_PATH verify --rekor_server $SERVER --signature &quot;$url.asc&quot; --public-key sigstore.public.key --artifact $url
+
 else 
     echo &quot;$url failed&quot; &gt;&gt; /tmp/fail.txt
 fi
@@ -61,7 +72,7 @@ rm /tmp/fail.txt</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.34">
+    <hudson.tasks.Mailer plugin="mailer@391.ve4a_38c1b_cf4b_">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
