@@ -367,11 +367,11 @@ Bugs should be reported on the <a href="https://github.com/llvm/llvm-project/lab
 <h2>Workflow</h2>
      Twice a day, each jenkins job will checkout the debian/ directory necessary to build the packages. The repository is available on the Debian hosting infrastructure:
 <a href="https://salsa.debian.org/pkg-llvm-team/llvm-toolchain/">https://salsa.debian.org/pkg-llvm-team/llvm-toolchain/</a>.
-
+<br />
 Sources of this page, llvm.sh and others scripts are available on github:<br />
 <a href="https://github.com/opencollab/llvm-jenkins.debian.net/">https://github.com/opencollab/llvm-jenkins.debian.net/</a>
-
-     In the <i>llvm-toolchain-*-source</i>, the following tasks will be performed:
+<br />
+In the <i>llvm-toolchain-*-source</i>, the following tasks will be performed:
 <ul>
 <li>upstream sources will be checkout</li>
      <li>tarballs will be created. They are named: <ul><li>llvm-toolchain_X.Y~svn123456.orig-lldb.tar.bz2</li><li>llvm-toolchain_X.Y~svn123456.orig-compiler-rt.tar.bz2</li><li>llvm-toolchain_X.Y~svn123456.orig.tar.bz2</li><li>llvm-toolchain_X.Y~svn123456.orig-clang.tar.bz2</li><li>llvm-toolchain_X.Y~svn123456.orig-polly.tar.bz2</li><li>...</li></ul></li>
