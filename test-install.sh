@@ -224,6 +224,9 @@ for d in $DISTRO; do
              cd /root
              wget https://apt.llvm.org/llvm.sh
              chmod +x /root/llvm.sh
+             echo 'llvm.sh $v (minimal packages)'
+             /root/llvm.sh $v
+             echo 'llvm.sh $v all (all packages)'
              /root/llvm.sh $v all
              bash /root/run-testsuite.sh
      " >> $d-script.sh
