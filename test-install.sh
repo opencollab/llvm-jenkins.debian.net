@@ -5,7 +5,7 @@ set -e -v
 # If 2 are provided, distro + version
 # If USE_SCRIPT=1 is set, use llvm.sh to install the packages
 
-DISTRO="buster bullseye unstable bionic focal groovy hirsute impish"
+DISTRO="stretch buster bullseye unstable bionic focal groovy hirsute impish"
 VERSION="10 11 12 13"
 VERSION_NEXT="14"
 
@@ -56,7 +56,7 @@ echo "VERSION = $VERSION"
 for d in $DISTRO; do
 
     MIRROR=""
-    if test "$d" == "buster" -o "$d" == "bullseye" -o "$d" == "unstable"; then
+    if test "$d" == "stretch" -o "$d" == "buster" -o "$d" == "bullseye" -o "$d" == "unstable"; then
         # deb.debian.org is failing too often
         MIRROR=http://cloudfront.debian.net/debian
     fi

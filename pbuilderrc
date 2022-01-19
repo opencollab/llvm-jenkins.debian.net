@@ -7,7 +7,7 @@ STABLE_CODENAME="bullseye"
 
 # List of Debian suites.
 DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME
-    "unstable" "testing" "stable" "buster" "bullseye" "bookworm")
+    "unstable" "testing" "stable" "stretch" "buster" "bullseye" "bookworm")
 
 # List of Ubuntu suites. Update these when needed.
 UBUNTU_SUITES=("impish" "hirsute" "groovy" "focal" "eoan" "disco" "cosmic" "bionic" "artful" "zesty" "yakkety" "xenial" "wily" "vivid" "utopic" "trusty" "saucy" "raring" "quantal" "precise" "oneiric" "natty" "lucid" "hardy")
