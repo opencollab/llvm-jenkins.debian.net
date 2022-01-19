@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-buster-binaries,llvm-toolchain-buster-12-binaries,llvm-toolchain-buster-11-binaries,llvm-toolchain-buster-13-binaries</upstreamProjects>
+      <upstreamProjects>llvm-toolchain-stretch-binaries,llvm-toolchain-stretch-12-binaries,llvm-toolchain-stretch-11-binaries,llvm-toolchain-stretch-13-binaries</upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -25,10 +25,10 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>bash ~/sync-form-other-arch.sh buster $HOST_ARM64 arm64
-bash ~/sync-form-other-arch.sh buster $HOST_S390X s390x
+      <command>bash ~/sync-form-other-arch.sh stretch $HOST_ARM64 arm64
+bash ~/sync-form-other-arch.sh stretch $HOST_S390X s390x
 
-/srv/repository/sync-to-llvm.sh buster
+/srv/repository/sync-to-llvm.sh stretch
 </command>
       <configuredLocalRules/>
     </hudson.tasks.Shell>

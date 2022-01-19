@@ -21,7 +21,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-buster-binaries-sync</upstreamProjects>
+      <upstreamProjects>llvm-toolchain-stretch-binaries-sync</upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

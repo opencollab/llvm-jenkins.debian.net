@@ -29,13 +29,13 @@
     <hudson.matrix.TextAxis>
       <name>distribution</name>
       <values>
-        <string>buster</string>
+        <string>stretch</string>
       </values>
     </hudson.matrix.TextAxis>
   </axes>
   <builders>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.36.1">
-      <project>llvm-defaults-buster-source</project>
+      <project>llvm-defaults-stretch-source</project>
       <filter>*</filter>
       <target></target>
       <excludes></excludes>
@@ -46,8 +46,8 @@
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
       <command>export DEB_BUILD_OPTIONS=&quot;nocheck&quot;
-export REPOSITORY=&quot;/srv/repository/buster&quot;
-export REPOS=llvm-toolchain-buster
+export REPOSITORY=&quot;/srv/repository/stretch&quot;
+export REPOS=llvm-toolchain-stretch
 export SKIP_REMOVAL=true
 /usr/bin/build-and-provide-package</command>
     </hudson.tasks.Shell>
@@ -77,7 +77,7 @@ export SKIP_REMOVAL=true
     <org.jenkinsci.plugins.postbuildscript.PostBuildScript plugin="postbuildscript@0.17">
       <buildSteps>
         <hudson.tasks.Shell>
-          <command>/srv/repository/sync-to-llvm.sh buster
+          <command>/srv/repository/sync-to-llvm.sh stretch
 </command>
         </hudson.tasks.Shell>
       </buildSteps>

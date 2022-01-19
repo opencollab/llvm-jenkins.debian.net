@@ -55,7 +55,7 @@ H 22 * * *</spec>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>
-export DISTRIBUTION=buster
+export DISTRIBUTION=stretch
 /usr/bin/generate-git-snapshot
 </command>
     </hudson.tasks.Shell>
@@ -74,7 +74,7 @@ export DISTRIBUTION=buster
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
     <hudson.tasks.BuildTrigger>
-      <childProjects>llvm-defaults-buster-binaries</childProjects>
+      <childProjects>llvm-defaults-stretch-binaries</childProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

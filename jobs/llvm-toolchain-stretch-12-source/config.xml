@@ -49,7 +49,7 @@
       <command>export PRE_SOURCE_HOOK=&quot;source/debian/orig-tar.sh release/12.x&quot;
 export GBP_OPTS=&quot;-nc --git-force-create --git-ignore-new --git-ignore-branch -S -us -uc --git-verbose --git-builder=/bin/true --git-cleaner=/bin/true --git-export-dir=   --git-tarball-dir=. --git-no-create-orig&quot;
 export SKIP_GIT_CLEANUP=true
-export DISTRIBUTION=buster
+export DISTRIBUTION=stretch
 /usr/bin/generate-git-snapshot
 </command>
       <configuredLocalRules/>
@@ -71,7 +71,7 @@ export DISTRIBUTION=buster
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
     <hudson.tasks.BuildTrigger>
-      <childProjects>llvm-toolchain-buster-12-binaries</childProjects>
+      <childProjects>llvm-toolchain-stretch-12-binaries</childProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

@@ -40,7 +40,7 @@
   <builders/>
   <publishers>
     <hudson.tasks.BuildTrigger>
-      <childProjects>llvm-toolchain-buster-12-source</childProjects>
+      <childProjects>llvm-toolchain-stretch-12-source</childProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

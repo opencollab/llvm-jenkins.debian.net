@@ -33,7 +33,7 @@
     <hudson.matrix.TextAxis>
       <name>distribution</name>
       <values>
-        <string>buster</string>
+        <string>stretch</string>
       </values>
     </hudson.matrix.TextAxis>
     <hudson.matrix.LabelAxis>
@@ -49,7 +49,7 @@
   <combinationFilter>(label==&quot;arm64&quot;).implies(architecture==&quot;arm64&quot;) &amp;&amp; (label==&quot;amd64&quot;).implies(architecture==&quot;amd64&quot;) &amp;&amp; (label==&quot;i386&quot;).implies(architecture==&quot;i386&quot;) &amp;&amp; (label==&quot;s390x&quot;).implies(architecture==&quot;s390x&quot;)</combinationFilter>
   <builders>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.46.2">
-      <project>llvm-toolchain-buster-12-source</project>
+      <project>llvm-toolchain-stretch-12-source</project>
       <filter>*</filter>
       <target></target>
       <excludes></excludes>
@@ -61,8 +61,8 @@
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
       <command>export DEB_BUILD_OPTIONS=&quot;nocheck&quot;
-export REPOSITORY=&quot;/srv/repository/buster&quot;
-export REPOS=llvm-toolchain-buster-12
+export REPOSITORY=&quot;/srv/repository/stretch&quot;
+export REPOS=llvm-toolchain-stretch-12
 export SKIP_PACKAGE_FROM_REMOVAL=&quot;llvm llvm-runtime llvm-dev llvm-defaults lldb lld libllvm-ocaml-dev libclang1 libclang-dev clang clang-tidy clang-format clangd&quot;
 /usr/bin/build-and-provide-package</command>
       <configuredLocalRules/>
