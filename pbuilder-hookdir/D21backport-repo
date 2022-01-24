@@ -29,4 +29,12 @@ if test "$DIST" = "stretch"; then
     apt-get update
     apt-get install libarchive13 --assume-yes -t stretch-backports-sloppy
     apt-get install debhelper cmake --assume-yes -t stretch-backports
+
+    wget http://mirrors.kernel.org/ubuntu/pool/universe/r/recommonmark/python-recommonmark_0.4.0+ds-2_all.deb
+    wget http://mirrors.kernel.org/ubuntu/pool/universe/c/commonmark-bkrs/python-commonmark-bkrs_0.5.4+ds-1_all.deb
+    dpkg -i python*-commonmark-bkrs_0.5.4+ds-1_all.deb python*-recommonmark_0.4.0+ds-2_all.deb
+    wget http://ftp.fr.debian.org/debian/pool/main/f/fakeroot/libfakeroot_1.23-1_amd64.deb http://ftp.fr.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.23-1_amd64.deb
+    dpkg -i *fakeroot*deb
+    rm *.deb
+
 fi
