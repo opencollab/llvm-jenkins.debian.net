@@ -21,3 +21,9 @@ if test "$DIST" = "bionic" -a $LLVM_VERSION -ge 14; then
     apt-get update
     apt-get install g++-11 --assume-yes --no-install-recommends
 fi
+
+if test "$DIST" = "stretch"; then
+    echo "deb http://archive.debian.org/debian/ stretch-backports main" > /etc/apt/sources.list.d/stretch-backport.list
+    apt-get update
+    apt-get install debhelper --assume-yes -t stretch-backports
+fi
