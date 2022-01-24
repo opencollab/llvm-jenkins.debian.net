@@ -27,5 +27,6 @@ if test "$DIST" = "stretch"; then
     # for libarchive13 (needed for cmake)
     echo "deb http://ftp.debian.org/debian stretch-backports-sloppy main" >> /etc/apt/sources.list.d/stretch-backport.list
     apt-get update
+    apt-get install libarchive13 --assume-yes -t stretch-backports-sloppy
     apt-get install debhelper cmake --assume-yes -t stretch-backports
 fi
