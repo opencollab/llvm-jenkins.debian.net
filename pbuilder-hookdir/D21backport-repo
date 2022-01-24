@@ -23,7 +23,7 @@ if test "$DIST" = "bionic" -a $LLVM_VERSION -ge 14; then
 fi
 
 if test "$DIST" = "stretch"; then
-    echo "deb http://archive.debian.org/debian/ stretch-backports main" > /etc/apt/sources.list.d/stretch-backport.list
+    echo "deb http://ftp.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/stretch-backport.list
     apt-get update
     apt-get install debhelper --assume-yes -t stretch-backports
 fi
