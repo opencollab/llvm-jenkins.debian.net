@@ -66,6 +66,14 @@ BUILDRESULT="/var/cache/pbuilder/$NAME/result/"
 APTCACHE="/var/cache/pbuilder/$NAME/aptcache/"
 BUILDPLACE="/var/cache/pbuilder/build/"
 
+# Use apt as resolver
+PBUILDERSATISFYDEPENDSCMD=/usr/lib/pbuilder/
+if [[ $REL = xenial ]]; then
+	PBUILDERSATISFYDEPENDSCMD+=pbuilder-satisfydepends-aptitude
+else
+	PBUILDERSATISFYDEPENDSCMD+=pbuilder-satisfydepends-apt
+fi
+
 if $(echo ${DEBIAN_SUITES[@]} | grep -q $DIST); then
     # Debian configuration
     MIRRORSITE="http://$DEBIAN_MIRROR/debian/"
