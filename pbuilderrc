@@ -68,7 +68,7 @@ BUILDPLACE="/var/cache/pbuilder/build/"
 
 # Use apt as resolver
 PBUILDERSATISFYDEPENDSCMD=/usr/lib/pbuilder/
-if [[ $REL = xenial ]]; then
+if [[ $DIST = xenial ]]; then
 	PBUILDERSATISFYDEPENDSCMD+=pbuilder-satisfydepends-aptitude
 else
 	PBUILDERSATISFYDEPENDSCMD+=pbuilder-satisfydepends-apt
