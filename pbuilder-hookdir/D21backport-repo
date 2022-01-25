@@ -29,13 +29,12 @@ if test "$DIST" = "stretch"; then
     apt-get update
     apt-get install libarchive13 --assume-yes -t stretch-backports-sloppy
     apt-get install debhelper cmake --assume-yes -t stretch-backports
-    apt install -y zlib1g-dev liblzma-dev libbz2-dev libzstd-dev
-    PKG="apt_1.8.2.3_amd64.deb libapt-pkg5.0_1.8.2.3_amd64.deb dpkg_1.19.7_amd64.deb libdpkg-dev_1.19.7_amd64.deb dpkg-dev_1.19.7_all.deb lsb-base_10.2019051400_all.deb libdpkg-perl_1.19.7_all.deb"
+    apt install -y zlib1g-dev liblzma-dev libbz2-dev libzstd-dev binutils bzip2 libperl5.24 make patch perl perl-modules-5.24 rename xz-utils
+    PKG=" lsb-base_10.2019051400_all.deb libdpkg-perl_1.19.7_all.deb apt_1.8.2.3_amd64.deb libapt-pkg5.0_1.8.2.3_amd64.deb dpkg_1.19.7_amd64.deb libdpkg-dev_1.19.7_amd64.deb dpkg-dev_1.19.7_all.deb"
     for f in $PKG; do
         wget --no-check-certificate https://sylvestre.ledru.info/bordel/$f
     done
-    dpkg -i $PKG||true
-    apt -f install -y
+    dpkg -i $PKG
     rm *.deb
 
 fi
