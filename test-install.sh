@@ -206,6 +206,13 @@ for d in $DISTRO; do
              apt install -y libstdc++-8-dev
         " >> $d-script.sh
     fi
+
+    if test "$d" == stretch; then
+        echo "
+             apt install -y apt-transport-https
+        " >> $d-script.sh
+    fi
+
     if test -z "$USE_SCRIPT"; then
         # install packages by hands
         echo "
