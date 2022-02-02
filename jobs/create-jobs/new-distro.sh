@@ -25,7 +25,7 @@ ln -s trusty $NAME
 mkdir  -p /srv/repository/$NAME
 chown jenkins. /srv/repository/$NAME
 
-emacs ~/.pbuilderrc
+emacs ~jenkins/llvm-jenkins.debian.net.git/pbuilderrc
 echo "commit ~jenkins/pbuilderrc"
 echo "On every slave, git pull + create the symlink from $NAME for deboostrap"
 echo "including other archs"
