@@ -59,7 +59,7 @@ url=https://apt.llvm.org/$(echo $f|sed -e &quot;s|/srv/repository/||g&quot;)
 if  curl --output /dev/null --silent --head --fail $url; then
     sum=$(sha256sum $f|awk &apos;{print $1}&apos;)
     $REKOR_PATH search --sha sha256:$sum --rekor_server $SERVER 
-    $REKOR_PATH verify --rekor_server $SERVER --signature &quot;$url.asc&quot; --public-key sigstore.public.key --artifact $url
+    $REKOR_PATH verify --rekor_server $SERVER --signature &quot;$url.asc&quot; --public-key sigstore.public.key --artifact $url ||true
 
 else 
     echo &quot;$url failed&quot; &gt;&gt; /tmp/fail.txt
@@ -72,7 +72,7 @@ rm /tmp/fail.txt</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@391.ve4a_38c1b_cf4b_">
+    <hudson.tasks.Mailer plugin="mailer@408.vd726a_1130320">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
