@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-impish-binaries, llvm-toolchain-impish-12-binaries, llvm-toolchain-impish-13-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-impish-binaries, llvm-toolchain-impish-12-binaries, llvm-toolchain-impish-13-binaries, llvm-toolchain-impish-14-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

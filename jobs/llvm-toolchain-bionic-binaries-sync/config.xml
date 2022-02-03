@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-bionic-binaries,llvm-toolchain-bionic-12-binaries,llvm-toolchain-bionic-11-binaries,llvm-toolchain-bionic-13-binaries</upstreamProjects>
+      <upstreamProjects>llvm-toolchain-bionic-binaries,llvm-toolchain-bionic-12-binaries,llvm-toolchain-bionic-11-binaries,llvm-toolchain-bionic-13-binaries,llvm-toolchain-bionic-14-binaries</upstreamProjects>
       <threshold>
         <name>UNSTABLE</name>
         <ordinal>1</ordinal>
