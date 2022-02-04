@@ -240,6 +240,8 @@ apt-get install libomp-<?=$stableBranch?>-dev<br />
 apt-get install libclc-<?=$stableBranch?>-dev<br />
 <b># libunwind</b><br />
 apt-get install libunwind-<?=$stableBranch?>-dev<br />
+<b># mlir</b><br />
+apt-get install libmlir-<?=$stableBranch?>-dev mlir-<?=$stableBranch?>-tools<br />
 </p>
 </div>
 
