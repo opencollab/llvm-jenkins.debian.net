@@ -25,10 +25,10 @@ function getLastRevision($distro) {
    return str_replace("++", "", $matches[1]);
 }
 
-$stableBranch="12";
-$qualificationBranch="13";
-$devBranch="14";
-$isQualification=false;
+$stableBranch="13";
+$qualificationBranch="14";
+$devBranch="15";
+$isQualification=true;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
                       "http://www.w3.org/TR/html4/strict.dtd">
@@ -57,6 +57,7 @@ $isQualification=false;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Feb 04st 2022 - Snapshot becomes 15, branch 14 created<br />
 Jan 16th 2022 - llvm.sh can now install all packages at once with the <a href="#llvmsh">'all' option</a><br />
 Jan 15th 2022 - Sources and dsc files are signed on <a href="#sigstore">sigstore</a><br />
 Dec 30th 2021 - <a href="https://mlir.llvm.org/">MLIR</a> packages added from 13<br />
