@@ -10,7 +10,7 @@
 
 set -eux
 
-CURRENT_LLVM_STABLE=13
+CURRENT_LLVM_STABLE=14
 
 # Check for required tools
 needed_binaries=(lsb_release wget add-apt-repository)
@@ -60,7 +60,8 @@ LLVM_VERSION_PATTERNS[10]="-10"
 LLVM_VERSION_PATTERNS[11]="-11"
 LLVM_VERSION_PATTERNS[12]="-12"
 LLVM_VERSION_PATTERNS[13]="-13"
-LLVM_VERSION_PATTERNS[14]=""
+LLVM_VERSION_PATTERNS[14]="-14"
+LLVM_VERSION_PATTERNS[15]=""
 
 if [ ! ${LLVM_VERSION_PATTERNS[$LLVM_VERSION]+_} ]; then
     echo "This script does not support LLVM version $LLVM_VERSION"
