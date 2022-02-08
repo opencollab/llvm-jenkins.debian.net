@@ -19,4 +19,4 @@ echo "Disable i386 on recent versions of Ubuntu"
 echo "Disable the old version when ready"
 echo "emacs /srv/repository/*/conf/distributions to add the new version"
 echo "Update test-install.sh"
-
+echo "Update https://github.com/opencollab/llvm-toolchain-integration-test-suite/edit/main/.github/workflows/CI.yml"
