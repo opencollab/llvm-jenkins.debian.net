@@ -58,7 +58,7 @@ echo $f;
 url=https://apt.llvm.org/$(echo $f|sed -e &quot;s|/srv/repository/||g&quot;)
 if  curl --output /dev/null --silent --head --fail $url; then
     sum=$(sha256sum $f|awk &apos;{print $1}&apos;)
-    $REKOR_PATH search --sha sha256:$sum --rekor_server $SERVER 
+    $REKOR_PATH search --sha sha256:$sum --rekor_server $SERVER || true
     $REKOR_PATH verify --rekor_server $SERVER --signature &quot;$url.asc&quot; --public-key sigstore.public.key --artifact $url ||true
 
 else 
