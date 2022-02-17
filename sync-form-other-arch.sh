@@ -33,6 +33,9 @@ for f in /tmp/tmp-$DISTRO/dists/llvm-*/main/binary-$ARCH/; do
     # checksum differences otherwise
     rm -f /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain*/libclc-*deb
 
+    # Second workaround to remove _all packages
+    rm -f /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain*/*_all.deb
+
     # Import of the stable and stabilisation version
     if test $DISTRO == "unstable"; then
         reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$VERSION /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-$VERSION/*deb
