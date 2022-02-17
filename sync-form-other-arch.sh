@@ -18,7 +18,7 @@ fi
 
 for f in /tmp/tmp-$DISTRO/dists/llvm-*/main/binary-$ARCH/; do
     echo $f
-        VERSION=$(echo $f|sed -e "s|/tmp/tmp-$DISTRO/dists/llvm-toolchain-$DISTRO-\([[:digit:]]\+\)/.*|\1|g")
+    VERSION=$(echo $f|sed -e "s|/tmp/tmp-$DISTRO/dists/llvm-toolchain-$DISTRO-\([[:digit:]]\+\)/.*|\1|g")
     echo "VERSION $VERSION"
     re='^[0-9]+$'
     if ! [[ $VERSION =~ $re ]] ; then
