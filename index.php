@@ -191,7 +191,6 @@ deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$stableBranch?> main
 
 deb http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
-
 </pre>
 
 Hirsute (21.04) - <small>Last update : <?=getLastUpdate("hirsute");?> / Revision: <?=getLastRevision("hirsute")?></small>
