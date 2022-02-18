@@ -57,13 +57,15 @@ $isQualification=true;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
-Feb 04st 2022 - Snapshot becomes 15, branch 14 created<br />
+Feb 18th 2022 - Ubuntu Jammy (22.04) enabled<br />
+Feb 04th 2022 - Snapshot becomes 15, branch 14 created<br />
 Jan 16th 2022 - llvm.sh can now install all packages at once with the <a href="#llvmsh">'all' option</a><br />
 Jan 15th 2022 - Sources and dsc files are signed on <a href="#sigstore">sigstore</a><br />
 Dec 30th 2021 - <a href="https://mlir.llvm.org/">MLIR</a> packages added from 13<br />
 Dec 23th 2021 - Ubuntu Groovy (20.10) disabled (EOL)<br />
 Dec 22nd 2021 - arm64 supported<br />
 Nov 02nd 2021 - Infra <a href="https://blog.llvm.org/posts/2021-11-02-apt.llvm.org-moving-from-physical-server-to-the-cloud/">moved to the cloud</a><br />
+Oct 30th 2021 - Ubuntu Impish (21.10) enabled<br />
 Aug 01st 2021 - Snapshot becomes 14, branch 13 created<br />
 Aug 01st 2021 - libunwind packages are generated (libunwind-XX & libunwind-XX-dev)<br />
 Jul 25th 2021 - Packages are tested against the <a href="https://github.com/opencollab/llvm-toolchain-integration-test-suite/">LLVM integration test suite</a><br />
@@ -228,6 +230,20 @@ deb-src http://apt.llvm.org/impish/ llvm-toolchain-impish-<?=$stableBranch?> mai
 
 deb http://apt.llvm.org/impish/ llvm-toolchain-impish-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/impish/ llvm-toolchain-impish-<?=$qualificationBranch?> main
+</pre>
+
+Jammy (22.04) - <small>Last update : <?=getLastUpdate("jammy");?> / Revision: <?=getLastRevision("jammy")?></small>
+<pre>
+deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy main
+deb-src http://apt.llvm.org/jammy/ llvm-toolchain-jammy main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$qualificationBranch?> main
 </pre>
 
 </div>
