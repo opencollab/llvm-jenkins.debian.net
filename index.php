@@ -65,7 +65,7 @@ Dec 30th 2021 - <a href="https://mlir.llvm.org/">MLIR</a> packages added from 13
 Dec 23th 2021 - Ubuntu Groovy (20.10) disabled (EOL)<br />
 Dec 22nd 2021 - arm64 supported<br />
 Nov 02nd 2021 - Infra <a href="https://blog.llvm.org/posts/2021-11-02-apt.llvm.org-moving-from-physical-server-to-the-cloud/">moved to the cloud</a><br />
-Oct 30th 2021 - Ubuntu Impish (21.10) enabled<br />
+Oct 05th 2021 - Ubuntu Impish (21.10) enabled<br />
 Aug 01st 2021 - Snapshot becomes 14, branch 13 created<br />
 Aug 01st 2021 - libunwind packages are generated (libunwind-XX & libunwind-XX-dev)<br />
 Jul 25th 2021 - Packages are tested against the <a href="https://github.com/opencollab/llvm-toolchain-integration-test-suite/">LLVM integration test suite</a><br />
