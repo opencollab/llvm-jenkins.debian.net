@@ -208,6 +208,20 @@ deb http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute-<?=$qualificationBranch?
 deb-src http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute-<?=$qualificationBranch?> main
 </pre>
 
+Impish (21.10) - <small>Last update : <?=getLastUpdate("impish");?> / Revision: <?=getLastRevision("impish")?></small>
+<pre>
+deb http://apt.llvm.org/impish/ llvm-toolchain-impish main
+deb-src http://apt.llvm.org/impish/ llvm-toolchain-impish main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/impish/ llvm-toolchain-impish-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/impish/ llvm-toolchain-impish-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/impish/ llvm-toolchain-impish-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/impish/ llvm-toolchain-impish-<?=$qualificationBranch?> main
+</pre>
+
 </div>
 <a href="#" id="default_pkg" style="visibility: hidden">default_pkg</a>
 <div class="rel_section">Default packages</div>
