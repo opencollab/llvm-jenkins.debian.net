@@ -37,7 +37,8 @@
     <hudson.tasks.Shell>
       <command>REKOR_PATH=~/rekor
 
-
+#cat /srv/repository/in_rekor.txt
+#echo &quot;&quot; &gt; /srv/repository/in_rekor.txt
 chmod +x $REKOR_PATH
 ls -al $REKOR_PATH
 $REKOR_PATH version
@@ -74,7 +75,7 @@ rm /tmp/fail.txt</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@391.ve4a_38c1b_cf4b_">
+    <hudson.tasks.Mailer plugin="mailer@408.vd726a_1130320">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
