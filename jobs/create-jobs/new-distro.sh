@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 NAME="jammy"
 
-VERSIONS=(12 13 snapshot)
+VERSIONS=(13 14 snapshot)
 for v in "${VERSIONS[@]}"
 do
         echo $v
@@ -31,11 +31,12 @@ echo "On every slave, git pull + create the symlink from $NAME for deboostrap"
 echo "including other archs"
 echo "remove i386 in case of ubuntu distro"
 echo "also delete llvm-toolchain-$NAME-source-trigger and update the cron in the job"
-echo "Add the new version in /srv/salt/llvm-slave.sls on ursae for /usr/share/debootstrap/scripts"
+echo "Add the new version in /srv/salt/llvm-slave.sls on cocoro for /usr/share/debootstrap/scripts"
 echo "Update llvm-toolchain-$NAME-binaries-sync to fix the version to sync"
 echo "Update the update of the build in the main job llvm-toolchain-$NAME-source"
 echo "Update the version (not snapshot) to add the .x of the branch name in the orig-tar.sh script (ex: release/12.x instead of release/12)"
 echo "in /srv/repository/$NAME/conf/* maybe copy the configuration from other repo to avoid s390x issues"
+echo "create srv/repository/$NAME/conf/distributions on arm64 & s390x"
 echo "create the filter view"
 echo "start the jobs in jenkins"
 echo "add it into test-install.sh"
