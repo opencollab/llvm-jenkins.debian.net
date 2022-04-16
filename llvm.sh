@@ -13,7 +13,7 @@ set -eux
 CURRENT_LLVM_STABLE=14
 
 # Check for required tools
-needed_binaries=(lsb_release wget add-apt-repository)
+needed_binaries=(lsb_release wget add-apt-repository gpg)
 missing_binaries=()
 for binary in "${needed_binaries[@]}"; do
     if ! which $binary &>/dev/null ; then
@@ -22,7 +22,7 @@ for binary in "${needed_binaries[@]}"; do
 done
 if [[ ${#missing_binaries[@]} -gt 0 ]] ; then
     echo "You are missing some tools this script requires: ${missing_binaries[@]}"
-    echo "(hint: apt install lsb-release wget software-properties-common)"
+    echo "(hint: apt install lsb-release wget software-properties-common gnupg)"
     exit 4
 fi
 
