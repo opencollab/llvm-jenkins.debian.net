@@ -94,12 +94,14 @@ case ${DISTRO} in
         ;;
 esac
 
+BASE_URL="${LLVM_APT_BASE_URL:-http://apt.llvm.org}"
+
 # join the repository name
 if [[ -n "${CODENAME}" ]]; then
-    REPO_NAME="deb http://apt.llvm.org/${CODENAME}/  llvm-toolchain${LINKNAME}${LLVM_VERSION_STRING} main"
+    REPO_NAME="deb ${BASE_URL}/${CODENAME}/  llvm-toolchain${LINKNAME}${LLVM_VERSION_STRING} main"
 
     # check if the repository exists for the distro and version
-    if ! wget -q --method=HEAD http://apt.llvm.org/${CODENAME} &> /dev/null; then
+    if ! wget -q --method=HEAD ${BASE_URL}/${CODENAME} &> /dev/null; then
         echo "Distribution '${DISTRO}' in version '${VERSION}' is not supported by this script."
         exit 2
     fi
