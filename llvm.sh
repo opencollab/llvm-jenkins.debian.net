@@ -47,7 +47,7 @@ fi
 
 DISTRO=$(lsb_release -is)
 VERSION=$(lsb_release -sr)
-DIST_VERSION="${DISTRO}_${VERSION}"
+DIST_VERSION="${LLVM_APT_DIST_VERSION:-${DISTRO}_${VERSION}}"
 
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root!"
