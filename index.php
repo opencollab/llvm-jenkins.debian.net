@@ -79,9 +79,15 @@ Feb 01st 2021 - Debian Bullseye (11) added<br />
 <div class="rel_boxtext">
 For convenience there is an automatic installation script available that installs LLVM for you.<br />
 
+To use a mirror, you can set an environment variable before all the following commands
+<pre>
+export LLVM_APT_BASE_URL=https://mirrors.tuna.tsinghua.edu.cn/llvm-apt
+</pre>
+You can use <a href="https://mirrorz.org/list/llvm-apt">MirrorZ</a> to find some available mirror sites.
+
 To install the latest stable version:
 <pre>
-bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+sudo -E bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 </pre>
 <br />
 
@@ -89,16 +95,16 @@ To install a specific version of LLVM:
 <pre>
 wget https://apt.llvm.org/llvm.sh
 chmod +x llvm.sh
-sudo ./llvm.sh &lt;version number&gt;
+sudo -E ./llvm.sh &lt;version number&gt;
 </pre>
 
 To install all apt.llvm.org packages at once:
 <pre>
 wget https://apt.llvm.org/llvm.sh
 chmod +x llvm.sh
-sudo ./llvm.sh &lt;version number&gt; all
+sudo -E ./llvm.sh &lt;version number&gt; all
 # or
-sudo ./llvm.sh all
+sudo -E ./llvm.sh all
 </pre>
 </div>
 
