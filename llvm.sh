@@ -10,6 +10,16 @@
 
 set -eux
 
+usage() {
+    echo "Usage: $0 [llvm_major_version] [all] [OPTIONS]" 1>&2
+    echo -e "all\t\t\tInstall all packages." 1>&2
+    echo "-d=dist_string" 1>&2
+    echo "Specifies the distro and version, where dist_string is of form distro_version, for example Ubuntu_22.04" 1>&2
+    echo -e "-h\t\t\tPrints this help." 1>&2
+    echo -e "-m=repo_base_url\tSpecifies the base URL from which to download." 1>&2
+    exit 1;
+}
+
 CURRENT_LLVM_STABLE=14
 
 # Check for required tools
@@ -30,24 +40,42 @@ fi
 # We default to the current stable branch of LLVM
 LLVM_VERSION=$CURRENT_LLVM_STABLE
 ALL=0
-if [ "$#" -ge 1 ]; then
-    LLVM_VERSION=$1
-    if [ "$1" == "all" ]; then
+if [ "$#" -ge 1 ] && [ "${1::1}" != "-" ]; then
+    if [ "$1" != "all" ]; then
+        LLVM_VERSION=$1
+    else
         # special case for ./llvm.sh all
-        LLVM_VERSION=$CURRENT_LLVM_STABLE
         ALL=1
     fi
+    OPTIND=2
     if [ "$#" -ge 2 ]; then
       if [ "$2" == "all" ]; then
           # Install all packages
           ALL=1
+          OPTIND=3
       fi
     fi
 fi
 
+BASE_URL="http://apt.llvm.org"
+
 DISTRO=$(lsb_release -is)
 VERSION=$(lsb_release -sr)
-DIST_VERSION="${LLVM_APT_DIST_VERSION:-${DISTRO}_${VERSION}}"
+DIST_VERSION="${DISTRO}_${VERSION}"
+
+while getopts ":hm:d:" arg; do
+    case $arg in
+    h)
+        usage
+        ;;
+    m)
+        BASE_URL=${OPTARG}
+        ;;
+    d)
+        DIST_VERSION=${OPTARG}
+        ;;
+    esac
+done
 
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root!"
@@ -94,8 +122,6 @@ case ${DISTRO} in
         fi
         ;;
 esac
-
-BASE_URL="${LLVM_APT_BASE_URL:-http://apt.llvm.org}"
 
 # join the repository name
 if [[ -n "${CODENAME}" ]]; then
