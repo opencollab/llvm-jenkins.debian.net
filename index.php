@@ -81,7 +81,7 @@ For convenience there is an automatic installation script available that install
 
 To install the latest stable version:
 <pre>
-sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 </pre>
 <br />
 
