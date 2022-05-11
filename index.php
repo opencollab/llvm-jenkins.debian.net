@@ -81,7 +81,7 @@ For convenience there is an automatic installation script available that install
 
 To install the latest stable version:
 <pre>
-sudo -E bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 </pre>
 <br />
 
@@ -89,21 +89,21 @@ To install a specific version of LLVM:
 <pre>
 wget https://apt.llvm.org/llvm.sh
 chmod +x llvm.sh
-sudo -E ./llvm.sh &lt;version number&gt;
+sudo ./llvm.sh &lt;version number&gt;
 </pre>
 
 To install all apt.llvm.org packages at once:
 <pre>
 wget https://apt.llvm.org/llvm.sh
 chmod +x llvm.sh
-sudo -E ./llvm.sh &lt;version number&gt; all
+sudo ./llvm.sh &lt;version number&gt; all
 # or
-sudo -E ./llvm.sh all
+sudo ./llvm.sh all
 </pre>
 
 Additionally, there are options to specify the mirror and distro version to use, for example:
 <pre>
-sudo -E ./llvm.sh -m https://mirrors.tuna.tsinghua.edu.cn/llvm-apt -d Ubuntu_22.04
+sudo ./llvm.sh -m https://mirrors.tuna.tsinghua.edu.cn/llvm-apt -d Ubuntu_22.04
 </pre>
 
 You can use <a href="https://mirrorz.org/list/llvm-apt">MirrorZ</a> to find some available mirror sites.
