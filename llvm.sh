@@ -10,20 +10,6 @@
 
 set -eux
 
-# helper function to add symbolic link to an executable
-# NOTE: this will NOT replace the executable that was added by installation from official APT
-symlink_llvm() {
-    local executable=$1
-
-    # if executable was installed
-    if [[ -f /usr/lib/llvm-${LLVM_VERSION}/bin/${executable} ]]; then
-        if [[ ! -f /usr/bin/${executable} ]]; then
-            # add executable globally if there is none
-            ln -s /usr/lib/llvm-${LLVM_VERSION}/bin/${executable} /usr/bin/${executable}
-        fi
-    fi
-}
-
 CURRENT_LLVM_STABLE=14
 
 # Check for required tools
@@ -134,11 +120,3 @@ if [[ $ALL -eq 1 ]]; then
     PKG="$PKG clang-tidy-$LLVM_VERSION clang-format-$LLVM_VERSION clang-tools-$LLVM_VERSION llvm-$LLVM_VERSION-dev lld-$LLVM_VERSION lldb-$LLVM_VERSION llvm-$LLVM_VERSION-tools libomp-$LLVM_VERSION-dev libc++-$LLVM_VERSION-dev libc++abi-$LLVM_VERSION-dev libclang-common-$LLVM_VERSION-dev libclang-$LLVM_VERSION-dev libclang-cpp$LLVM_VERSION-dev libunwind-$LLVM_VERSION-dev"
 fi
 apt-get install -y $PKG
-
-# add symbolic link(s) for a few installed packages
-symlink_llvm clang
-symlink_llvm clang++
-symlink_llvm clangd
-symlink_llvm clang-cpp
-symlink_llvm clang-format
-symlink_llvm clang-tidy
