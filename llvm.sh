@@ -11,10 +11,10 @@
 set -eux
 
 usage() {
+    set +x
     echo "Usage: $0 [llvm_major_version] [all] [OPTIONS]" 1>&2
     echo -e "all\t\t\tInstall all packages." 1>&2
-    echo "-d=dist_string" 1>&2
-    echo "Specifies the distro and version, where dist_string is of form distro_version, for example Ubuntu_22.04" 1>&2
+    echo -e "-n=code_name\t\tSpecifies the distro codename, for example bionic" 1>&2
     echo -e "-h\t\t\tPrints this help." 1>&2
     echo -e "-m=repo_base_url\tSpecifies the base URL from which to download." 1>&2
     exit 1;
@@ -57,13 +57,38 @@ if [ "$#" -ge 1 ] && [ "${1::1}" != "-" ]; then
     fi
 fi
 
+# Set default values for commandline arguments
 BASE_URL="http://apt.llvm.org"
-
 DISTRO=$(lsb_release -is)
 VERSION=$(lsb_release -sr)
-DIST_VERSION="${DISTRO}_${VERSION}"
+UBUNTU_CODENAME=""
+CODENAME_FROM_ARGUMENTS=""
+source /etc/os-release
+DISTRO=${DISTRO,,}
+# obtain VERSION_CODENAME and UBUNTU_CODENAME (for Ubuntu and its derivatives)
+case ${DISTRO} in
+    debian)
+        if [[ "${VERSION}" == "unstable" ]] || [[ "${VERSION}" == "testing" ]]; then
+            CODENAME=unstable
+            LINKNAME=
+        else
+            # "stable" Debian release
+            CODENAME=${VERSION_CODENAME}
+            LINKNAME=-${CODENAME}
+        fi
+        ;;
+    *)
+        # ubuntu and its derivatives
+        if [[ ! -z "${UBUNTU_CODENAME}" ]]; then
+            CODENAME=${UBUNTU_CODENAME}
+            if [[ -n "${CODENAME}" ]]; then
+                LINKNAME=-${CODENAME}
+            fi
+        fi
+        ;;
+esac
 
-while getopts ":hm:d:" arg; do
+while getopts ":hm:n:" arg; do
     case $arg in
     h)
         usage
@@ -71,8 +96,10 @@ while getopts ":hm:d:" arg; do
     m)
         BASE_URL=${OPTARG}
         ;;
-    d)
-        DIST_VERSION=${OPTARG}
+    n)
+        CODENAME=${OPTARG}
+        LINKNAME=-${CODENAME}
+        CODENAME_FROM_ARGUMENTS="true"
         ;;
     esac
 done
@@ -98,38 +125,17 @@ fi
 
 LLVM_VERSION_STRING=${LLVM_VERSION_PATTERNS[$LLVM_VERSION]}
 
-# obtain VERSION_CODENAME and UBUNTU_CODENAME (for Ubuntu and its derivatives)
-source /etc/os-release
-DISTRO=${DISTRO,,}
-case ${DISTRO} in
-    debian)
-        if [[ "${VERSION}" == "unstable" ]] || [[ "${VERSION}" == "testing" ]]; then
-            CODENAME=unstable
-            LINKNAME=
-        else
-            # "stable" Debian release
-            CODENAME=${VERSION_CODENAME}
-            LINKNAME=-${CODENAME}
-        fi
-        ;;
-    *)
-        # ubuntu and its derivatives
-        if [[ -n `uname -v | grep -i ubuntu` ]]; then
-            CODENAME=${UBUNTU_CODENAME}
-            if [[ -n "${CODENAME}" ]]; then
-                LINKNAME=-${CODENAME}
-            fi
-        fi
-        ;;
-esac
-
 # join the repository name
 if [[ -n "${CODENAME}" ]]; then
     REPO_NAME="deb ${BASE_URL}/${CODENAME}/  llvm-toolchain${LINKNAME}${LLVM_VERSION_STRING} main"
 
     # check if the repository exists for the distro and version
     if ! wget -q --method=HEAD ${BASE_URL}/${CODENAME} &> /dev/null; then
-        echo "Distribution '${DISTRO}' in version '${VERSION}' is not supported by this script."
+        if [[ -z "${CODENAME_FROM_ARGUMENTS}" ]]; then
+            echo "Distribution '${DISTRO}' in version '${VERSION}' is not supported by this script."
+        else
+            echo "Specified codename '${CODENAME}' is not supported by this script."
+        fi
         exit 2
     fi
 fi

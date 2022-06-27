@@ -103,7 +103,7 @@ sudo ./llvm.sh all
 
 Additionally, there are options to specify the mirror and distro version to use, for example:
 <pre>
-sudo ./llvm.sh -m https://mirrors.tuna.tsinghua.edu.cn/llvm-apt -d Ubuntu_22.04
+sudo ./llvm.sh -m https://mirrors.tuna.tsinghua.edu.cn/llvm-apt -n bionic
 </pre>
 
 You can use <a href="https://mirrorz.org/list/llvm-apt">MirrorZ</a> to find some available mirror sites.
