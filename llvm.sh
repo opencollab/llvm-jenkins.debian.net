@@ -63,9 +63,9 @@ DISTRO=$(lsb_release -is)
 VERSION=$(lsb_release -sr)
 UBUNTU_CODENAME=""
 CODENAME_FROM_ARGUMENTS=""
+# Obtain VERSION_CODENAME and UBUNTU_CODENAME (for Ubuntu and its derivatives)
 source /etc/os-release
 DISTRO=${DISTRO,,}
-# obtain VERSION_CODENAME and UBUNTU_CODENAME (for Ubuntu and its derivatives)
 case ${DISTRO} in
     debian)
         if [[ "${VERSION}" == "unstable" ]] || [[ "${VERSION}" == "testing" ]]; then
@@ -79,7 +79,7 @@ case ${DISTRO} in
         ;;
     *)
         # ubuntu and its derivatives
-        if [[ ! -z "${UBUNTU_CODENAME}" ]]; then
+        if [[ -n "${UBUNTU_CODENAME}" ]]; then
             CODENAME=${UBUNTU_CODENAME}
             if [[ -n "${CODENAME}" ]]; then
                 LINKNAME=-${CODENAME}
@@ -131,10 +131,10 @@ if [[ -n "${CODENAME}" ]]; then
 
     # check if the repository exists for the distro and version
     if ! wget -q --method=HEAD ${BASE_URL}/${CODENAME} &> /dev/null; then
-        if [[ -z "${CODENAME_FROM_ARGUMENTS}" ]]; then
-            echo "Distribution '${DISTRO}' in version '${VERSION}' is not supported by this script."
-        else
+        if [[ -n "${CODENAME_FROM_ARGUMENTS}" ]]; then
             echo "Specified codename '${CODENAME}' is not supported by this script."
+        else
+            echo "Distribution '${DISTRO}' in version '${VERSION}' is not supported by this script."
         fi
         exit 2
     fi
