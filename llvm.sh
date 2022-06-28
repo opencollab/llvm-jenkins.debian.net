@@ -21,6 +21,7 @@ usage() {
 }
 
 CURRENT_LLVM_STABLE=14
+BASE_URL="http://apt.llvm.org"
 
 # Check for required tools
 needed_binaries=(lsb_release wget add-apt-repository gpg)
@@ -36,29 +37,10 @@ if [[ ${#missing_binaries[@]} -gt 0 ]] ; then
     exit 4
 fi
 
-# read optional command line argument
+# Set default values for commandline arguments
 # We default to the current stable branch of LLVM
 LLVM_VERSION=$CURRENT_LLVM_STABLE
 ALL=0
-if [ "$#" -ge 1 ] && [ "${1::1}" != "-" ]; then
-    if [ "$1" != "all" ]; then
-        LLVM_VERSION=$1
-    else
-        # special case for ./llvm.sh all
-        ALL=1
-    fi
-    OPTIND=2
-    if [ "$#" -ge 2 ]; then
-      if [ "$2" == "all" ]; then
-          # Install all packages
-          ALL=1
-          OPTIND=3
-      fi
-    fi
-fi
-
-# Set default values for commandline arguments
-BASE_URL="http://apt.llvm.org"
 DISTRO=$(lsb_release -is)
 VERSION=$(lsb_release -sr)
 UBUNTU_CODENAME=""
@@ -87,6 +69,24 @@ case ${DISTRO} in
         fi
         ;;
 esac
+
+# read optional command line arguments
+if [ "$#" -ge 1 ] && [ "${1::1}" != "-" ]; then
+    if [ "$1" != "all" ]; then
+        LLVM_VERSION=$1
+    else
+        # special case for ./llvm.sh all
+        ALL=1
+    fi
+    OPTIND=2
+    if [ "$#" -ge 2 ]; then
+      if [ "$2" == "all" ]; then
+          # Install all packages
+          ALL=1
+          OPTIND=3
+      fi
+    fi
+fi
 
 while getopts ":hm:n:" arg; do
     case $arg in
