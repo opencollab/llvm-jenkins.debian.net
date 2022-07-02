@@ -23,6 +23,7 @@ if test "$DIST" = "bionic" -a $LLVM_VERSION -ge 14; then
 fi
 
 if test "$DIST" = "stretch"; then
+    apt-get install --assume-yes --no-install-recommends apt-transport-https
     echo "deb http://ftp.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/stretch-backport.list
     # for libarchive13 (needed for cmake)
     echo "deb http://ftp.debian.org/debian stretch-backports-sloppy main" >> /etc/apt/sources.list.d/stretch-backport.list
