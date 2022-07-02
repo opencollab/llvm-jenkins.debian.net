@@ -105,10 +105,8 @@ sudo ./llvm.sh all
 
 Additionally, there are options to specify the mirror and distro version to use, for example:
 <pre>
-sudo ./llvm.sh -m https://mirrors.tuna.tsinghua.edu.cn/llvm-apt -n bionic
+sudo ./llvm.sh -m https://<URL> -n bionic
 </pre>
-
-You can use <a href="https://mirrorz.org/list/llvm-apt">MirrorZ</a> to find some available mirror sites.
 
 For more details, please check the synopsis by running the script with -h option.
 </div>
