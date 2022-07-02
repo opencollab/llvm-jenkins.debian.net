@@ -16,7 +16,7 @@ echo "LLVM_VERSION = $LLVM_VERSION"
 if test "$DIST" = "bionic" -a $LLVM_VERSION -ge 14; then
     # Install gcc 11 to get C++ 20 features
     # Only needed from llvm 14
-    apt install -y software-properties-common
+    apt install -y software-properties-common gnugpg
     add-apt-repository -y ppa:ubuntu-toolchain-r/test
     apt-get update
     apt-get install g++-11 --assume-yes --no-install-recommends
