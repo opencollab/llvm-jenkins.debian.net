@@ -29,7 +29,9 @@ if test "$DIST" = "stretch"; then
     echo "deb http://ftp.debian.org/debian stretch-backports-sloppy main" >> /etc/apt/sources.list.d/stretch-backport.list
 
     # for a more recent version of gcc
-    echo "deb https://ppa.launchpadcontent.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/stretch-backport.list
+    apt install -y software-properties-common
+    add-apt-repository -y ppa:ubuntu-toolchain-r/test
+
     apt-get update
     apt-get install libarchive13 --assume-yes -t stretch-backports-sloppy
     apt-get install debhelper cmake --assume-yes -t stretch-backports
