@@ -23,13 +23,14 @@ if test "$DIST" = "bionic" -a $LLVM_VERSION -ge 14; then
 fi
 
 if test "$DIST" = "stretch"; then
-    apt-get install --assume-yes --no-install-recommends apt-transport-https
+    apt-get install --assume-yes --no-install-recommends apt-transport-https software-properties-common dirmngr
+
     echo "deb http://ftp.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/stretch-backport.list
     # for libarchive13 (needed for cmake)
     echo "deb http://ftp.debian.org/debian stretch-backports-sloppy main" >> /etc/apt/sources.list.d/stretch-backport.list
 
     # for a more recent version of gcc
-    apt install -y software-properties-common apt-transport-https
+    apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 1E9377A2BA9EF27F
     add-apt-repository -y  "deb https://ppa.launchpadcontent.net/ubuntu-toolchain-r/test/ubuntu xenial main"
 
     apt-get update
