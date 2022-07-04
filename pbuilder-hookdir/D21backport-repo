@@ -30,13 +30,13 @@ if test "$DIST" = "stretch"; then
     echo "deb http://ftp.debian.org/debian stretch-backports-sloppy main" >> /etc/apt/sources.list.d/stretch-backport.list
 
     # for a more recent version of gcc
-    apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 1E9377A2BA9EF27F
-    add-apt-repository -y  "deb https://ppa.launchpadcontent.net/ubuntu-toolchain-r/test/ubuntu xenial main"
+#    apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 1E9377A2BA9EF27F
+#    add-apt-repository -y  "deb https://ppa.launchpadcontent.net/ubuntu-toolchain-r/test/ubuntu xenial main"
 
     apt-get update
     apt-get install libarchive13 --assume-yes -t stretch-backports-sloppy
     apt-get install debhelper cmake --assume-yes -t stretch-backports
-    apt-get install g++-7 --assume-yes
+#    apt-get install g++-7 --assume-yes
     apt -y --purge remove aptitude apt-transport-https software-properties-common dirmngr gnupg2
 
     apt install -y zlib1g-dev liblzma-dev libbz2-dev libzstd-dev binutils bzip2 libperl5.24 make patch perl perl-modules-5.24 rename xz-utils libseccomp2
