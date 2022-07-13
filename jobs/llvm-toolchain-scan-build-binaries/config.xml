@@ -11,7 +11,7 @@ Only build amd64</description>
     <jenkins.model.BuildDiscarderProperty>
       <strategy class="hudson.tasks.LogRotator">
         <daysToKeep>-1</daysToKeep>
-        <numToKeep>10</numToKeep>
+        <numToKeep>3</numToKeep>
         <artifactDaysToKeep>10</artifactDaysToKeep>
         <artifactNumToKeep>10</artifactNumToKeep>
       </strategy>
