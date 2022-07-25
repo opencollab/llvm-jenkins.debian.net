@@ -57,6 +57,7 @@ $isQualification=true;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Jul 24th 2022 - Ubuntu Hirsute (20.10) disabled (EOL)<br />
 Feb 18th 2022 - Ubuntu Jammy (22.04) enabled<br />
 Feb 04th 2022 - Snapshot becomes 15, branch 14 created<br />
 Jan 16th 2022 - llvm.sh can now install all packages at once with the <a href="#llvmsh">'all' option</a><br />
@@ -102,13 +103,6 @@ sudo ./llvm.sh &lt;version number&gt; all
 # or
 sudo ./llvm.sh all
 </pre>
-
-Additionally, there are options to specify the mirror and distro version to use, for example:
-<pre>
-sudo ./llvm.sh -m https://<URL> -n bionic
-</pre>
-
-For more details, please check the synopsis by running the script with -h option.
 </div>
 
 <div class="rel_section">Debian</div>
@@ -200,20 +194,6 @@ deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$stableBranch?> main
 
 deb http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
-</pre>
-
-Hirsute (21.04) - <small>Last update : <?=getLastUpdate("hirsute");?> / Revision: <?=getLastRevision("hirsute")?></small>
-<pre>
-deb http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute main
-deb-src http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute main
-# <?=$stableBranch?>
-
-deb http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
-
-deb http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute-<?=$qualificationBranch?> main
 </pre>
 
 Impish (21.10) - <small>Last update : <?=getLastUpdate("impish");?> / Revision: <?=getLastRevision("impish")?></small>
