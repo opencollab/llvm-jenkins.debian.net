@@ -210,7 +210,7 @@ deb http://apt.llvm.org/impish/ llvm-toolchain-impish-<?=$qualificationBranch?> 
 deb-src http://apt.llvm.org/impish/ llvm-toolchain-impish-<?=$qualificationBranch?> main
 </pre>
 
-Jammy (22.04) - <small>Last update : <?=getLastUpdate("jammy");?> / Revision: <?=getLastRevision("jammy")?></small>
+Jammy (22.04) LTS - <small>Last update : <?=getLastUpdate("jammy");?> / Revision: <?=getLastRevision("jammy")?></small>
 <pre>
 deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy main
 deb-src http://apt.llvm.org/jammy/ llvm-toolchain-jammy main
