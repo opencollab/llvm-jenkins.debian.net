@@ -57,7 +57,7 @@ $isQualification=true;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
-Jul 24th 2022 - Ubuntu Hirsute (21.04) disabled (EOL)<br />
+Jul 24th 2022 - Ubuntu Hirsute (21.04) and Impish (21.10) disabled (EOL)<br />
 Feb 18th 2022 - Ubuntu Jammy (22.04) enabled<br />
 Feb 04th 2022 - Snapshot becomes 15, branch 14 created<br />
 Jan 16th 2022 - llvm.sh can now install all packages at once with the <a href="#llvmsh">'all' option</a><br />
@@ -194,20 +194,6 @@ deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$stableBranch?> main
 
 deb http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
-</pre>
-
-Impish (21.10) - <small>Last update : <?=getLastUpdate("impish");?> / Revision: <?=getLastRevision("impish")?></small>
-<pre>
-deb http://apt.llvm.org/impish/ llvm-toolchain-impish main
-deb-src http://apt.llvm.org/impish/ llvm-toolchain-impish main
-# <?=$stableBranch?>
-
-deb http://apt.llvm.org/impish/ llvm-toolchain-impish-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/impish/ llvm-toolchain-impish-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
-
-deb http://apt.llvm.org/impish/ llvm-toolchain-impish-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/impish/ llvm-toolchain-impish-<?=$qualificationBranch?> main
 </pre>
 
 Jammy (22.04) LTS - <small>Last update : <?=getLastUpdate("jammy");?> / Revision: <?=getLastRevision("jammy")?></small>
