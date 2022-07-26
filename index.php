@@ -57,7 +57,7 @@ $isQualification=true;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
-Jul 24th 2022 - Ubuntu Hirsute (20.10) disabled (EOL)<br />
+Jul 24th 2022 - Ubuntu Hirsute (21.04) disabled (EOL)<br />
 Feb 18th 2022 - Ubuntu Jammy (22.04) enabled<br />
 Feb 04th 2022 - Snapshot becomes 15, branch 14 created<br />
 Jan 16th 2022 - llvm.sh can now install all packages at once with the <a href="#llvmsh">'all' option</a><br />
