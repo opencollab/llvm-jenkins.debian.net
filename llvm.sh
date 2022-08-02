@@ -20,7 +20,7 @@ usage() {
     exit 1;
 }
 
-CURRENT_LLVM_STABLE=14
+CURRENT_LLVM_STABLE=15
 BASE_URL="http://apt.llvm.org"
 
 # Check for required tools
@@ -116,7 +116,8 @@ LLVM_VERSION_PATTERNS[11]="-11"
 LLVM_VERSION_PATTERNS[12]="-12"
 LLVM_VERSION_PATTERNS[13]="-13"
 LLVM_VERSION_PATTERNS[14]="-14"
-LLVM_VERSION_PATTERNS[15]=""
+LLVM_VERSION_PATTERNS[15]="-15"
+LLVM_VERSION_PATTERNS[16]=""
 
 if [ ! ${LLVM_VERSION_PATTERNS[$LLVM_VERSION]+_} ]; then
     echo "This script does not support LLVM version $LLVM_VERSION"
