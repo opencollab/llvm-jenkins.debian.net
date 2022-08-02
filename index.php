@@ -25,9 +25,9 @@ function getLastRevision($distro) {
    return str_replace("++", "", $matches[1]);
 }
 
-$stableBranch="13";
-$qualificationBranch="14";
-$devBranch="15";
+$stableBranch="14";
+$qualificationBranch="15";
+$devBranch="16";
 $isQualification=true;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -57,6 +57,7 @@ $isQualification=true;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
+Jul 31th 2022 - Snapshot becomes 16, branch 15 created<br />
 Jul 24th 2022 - Ubuntu Hirsute (21.04) and Impish (21.10) disabled (EOL)<br />
 Feb 18th 2022 - Ubuntu Jammy (22.04) enabled<br />
 Feb 04th 2022 - Snapshot becomes 15, branch 14 created<br />
