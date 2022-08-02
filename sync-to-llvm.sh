@@ -35,8 +35,8 @@ if test ! -d $LLVM_DEFAULT_DIR/; then
 fi
 
 if test -z "$SKIP_SYNC"; then
-find $BASE_LOCALDIR -type d | xargs chmod 755 || true
-find $BASE_LOCALDIR -type f ! -name sync-to-llvm.sh | xargs -I {}  -d '\n' chmod 644 "{}" || true
+time find $BASE_LOCALDIR -type d | xargs chmod 755 || true
+time find $BASE_LOCALDIR -type f ! -name sync-to-llvm.sh | xargs -I {} -d '\n' chmod 644 "{}" || true
 ssh $TARGET mkdir -p $BASE_TARGETDIR/$REPOSITORY
 echo "Delete potential old directory"
 time ssh $TARGET rm -rf $BASE_TARGETDIR/$REPOSITORY.back
