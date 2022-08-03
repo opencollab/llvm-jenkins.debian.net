@@ -22,3 +22,12 @@ echo "do it also on arm64 & s390x machines"
 echo "Update test-install.sh & update the master node"
 echo "Update llvm.sh"
 echo "Update https://github.com/opencollab/llvm-toolchain-integration-test-suite/edit/main/.github/workflows/CI.yml"
+echo "You can also disable the previous version with:
+echo "import hudson.model.*
+
+jenkins = Hudson.instance
+jenkins.instance.getView(\"13\").items.each { item ->
+    println \"\nJob: $item.name\"
+    item.disabled = true
+}"
+echo "in https://llvm-jenkins.debian.net/script"
