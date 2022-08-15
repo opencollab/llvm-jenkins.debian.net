@@ -5,6 +5,16 @@ set -v
 ls -al /tmp/
 ls -1d /tmp/scan-build-*
 
+dirs=$(ls -1d /tmp/scan-build-*)
+for d in $dirs; do
+    # cleanup temporary directories without too many files
+    # we should have +600 defects
+    c=$(ls -1 $d|wc -l)
+    if test $c -lt 20; then
+        rm -rf $d
+    fi
+done
+
 dir=$(ls -1d /tmp/scan-build-*|head -1|cut -d: -f1)
 echo "We think it is $dir"
 if test ! -d $dir; then
