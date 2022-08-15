@@ -40,4 +40,5 @@ gcloud compute images deprecate image-debian-node-$NODEID --state=OBSOLETE --rep
 
 echo "Update jenkins on https://llvm-jenkins.debian.net/configureClouds/"
 echo "Delete the old image (image-debian-node-$NODEID) once image-debian-node-$NEW_NODE is OK"
+echo "https://console.cloud.google.com/compute/images?tab=images&authuser=1&"
 rm out.log
