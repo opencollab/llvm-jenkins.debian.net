@@ -37,7 +37,8 @@ if test "$DIST" = "stretch"; then
     apt-get update
     apt-get install libarchive13 --assume-yes -t stretch-backports-sloppy
     apt-get install debhelper cmake --assume-yes -t stretch-backports
-    apt-get install clang-14 --assume-yes
+    # Also install libc++ as libstdc++ 6 is too old from llvm 16
+    apt-get install clang-14 libc++-14-dev libc++abi-14-dev --assume-yes
 
     apt -y --purge remove aptitude apt-transport-https software-properties-common dirmngr gnupg2
 
