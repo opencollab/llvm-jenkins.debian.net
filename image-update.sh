@@ -16,6 +16,7 @@ sleep 30s
 
 echo "# Commands that you might want to run
 sudo -s
+apt update && apt dist-upgrade
 su - jenkins
 cd ~/llvm-project
 git pull
