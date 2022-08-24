@@ -114,7 +114,7 @@ Stretch (Debian 9 - old-old-stable) - <small>Last update : <?=getLastUpdate("str
 <pre>
 deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch main
 deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch main
-# NOTE: as Stretch doesn't provide libstdc++ 7.1 or later, clang-<?=$qualificationBranch?> is built against libc++
+# NOTE: as Stretch doesn't provide libstdc++ 7.1 or later, clang-<?=$devBranch?> is built against libc++
 # <?=$stableBranch?> 
 deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$stableBranch?> main
 deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$stableBranch?> main
