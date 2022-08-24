@@ -117,9 +117,11 @@ deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch main
 # <?=$stableBranch?> 
 deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$stableBranch?> main
 deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$stableBranch?> main
+# NOTE: as Stretch doesn't have gcc 7.1, from -15, stage1 is built using clang-14
 # <?=$qualificationBranch?> 
 deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$qualificationBranch?> main
+# NOTE: as Stretch doesn't provide libstdc++ 7.1 or later, clang-<?=$qualificationBranch?> is built against libc++
 </pre>
 
 Buster (Debian 10 - old-stable) - <small>Last update : <?=getLastUpdate("buster");?> / Revision: <?=getLastRevision("buster")?></small>
