@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-stretch-binaries,llvm-toolchain-stretch-12-binaries,llvm-toolchain-stretch-13-binaries,llvm-toolchain-stretch-14-binaries,llvm-toolchain-stretch-15-binaries</upstreamProjects>
+      <upstreamProjects>llvm-toolchain-stretch-binaries,llvm-toolchain-stretch-12-binaries,llvm-toolchain-stretch-13-binaries,llvm-toolchain-stretch-14-binaries,llvm-toolchain-stretch-15-binaries,llvm-defaults-stretch-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-bullseye-binaries,llvm-toolchain-bullseye-11-binaries,llvm-toolchain-bullseye-12-binaries,llvm-defaults-bullseye-binaries, llvm-toolchain-bullseye-13-binaries,llvm-toolchain-bullseye-14-binaries,llvm-toolchain-bullseye-15-binaries,</upstreamProjects>
+      <upstreamProjects>llvm-toolchain-bullseye-binaries,llvm-toolchain-bullseye-11-binaries,llvm-toolchain-bullseye-12-binaries,llvm-defaults-bullseye-binaries, llvm-toolchain-bullseye-13-binaries,llvm-toolchain-bullseye-14-binaries,llvm-toolchain-bullseye-15-binaries,llvm-defaults-bullseye-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
