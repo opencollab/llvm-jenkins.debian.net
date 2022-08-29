@@ -29,6 +29,8 @@
 bash ~/sync-form-other-arch.sh buster $HOST_ARM64 arm64
 bash ~/sync-form-other-arch.sh buster $HOST_S390X s390x
 /srv/repository/sync-to-llvm.sh buster
+# Force the sync a second time
+/srv/repository/sync-to-llvm.sh buster sync
 </command>
       <configuredLocalRules/>
     </hudson.tasks.Shell>

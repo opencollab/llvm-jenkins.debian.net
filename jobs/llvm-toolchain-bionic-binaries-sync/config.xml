@@ -29,7 +29,7 @@
 bash ~/sync-form-other-arch.sh bionic $HOST_S390X s390x
 bash ~/sync-form-other-arch.sh bionic $HOST_ARM64 arm64
 bash /srv/repository/sync-to-llvm.sh bionic
-</command>
+bash /srv/repository/sync-to-llvm.sh bionic sync</command>
       <configuredLocalRules/>
     </hudson.tasks.Shell>
   </builders>
