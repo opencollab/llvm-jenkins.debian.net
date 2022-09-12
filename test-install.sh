@@ -184,7 +184,7 @@ for d in $DISTRO; do
             fi
 
             if test "$d" == "jammy" -o "$d" == "buster"; then
-                PKG="$PKG libz3-dev"
+                PKG="$PKG zlib1g-dev"
             fi
 
             if test $v -gt 11; then
