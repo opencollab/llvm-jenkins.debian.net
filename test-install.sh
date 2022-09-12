@@ -183,10 +183,6 @@ for d in $DISTRO; do
                 PKG="$PKG python"
             fi
 
-            if test "$d" == "jammy" -o "$d" == "buster"; then
-                PKG="$PKG zlib1g-dev"
-            fi
-
             if test $v -gt 11; then
                 # libunwind isn't packaged for -11
                 PKG="$PKG libunwind-$v-dev"
@@ -209,6 +205,10 @@ for d in $DISTRO; do
              add-apt-repository -y ppa:ubuntu-toolchain-r/test
              apt install -y libstdc++-8-dev
         " >> $d-script.sh
+    fi
+
+    if test "$d" == "jammy" -o "$d" == "buster"; then
+        PKG="$PKG zlib1g-dev"
     fi
 
     if test "$d" == stretch; then
