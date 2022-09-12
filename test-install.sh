@@ -183,6 +183,10 @@ for d in $DISTRO; do
                 PKG="$PKG python"
             fi
 
+            if test "$d" == "jammy" -o "$d" == "buster"; then
+                PKG="$PKG libz3-dev"
+            fi
+
             if test $v -gt 11; then
                 # libunwind isn't packaged for -11
                 PKG="$PKG libunwind-$v-dev"
