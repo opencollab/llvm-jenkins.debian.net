@@ -193,6 +193,13 @@ for d in $DISTRO; do
         fi
     done
 
+    CMAKE_EXTRA="-DENABLE_STATIC_LIBCXX=ON -DLIBUNWIND_ENABLED=ON"
+    if test $v -lt 12; then
+        # < 12 is buggy
+        # See https://github.com/opencollab/llvm-toolchain-integration-test-suite/commit/5092077049adb498cecce02cd86feffb817e5cfd
+        CMAKE_EXTRA="-DENABLE_STATIC_LIBCXX=OFF -DLIBUNWIND_ENABLED=OFF"
+    fi
+
     echo "
          set -e
          apt install -y wget gnupg git cmake g++ lsb-release software-properties-common
@@ -270,6 +277,7 @@ for d in $DISTRO; do
           -DLLVMPROFDATA=/usr/bin/llvm-profdata-$v \
           -DENABLE_COMPILER_RT=ON \
           -DENABLE_LIBCXX=ON \
+          $CMAKE_EXTRA \
           ../ && \
           make check
      " > $d-run-testsuite.sh
