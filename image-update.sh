@@ -7,7 +7,7 @@ set -e
 gcloud compute instances list
 
 # Start the VM
-gcloud compute instances start debian-build-node &> out.log
+gcloud compute instances start debian-build-node --zone europe-west1-b &> out.log
 
 # Retrieve the public ip
 IP=$(grep "external" out.log|awk '{print $5}')
@@ -35,7 +35,7 @@ gcloud compute images list --filter="name~'image-debian-node-.*'" &> out.log
 NODEID=$(grep "image-debian-node" out.log|awk '{print $1}'|cut -d- -f4)
 NEW_NODE=$((NODEID+1))
 # Create the new image
-gcloud compute images create image-debian-node-$NEW_NODE --source-disk=debian-build-node
+gcloud compute images create --zone europe-west1-b image-debian-node-$NEW_NODE --source-disk=debian-build-node
 # Obsolete the old one
 gcloud compute images deprecate image-debian-node-$NODEID --state=OBSOLETE --replacement=image-debian-node-$NEW_NODE
 
