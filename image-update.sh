@@ -20,6 +20,8 @@ apt update && apt dist-upgrade
 su - jenkins
 cd ~/llvm-project
 git pull
+cd ~/llvm-toolchain-integration-test-suite
+git stash && git pull && git stash apply
 cd ~/llvm-jenkins.debian.net.git
 git stash && git pull && git stash apply
 bash create-refresh-image.sh"
