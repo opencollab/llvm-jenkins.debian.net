@@ -29,6 +29,7 @@
 bash ~/sync-form-other-arch.sh kinetic $HOST_S390X s390x
 bash ~/sync-form-other-arch.sh kinetic $HOST_ARM64 arm64
 /srv/repository/sync-to-llvm.sh kinetic
+/srv/repository/sync-to-llvm.sh kinetic sync
 </command>
       <configuredLocalRules/>
     </hudson.tasks.Shell>
