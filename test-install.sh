@@ -197,7 +197,7 @@ for d in $DISTRO; do
     if test $v -lt 12; then
         # < 12 is buggy
         # See https://github.com/opencollab/llvm-toolchain-integration-test-suite/commit/5092077049adb498cecce02cd86feffb817e5cfd
-        CMAKE_EXTRA="-DENABLE_STATIC_LIBCXX=OFF -DLIBUNWIND_ENABLED=OFF"
+        CMAKE_EXTRA="-DENABLE_STATIC_LIBCXX=OFF -DENABLE_LIBUNWIND=OFF"
     fi
 
     echo "
