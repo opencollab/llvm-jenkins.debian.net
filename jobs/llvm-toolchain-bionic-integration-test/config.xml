@@ -45,6 +45,7 @@ sudo /bin/rm -rf install-all || true
 mkdir -p install-all
 
 cd install-all
+(cd ~/llvm-jenkins.debian.net.git/ &amp;&amp; git stash &amp;&amp; git pull &amp;&amp; git stash apply)
 
 sudo ~/llvm-jenkins.debian.net.git/test-install.sh $JOB_NAME
 # Install with llvm.sh
