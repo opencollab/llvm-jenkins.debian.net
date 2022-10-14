@@ -5,10 +5,9 @@ set -ex
 apt-get install --yes --no-install-recommends --force-yes ccache
 # ccache stats
 ccache -s
-#mkdir -p /var/cache/pbuilder/ccache/
-#chmod -R 777 /var/cache/pbuilder/ccache
 
 echo "Also start sccache to test"
-if test -f ~/llvm-jenkins.debian.net.git/sccache; then
-    ~/llvm-jenkins.debian.net.git/sccache --show-stats
-fi
+
+wget https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/sccache
+chmod +x sccache
+SCCACHE_GCS_KEY_PATH=~/secret-gcp-storage.json ./sccache --show-stats
