@@ -100,11 +100,11 @@ while getopts ":hm:n:" arg; do
         ;;
     n)
         CODENAME=${OPTARG}
-        if [[ "${CODENAME}" != "unstable" ]]; then
+        if [[ "${CODENAME}" == "unstable" ]]; then
             # link name does not apply to unstable repository
-            LINKNAME=-${CODENAME}
-        else
             LINKNAME=
+        else
+            LINKNAME=-${CODENAME}
         fi
         CODENAME_FROM_ARGUMENTS="true"
         ;;
