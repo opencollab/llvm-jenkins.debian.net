@@ -100,6 +100,12 @@ if test ! -d /opt/cov-analysis/; then
 fi
 ADDITIONAL_BUILDRESULTS=(codecoverage.tar.gz scan-build.tar.gz)
 
+if [ "${ARCH}" == 'i386' ] || [ "${ARCH}" == 'amd64' ]; then
+   # Sccache needs network
+   # For now, only do it on intel CPU as it is in google cloud
+   USENETWORK=yes
+fi
+
 # ccache
 export CCACHE_DIR="/var/cache/pbuilder/ccache"
 #export PATH="/usr/lib/ccache:${PATH}"
