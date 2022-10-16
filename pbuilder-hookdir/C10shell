@@ -71,3 +71,6 @@ cat <<EOF
   │  To invoke any hook use /tmp/hooks/NAMEOFHOOK                                │
   └──────────────────────────────────────────────────────────────────────────────┘
 EOF
+
+echo "Kill sccache if exists"
+killall -9 sccache||true
