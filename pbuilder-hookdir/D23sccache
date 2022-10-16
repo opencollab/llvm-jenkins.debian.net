@@ -2,10 +2,6 @@
 
 set -ex
 
-apt-get install --yes --no-install-recommends --force-yes ccache
-# ccache stats
-ccache -s
-
 echo "Also start sccache to test"
 ls -la /opt/sccache/||true
 mkdir -p /opt/sccache
@@ -18,4 +14,3 @@ export SCCACHE_GCS_KEY_PATH=/opt/sccache/secret-gcp-storage.json
 export SCCACHE_VERBOSE_STATS=1
 ./sccache --show-stats||true
 ls -al
-
