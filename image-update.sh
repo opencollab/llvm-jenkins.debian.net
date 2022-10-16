@@ -15,7 +15,7 @@ echo "Sleep until $IP is live"
 sleep 30s
 
 echo "# Commands that you might want to run
-sudo -s
+su
 apt update && apt dist-upgrade
 su - jenkins
 cd ~/llvm-project
