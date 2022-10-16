@@ -5,7 +5,7 @@ set -ex
 echo "Also start sccache to test"
 ls -la /opt/sccache/||true
 mkdir -p /opt/sccache
-cd /opt/scacche/
+cd /opt/sccache/
 wget --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/sccache
 chmod +x sccache
 export SCCACHE_GCS_BUCKET=apt-llvm-org-sccache
