@@ -14,4 +14,4 @@ export SCCACHE_GCS_BUCKET=apt-llvm-org-sccache
 export SCCACHE_GCS_RW_MODE=READ_WRITE
 export SCCACHE_GCS_KEY_PATH=~/secret-gcp-storage.json
 export SCCACHE_VERBOSE_STATS=1
-./sccache --show-stats
+./sccache --show-stats||true
