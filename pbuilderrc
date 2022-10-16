@@ -110,7 +110,7 @@ fi
 export CCACHE_DIR="/var/cache/pbuilder/ccache"
 #export PATH="/usr/lib/ccache:${PATH}"
 #EXTRAPACKAGES="$EXTRAPACKAGES ccache"
-BINDMOUNTS="/opt/cov-analysis/ ${CCACHE_DIR} /tmp/sccache/"
+BINDMOUNTS="/opt/cov-analysis/ ${CCACHE_DIR} /opt/sccache/"
 
 # ubuntu is moving to zstd. So, make sure it is installed in the pbuilder
 case "$DIST" in
