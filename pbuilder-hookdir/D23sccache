@@ -3,11 +3,15 @@
 set -ex
 
 echo "Also start sccache to test"
-ls -la /opt/sccache/||true
 mkdir -p /opt/sccache
 cd /opt/sccache/
 if test ! -f sccache; then
-    wget --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/sccache
+    ARCH=$(uname -m)
+    if test "$ARCH" = "i686" -o "$ARCH" = "i386"; then
+        wget -O sccache --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/sccache.i386
+    else
+        wget --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/sccache
+    fi
     chmod +x sccache
 fi
 export SCCACHE_GCS_BUCKET=apt-llvm-org-sccache
