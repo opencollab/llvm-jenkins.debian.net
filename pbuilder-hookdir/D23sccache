@@ -16,3 +16,13 @@ export SCCACHE_GCS_KEY_PATH=/opt/sccache/secret-gcp-storage.json
 export SCCACHE_VERBOSE_STATS=1
 ./sccache --show-stats||true
 ls -al
+
+
+# To rebuild sccache:
+# apt install libssl-dev git pkg-config curl gcc --no-install-recommends
+# curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# source "$HOME/.cargo/env"
+# git clone https://github.com/mozilla/sccache.git
+# cd sccache
+# cargo build --release --no-default-features --features=gcs
+# strip target/release/sccache
