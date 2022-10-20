@@ -118,3 +118,4 @@ case "$DIST" in
         EXTRAPACKAGES="$EXTRAPACKAGES zstd"
         ;;
 esac
+BUILDSUBDIR="source"
