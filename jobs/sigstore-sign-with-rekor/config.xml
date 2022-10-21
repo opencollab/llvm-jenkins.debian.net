@@ -24,7 +24,7 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.46.2">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.46.3">
       <project>sigstore-build-rekor</project>
       <filter>rekor</filter>
       <target>/home/jenkins/</target>
