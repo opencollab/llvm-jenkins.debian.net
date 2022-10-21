@@ -63,6 +63,7 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 
+Oct 07th 2022 - Ubuntu Kinetic (22.10) enabled<br />
 Jul 31th 2022 - Snapshot becomes 16, branch 15 created<br />
 Jul 24th 2022 - Ubuntu Hirsute (21.04) and Impish (21.10) disabled (EOL)<br />
 Feb 18th 2022 - Ubuntu Jammy (22.04) enabled<br />
@@ -217,6 +218,20 @@ deb-src http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$stableBranch?> main
 
 deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$qualificationBranch?> main
+</pre>
+
+Kinetic (22.10) - <small>Last update : <?=getLastUpdate("kinetic");?> / Revision: <?=getLastRevision("kinetic")?></small>
+<pre>
+deb http://apt.llvm.org/kinetic/ llvm-toolchain-kinetic main
+deb-src http://apt.llvm.org/kinetic/ llvm-toolchain-kinetic main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/kinetic/ llvm-toolchain-kinetic-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/kinetic/ llvm-toolchain-kinetic-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/kinetic/ llvm-toolchain-kinetic-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/kinetic/ llvm-toolchain-kinetic-<?=$qualificationBranch?> main
 </pre>
 
 </div>
