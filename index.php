@@ -52,18 +52,19 @@ $isQualification=true;
 
   <p>The goal is to provide Debian and Ubuntu nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64, i386 (except for recent Ubuntu), s390x and arm64 (aka aarch64). This for both the stable, <?php if ($isQualification) {?>qualification<?php } else {?>old-stable<?php } ?> and development branches (currently <?=$stableBranch?>, <?=$qualificationBranch?> and <?=$devBranch?>).</p>
 <p>Packages are built using stage2 and extremely similar to the one shipping in Debian & Ubuntu.</p>
-<p>The packages provide <a href="https://llvm.org/">LLVM</a> + <a href="https://clang.llvm.org/">Clang</a> + <a href="https://compiler-rt.llvm.org/">compiler-rt</a> + <a href="https://polly.llvm.org/">polly</a> + <a href="https://lldb.llvm.org/">LLDB</a> + <a href="https://lld.llvm.org/">LLD</a> + <a href="https://llvm.org/docs/LibFuzzer.html">libFuzzer</a> + <a href="https://libcxx.llvm.org/">libc++</a> + <a href="https://libcxxabi.llvm.org/">libc++abi</a> + <a href="https://openmp.llvm.org/">openmp</a> + <a href="https://libclc.llvm.org/">libclc</a> + <a href="https://github.com/llvm/llvm-project/tree/main/libunwind">libunwind</a> + <a href="https://mlir.llvm.org/">MLIR</a></p>
+<p>The packages provide <a href="https://llvm.org/">LLVM</a> + <a href="https://clang.llvm.org/">Clang</a> + <a href="https://compiler-rt.llvm.org/">compiler-rt</a> + <a href="https://polly.llvm.org/">polly</a> + <a href="https://lldb.llvm.org/">LLDB</a> + <a href="https://lld.llvm.org/">LLD</a> + <a href="https://llvm.org/docs/LibFuzzer.html">libFuzzer</a> + <a href="https://libcxx.llvm.org/">libc++</a> + <a href="https://libcxxabi.llvm.org/">libc++abi</a> + <a href="https://openmp.llvm.org/">openmp</a> + <a href="https://libclc.llvm.org/">libclc</a> + <a href="https://github.com/llvm/llvm-project/tree/main/libunwind">libunwind</a> + <a href="https://mlir.llvm.org/">MLIR</a> + <a href="https://github.com/llvm/llvm-project/tree/main/bolt">BOLT</a></p>
 </div>
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
-For the past year, the work on apt.llvm.org has been partially supported by the OpenSSF, Google, & The Linux Foundation.<br />
+For the past year (2022), the work on apt.llvm.org has been partially supported by the OpenSSF, Google, & The Linux Foundation.<br />
 This platform serves more than 35tb of packages every month and is used by various actors like the Linux Kernel, TensorFlow, etc and referenced more than 24k times on Github.<br />
 The main goal of this support is to improve the security and sustainability of this platform. Previously we were running on an old rack that was no longer supported, and sooner or later would have failed. Now we're running on a <a href="https://blog.llvm.org/posts/2021-11-02-apt.llvm.org-moving-from-physical-server-to-the-cloud/">cloud-based build platform</a> where the cloud provider is keeping the hardware up-to-date.<br />
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
-
+<br />
 Oct 07th 2022 - Ubuntu Kinetic (22.10) enabled<br />
+Sep 22th 2022 - BOLT packages added<br />
 Jul 31th 2022 - Snapshot becomes 16, branch 15 created<br />
 Jul 24th 2022 - Ubuntu Hirsute (21.04) and Impish (21.10) disabled (EOL)<br />
 Feb 18th 2022 - Ubuntu Jammy (22.04) enabled<br />
@@ -320,6 +321,8 @@ apt-get install libclc-<?=$qualificationBranch?>-dev<br />
 apt-get install libunwind-<?=$qualificationBranch?>-dev<br />
 <b># mlir</b><br />
 apt-get install libmlir-<?=$qualificationBranch?>-dev mlir-<?=$qualificationBranch?>-tools<br />
+<b># bolt</b><br />
+apt-get install libbolt-<?=$qualificationBranch?>-dev bolt-<?=$qualificationBranch?><br />
 </p>
 
 </div>
@@ -366,6 +369,8 @@ apt-get install libclc-<?=$devBranch?>-dev<br />
 apt-get install libunwind-<?=$devBranch?>-dev<br />
 <b># mlir</b><br />
 apt-get install libmlir-<?=$devBranch?>-dev mlir-<?=$devBranch?>-tools<br />
+<b># bolt</b><br />
+apt-get install libbolt-<?=devBranch?>-dev bolt-<?=devBranch?><br />
 </p>
 
 </div>
