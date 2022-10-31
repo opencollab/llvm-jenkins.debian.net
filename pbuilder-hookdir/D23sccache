@@ -23,13 +23,17 @@ export SCCACHE_VERBOSE_STATS=1
 LD_LIBRARY_PATH=/opt/sccache/ ./sccache --show-stats||true
 ls -al
 
+exit 0
 
 # To rebuild sccache:
-# on a buster chroot
-# apt install libssl-dev git pkg-config curl gcc --no-install-recommends
-# curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-# source "$HOME/.cargo/env"
-# git clone https://github.com/mozilla/sccache.git
-# cd sccache
-# cargo build --release --no-default-features --features=gcs
-# strip target/release/sccache
+# on a bionic chroot
+apt install -y libssl-dev git pkg-config curl gcc libc6-dev --no-install-recommends
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source "$HOME/.cargo/env"
+git clone https://github.com/mozilla/sccache.git
+cd sccache
+cargo build --release --no-default-features --features=gcs
+strip target/release/sccache
+cp target/release/sccache /tmp/
+exit
+sudo cp bionic/tmp/sccache .
