@@ -63,6 +63,7 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Oct 31th 2022 - Debian Stretch disabled (EOL)<br />
 Oct 07th 2022 - Ubuntu Kinetic (22.10) enabled<br />
 Sep 22th 2022 - BOLT packages added<br />
 Jul 31th 2022 - Snapshot becomes 16, branch 15 created<br />
@@ -79,7 +80,6 @@ Oct 05th 2021 - Ubuntu Impish (21.10) enabled<br />
 Aug 01st 2021 - Snapshot becomes 14, branch 13 created<br />
 Aug 01st 2021 - libunwind packages are generated (libunwind-XX & libunwind-XX-dev)<br />
 Jul 25th 2021 - Packages are tested against the <a href="https://github.com/opencollab/llvm-toolchain-integration-test-suite/">LLVM integration test suite</a><br />
-<!--May 10th 2021 - Debian strech disabled (quite old). If you are still using, <a href="mailto:sylvestre@debian.org">mail me</a><br />-->
 May 01st 2021 - libclc packages generated from 12. Thanks to Timo Aaltonen<br />
 Apr 25th 2021 - S390X support added<br />
 Mar 28th 2021 - Ubuntu Xenial (16.04) disabled (EOL)<br />
@@ -118,19 +118,6 @@ sudo ./llvm.sh all
 
 <div class="rel_boxtext">
 
-Stretch (Debian 9 - old-old-stable) - <small>Last update : <?=getLastUpdate("stretch");?> / Revision: <?=getLastRevision("stretch")?></small>
-<pre>
-deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch main
-deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch main
-# NOTE: as Stretch doesn't provide libstdc++ 7.1 or later, clang-<?=$devBranch?> is built against libc++
-# <?=$stableBranch?> 
-deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$stableBranch?> main
-# NOTE: as Stretch doesn't have gcc 7.1, from -15, stage1 is built using clang-14
-# <?=$qualificationBranch?> 
-deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/stretch/ llvm-toolchain-stretch-<?=$qualificationBranch?> main
-</pre>
 
 Buster (Debian 10 - old-stable) - <small>Last update : <?=getLastUpdate("buster");?> / Revision: <?=getLastRevision("buster")?></small>
 <pre>
