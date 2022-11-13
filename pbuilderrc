@@ -98,7 +98,7 @@ fi
 if test ! -d /opt/cov-analysis/; then
    mkdir -p /opt/cov-analysis/
 fi
-ADDITIONAL_BUILDRESULTS=(codecoverage.tar.gz scan-build.tar.gz)
+ADDITIONAL_BUILDRESULTS=(codecoverage.tar.gz scan-build.tar.gz sccache-stats.json)
 
 if [ "${ARCH}" == 'i386' ] || [ "${ARCH}" == 'amd64' ]; then
    # Sccache needs network
