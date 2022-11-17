@@ -59,7 +59,7 @@ export SKIP_REMOVAL=true
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>*.gz,*.bz2,*.xz,*.dsc,*.changes,lintian.xml</artifacts>
+      <artifacts>*.gz,*.bz2,*.xz,*.dsc,*.changes,lintian.xml,*.json</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
