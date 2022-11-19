@@ -1,5 +1,5 @@
 <?xml version='1.1' encoding='UTF-8'?>
-<matrix-project plugin="matrix-project@1.18">
+<matrix-project plugin="matrix-project@785.v06b_7f47b_c631">
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
@@ -15,7 +15,7 @@
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <triggers/>
@@ -46,7 +46,7 @@
   </axes>
   <combinationFilter>(label==&quot;arm64&quot;).implies(architecture==&quot;arm64&quot;) &amp;&amp; (label==&quot;amd64&quot;).implies(architecture==&quot;amd64&quot;) &amp;&amp; (label==&quot;i386&quot;).implies(architecture==&quot;i386&quot;) &amp;&amp; (label==&quot;s390x&quot;).implies(architecture==&quot;s390x&quot;)</combinationFilter>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.46">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.47">
       <project>llvm-toolchain-focal-11-source</project>
       <filter>*</filter>
       <target></target>
@@ -81,42 +81,13 @@ export SKIP_PACKAGE_FROM_REMOVAL=&quot;llvm llvm-runtime llvm-dev llvm-defaults 
       <caseSensitive>true</caseSensitive>
       <followSymlinks>true</followSymlinks>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.49">
-      <testResults>**/lintian.xml</testResults>
-      <keepLongStdio>false</keepLongStdio>
-      <healthScaleFactor>1.0</healthScaleFactor>
-      <allowEmptyResults>false</allowEmptyResults>
-      <skipPublishingChecks>false</skipPublishingChecks>
-      <checksName></checksName>
-    </hudson.tasks.junit.JUnitResultArchiver>
-    <hudson.tasks.Mailer plugin="mailer@1.34">
+    <hudson.tasks.Mailer plugin="mailer@438.v02c7f0a_12fa_4">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
-    <hudson.plugins.ws__cleanup.WsCleanup plugin="ws-cleanup@0.39">
-      <patterns class="empty-list"/>
-      <deleteDirs>false</deleteDirs>
-      <skipWhenFailed>false</skipWhenFailed>
-      <cleanWhenSuccess>true</cleanWhenSuccess>
-      <cleanWhenUnstable>true</cleanWhenUnstable>
-      <cleanWhenFailure>true</cleanWhenFailure>
-      <cleanWhenNotBuilt>true</cleanWhenNotBuilt>
-      <cleanWhenAborted>true</cleanWhenAborted>
-      <notFailBuild>false</notFailBuild>
-      <cleanupMatrixParent>false</cleanupMatrixParent>
-      <externalDelete></externalDelete>
-      <disableDeferredWipeout>false</disableDeferredWipeout>
-    </hudson.plugins.ws__cleanup.WsCleanup>
   </publishers>
-  <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.39">
-      <deleteDirs>false</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-      <disableDeferredWipeout>false</disableDeferredWipeout>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
-  </buildWrappers>
+  <buildWrappers/>
   <executionStrategy class="hudson.matrix.DefaultMatrixExecutionStrategyImpl">
     <runSequentially>false</runSequentially>
     <touchStoneCombinationFilter></touchStoneCombinationFilter>

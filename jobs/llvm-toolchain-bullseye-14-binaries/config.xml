@@ -82,16 +82,6 @@ export SKIP_PACKAGE_FROM_REMOVAL=&quot;llvm llvm-runtime llvm-dev llvm-defaults 
       <caseSensitive>true</caseSensitive>
       <followSymlinks>true</followSymlinks>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1150.v5c2848328b_60">
-      <testResults>**/lintian.xml</testResults>
-      <keepLongStdio>false</keepLongStdio>
-      <healthScaleFactor>1.0</healthScaleFactor>
-      <allowEmptyResults>false</allowEmptyResults>
-      <skipPublishingChecks>false</skipPublishingChecks>
-      <checksName></checksName>
-      <skipMarkingBuildUnstable>false</skipMarkingBuildUnstable>
-      <skipOldReports>false</skipOldReports>
-    </hudson.tasks.junit.JUnitResultArchiver>
     <hudson.tasks.Mailer plugin="mailer@438.v02c7f0a_12fa_4">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
