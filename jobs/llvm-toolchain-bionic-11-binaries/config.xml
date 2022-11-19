@@ -67,7 +67,7 @@ export SKIP_PACKAGE_FROM_REMOVAL=&quot;llvm llvm-runtime llvm-dev llvm-defaults 
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>mkdir -p report
-/usr/bin/lintian-junit-report $(ls -Atr *.dsc | tail -1) &gt; report/lintian.xml</command>
+#/usr/bin/lintian-junit-report $(ls -Atr *.dsc | tail -1) &gt; report/lintian.xml</command>
       <configuredLocalRules/>
     </hudson.tasks.Shell>
   </builders>

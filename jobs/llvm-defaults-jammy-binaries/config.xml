@@ -53,7 +53,7 @@ export SKIP_REMOVAL=true
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>mkdir -p report
-/usr/bin/lintian-junit-report *.dsc &gt; report/lintian.xml</command>
+#/usr/bin/lintian-junit-report *.dsc &gt; report/lintian.xml</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>

@@ -53,7 +53,7 @@ if test ! -d $REPOSITORY; then mount "$(dirname "$REPOSITORY")"; fi
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>mkdir -p report
-/usr/bin/lintian-junit-report $(ls -Atr *.dsc | tail -1) &gt; report/lintian.xml</command>
+#/usr/bin/lintian-junit-report $(ls -Atr *.dsc | tail -1) &gt; report/lintian.xml</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
