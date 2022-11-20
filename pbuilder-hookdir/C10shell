@@ -2,6 +2,9 @@
 # Copyright 2013 Michael Prokop <mika@debian.org>
 # Licensed under the terms of the MIT License.
 
+echo "Kill sccache if exists"
+killall -9 sccache||true
+
 cat <<EOF
   ┌──────────────────────────────────────────────────────────────────────────────┐
   │  FTBFS - problem with building Debian package                                │
@@ -71,6 +74,3 @@ cat <<EOF
   │  To invoke any hook use /tmp/hooks/NAMEOFHOOK                                │
   └──────────────────────────────────────────────────────────────────────────────┘
 EOF
-
-echo "Kill sccache if exists"
-killall -9 sccache||true
