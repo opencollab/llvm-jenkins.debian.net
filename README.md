@@ -12,3 +12,12 @@ Bugs should be reported on the <a href="https://github.com/llvm/llvm-project/lab
 ## llvm.sh - installation script
 
 If you have any changes to the llvm.sh script, please run the [installation tests](install-tests/README.md) before submitting.
+
+
+test link
+[`HeaderFile`](#headerfile-path-to-headerfile-h)
+
+foo
+
+# `[HeaderFile="path/to/headerfile.h"]`
+
