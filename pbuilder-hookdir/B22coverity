@@ -1,9 +1,9 @@
 #!/bin/sh
-if test ! -d /tmp/buildd/llvm-*/cov-int/; then
+if test ! -d /tmp/buildd/source/cov-int/; then
 	echo "No coverity report found; skipping"
 	exit 0;
 else
-	cmd='cd /tmp/buildd/llvm-*/'
+	cmd='cd /tmp/buildd/source/'
 	echo $cmd
 	eval $cmd
 	cmd='ls -al cov-int/; tar czvf /tmp/buildd/llvm.tgz cov-int/'
