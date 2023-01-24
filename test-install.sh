@@ -182,9 +182,8 @@ for d in $DISTRO; do
             if test "$d" != "unstable" -a "$d" != "jammy" -a "$d" != "kinetic"; then
                 PKG="$PKG python"
             fi
-            if test $v -gt 13 -a $v -lt 16; then
+            if test $v -gt 13; then
                 # libclang-rt isn't package for -13
-                # and not built for 16 yet
                 PKG="$PKG libclang-rt-$v-dev"
             fi
             if test $v -gt 11; then
