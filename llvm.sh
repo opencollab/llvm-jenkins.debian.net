@@ -124,7 +124,8 @@ LLVM_VERSION_PATTERNS[12]="-12"
 LLVM_VERSION_PATTERNS[13]="-13"
 LLVM_VERSION_PATTERNS[14]="-14"
 LLVM_VERSION_PATTERNS[15]="-15"
-LLVM_VERSION_PATTERNS[16]=""
+LLVM_VERSION_PATTERNS[16]="-16"
+LLVM_VERSION_PATTERNS[17]=""
 
 if [ ! ${LLVM_VERSION_PATTERNS[$LLVM_VERSION]+_} ]; then
     echo "This script does not support LLVM version $LLVM_VERSION"
@@ -161,5 +162,6 @@ if [[ $ALL -eq 1 ]]; then
     # same as in test-install.sh
     # No worries if we have dups
     PKG="$PKG clang-tidy-$LLVM_VERSION clang-format-$LLVM_VERSION clang-tools-$LLVM_VERSION llvm-$LLVM_VERSION-dev lld-$LLVM_VERSION lldb-$LLVM_VERSION llvm-$LLVM_VERSION-tools libomp-$LLVM_VERSION-dev libc++-$LLVM_VERSION-dev libc++abi-$LLVM_VERSION-dev libclang-common-$LLVM_VERSION-dev libclang-$LLVM_VERSION-dev libclang-cpp$LLVM_VERSION-dev libunwind-$LLVM_VERSION-dev"
+    # TODO add flang-XX and libclang-rt-XX-dev
 fi
 apt-get install -y $PKG
