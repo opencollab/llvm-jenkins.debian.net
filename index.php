@@ -52,7 +52,7 @@ $isQualification=true;
 
   <p>The goal is to provide Debian and Ubuntu nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64, i386 (except for recent Ubuntu), s390x and arm64 (aka aarch64). This for both the stable, <?php if ($isQualification) {?>qualification<?php } else {?>old-stable<?php } ?> and development branches (currently <?=$stableBranch?>, <?=$qualificationBranch?> and <?=$devBranch?>).</p>
 <p>Packages are built using stage2 and extremely similar to the one shipping in Debian & Ubuntu.</p>
-<p>The packages provide <a href="https://llvm.org/">LLVM</a> + <a href="https://clang.llvm.org/">Clang</a> + <a href="https://compiler-rt.llvm.org/">compiler-rt</a> + <a href="https://polly.llvm.org/">polly</a> + <a href="https://lldb.llvm.org/">LLDB</a> + <a href="https://lld.llvm.org/">LLD</a> + <a href="https://llvm.org/docs/LibFuzzer.html">libFuzzer</a> + <a href="https://libcxx.llvm.org/">libc++</a> + <a href="https://libcxxabi.llvm.org/">libc++abi</a> + <a href="https://openmp.llvm.org/">openmp</a> + <a href="https://libclc.llvm.org/">libclc</a> + <a href="https://github.com/llvm/llvm-project/tree/main/libunwind">libunwind</a> + <a href="https://mlir.llvm.org/">MLIR</a> + <a href="https://github.com/llvm/llvm-project/tree/main/bolt">BOLT</a> + <a href="https://flang.llvm.org/docs/">flang/a></p>
+<p>The packages provide <a href="https://llvm.org/">LLVM</a> + <a href="https://clang.llvm.org/">Clang</a> + <a href="https://compiler-rt.llvm.org/">compiler-rt</a> + <a href="https://polly.llvm.org/">polly</a> + <a href="https://lldb.llvm.org/">LLDB</a> + <a href="https://lld.llvm.org/">LLD</a> + <a href="https://llvm.org/docs/LibFuzzer.html">libFuzzer</a> + <a href="https://libcxx.llvm.org/">libc++</a> + <a href="https://libcxxabi.llvm.org/">libc++abi</a> + <a href="https://openmp.llvm.org/">openmp</a> + <a href="https://libclc.llvm.org/">libclc</a> + <a href="https://github.com/llvm/llvm-project/tree/main/libunwind">libunwind</a> + <a href="https://mlir.llvm.org/">MLIR</a> + <a href="https://github.com/llvm/llvm-project/tree/main/bolt">BOLT</a> + <a href="https://flang.llvm.org/docs/">flang/a> + wasm support</p>
 </div>
 <div class="rel_section">News</div>
 
@@ -63,6 +63,8 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Jan 03rd 2023 - libclang-common-15-dev splitted into: libclang-rt-15-dev, libpolly-15-dev, libclang-rt-15-dev-wasm32 and libclang-rt-15-dev-wasm64<br />
+Jan 03rt 2023 - Support of wasm improved with new packages: libc++-15-dev-wasm32, libc++abi-15-dev-wasm32, libclang-rt-15-dev-wasm32 and libclang-rt-15-dev-wasm64 (recent distros)<br />
 Jan 03rd 2023 - flang packages added<br />
 Oct 31th 2022 - Debian Stretch disabled (EOL)<br />
 Oct 07th 2022 - Ubuntu Kinetic (22.10) enabled<br />
@@ -253,6 +255,10 @@ To install all key packages:<br />
 apt-get install libllvm-<?=$stableBranch?>-ocaml-dev libllvm<?=$stableBranch?> llvm-<?=$stableBranch?> llvm-<?=$stableBranch?>-dev llvm-<?=$stableBranch?>-doc llvm-<?=$stableBranch?>-examples llvm-<?=$stableBranch?>-runtime<br />
 <b># Clang and co</b><br />
 apt-get install clang-<?=$stableBranch?> clang-tools-<?=$stableBranch?> clang-<?=$stableBranch?>-doc libclang-common-<?=$stableBranch?>-dev libclang-<?=$stableBranch?>-dev libclang1-<?=$stableBranch?> clang-format-<?=$stableBranch?> python3-clang-<?=$stableBranch?> clangd-<?=$stableBranch?> clang-tidy-<?=$stableBranch?> <br />
+<b># compiler-rt</b><br />
+apt-get install libclang-rt-<?=$stableBranch?>-dev<br />
+<b># polly</b><br />
+apt-get install libpolly-<?=$stableBranch?>-dev<br />
 <b># libfuzzer</b><br />
 apt-get install libfuzzer-<?=$stableBranch?>-dev<br />
 <b># lldb</b><br />
@@ -273,6 +279,8 @@ apt-get install libmlir-<?=$stableBranch?>-dev mlir-<?=$stableBranch?>-tools<br 
 apt-get install libbolt-<?=$stableBranch?>-dev bolt-<?=$stableBranch?><br />
 <b># flang</b><br />
 apt-get install flang-<?=$stableBranch?><br />
+<b># wasm support</b><br />
+apt-get install libclang-rt-<?=$stableBranch?>-dev-wasm32 libclang-rt-<?=$stableBranch?>-dev-wasm64 libc++-<?=$stableBranch?>-dev-wasm32 libc++abi-<?=$stableBranch?>-dev-wasm32 libclang-rt-<?=$stableBranch?>-dev-wasm32 libclang-rt-<?=$stableBranch?>-dev-wasm64
 </p>
 </div>
 
@@ -297,6 +305,10 @@ To install all key packages:<br />
 apt-get install libllvm-<?=$qualificationBranch?>-ocaml-dev libllvm<?=$qualificationBranch?> llvm-<?=$qualificationBranch?> llvm-<?=$qualificationBranch?>-dev llvm-<?=$qualificationBranch?>-doc llvm-<?=$qualificationBranch?>-examples llvm-<?=$qualificationBranch?>-runtime<br />
 <b># Clang and co</b><br />
 apt-get install clang-<?=$qualificationBranch?> clang-tools-<?=$qualificationBranch?> clang-<?=$qualificationBranch?>-doc libclang-common-<?=$qualificationBranch?>-dev libclang-<?=$qualificationBranch?>-dev libclang1-<?=$qualificationBranch?> clang-format-<?=$qualificationBranch?> python3-clang-<?=$qualificationBranch?> clangd-<?=$qualificationBranch?> clang-tidy-<?=$qualificationBranch?><br />
+<b># compiler-rt</b><br />
+apt-get install libclang-rt-<?=$qualificationBranch?>-dev<br />
+<b># polly</b><br />
+apt-get install libpolly-<?=$qualificationBranch?>-dev<br />
 <b># libfuzzer</b><br />
 apt-get install libfuzzer-<?=$qualificationBranch?>-dev<br />
 <b># lldb</b><br />
@@ -317,6 +329,8 @@ apt-get install libmlir-<?=$qualificationBranch?>-dev mlir-<?=$qualificationBran
 apt-get install libbolt-<?=$qualificationBranch?>-dev bolt-<?=$qualificationBranch?><br />
 <b># flang</b><br />
 apt-get install flang-<?=$qualificationBranch?><br />
+<b># wasm support</b><br />
+apt-get install libclang-rt-<?=$qualificationBranch?>-dev-wasm32 libclang-rt-<?=$qualificationBranch?>-dev-wasm64 libc++-<?=$qualificationBranch?>-dev-wasm32 libc++abi-<?=$qualificationBranch?>-dev-wasm32 libclang-rt-<?=$qualificationBranch?>-dev-wasm32 libclang-rt-<?=$qualificationBranch?>-dev-wasm64
 </p>
 
 </div>
@@ -347,6 +361,10 @@ To install all key packages:<br />
 apt-get install libllvm-<?=$devBranch?>-ocaml-dev libllvm<?=$devBranch?> llvm-<?=$devBranch?> llvm-<?=$devBranch?>-dev llvm-<?=$devBranch?>-doc llvm-<?=$devBranch?>-examples llvm-<?=$devBranch?>-runtime<br />
 <b># Clang and co</b><br />
 apt-get install clang-<?=$devBranch?> clang-tools-<?=$devBranch?> clang-<?=$devBranch?>-doc libclang-common-<?=$devBranch?>-dev libclang-<?=$devBranch?>-dev libclang1-<?=$devBranch?> clang-format-<?=$devBranch?> python3-clang-<?=$devBranch?> clangd-<?=$devBranch?> clang-tidy-<?=$devBranch?><br />
+<b># compiler-rt</b><br />
+apt-get install libclang-rt-<?=$devBranch?>-dev<br />
+<b># polly</b><br />
+apt-get install libpolly-<?=$devBranch?>-dev<br />
 <b># libfuzzer</b><br />
 apt-get install libfuzzer-<?=$devBranch?>-dev<br />
 <b># lldb</b><br />
@@ -367,6 +385,8 @@ apt-get install libmlir-<?=$devBranch?>-dev mlir-<?=$devBranch?>-tools<br />
 apt-get install libbolt-<?=devBranch?>-dev bolt-<?=devBranch?><br />
 <b># flang</b><br />
 apt-get install flang-<?=devBranch?><br />
+<b># wasm support</b><br />
+apt-get install libclang-rt-<?=$devBranch?>-dev-wasm32 libclang-rt-<?=$devBranch?>-dev-wasm64 libc++-<?=$devBranch?>-dev-wasm32 libc++abi-<?=$devBranch?>-dev-wasm32 libclang-rt-<?=$devBranch?>-dev-wasm32 libclang-rt-<?=$devBranch?>-dev-wasm64
 </p>
 
 </div>
