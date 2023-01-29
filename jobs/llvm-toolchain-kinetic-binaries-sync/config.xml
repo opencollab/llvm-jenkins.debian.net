@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-kinetic-binaries, llvm-toolchain-kinetic-14-binaries, llvm-toolchain-kinetic-15-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-kinetic-binaries, llvm-toolchain-kinetic-14-binaries, llvm-toolchain-kinetic-15-binaries, llvm-toolchain-kinetic-16-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-jammy-binaries, llvm-toolchain-jammy-13-binaries, llvm-toolchain-jammy-14-binaries, llvm-toolchain-jammy-15-binaries, llvm-defaults-jammy-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-jammy-binaries, llvm-toolchain-jammy-13-binaries, llvm-toolchain-jammy-14-binaries, llvm-toolchain-jammy-15-binaries, llvm-defaults-jammy-binaries, llvm-toolchain-jammy-16-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
