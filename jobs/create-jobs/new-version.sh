@@ -1,7 +1,7 @@
 #!/bin/bash
-VERSION="15"
-VERSION_2="150"
-DISTROS=( stretch unstable buster bullseye bionic focal jammy )
+VERSION="16"
+VERSION_2="160"
+DISTROS=( unstable buster bullseye bionic focal jammy kinetic )
 for d in "${DISTROS[@]}"
 do
 	echo $d
@@ -17,17 +17,21 @@ done
 echo "update the sync job to upload the version (by hand in the interface)"
 echo "Disable i386 on recent versions of Ubuntu"
 echo "Disable the old version when ready"
-echo "emacs /srv/repository/*/conf/distributions to add the new version"
+D=$(echo "{$DISTROS}"| sed -e "s| |,|g")
+echo "emacs /srv/repository/$D/conf/distributions to add the new version"
 echo "do it also on arm64 & s390x machines"
 echo "Update test-install.sh & update the master node"
 echo "Update llvm.sh"
 echo "Update https://github.com/opencollab/llvm-toolchain-integration-test-suite/edit/main/.github/workflows/CI.yml"
-echo "You can also disable the previous version with:
-echo "import hudson.model.*
+echo "You can also disable the previous version with:"
+cat << EOF
+import hudson.model.*
 
 jenkins = Hudson.instance
-jenkins.instance.getView(\"13\").items.each { item ->
-    println \"\nJob: $item.name\"
+jenkins.instance.getView("13").items.each { item ->
+    println "\nJob: $item.name"
     item.disabled = true
-}"
+}
+EOF
+
 echo "in https://llvm-jenkins.debian.net/script"
