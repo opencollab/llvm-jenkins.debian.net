@@ -151,9 +151,15 @@ fi
 
 
 # install everything
-if [[ -z "`apt-key list | grep -i llvm`" ]]; then
+
+if [[ ! -f /etc/apt/trusted.gpg.d/apt.llvm.org.asc ]]; then
     # download GPG key once
-    wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
+    wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+fi
+
+if [[ -z "`apt-key list 2> /dev/null | grep -i llvm`" ]]; then
+    # Delete the key in the old format
+    apt-key del AF4F7421
 fi
 add-apt-repository "${REPO_NAME}"
 apt-get update
