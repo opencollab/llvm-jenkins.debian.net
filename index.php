@@ -52,7 +52,7 @@ $isQualification=true;
 
   <p>The goal is to provide Debian and Ubuntu nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64, i386 (except for recent Ubuntu), s390x and arm64 (aka aarch64). This for both the stable, <?php if ($isQualification) {?>qualification<?php } else {?>old-stable<?php } ?> and development branches (currently <?=$stableBranch?>, <?=$qualificationBranch?> and <?=$devBranch?>).</p>
 <p>Packages are built using stage2 and extremely similar to the one shipping in Debian & Ubuntu.</p>
-<p>The packages provide <a href="https://llvm.org/">LLVM</a> + <a href="https://clang.llvm.org/">Clang</a> + <a href="https://compiler-rt.llvm.org/">compiler-rt</a> + <a href="https://polly.llvm.org/">polly</a> + <a href="https://lldb.llvm.org/">LLDB</a> + <a href="https://lld.llvm.org/">LLD</a> + <a href="https://llvm.org/docs/LibFuzzer.html">libFuzzer</a> + <a href="https://libcxx.llvm.org/">libc++</a> + <a href="https://libcxxabi.llvm.org/">libc++abi</a> + <a href="https://openmp.llvm.org/">openmp</a> + <a href="https://libclc.llvm.org/">libclc</a> + <a href="https://github.com/llvm/llvm-project/tree/main/libunwind">libunwind</a> + <a href="https://mlir.llvm.org/">MLIR</a> + <a href="https://github.com/llvm/llvm-project/tree/main/bolt">BOLT</a></p>
+<p>The packages provide <a href="https://llvm.org/">LLVM</a> + <a href="https://clang.llvm.org/">Clang</a> + <a href="https://compiler-rt.llvm.org/">compiler-rt</a> + <a href="https://polly.llvm.org/">polly</a> + <a href="https://lldb.llvm.org/">LLDB</a> + <a href="https://lld.llvm.org/">LLD</a> + <a href="https://llvm.org/docs/LibFuzzer.html">libFuzzer</a> + <a href="https://libcxx.llvm.org/">libc++</a> + <a href="https://libcxxabi.llvm.org/">libc++abi</a> + <a href="https://openmp.llvm.org/">openmp</a> + <a href="https://libclc.llvm.org/">libclc</a> + <a href="https://github.com/llvm/llvm-project/tree/main/libunwind">libunwind</a> + <a href="https://mlir.llvm.org/">MLIR</a> + <a href="https://github.com/llvm/llvm-project/tree/main/bolt">BOLT</a> + <a href="https://flang.llvm.org/docs/">flang/a></p>
 </div>
 <div class="rel_section">News</div>
 
@@ -63,6 +63,7 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Jan 03rd 2023 - flang packages added<br />
 Oct 31th 2022 - Debian Stretch disabled (EOL)<br />
 Oct 07th 2022 - Ubuntu Kinetic (22.10) enabled<br />
 Sep 22th 2022 - BOLT packages added<br />
@@ -270,6 +271,8 @@ apt-get install libunwind-<?=$stableBranch?>-dev<br />
 apt-get install libmlir-<?=$stableBranch?>-dev mlir-<?=$stableBranch?>-tools<br />
 <b># bolt</b><br />
 apt-get install libbolt-<?=$stableBranch?>-dev bolt-<?=$stableBranch?><br />
+<b># flang</b><br />
+apt-get install flang-<?=$stableBranch?><br />
 </p>
 </div>
 
@@ -312,6 +315,8 @@ apt-get install libunwind-<?=$qualificationBranch?>-dev<br />
 apt-get install libmlir-<?=$qualificationBranch?>-dev mlir-<?=$qualificationBranch?>-tools<br />
 <b># bolt</b><br />
 apt-get install libbolt-<?=$qualificationBranch?>-dev bolt-<?=$qualificationBranch?><br />
+<b># flang</b><br />
+apt-get install flang-<?=$qualificationBranch?><br />
 </p>
 
 </div>
@@ -360,6 +365,8 @@ apt-get install libunwind-<?=$devBranch?>-dev<br />
 apt-get install libmlir-<?=$devBranch?>-dev mlir-<?=$devBranch?>-tools<br />
 <b># bolt</b><br />
 apt-get install libbolt-<?=devBranch?>-dev bolt-<?=devBranch?><br />
+<b># flang</b><br />
+apt-get install flang-<?=devBranch?><br />
 </p>
 
 </div>
