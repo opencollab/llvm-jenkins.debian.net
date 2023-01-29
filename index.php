@@ -238,11 +238,9 @@ deb-src http://apt.llvm.org/kinetic/ llvm-toolchain-kinetic-<?=$qualificationBra
 <a href="#" id="install_stable" style="visibility: hidden">install_stable</a>
 <div class="rel_section">Install<br />(<?php if (!$isQualification) {?>old-<?php } ?>stable branch)</div>
 <div class="rel_boxtext">
-To retrieve the archive signature:
-  <p class="www_code">
-wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -<br />
-# Fingerprint:  6084 F3CF 814B 57C1 CF12  EFD5 15CF 4D18 AF4F 7421
-</p><br />
+<?php
+include("signature.inc")
+?>
 
 To install just clang, lld and lldb (<?=$stableBranch?> release):
   <p class="www_code">
@@ -288,11 +286,9 @@ apt-get install libclang-rt-<?=$stableBranch?>-dev-wasm32 libclang-rt-<?=$stable
 
 <div class="rel_section">Install<br />(<?php if ($isQualification) {?>qualification<?php } else {?>stable<?php } ?> branch)</div>
 <div class="rel_boxtext">
-To retrieve the archive signature:
-  <p class="www_code">
-wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -<br />
-# Fingerprint:  6084 F3CF 814B 57C1 CF12  EFD5 15CF 4D18 AF4F 7421
-</p><br />
+<?php
+include("signature.inc")
+?>
 
 To install just clang, lld and lldb (<?=$qualificationBranch?> release):
   <p class="www_code">
@@ -339,11 +335,11 @@ apt-get install libclang-rt-<?=$qualificationBranch?>-dev-wasm32 libclang-rt-<?=
 <a href="#" id="install_dev" style="visibility: hidden">install_dev</a>
 <div class="rel_section">Install<br />(development branch)</div>
 <div class="rel_boxtext">
-To retrieve the archive signature:
-  <p class="www_code">
-wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -<br />
-# Fingerprint:  6084 F3CF 814B 57C1 CF12  EFD5 15CF 4D18 AF4F 7421
-</p><br />
+
+<?php
+include("signature.inc")
+?>
+
 We also provide meta packages to move from a major version to the other.<br />
 For example, to automatically upgrade to the current major:
   <p class="www_code">
