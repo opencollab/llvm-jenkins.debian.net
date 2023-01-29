@@ -6,8 +6,8 @@ set -e -v
 # If USE_SCRIPT=1 is set, use llvm.sh to install the packages
 
 DISTRO="stretch buster bullseye unstable bionic focal jammy kinetic"
-VERSION="10 11 12 13 14 15"
-VERSION_NEXT="16"
+VERSION="10 11 12 13 14 15 16"
+VERSION_NEXT="17"
 
 if test $# -eq 1; then
     JOB_NAME=$1
