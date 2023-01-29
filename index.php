@@ -378,9 +378,9 @@ apt-get install libunwind-<?=$devBranch?>-dev<br />
 <b># mlir</b><br />
 apt-get install libmlir-<?=$devBranch?>-dev mlir-<?=$devBranch?>-tools<br />
 <b># bolt</b><br />
-apt-get install libbolt-<?=devBranch?>-dev bolt-<?=devBranch?><br />
+apt-get install libbolt-<?=$devBranch?>-dev bolt-<?=$devBranch?><br />
 <b># flang</b><br />
-apt-get install flang-<?=devBranch?><br />
+apt-get install flang-<?=$devBranch?><br />
 <b># wasm support</b><br />
 apt-get install libclang-rt-<?=$devBranch?>-dev-wasm32 libclang-rt-<?=$devBranch?>-dev-wasm64 libc++-<?=$devBranch?>-dev-wasm32 libc++abi-<?=$devBranch?>-dev-wasm32 libclang-rt-<?=$devBranch?>-dev-wasm32 libclang-rt-<?=$devBranch?>-dev-wasm64
 </p>
