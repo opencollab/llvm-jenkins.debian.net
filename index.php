@@ -25,9 +25,9 @@ function getLastRevision($distro) {
    return str_replace("++", "", $matches[1]);
 }
 
-$stableBranch="14";
-$qualificationBranch="15";
-$devBranch="16";
+$stableBranch="15";
+$qualificationBranch="16";
+$devBranch="17";
 $isQualification=true;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
