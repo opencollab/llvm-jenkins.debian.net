@@ -206,7 +206,7 @@ for d in $DISTRO; do
     echo "
          set -e
          apt install -y wget gnupg git cmake g++ lsb-release software-properties-common
-         wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -
+         wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
     " > $d-script.sh
 
     if test "$d" == bionic; then
