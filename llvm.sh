@@ -157,7 +157,7 @@ if [[ ! -f /etc/apt/trusted.gpg.d/apt.llvm.org.asc ]]; then
     wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
 fi
 
-if [[ -z "`apt-key list 2> /dev/null | grep -i llvm`" ]]; then
+if [[ -z "`apt-key list 2> /dev/null | grep -q -i llvm`" ]]; then
     # Delete the key in the old format
     apt-key del AF4F7421
 fi
