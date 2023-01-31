@@ -227,6 +227,7 @@ for d in $DISTRO; do
         " >> $d-script.sh
     fi
 
+    echo "USE_SCRIPT=$USE_SCRIPT"
     if test -z "$USE_SCRIPT"; then
         # install packages by hands
         echo "
@@ -241,7 +242,7 @@ for d in $DISTRO; do
     else
         # Test llvm.sh
         echo "
-             # Install necessary package to setup + run the testsuite
+             # Install necessary package to setup + run the testsuite with llvm.sh
              cd /root
              wget https://apt.llvm.org/llvm.sh
              chmod +x /root/llvm.sh
