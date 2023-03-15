@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-focal-binaries,llvm-toolchain-focal-16-binaries,llvm-toolchain-focal-11-binaries, llvm-toolchain-focal-13-binaries, llvm-toolchain-focal-14-binaries, llvm-toolchain-focal-15-binaries,llvm-defaults-focal-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-focal-binaries,llvm-toolchain-focal-16-binaries, llvm-toolchain-focal-14-binaries, llvm-toolchain-focal-15-binaries,llvm-defaults-focal-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -35,7 +35,7 @@ bash ~/sync-form-other-arch.sh focal $HOST_ARM64 arm64
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@438.v02c7f0a_12fa_4">
+    <hudson.tasks.Mailer plugin="mailer@448.v5b_97805e3767">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
