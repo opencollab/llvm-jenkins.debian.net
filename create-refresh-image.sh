@@ -2,7 +2,7 @@
 
 ARCHS="amd64 i386"
 DEBIAN_DISTRO="stretch buster bullseye unstable"
-UBUNTU_DISTRO="bionic focal jammy kinetic"
+UBUNTU_DISTRO="bionic focal jammy kinetic lunar"
 EXPORT_PATH="/home/jenkins/"
 GIT_BASE_URL=https://github.com/llvm/llvm-project
 GIT_TOOLCHAIN_CHECK=https://github.com/opencollab/llvm-toolchain-integration-test-suite.git
