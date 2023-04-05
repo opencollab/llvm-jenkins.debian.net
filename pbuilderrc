@@ -112,8 +112,8 @@ export CCACHE_DIR="/var/cache/pbuilder/ccache"
 #EXTRAPACKAGES="$EXTRAPACKAGES ccache"
 BINDMOUNTS="/opt/cov-analysis/ ${CCACHE_DIR}"
 
-# Only mount sccache when available and running
-if /opt/sccache/sccache --version; then
+# Only mount sccache when building on x86 CPU for now
+if [ "${ARCH}" == 'i386' ] || [ "${ARCH}" == 'amd64' ]; then
    BINDMOUNTS="$BINDMOUNTS /opt/sccache/"
 fi
 
