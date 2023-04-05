@@ -1,6 +1,8 @@
 #!/bin/sh
 if test ! -d /tmp/buildd/source/cov-int/; then
 	echo "No coverity report found; skipping"
+	echo "ls -al /tmp/buildd/source/ :"
+	/tmp/buildd/source/
 	exit 0;
 else
 	cmd='cd /tmp/buildd/source/'
