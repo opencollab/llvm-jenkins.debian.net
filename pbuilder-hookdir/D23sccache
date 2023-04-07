@@ -42,6 +42,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source "$HOME/.cargo/env"
 git clone https://github.com/mozilla/sccache.git
 cd sccache
+git checkout <tag>
 cargo build --release --no-default-features --features=gcs
 strip target/release/sccache
 cp target/release/sccache /tmp/
