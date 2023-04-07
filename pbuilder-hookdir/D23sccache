@@ -24,7 +24,7 @@ SCCACHE_LOG=sccache=debug SCCACHE_ERROR_LOG=sccache.log LD_LIBRARY_PATH=/opt/scc
 
 if [ -n "$exit_status" ] && [ $exit_status -ne 0 ]; then
     echo "sccache failed with exit status $exit_status"
-    tail -1000 sccache.log
+    tail -50 sccache.log
     # Perform any additional actions here, e.g., send an email, log the error, etc.
 else
     echo "sccache failed with exit status $exit_status"
