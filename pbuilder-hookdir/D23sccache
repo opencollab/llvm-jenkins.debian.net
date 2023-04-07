@@ -20,7 +20,7 @@ export SCCACHE_GCS_BUCKET=apt-llvm-org-sccache
 export SCCACHE_GCS_RW_MODE=READ_WRITE
 export SCCACHE_GCS_KEY_PATH=/opt/sccache/secret-gcp-storage.json
 export SCCACHE_VERBOSE_STATS=1
-SCCACHE_LOG=sccache=debug SCCACHE_ERROR_LOG=sccache.log LD_LIBRARY_PATH=/opt/sccache/ ./sccache --show-stats || { exit_status=$?; true; }
+SCCACHE_LOG=sccache=debug SCCACHE_ERROR_LOG=sccache.log LD_LIBRARY_PATH=/opt/sccache/ /opt/sccache/sccache --show-stats || { exit_status=$?; true; }
 
 if [ -n "$exit_status" ] && [ $exit_status -ne 0 ]; then
     echo "sccache failed with exit status $exit_status"
