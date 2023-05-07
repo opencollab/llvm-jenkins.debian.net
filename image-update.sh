@@ -27,6 +27,7 @@ git stash && git pull && git stash apply
 bash create-refresh-image.sh"
 ssh $IP
 
+echo "if timeout, check the GCP firewall"
 # hack on the vm
 
 # Stop the vm for the image creation
