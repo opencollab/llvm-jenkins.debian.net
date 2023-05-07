@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ARCHS="amd64 i386"
-DEBIAN_DISTRO="stretch buster bullseye bookworm unstable"
+DEBIAN_DISTRO="buster bullseye bookworm unstable"
 UBUNTU_DISTRO="bionic focal jammy kinetic lunar"
 EXPORT_PATH="/home/jenkins/"
 GIT_BASE_URL=https://github.com/llvm/llvm-project
