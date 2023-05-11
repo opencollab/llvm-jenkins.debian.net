@@ -15,7 +15,7 @@ if test "$DIST" = "stretch" -o "$DIST" = "xenial" -o "$DIST" = "bionic" -o "$DIS
 	mv cmake-* cmake
 fi
 
-# To port cmake to a diffferent arch
+# To port cmake to a different arch
 # /sbin/deboostrap bionic bionic
 # chroot bionic
 # echo "deb-src http://ports.ubuntu.com/ubuntu-ports bionic main" >> /etc/apt/sources.list
