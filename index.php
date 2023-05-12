@@ -76,19 +76,6 @@ Feb 18th 2022 - Ubuntu Jammy (22.04) enabled<br />
 Feb 04th 2022 - Snapshot becomes 15, branch 14 created<br />
 Jan 16th 2022 - llvm.sh can now install all packages at once with the <a href="#llvmsh">'all' option</a><br />
 Jan 15th 2022 - Sources and dsc files are signed on <a href="#sigstore">sigstore</a><br />
-Dec 30th 2021 - <a href="https://mlir.llvm.org/">MLIR</a> packages added from 13<br />
-Dec 23th 2021 - Ubuntu Groovy (20.10) disabled (EOL)<br />
-Dec 22nd 2021 - arm64 supported<br />
-Nov 02nd 2021 - Infra <a href="https://blog.llvm.org/posts/2021-11-02-apt.llvm.org-moving-from-physical-server-to-the-cloud/">moved to the cloud</a><br />
-Oct 05th 2021 - Ubuntu Impish (21.10) enabled<br />
-Aug 01st 2021 - Snapshot becomes 14, branch 13 created<br />
-Aug 01st 2021 - libunwind packages are generated (libunwind-XX & libunwind-XX-dev)<br />
-Jul 25th 2021 - Packages are tested against the <a href="https://github.com/opencollab/llvm-toolchain-integration-test-suite/">LLVM integration test suite</a><br />
-May 01st 2021 - libclc packages generated from 12. Thanks to Timo Aaltonen<br />
-Apr 25th 2021 - S390X support added<br />
-Mar 28th 2021 - Ubuntu Xenial (16.04) disabled (EOL)<br />
-Feb 01st 2021 - Snapshot becomes 13, branch 12 created<br />
-Feb 01st 2021 - Debian Bullseye (11) added<br />
 </div>
 
 <div class="rel_section" id="llvmsh">Automatic installation script</div>
