@@ -5,7 +5,7 @@ VER=3.20.5
 apt-get install --yes --no-install-recommends --force-yes curl libssl-dev
 DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
-if test "$DIST" = "stretch" -o "$DIST" = "xenial" -o "$DIST" = "bionic" -o "$DIST" = "buster"; then
+if test "$DIST" = "focal" -o "$DIST" = "xenial" -o "$DIST" = "bionic" -o "$DIST" = "buster"; then
 	ARCH=$(uname -m)
 	if test "$ARCH" = "i686"; then
 		ARCH="i386"
