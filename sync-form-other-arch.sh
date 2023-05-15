@@ -7,6 +7,9 @@ if test $# -ne 3; then
     exit 1
 fi
 
+reprepro --version
+dpkg -l reprepro
+
 DISTRO=$1
 HOST=$2
 ARCH=$3
