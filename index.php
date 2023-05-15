@@ -63,7 +63,7 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
-Mar 22nd 2023 - Ubuntu Kinetic (23.04) enabled<br />
+Mar 22nd 2023 - Ubuntu Lunar (23.04) enabled<br />
 Jan 03rd 2023 - libclang-common-X.Y-dev split into: libclang-rt-X.Y-dev, libpolly-X.Y-dev, libclang-rt-X.Y-dev-wasm32 and libclang-rt-X.Y-dev-wasm64<br />
 Jan 03rt 2023 - Support of wasm improved with new packages: libc++-X.Y-dev-wasm32, libc++abi-X.Y-dev-wasm32, libclang-rt-X.Y-dev-wasm32 and libclang-rt-X.Y-dev-wasm64 (recent distros)<br />
 Jan 03rd 2023 - flang packages added<br />
