@@ -2,6 +2,10 @@
 
 set -ex
 
+if test "$ARCH" = "s390x" -o "$ARCH" = "aarch64"; then
+    echo "don't install sccache - not supported yet on these archs"
+    exit 0
+fi
 echo "Also start sccache to test"
 mkdir -p /opt/sccache
 cd /opt/sccache/
