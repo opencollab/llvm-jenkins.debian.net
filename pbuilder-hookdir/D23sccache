@@ -1,7 +1,7 @@
 #!/bin/sh
-
 set -ex
 
+ARCH=$(uname -m)
 if test "$ARCH" = "s390x" -o "$ARCH" = "aarch64"; then
     echo "don't install sccache - not supported yet on these archs"
     exit 0
@@ -10,7 +10,6 @@ echo "Also start sccache to test"
 mkdir -p /opt/sccache
 cd /opt/sccache/
 if test ! -f sccache; then
-    ARCH=$(uname -m)
     if test "$ARCH" = "i686" -o "$ARCH" = "i386"; then
         time wget -q -O sccache --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/sccache.i386
         time wget -q -O libssl.so.1.1 --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libssl.so.1.1.i386
