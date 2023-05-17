@@ -3,7 +3,7 @@
 # Licensed under the terms of the MIT License.
 
 echo "Kill sccache if exists"
-killall -9 sccache||true
+kill -9 $(pidof sccache)||true
 
 cat <<EOF
   ┌──────────────────────────────────────────────────────────────────────────────┐
