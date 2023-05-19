@@ -83,8 +83,8 @@ fi
 check_package_versions $REPOSITORY $BASE_LOCALDIR
 
 if test -z "$SKIP_SYNC"; then
-time find $BASE_LOCALDIR -type d | xargs chmod 755 || true
-time find $BASE_LOCALDIR -type f ! -name sync-to-llvm.sh | xargs -I {} -d '\n' chmod 644 "{}" || true
+find $BASE_LOCALDIR -type d | xargs chmod 755 || true
+find $BASE_LOCALDIR -type f ! -name sync-to-llvm.sh | xargs -I {}  -d '\n' chmod 644 "{}" || true
 ssh $TARGET mkdir -p $BASE_TARGETDIR/$REPOSITORY
 echo "Delete potential old directory"
 time ssh $TARGET rm -rf $BASE_TARGETDIR/$REPOSITORY.back
