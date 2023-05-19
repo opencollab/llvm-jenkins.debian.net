@@ -17,6 +17,52 @@ if ! grep -q XXX= ~/.ssh/known_hosts; then
 	echo "XXX" >> ~/.ssh/known_hosts
 fi
 
+check_package_versions() {
+    # the distribution is the first argument to the function
+    local base_dist=$1
+    local path_repo=$2
+    # check that the distribution name was provided
+    if [ -z "$base_dist" ]; then
+        echo "Error: No distribution provided"
+        return 1
+    fi
+
+    # specify your architectures here
+    # don't care about i386
+    local archs=("amd64" "s390x" "arm64")
+
+    # specify your versions here
+    local versions=("15" "16" "")
+    if test "$base_dist" != "unstable"; then
+	base_dist="-$base_dist"
+    else
+	base_dist=""
+    fi
+    for ver in "${versions[@]}"; do
+        local dist="llvm-toolchain${base_dist}${ver:+-}$ver"
+        echo "Checking distribution $dist"
+
+        # store versions in an associative array
+        declare -A pkg_versions
+
+        for arch in "${archs[@]}"; do
+            echo "Architecture $arch"
+            # list packages and versions
+            local packages=$(reprepro -b $path_repo/$1 list "${dist}" | grep "$arch" | awk '{print $2,$3}')
+
+            while read -r line; do
+                pkg=$(echo "$line" | awk '{print $1}')
+                ver=$(echo "$line" | awk '{print $2}')
+                if [[ -n "${pkg_versions[$pkg]}" && "${pkg_versions[$pkg]}" != "$ver" ]]; then
+                    echo "error: $pkg has different versions for $arch: ${pkg_versions[$pkg]} vs $ver"
+		    exit 1
+                fi
+                pkg_versions[$pkg]=$ver
+            done <<< "$packages"
+        done
+    done
+}
+
 
 REPOSITORY=$1
 SKIP_SYNC=$2
@@ -33,6 +79,8 @@ if test ! -d $LLVM_DEFAULT_DIR/; then
         echo "Cannot find directory $LLVM_DEFAULT_DIR"
         exit 1
 fi
+
+check_package_versions $REPOSITORY $BASE_LOCALDIR
 
 if test -z "$SKIP_SYNC"; then
 time find $BASE_LOCALDIR -type d | xargs chmod 755 || true
