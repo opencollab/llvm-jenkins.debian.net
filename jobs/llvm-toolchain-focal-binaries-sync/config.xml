@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-focal-binaries,llvm-toolchain-focal-16-binaries, llvm-toolchain-focal-14-binaries, llvm-toolchain-focal-15-binaries,llvm-defaults-focal-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-focal-binaries,llvm-toolchain-focal-16-binaries,  llvm-toolchain-focal-15-binaries,llvm-defaults-focal-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -25,7 +25,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>sudo /usr/bin/chown -R jenkins. /srv/repository/focal/
+      <command>
+sudo /usr/bin/chown -R jenkins. /srv/repository/focal/
 bash -v ~/sync-form-other-arch.sh focal $HOST_S390X s390x
 bash ~/sync-form-other-arch.sh focal $HOST_ARM64 arm64
 /srv/repository/sync-to-llvm.sh focal
