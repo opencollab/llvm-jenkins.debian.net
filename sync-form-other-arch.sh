@@ -19,6 +19,50 @@ if ! test -d /tmp/tmp-$DISTRO/pool/main/; then
         exit 0
 fi
 
+
+versions=("15" "16" "")
+for ver in "${versions[@]}"; do
+
+    declare -A src_pkg_versions
+    declare -A dst_pkg_versions
+    if test "$DISTRO" != "unstable"; then
+        base_dist="-$base_dist"
+    else
+        base_dist=""
+    fi
+    dist="llvm-toolchain${base_dist}${ver:+-}$ver"
+    echo $dist
+
+    remote_packages=$(reprepro -b /tmp/tmp-$DISTRO/ list "$dist" | grep "$ARCH" | awk '{print $2,$3}')
+    while read -r line; do
+        pkg=$(echo "$line" | awk '{print $1}')
+        ver=$(echo "$line" | awk '{print $2}')
+        if [[ -n "$pkg" ]]; then
+            src_pkg_versions["$pkg"]=$ver
+        fi
+    done <<< "$remote_packages"
+    echo "Number packages coming from $ARCH: ${#src_pkg_versions[@]}"
+    echo "To see the list: reprepro -b /tmp/tmp-$DISTRO/ list '$dist'"
+
+    repo_packages=$(reprepro -b /srv/repository/$DISTRO/ list "$dist" | grep "amd64" | awk '{print $2,$3}')
+    while read -r line; do
+        pkg=$(echo "$line" | awk '{print $1}')
+        ver=$(echo "$line" | awk '{print $2}')
+        if [[ -n "$pkg" ]]; then
+            dst_pkg_versions["$pkg"]=$ver
+        fi
+    done <<< "$repo_packages"
+    echo "Number of local amd64 packages: ${#src_pkg_versions[@]}"
+    echo "To see the list: reprepro -b /srv/repository/$DISTRO/ list '$dist'"
+
+    for pkg in "${!src_pkg_versions[@]}"; do
+        if [[ -n "${dst_pkg_versions[$pkg]}" && "${src_pkg_versions[$pkg]}" != "${dst_pkg_versions[$pkg]}" ]]; then
+            echo "error: $pkg has different versions for $ARCH: ${src_pkg_versions[$pkg]} vs ${dst_pkg_versions[$pkg]}"
+            exit 1
+        fi
+    done
+done
+
 for f in /tmp/tmp-$DISTRO/dists/llvm-*/main/binary-$ARCH/; do
     echo $f
     VERSION=$(echo $f|sed -e "s|/tmp/tmp-$DISTRO/dists/llvm-toolchain-$DISTRO-\([[:digit:]]\+\)/.*|\1|g")
