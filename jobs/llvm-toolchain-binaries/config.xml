@@ -69,11 +69,6 @@ if test ! -d $REPOSITORY; then mount &quot;$(dirname &quot;$REPOSITORY&quot;)&qu
 /usr/bin/build-and-provide-package</command>
       <configuredLocalRules/>
     </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>mkdir -p report
-#/usr/bin/lintian-junit-report $(ls -Atr *.dsc | tail -1) &gt; report/lintian.xml</command>
-      <configuredLocalRules/>
-    </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
