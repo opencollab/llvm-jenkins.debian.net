@@ -26,7 +26,7 @@ for ver in "${versions[@]}"; do
     declare -A src_pkg_versions
     declare -A dst_pkg_versions
     if test "$DISTRO" != "unstable"; then
-        base_dist="-$base_dist"
+        base_dist="-$DISTRO"
     else
         base_dist=""
     fi
