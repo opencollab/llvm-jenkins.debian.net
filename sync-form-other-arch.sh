@@ -62,6 +62,7 @@ for ver in "${versions[@]}"; do
         fi
     done
 done
+echo "=== version check completed ==="
 
 for f in /tmp/tmp-$DISTRO/dists/llvm-*/main/binary-$ARCH/; do
     echo $f

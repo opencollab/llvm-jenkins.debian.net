@@ -81,6 +81,7 @@ if test ! -d $LLVM_DEFAULT_DIR/; then
 fi
 
 check_package_versions $REPOSITORY $BASE_LOCALDIR
+echo "=== version check completed before sync ==="
 
 if test -z "$SKIP_SYNC"; then
 find $BASE_LOCALDIR -type d | xargs chmod 755 || true
