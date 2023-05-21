@@ -65,11 +65,6 @@ export SKIP_PACKAGE_FROM_REMOVAL=&quot;$SKIP_PKG_RM&quot;
 /usr/bin/build-and-provide-package</command>
       <configuredLocalRules/>
     </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>mkdir -p report
-#/usr/bin/lintian-junit-report $(ls -Atr *.dsc | tail -1) &gt; report/lintian.xml</command>
-      <configuredLocalRules/>
-    </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
