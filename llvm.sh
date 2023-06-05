@@ -50,9 +50,7 @@ source /etc/os-release
 DISTRO=${DISTRO,,}
 case ${DISTRO} in
     debian)
-        if [[ "${VERSION}" == "unstable" ]] || [[ "${VERSION}" == "testing" ]] || [[ "${VERSION_CODENAME}" == "bookworm" ]]; then
-            # For now, bookworm == sid.
-            # TODO change when bookworm is released
+        if [[ "${VERSION}" == "unstable" ]] || [[ "${VERSION}" == "testing" ]]; then
             CODENAME=unstable
             LINKNAME=
         else
