@@ -63,6 +63,7 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Jun 04th 2023 - Debian bookworm (12) enabled as a new distro<br />
 Mar 22nd 2023 - Ubuntu Lunar (23.04) enabled<br />
 Jan 03rd 2023 - libclang-common-X.Y-dev split into: libclang-rt-X.Y-dev, libpolly-X.Y-dev, libclang-rt-X.Y-dev-wasm32 and libclang-rt-X.Y-dev-wasm64<br />
 Jan 03rt 2023 - Support of wasm improved with new packages: libc++-X.Y-dev-wasm32, libc++abi-X.Y-dev-wasm32, libclang-rt-X.Y-dev-wasm32 and libclang-rt-X.Y-dev-wasm64 (recent distros)<br />
@@ -134,6 +135,17 @@ deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranc
 deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranch?> main
 </pre>
 
+Bookworm (Debian 12 -  testing) - <small>Last update : <?=getLastUpdate("bookworm");?> / Revision: <?=getLastRevision("bookworm")?></small>
+<pre>
+deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm main
+deb-src http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm main
+# <?=$stableBranch?>
+deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$qualificationBranch?> main
+</pre>
 
 sid (unstable) - <small>Last update : <?=getLastUpdate("unstable");?> / Revision: <?=getLastRevision("unstable")?></small>
 <!--# Need Debian experimental too-->
