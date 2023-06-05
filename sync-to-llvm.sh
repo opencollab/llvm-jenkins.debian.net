@@ -53,7 +53,7 @@ check_package_versions() {
             while read -r line; do
                 pkg=$(echo "$line" | awk '{print $1}')
                 ver=$(echo "$line" | awk '{print $2}')
-                if [[ -n "${pkg_versions[$pkg]}" && "${pkg_versions[$pkg]}" != "$ver" ]]; then
+                if [[ -n "$pkg" && -n "${pkg_versions[$pkg]}" && "${pkg_versions[$pkg]}" != "$ver" ]]; then
                     echo "error: $pkg has different versions for $arch: ${pkg_versions[$pkg]} vs $ver"
 		    exit 1
                 fi
