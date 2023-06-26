@@ -15,17 +15,29 @@ else
 
 	minimumsize=190000
 	actualsize=$(du -k /tmp/buildd/llvm.tgz | cut -f 1)
+	cd /tmp/buildd
 	if [ $actualsize -ge $minimumsize ]; then
-		apt-get install --yes --no-install-recommends --force-yes curl ca-certificates
-		curl --form project=llvm --form token=IcZw6jNXoeVFDe34wf1WPQ \
-		    --form email=sylvestre@debian.org \
-		    --form file=@/tmp/buildd/llvm.tgz \
-		    --form version=$(date "+%Y-%m-%d_%H-%M-%S") \
-		    --form description="llvm-toolchain" \
-		    https://scan.coverity.com/builds?project=llvm
-        else
+		apt-get install --yes --no-install-recommends --force-yes curl ca-certificates jq
+		curl -X POST \
+			 -d version="Version" \
+			 -d description="Description" \
+			 -d email=sylvestre@mozilla.com \
+			 -d token=IcZw6jNXoeVFDe34wf1WPQ \
+			 -d file_name="llvm.tgz" \
+			 https://scan.coverity.com/projects/869/builds/init \
+			| tee response
+		upload_url=$(jq -r '.url' response)
+		build_id=$(jq -r '.build_id' response)
+		curl -X PUT \
+			 --header 'Content-Type: application/json' \
+			 --upload-file llvm.tgz \
+			 $upload_url
+		curl -X PUT \
+			 -d token=IcZw6jNXoeVFDe34wf1WPQ \
+			 https://scan.coverity.com/projects/232/builds/$build_id/enqueue
+	else
 		cat cov-int/build-log.txt
-                echo "Unexpected filesize. Should be at least $minimumsize (found $actualize)"
-                exit 1
-        fi
+		echo "Unexpected filesize. Should be at least $minimumsize (found $actualize)"
+		exit 1
+	fi
 fi
