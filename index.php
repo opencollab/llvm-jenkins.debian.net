@@ -139,10 +139,10 @@ Bookworm (Debian 12 -  testing) - <small>Last update : <?=getLastUpdate("bookwor
 <pre>
 deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm main
 deb-src http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm main
-# <?=$stableBranch?>
+# <?=$stableBranch?> 
 deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$stableBranch?> main
 deb-src http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
+# <?=$qualificationBranch?> 
 deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$qualificationBranch?> main
 </pre>
