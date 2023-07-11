@@ -3,13 +3,13 @@ set -e
 WHOAMI=$(whoami)
 
 if test $WHOAMI != "jenkins"; then
-	echo "should be run under jenkins"
+    echo "should be run under jenkins"
 fi
 
 if test $# -ne 1 -a $# -ne 2; then
-	echo "Wrong number of args."
-	echo "Syntax: $0 <repository> <skip sync>"
-	exit 1
+    echo "Wrong number of args."
+    echo "Syntax: $0 <repository> <skip sync>"
+    exit 1
 fi
 
 if ! grep -q XXX= ~/.ssh/known_hosts; then
@@ -48,7 +48,7 @@ check_package_versions() {
         for arch in "${archs[@]}"; do
             echo "Architecture $arch"
             # list packages and versions
-	    echo reprepro -b $path_repo/$1 list "${dist}" 
+            echo reprepro -b $path_repo/$1 list "${dist}" 
             local packages=$(reprepro -b $path_repo/$1 list "${dist}" | grep "$arch" | awk '{print $2,$3}')
 
             while read -r line; do
@@ -59,7 +59,7 @@ check_package_versions() {
 		    exit 1
                 fi
 		if [[ -n "$pkg" ]]; then
-	                pkg_versions[$pkg]=$ver
+                    pkg_versions[$pkg]=$ver
 		fi
             done <<< "$packages"
         done
@@ -73,35 +73,35 @@ TARGET=apt@apt-origin.llvm.org
 BASE_TARGETDIR=/data/apt/www
 BASE_LOCALDIR=/srv/repository
 if test ! -d $BASE_LOCALDIR/$REPOSITORY; then
-	echo "Cannot find directory $REPOSITORY"
-	exit 1
+    echo "Cannot find directory $REPOSITORY"
+    exit 1
 fi
 
 LLVM_DEFAULT_DIR=$BASE_LOCALDIR/$REPOSITORY/pool/main/l/llvm-defaults/
 if test ! -d $LLVM_DEFAULT_DIR/; then
-        echo "Cannot find directory $LLVM_DEFAULT_DIR"
-        exit 1
+    echo "Cannot find directory $LLVM_DEFAULT_DIR"
+    exit 1
 fi
 
 check_package_versions $REPOSITORY $BASE_LOCALDIR
 echo "=== version check completed before sync ==="
 
 if test -z "$SKIP_SYNC"; then
-find $BASE_LOCALDIR -type d | xargs chmod 755 || true
-find $BASE_LOCALDIR -type f ! -name sync-to-llvm.sh | xargs -I {}  -d '\n' chmod 644 "{}" || true
-ssh $TARGET mkdir -p $BASE_TARGETDIR/$REPOSITORY
-echo "Delete potential old directory"
-time ssh $TARGET rm -rf $BASE_TARGETDIR/$REPOSITORY.back
-echo "Copy the current repo to a new directory to be updated"
-time ssh $TARGET cp -Rp $BASE_TARGETDIR/$REPOSITORY $BASE_TARGETDIR/$REPOSITORY.back
-echo "Sync the data"
-time /usr/bin/rsync -a --info=progress2 --times --delete -v --stats -r $BASE_LOCALDIR/$REPOSITORY/* $TARGET:$BASE_TARGETDIR/$REPOSITORY.back/
-echo "Kill the current repo (by renaming it)"
-time ssh $TARGET mv $BASE_TARGETDIR/$REPOSITORY $BASE_TARGETDIR/$REPOSITORY.1
-echo "Move the new repo to the actual dir"
-time ssh $TARGET mv $BASE_TARGETDIR/$REPOSITORY.back $BASE_TARGETDIR/$REPOSITORY
-echo "Delete the old repo"
-time ssh $TARGET rm -rf $BASE_TARGETDIR/$REPOSITORY.1
+    find $BASE_LOCALDIR -type d | xargs chmod 755 || true
+    find $BASE_LOCALDIR -type f ! -name sync-to-llvm.sh | xargs -I {}  -d '\n' chmod 644 "{}" || true
+    ssh $TARGET mkdir -p $BASE_TARGETDIR/$REPOSITORY
+    echo "Delete potential old directory"
+    time ssh $TARGET rm -rf $BASE_TARGETDIR/$REPOSITORY.back
+    echo "Copy the current repo to a new directory to be updated"
+    time ssh $TARGET cp -Rp $BASE_TARGETDIR/$REPOSITORY $BASE_TARGETDIR/$REPOSITORY.back
+    echo "Sync the data"
+    time /usr/bin/rsync -a --info=progress2 --times --delete -v --stats -r $BASE_LOCALDIR/$REPOSITORY/* $TARGET:$BASE_TARGETDIR/$REPOSITORY.back/
+    echo "Kill the current repo (by renaming it)"
+    time ssh $TARGET mv $BASE_TARGETDIR/$REPOSITORY $BASE_TARGETDIR/$REPOSITORY.1
+    echo "Move the new repo to the actual dir"
+    time ssh $TARGET mv $BASE_TARGETDIR/$REPOSITORY.back $BASE_TARGETDIR/$REPOSITORY
+    echo "Delete the old repo"
+    time ssh $TARGET rm -rf $BASE_TARGETDIR/$REPOSITORY.1
 fi
 
 key="xxxx"
@@ -127,8 +127,8 @@ cd /srv/repository/$REPOSITORY/dists/
 url=$(ls -1 llvm-toolchain*/main/{source,binary*}/* */*Release*)
 cd -
 for f in $url; do
-	FULL_URL="apt.llvm.org/$REPOSITORY/dists/$f"
-	purge_url $FULL_URL
+    FULL_URL="apt.llvm.org/$REPOSITORY/dists/$f"
+    purge_url $FULL_URL
 done
 
 FULL_URL="apt.llvm.org/$REPOSITORY/"
