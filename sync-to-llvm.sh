@@ -27,11 +27,11 @@ check_package_versions() {
         return 1
     fi
 
-    # specify your architectures here
+    # specify architectures here
     # don't care about i386
     local archs=("amd64" "s390x" "arm64")
 
-    # specify your versions here
+    # specify versions here
     local versions=("15" "16" "")
     if test "$base_dist" != "unstable"; then
 	base_dist="-$base_dist"
@@ -48,16 +48,19 @@ check_package_versions() {
         for arch in "${archs[@]}"; do
             echo "Architecture $arch"
             # list packages and versions
+	    echo reprepro -b $path_repo/$1 list "${dist}" 
             local packages=$(reprepro -b $path_repo/$1 list "${dist}" | grep "$arch" | awk '{print $2,$3}')
 
             while read -r line; do
                 pkg=$(echo "$line" | awk '{print $1}')
                 ver=$(echo "$line" | awk '{print $2}')
-                if [[ -n "$pkg" && -n "${pkg_versions[$pkg]}" && "${pkg_versions[$pkg]}" != "$ver" ]]; then
+		if [[ -n "$pkg" && -n "${pkg_versions[$pkg]}" && "${pkg_versions[$pkg]}" != "$ver" ]]; then
                     echo "error: $pkg has different versions for $arch: ${pkg_versions[$pkg]} vs $ver"
 		    exit 1
                 fi
-                pkg_versions[$pkg]=$ver
+		if [[ -n "$pkg" ]]; then
+	                pkg_versions[$pkg]=$ver
+		fi
             done <<< "$packages"
         done
     done
@@ -66,7 +69,7 @@ check_package_versions() {
 
 REPOSITORY=$1
 SKIP_SYNC=$2
-TARGET=XXXX@XXX.llvm.org
+TARGET=apt@apt-origin.llvm.org
 BASE_TARGETDIR=/data/apt/www
 BASE_LOCALDIR=/srv/repository
 if test ! -d $BASE_LOCALDIR/$REPOSITORY; then
