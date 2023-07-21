@@ -111,7 +111,7 @@ sudo ./llvm.sh all
 <div class="rel_boxtext">
 
 
-Buster (Debian 10 - old-stable) - <small>Last update : <?=getLastUpdate("buster");?> / Revision: <?=getLastRevision("buster")?></small>
+Buster (Debian 10 - old-old-stable) - <small>Last update : <?=getLastUpdate("buster");?> / Revision: <?=getLastRevision("buster")?></small>
 <pre>
 deb http://apt.llvm.org/buster/ llvm-toolchain-buster main
 deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster main
@@ -123,7 +123,7 @@ deb http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$qualificationBranch?> 
 deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$qualificationBranch?> main
 </pre>
 
-Bullseye (Debian 11 -  stable) - <small>Last update : <?=getLastUpdate("bullseye");?> / Revision: <?=getLastRevision("bullseye")?></small>
+Bullseye (Debian 11 - old-stable) - <small>Last update : <?=getLastUpdate("bullseye");?> / Revision: <?=getLastRevision("bullseye")?></small>
 <pre>
 deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
 deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
@@ -135,7 +135,7 @@ deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranc
 deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranch?> main
 </pre>
 
-Bookworm (Debian 12 -  testing) - <small>Last update : <?=getLastUpdate("bookworm");?> / Revision: <?=getLastRevision("bookworm")?></small>
+Bookworm (Debian 12 - stable) - <small>Last update : <?=getLastUpdate("bookworm");?> / Revision: <?=getLastRevision("bookworm")?></small>
 <pre>
 deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm main
 deb-src http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm main
@@ -147,7 +147,7 @@ deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$qualificationBranc
 deb-src http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$qualificationBranch?> main
 </pre>
 
-sid (unstable) - <small>Last update : <?=getLastUpdate("unstable");?> / Revision: <?=getLastRevision("unstable")?></small>
+Trixie / sid (unstable) - <small>Last update : <?=getLastUpdate("unstable");?> / Revision: <?=getLastRevision("unstable")?></small>
 <!--# Need Debian experimental too-->
 <pre>
 deb http://apt.llvm.org/unstable/ llvm-toolchain main
