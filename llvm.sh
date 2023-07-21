@@ -50,7 +50,9 @@ source /etc/os-release
 DISTRO=${DISTRO,,}
 case ${DISTRO} in
     debian)
-        if [[ "${VERSION}" == "unstable" ]] || [[ "${VERSION}" == "testing" ]]; then
+        # Debian Trixie has a workaround because of
+        # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1038383
+        if [[ "${VERSION}" == "unstable" ]] || [[ "${VERSION}" == "testing" ]] || [[ "${VERSION_CODENAME}" == "trixie" ]]; then
             CODENAME=unstable
             LINKNAME=
         else
