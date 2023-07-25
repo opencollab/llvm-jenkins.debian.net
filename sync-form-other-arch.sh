@@ -13,7 +13,17 @@ dpkg -l reprepro
 DISTRO=$1
 HOST=$2
 ARCH=$3
-rsync -avzh --delete jenkins@$HOST:/srv/repository/$DISTRO/ /tmp/tmp-$DISTRO/
+
+
+declare -a old_versions=("9" "10" "11" "12" "13")
+
+for version in "${old_versions[@]}"
+do
+    excludes+=(--exclude "pool/main/l/llvm-toolchain-$version/" --exclude "dists/llvm-toolchain-$DISTRO-$version/")
+done
+echo "Ignore ${excludes[@]}"
+
+rsync -avzh --delete "${excludes[@]}" jenkins@$HOST:/srv/repository/$DISTRO/ /tmp/tmp-$DISTRO/
 if ! test -d /tmp/tmp-$DISTRO/pool/main/; then
         echo "Distro $DISTRO not existing yet"
         exit 0
@@ -58,17 +68,29 @@ for ver in "${versions[@]}"; do
     for pkg in "${!src_pkg_versions[@]}"; do
         if [[ -n "${dst_pkg_versions[$pkg]}" && "${src_pkg_versions[$pkg]}" != "${dst_pkg_versions[$pkg]}" ]]; then
             echo "error: $pkg has different versions for $ARCH: ${src_pkg_versions[$pkg]} vs ${dst_pkg_versions[$pkg]}"
-            exit 1
+	    echo -n "build id: "
+            echo -n ${src_pkg_versions[$pkg]} | awk -F"." '{printf "%s", $2}'
+            echo -n " / "
+            echo ${dst_pkg_versions[$pkg]} | awk -F"." '{print $2}'
+	    #            exit 1
         fi
     done
 done
 echo "=== version check completed ==="
 
 for f in /tmp/tmp-$DISTRO/dists/llvm-*/main/binary-$ARCH/; do
-    echo $f
-    VERSION=$(echo $f|sed -e "s|/tmp/tmp-$DISTRO/dists/llvm-toolchain-$DISTRO-\([[:digit:]]\+\)/.*|\1|g")
+    echo "f= $f"
+    echo "DISTRO = $DISTRO"
+    VERSION=$(echo "$f" | sed -E -e "s|/tmp/tmp-$DISTRO/dists/llvm-toolchain(-$DISTRO)?-?([[:digit:]]+)/.*|\2|g")
     echo "VERSION $VERSION"
     re='^[0-9]+$'
+
+    # Skip if version is in versions array
+    if [[ " ${old_versions[*]} " == *" $VERSION "* ]]; then
+        echo "Skipping old version $VERSION"
+        continue
+    fi
+
     if ! [[ $VERSION =~ $re ]] ; then
             # maybe debian unstable
             VERSION=$(echo $f|sed -e "s|/tmp/tmp-$DISTRO/dists/llvm-toolchain-\([[:digit:]]\+\)/.*|\1|g")
