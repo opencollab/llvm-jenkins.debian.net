@@ -101,9 +101,9 @@ if test -z "$SKIP_SYNC"; then
     echo "Sync the data"
     time /usr/bin/rsync -a --info=progress2 --times --delete -v --stats -r $BASE_LOCALDIR/$REPOSITORY/* $TARGET:$BASE_TARGETDIR/$REPOSITORY.back/
     echo "Kill the current repo (by renaming it)"
-    time ssh $TARGET mv $BASE_TARGETDIR/$REPOSITORY $BASE_TARGETDIR/$REPOSITORY.1
-    echo "Move the new repo to the actual dir"
-    time ssh $TARGET mv $BASE_TARGETDIR/$REPOSITORY.back $BASE_TARGETDIR/$REPOSITORY
+    echo "And move the new repo to the actual dir"
+    echo "Both at the same time to make sure we don't break"
+    time ssh $TARGET "mv $BASE_TARGETDIR/$REPOSITORY $BASE_TARGETDIR/$REPOSITORY.1 && mv $BASE_TARGETDIR/$REPOSITORY.back $BASE_TARGETDIR/$REPOSITORY"
     echo "Delete the old repo"
     time ssh $TARGET rm -rf $BASE_TARGETDIR/$REPOSITORY.1
 fi
