@@ -1,7 +1,7 @@
 #!/bin/bash
-VERSION="16"
-VERSION_2="160"
-DISTROS=( unstable buster bullseye bionic focal jammy kinetic )
+VERSION="17"
+VERSION_2="170"
+DISTROS=( unstable buster bullseye bookworm bionic focal lunar jammy kinetic )
 for d in "${DISTROS[@]}"
 do
 	echo $d
