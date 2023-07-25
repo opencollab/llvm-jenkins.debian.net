@@ -56,6 +56,10 @@ check_package_versions() {
                 ver=$(echo "$line" | awk '{print $2}')
 		if [[ -n "$pkg" && -n "${pkg_versions[$pkg]}" && "${pkg_versions[$pkg]}" != "$ver" ]]; then
                     echo "error: $pkg has different versions for $arch: ${pkg_versions[$pkg]} vs $ver"
+	            echo -n "build id:"
+                    echo -n ${pkg_versions[$pkg]} | awk -F"." '{print $2}'
+                    echo -n " / "
+                    echo $ver | awk -F"." '{print $2}'
 		    exit 1
                 fi
 		if [[ -n "$pkg" ]]; then
