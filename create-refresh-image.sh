@@ -32,13 +32,20 @@ COMPONENTS="main universe"
 EOF
 
 for d in $DEBIAN_DISTRO; do
+    if test "$d" == "bookworm"; then
+    # The cloudfront mirror is failing on:
+    # E: The repository 'http://cloudfront.debian.net//debian bookworm Release' no longer has a Release file.
+        DEBIAN_MIRROR=http://deb.debian.org/debian/
+    else
+        DEBIAN_MIRROR=http://cloudfront.debian.net/debian/
+    fi
     for a in $ARCHS; do
         echo $a
         echo $d
         if test -d /var/cache/pbuilder/base-$d-$a.cow; then
             sudo DIST=$d ARCH=$a cowbuilder --update --basepath /var/cache/pbuilder/base-$d-$a.cow
         else
-            sudo DIST=$d ARCH=$a cowbuilder --create --basepath /var/cache/pbuilder/base-$d-$a.cow --distribution $d --debootstrap debootstrap --mirror http://cloudfront.debian.net//debian/ --architecture $a --debootstrapopts --arch --debootstrapopts $a --debootstrapopts --variant=buildd --hookdir /usr/share/jenkins-debian-glue/pbuilder-hookdir/
+            sudo DIST=$d ARCH=$a cowbuilder --create --basepath /var/cache/pbuilder/base-$d-$a.cow --distribution $d --debootstrap debootstrap --mirror $DEBIAN_MIRROR --architecture $a --debootstrapopts --arch --debootstrapopts $a --debootstrapopts --variant=buildd --hookdir /usr/share/jenkins-debian-glue/pbuilder-hookdir/
         fi
     done
 done
