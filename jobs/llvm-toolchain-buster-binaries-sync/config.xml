@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-buster-binaries,llvm-toolchain-buster-16-binaries,llvm-toolchain-buster-13-binaries,llvm-toolchain-buster-14-binaries,llvm-toolchain-buster-15-binaries,llvm-defaults-buster-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-buster-binaries,llvm-toolchain-buster-16-binaries,llvm-toolchain-buster-17-binaries,llvm-toolchain-buster-14-binaries,llvm-toolchain-buster-15-binaries,llvm-defaults-buster-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -36,7 +36,7 @@ bash ~/sync-form-other-arch.sh buster $HOST_S390X s390x
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@438.v02c7f0a_12fa_4">
+    <hudson.tasks.Mailer plugin="mailer@457.v3f72cb_e015e5">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
