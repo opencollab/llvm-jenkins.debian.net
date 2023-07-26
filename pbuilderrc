@@ -49,12 +49,6 @@ case "$DIST" in
         ;;
 esac
 
-if test "$DIST" == "bookworm"; then
-# The cloudfront mirror is failing on:
-# E: The repository 'http://cloudfront.debian.net//debian bookworm Release' no longer has a Release file.
-  DEBIAN_MIRROR="deb.debian.org/"
-fi
-
 # Optionally set the architecture to the host architecture if none set. Note
 # that you can set your own default (i.e. ${ARCH:="i386"}).
 : ${ARCH:="$(dpkg --print-architecture)"}
