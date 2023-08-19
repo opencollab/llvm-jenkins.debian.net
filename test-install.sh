@@ -56,7 +56,7 @@ echo "VERSION = $VERSION"
 for d in $DISTRO; do
 
     MIRROR=""
-    if test "$d" == "stretch" -o "$d" == "buster" -o "$d" == "bullseye" -o "$d" == "unstable"; then
+    if test "$d" == "buster" -o "$d" == "bullseye" -o "$d" == "unstable"; then
         # deb.debian.org is failing too often
         MIRROR=http://cloudfront.debian.net/debian
     fi
@@ -219,12 +219,6 @@ for d in $DISTRO; do
 
     if test "$d" == "jammy" -o "$d" == "buster"; then
         PKG="$PKG zlib1g-dev"
-    fi
-
-    if test "$d" == stretch; then
-        echo "
-             apt install -y apt-transport-https
-        " >> $d-script.sh
     fi
 
     echo "USE_SCRIPT=$USE_SCRIPT"
