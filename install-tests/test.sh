@@ -19,7 +19,7 @@ fi
 echo "load test_helper" >> $TEST_SUITE
 echo "" >> $TEST_SUITE
 
-# generate the test suite for the product of DISTROS x LLVM_VERSIONS 
+# generate the test suite for the product of DISTROS x LLVM_VERSIONS
 for distro in "${DISTROS[@]}"
 do
   for llvm_version in "${LLVM_VERSIONS[@]}"
