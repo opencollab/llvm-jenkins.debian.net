@@ -14,7 +14,12 @@ echo "ID = $ID"
 echo "LLVM_VERSION = $LLVM_VERSION"
 
 if test "$DIST" = "bionic" -a $LLVM_VERSION -ge 14; then
-    echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main" >> /etc/apt/sources.list
+    echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main" > /etc/apt/sources.list.d/bionic.list
+    if test "$(arch)" == "s390x"; then
+        echo "deb http://ports.ubuntu.com/ubuntu-ports $DIST universe" >> /etc/apt/sources.list.d/bionic.list
+    else
+        echo "deb http://www-ftp.lip6.fr/pub/linux/distributions/Ubuntu/ $DIST universe" >> /etc/apt/sources.list.d/bionic.list
+    fi
     apt update
     apt-get install g++-7 --assume-yes --no-install-recommends
 fi
