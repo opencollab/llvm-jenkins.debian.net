@@ -16,7 +16,11 @@ echo "LLVM_VERSION = $LLVM_VERSION"
 if test "$DIST" = "bionic" -a $LLVM_VERSION -ge 14; then
     # install some packages before to avoid some confusions between bionic & bionic-updates
     apt install libgrpc++-dev protobuf-compiler-grpc libprotobuf-dev protobuf-compiler --assume-yes --no-install-recommends
-    echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main" > /etc/apt/sources.list.d/bionic.list
+    if test "$(arch)" = "s390x" -o "$(arch)" = "arm64" ; then
+        echo "deb http://ports.ubuntu.com/ubuntu-ports bionic-updates main" >> /etc/apt/sources.list.d/bionic.list
+    else
+        echo "deb http://www-ftp.lip6.fr/pub/linux/distributions/Ubuntu/ bionic-updates main"  >> /etc/apt/sources.list.d/bionic.list
+    fi
     apt update
     apt-get install g++-7 --assume-yes --no-install-recommends
 fi
