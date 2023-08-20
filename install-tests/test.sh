@@ -3,7 +3,7 @@
 # test the llvm.sh installation script for the different distros
 
 # LLVM versions to be tested
-LLVM_VERSIONS=(8 9 10)
+LLVM_VERSIONS=(16 17 18)
 
 # Linux distributions to be tested
 # the distro names must match to the name of a docker image!
