@@ -15,7 +15,7 @@
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -59,8 +59,8 @@ sudo /bin/rm -rf install-all || true
       <configuredLocalRules/>
     </hudson.tasks.Shell>
   </builders>
-      <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.34">
+  <publishers>
+    <hudson.tasks.Mailer plugin="mailer@463.vedf8358e006b_">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
