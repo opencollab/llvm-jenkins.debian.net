@@ -1,5 +1,5 @@
 <?xml version='1.1' encoding='UTF-8'?>
-<matrix-project plugin="matrix-project@789.v57a_725b_63c79">
+<matrix-project plugin="matrix-project@808.v5a_b_5f56d6966">
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
@@ -41,13 +41,14 @@
       <values>
         <string>amd64</string>
         <string>arm64</string>
+        <string>i386</string>
         <string>s390x</string>
       </values>
     </hudson.matrix.LabelAxis>
   </axes>
   <combinationFilter>(label==&quot;arm64&quot;).implies(architecture==&quot;arm64&quot;) &amp;&amp; (label==&quot;amd64&quot;).implies(architecture==&quot;amd64&quot;) &amp;&amp; (label==&quot;i386&quot;).implies(architecture==&quot;i386&quot;) &amp;&amp; (label==&quot;s390x&quot;).implies(architecture==&quot;s390x&quot;)</combinationFilter>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@698.v393f578eb_ddc">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@722.v0662a_9b_e22a_c">
       <project>llvm-toolchain-bullseye-16-source</project>
       <filter>*</filter>
       <target></target>
@@ -78,7 +79,7 @@ export SKIP_PACKAGE_FROM_REMOVAL=&quot;llvm llvm-runtime llvm-dev llvm-defaults 
       <caseSensitive>true</caseSensitive>
       <followSymlinks>true</followSymlinks>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.Mailer plugin="mailer@448.v5b_97805e3767">
+    <hudson.tasks.Mailer plugin="mailer@463.vedf8358e006b_">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
