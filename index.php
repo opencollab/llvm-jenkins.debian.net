@@ -63,6 +63,7 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Sep 18th 2023 - Ubuntu Mantic (23.10) enabled<br />
 Sep 14th 2022 - Ubuntu Kinetic (22.10) disabled (EOL)<br />
 Jul 26th 2023 - Snapshot becomes 18, branch 17 created<br />
 Jun 04th 2023 - Debian bookworm (12) enabled as a new distro<br />
@@ -225,6 +226,20 @@ deb-src http://apt.llvm.org/lunar/ llvm-toolchain-lunar-<?=$stableBranch?> main
 
 deb http://apt.llvm.org/lunar/ llvm-toolchain-lunar-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/lunar/ llvm-toolchain-lunar-<?=$qualificationBranch?> main
+</pre>
+
+Mantic (23.10) - <small>Last update : <?=getLastUpdate("mantic");?> / Revision: <?=getLastRevision("mantic")?></small>
+<pre>
+deb http://apt.llvm.org/mantic/ llvm-toolchain-mantic main
+deb-src http://apt.llvm.org/mantic/ llvm-toolchain-mantic main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/mantic/ llvm-toolchain-mantic-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/mantic/ llvm-toolchain-mantic-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/mantic/ llvm-toolchain-mantic-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/mantic/ llvm-toolchain-mantic-<?=$qualificationBranch?> main
 </pre>
 </div>
 <a href="#" id="default_pkg" style="visibility: hidden">default_pkg</a>
