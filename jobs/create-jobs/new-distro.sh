@@ -6,6 +6,8 @@ if [[ $EUID -ne 0 ]]; then
 fi
 NAME="mantic"
 
+IS_UBUNTU=1
+
 VERSIONS=(16 17 snapshot)
 for v in "${VERSIONS[@]}"
 do
@@ -13,6 +15,9 @@ do
         v_without_dot=$(echo $v|sed -e "s|\.||g")
         sh create-new-job.sh $NAME $v release/$v_without_dot $v
         chown -R jenkins. llvm-toolchain-*
+	if test $IS_UBUNTU -eq 1; then
+	    sed -i "/<string>i386<\/string>/d" llvm-toolchain-*/config.xml
+	fi
 done
 
 sh create-new-job-default.sh $NAME
