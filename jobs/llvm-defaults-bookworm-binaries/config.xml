@@ -24,6 +24,7 @@
       <name>architecture</name>
       <values>
         <string>amd64</string>
+        <string>i386</string>
       </values>
     </hudson.matrix.TextAxis>
     <hudson.matrix.TextAxis>
