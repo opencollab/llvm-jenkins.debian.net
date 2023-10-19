@@ -25,7 +25,7 @@
       <name>architecture</name>
       <values>
         <string>amd64</string>
-	<string>i386</string>
+        <string>i386</string>
         <string>s390x</string>
         <string>arm64</string>
       </values>
@@ -40,8 +40,9 @@
       <name>label</name>
       <values>
         <string>amd64</string>
-        <string>s390x</string>
         <string>arm64</string>
+        <string>i386</string>
+        <string>s390x</string>
       </values>
     </hudson.matrix.LabelAxis>
   </axes>
@@ -51,6 +52,7 @@
       <project>llvm-toolchain-bookworm-16-source</project>
       <filter>*</filter>
       <target></target>
+      <includeBuildNumberInTargetPath>false</includeBuildNumberInTargetPath>
       <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.TriggeredBuildSelector">
         <upstreamFilterStrategy>UseGlobalSetting</upstreamFilterStrategy>
