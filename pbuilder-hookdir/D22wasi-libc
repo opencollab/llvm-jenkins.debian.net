@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -ex
+
+# This is an unusual hook:
+# in debian/control, we might have:
+#    llvm-spirv-17 [amd64 arm64 armhf i386 ppc64 ppc64el riscv64 s390x] <!stage1> | hello [!i386],
+#    wasi-libc | hello,
+# If llvm-spirv-17 isn't available on this distro, it will install hello
+# If hello is already proposed, apt won't try to install wasi-libc as the dependency
+# is already satisfied.
+#
+# With this hook, we hope it will able to have wasi-libc installed regardless
+
+
+apt update
+apt-get install --assume-yes --no-install-recommends wasi-libc || true
