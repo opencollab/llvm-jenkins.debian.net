@@ -1,4 +1,8 @@
 #!/bin/sh
+
+# To update the binary, ssh on the image machine
+# scp the file into /opt/
+
 if test ! -d /tmp/buildd/source/cov-int/; then
 	echo "No coverity report found; skipping"
 	echo "ls -al /tmp/buildd/source/ :"
@@ -17,7 +21,7 @@ else
 	actualsize=$(du -k /tmp/buildd/llvm.tgz | cut -f 1)
 	cd /tmp/buildd
 	if [ $actualsize -ge $minimumsize ]; then
-		apt-get install --yes --no-install-recommends --force-yes curl ca-certificates jq
+		apt-get install --yes --no-install-recommends curl ca-certificates jq
 		curl -X POST \
 			 -d version="Version" \
 			 -d description="Description" \
