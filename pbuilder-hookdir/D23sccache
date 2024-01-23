@@ -10,21 +10,22 @@ echo "Also start sccache to test"
 mkdir -p /opt/sccache
 cd /opt/sccache/
 if test ! -f sccache; then
-    if test "$ARCH" = "i686" -o "$ARCH" = "i386"; then
-        time wget -O sccache --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/sccache.i386
-        time wget -O libssl.so.1.1 --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libssl.so.1.1.i386
-        time wget -O libcrypto.so.1.1 --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libcrypto.so.1.1.i386
+    # Determine which files to download based on the system architecture
+    if [ "$ARCH" = "i686" ] || [ "$ARCH" = "i386" ]; then
+        suffix=".i386"
+    elif [ "$ARCH" = "s390x" ]; then
+        suffix=".s390x"
     else
-        if test "$ARCH" = "s390x"; then
-            time wget -O sccache --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/sccache.s390x
-            time wget -O libssl.so.1.1 --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libssl.so.1.1.s390x
-            time wget -O libcrypto.so.1.1 --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libcrypto.so.1.1.s390x
-        else
-            time wget --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/sccache https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libssl.so.1.1 https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libcrypto.so.1.1
-        fi
+        suffix=""
     fi
+
+    time wget -O sccache --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/sccache$suffix
+    time wget -O libssl.so.1.1 --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libssl.so.1.1$suffix
+    time wget -O libcrypto.so.1.1 --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libcrypto.so.1.1$suffix
+
     chmod +x sccache
 fi
+
 export SCCACHE_GCS_BUCKET=apt-llvm-org-sccache
 export SCCACHE_GCS_RW_MODE=READ_WRITE
 export SCCACHE_GCS_KEY_PATH=/opt/sccache/secret-gcp-storage.json
