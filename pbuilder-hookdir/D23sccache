@@ -15,7 +15,13 @@ if test ! -f sccache; then
         time wget -O libssl.so.1.1 --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libssl.so.1.1.i386
         time wget -O libcrypto.so.1.1 --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libcrypto.so.1.1.i386
     else
-        time wget --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/sccache https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libssl.so.1.1 https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libcrypto.so.1.1
+        if test "$ARCH" = "s390x"; then
+            time wget -O sccache --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/sccache.s390x
+            time wget -O libssl.so.1.1 --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libssl.so.1.1.s390x
+            time wget -O libcrypto.so.1.1 --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libcrypto.so.1.1.s390x
+        else
+            time wget --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/sccache https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libssl.so.1.1 https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libcrypto.so.1.1
+        fi
     fi
     chmod +x sccache
 fi
