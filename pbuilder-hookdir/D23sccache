@@ -2,8 +2,8 @@
 set -ex
 
 ARCH=$(uname -m)
-if test "$ARCH" = "s390x" -o "$ARCH" = "aarch64"; then
-    echo "don't install sccache - not supported yet on these archs"
+if test "$ARCH" = "aarch64"; then
+    echo "don't install sccache - not supported yet on this arch"
     exit 0
 fi
 echo "Also start sccache to test"
