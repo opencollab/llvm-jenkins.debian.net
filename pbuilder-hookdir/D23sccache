@@ -25,10 +25,17 @@ if test ! -f sccache; then
 
     chmod +x sccache
 fi
-
-export SCCACHE_GCS_BUCKET=apt-llvm-org-sccache
-export SCCACHE_GCS_RW_MODE=READ_WRITE
-export SCCACHE_GCS_KEY_PATH=/opt/sccache/secret-gcp-storage.json
+if test "$ARCH" != "s390x"; then
+    # We are in gcp, use the gcs storage
+    export SCCACHE_GCS_BUCKET=apt-llvm-org-sccache
+    export SCCACHE_GCS_RW_MODE=READ_WRITE
+    export SCCACHE_GCS_KEY_PATH=/opt/sccache/secret-gcp-storage.json
+else
+    # we are on s390x, use a local cache
+    mkdir -p /opt/sccache/cache/
+    export SCCACHE_DIR=/opt/sccache/cache/
+    export SCCACHE_DIRECT=true
+fi
 export SCCACHE_VERBOSE_STATS=1
 SCCACHE_LOG=sccache=debug SCCACHE_ERROR_LOG=sccache.log LD_LIBRARY_PATH=/opt/sccache/ /opt/sccache/sccache --show-stats || { exit_status=$?; true; }
 
