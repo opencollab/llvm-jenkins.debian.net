@@ -25,9 +25,9 @@ function getLastRevision($distro) {
    return str_replace("++", "", $matches[1]);
 }
 
-$stableBranch="16";
-$qualificationBranch="17";
-$devBranch="18";
+$stableBranch="17";
+$qualificationBranch="18";
+$devBranch="19";
 $isQualification=true;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -63,6 +63,7 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Jan 25th 2024 - Snapshot becomes 19, branch 18 created<br />
 Sep 18th 2023 - Ubuntu Mantic (23.10) enabled<br />
 Sep 14th 2022 - Ubuntu Kinetic (22.10) disabled (EOL)<br />
 Jul 26th 2023 - Snapshot becomes 18, branch 17 created<br />
@@ -71,15 +72,6 @@ Mar 22nd 2023 - Ubuntu Lunar (23.04) enabled<br />
 Jan 03rd 2023 - libclang-common-X.Y-dev split into: libclang-rt-X.Y-dev, libpolly-X.Y-dev, libclang-rt-X.Y-dev-wasm32 and libclang-rt-X.Y-dev-wasm64<br />
 Jan 03rt 2023 - Support of wasm improved with new packages: libc++-X.Y-dev-wasm32, libc++abi-X.Y-dev-wasm32, libclang-rt-X.Y-dev-wasm32 and libclang-rt-X.Y-dev-wasm64 (recent distros)<br />
 Jan 03rd 2023 - flang packages added<br />
-Oct 31th 2022 - Debian Stretch disabled (EOL)<br />
-Oct 07th 2022 - Ubuntu Kinetic (22.10) enabled<br />
-Sep 22th 2022 - BOLT packages added<br />
-Jul 31th 2022 - Snapshot becomes 16, branch 15 created<br />
-Jul 24th 2022 - Ubuntu Hirsute (21.04) and Impish (21.10) disabled (EOL)<br />
-Feb 18th 2022 - Ubuntu Jammy (22.04) enabled<br />
-Feb 04th 2022 - Snapshot becomes 15, branch 14 created<br />
-Jan 16th 2022 - llvm.sh can now install all packages at once with the <a href="#llvmsh">'all' option</a><br />
-Jan 15th 2022 - Sources and dsc files are signed on <a href="#sigstore">sigstore</a><br />
 </div>
 
 <div class="rel_section" id="llvmsh">Automatic installation script</div>
