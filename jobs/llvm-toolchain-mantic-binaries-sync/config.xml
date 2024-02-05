@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-mantic-binaries, llvm-toolchain-mantic-17-binaries, llvm-toolchain-mantic-16-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-mantic-binaries, llvm-toolchain-mantic-17-binaries, llvm-toolchain-mantic-16-binaries, llvm-toolchain-mantic-18-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

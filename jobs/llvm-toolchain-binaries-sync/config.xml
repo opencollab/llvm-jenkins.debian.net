@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-binaries,llvm-toolchain-16-binaries,llvm-toolchain-15-binaries,llvm-defaults-binaries, llvm-toolchain-17-binaries,</upstreamProjects>
+      <upstreamProjects>llvm-toolchain-binaries,llvm-toolchain-16-binaries,llvm-toolchain-18-binaries,llvm-defaults-binaries, llvm-toolchain-17-binaries,</upstreamProjects>
       <threshold>
         <name>UNSTABLE</name>
         <ordinal>1</ordinal>
@@ -50,7 +50,7 @@ bash /srv/repository/sync-to-llvm.sh unstable</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@457.v3f72cb_e015e5">
+    <hudson.tasks.Mailer plugin="mailer@463.vedf8358e006b_">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
