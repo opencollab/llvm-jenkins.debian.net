@@ -110,7 +110,7 @@ for f in /tmp/tmp-$DISTRO/dists/llvm-*/main/binary-$ARCH/; do
     if test $DISTRO == "unstable"; then
         reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$VERSION /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-$VERSION/*deb
     else
-	echo reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$DISTRO-$VERSION /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-$VERSION/*deb
+        echo reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$DISTRO-$VERSION /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-$VERSION/*deb
         reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$DISTRO-$VERSION /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-$VERSION/*deb
     fi
 done
@@ -118,6 +118,22 @@ done
 # Import of the nightly builds
 
 if test -d /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain/ -o -d /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-snapshot/; then
+    # Force the removal before the import to make sure we have the same version
+    if test $DISTRO == "unstable"; then
+	LIST=$(reprepro -A $ARCH -Vb /srv/repository/$DISTRO/ list llvm-toolchain|awk '{print $2}')
+    else
+	LIST=$(reprepro -A $ARCH -Vb /srv/repository/$DISTRO/ list llvm-toolchain-$DISTRO|awk '{print $2}')
+    fi
+    echo "Delete $LIST (existing package) on $ARCH before includedeb"
+    for pkg in $LIST; do
+	echo reprepro -A $ARCH -Vb /srv/repository/$DISTRO/ remove llvm-toolchain-$DISTRO $pkg
+
+	if test $DISTRO == "unstable"; then
+	    reprepro -A $ARCH -Vb /srv/repository/$DISTRO/ remove llvm-toolchain $pkg
+	else
+	    reprepro -A $ARCH -Vb /srv/repository/$DISTRO/ remove llvm-toolchain-$DISTRO $pkg
+	fi
+    done
     if test $DISTRO == "unstable"; then
         reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-snapshot/*deb
     else
