@@ -15,7 +15,7 @@ HOST=$2
 ARCH=$3
 
 
-declare -a old_versions=("9" "10" "11" "12" "13")
+declare -a old_versions=("9" "10" "11" "12" "13" "14" "15")
 
 for version in "${old_versions[@]}"
 do
@@ -30,7 +30,7 @@ if ! test -d /tmp/tmp-$DISTRO/pool/main/; then
 fi
 
 
-versions=("15" "16" "")
+versions=("15" "16" "17" "18" "")
 for ver in "${versions[@]}"; do
 
     declare -A src_pkg_versions
