@@ -22,8 +22,8 @@ do
     excludes+=(--exclude "pool/main/l/llvm-toolchain-$version/" --exclude "dists/llvm-toolchain-$DISTRO-$version/")
 done
 echo "Ignore ${excludes[@]}"
-
-rsync -avzh --delete "${excludes[@]}" jenkins@$HOST:/srv/repository/$DISTRO/ /tmp/tmp-$DISTRO/
+TEMP=-i
+rsync $TEMP -avzh --delete "${excludes[@]}" jenkins@$HOST:/srv/repository/$DISTRO/ /tmp/tmp-$DISTRO/
 if ! test -d /tmp/tmp-$DISTRO/pool/main/; then
         echo "Distro $DISTRO not existing yet"
         exit 0
