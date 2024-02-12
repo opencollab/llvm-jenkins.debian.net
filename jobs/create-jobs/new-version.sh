@@ -20,7 +20,7 @@ echo "Disable the old version when ready"
 D=$(echo "{$DISTROS}"| sed -e "s| |,|g")
 echo "emacs /srv/repository/$D/conf/distributions to add the new version"
 echo "do it also on arm64 & s390x machines"
-echo "Update test-install.sh & update the master node"
+echo "Update test-install.sh & update the build node (image-update.sh)"
 echo "Update llvm.sh"
 echo "Update https://github.com/opencollab/llvm-toolchain-integration-test-suite/edit/main/.github/workflows/CI.yml"
 echo "You can also disable the previous version with:"
