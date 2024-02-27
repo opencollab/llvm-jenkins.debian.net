@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 # To update the binary, ssh on the image machine
 # scp the file into /opt/
