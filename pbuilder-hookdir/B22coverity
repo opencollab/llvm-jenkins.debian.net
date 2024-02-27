@@ -22,6 +22,7 @@ else
 	actualsize=$(du -k /tmp/buildd/llvm.tgz | cut -f 1)
 	cd /tmp/buildd
 	if [ $actualsize -ge $minimumsize ]; then
+		df -h
 		apt-get install --yes --no-install-recommends curl ca-certificates jq
 		curl -X POST \
 			 -d version="Version" \
