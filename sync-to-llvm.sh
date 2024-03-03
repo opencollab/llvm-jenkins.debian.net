@@ -97,7 +97,7 @@ if test -z "$SKIP_SYNC"; then
     echo "Delete potential old directory"
     time ssh $TARGET rm -rf $BASE_TARGETDIR/$REPOSITORY.back
     echo "Copy the current repo to a new directory to be updated"
-    time ssh $TARGET cp -Rp $BASE_TARGETDIR/$REPOSITORY $BASE_TARGETDIR/$REPOSITORY.back
+    time ssh $TARGET cp -Rpv $BASE_TARGETDIR/$REPOSITORY $BASE_TARGETDIR/$REPOSITORY.back
     echo "Sync the data"
     time /usr/bin/rsync -a --info=progress2 --times --delete -v --stats -r $BASE_LOCALDIR/$REPOSITORY/* $TARGET:$BASE_TARGETDIR/$REPOSITORY.back/
     echo "Kill the current repo (by renaming it)"
@@ -137,3 +137,5 @@ done
 
 FULL_URL="apt.llvm.org/$REPOSITORY/"
 purge_url $FULL_URL
+
+purge_url apt.llvm.org/$REPOSITORY/pool/main/l/llvm-defaults/

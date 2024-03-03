@@ -116,27 +116,23 @@ for f in /tmp/tmp-$DISTRO/dists/llvm-*/main/binary-$ARCH/; do
 done
 
 # Import of the nightly builds
-
-if test -d /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain/ -o -d /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-snapshot/; then
-    # Force the removal before the import to make sure we have the same version
-    if test $DISTRO == "unstable"; then
-	LIST=$(reprepro -A $ARCH -Vb /srv/repository/$DISTRO/ list llvm-toolchain|awk '{print $2}')
-    else
-	LIST=$(reprepro -A $ARCH -Vb /srv/repository/$DISTRO/ list llvm-toolchain-$DISTRO|awk '{print $2}')
+if [[ -d /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain/ || -d /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-snapshot/ ]]; then
+    # Determine package name based on DISTRO
+    PKG_NAME="llvm-toolchain"
+    if [[ $DISTRO != "unstable" ]]; then
+        PKG_NAME+="-$DISTRO"
     fi
+
+    # Get the list of packages (but don't get the _all packages)
+    LIST=$(reprepro -A $ARCH -Vb /srv/repository/$DISTRO/  listfilter $PKG_NAME  'Architecture (!= all)' | awk '{print $2}')
     echo "Delete $LIST (existing package) on $ARCH before includedeb"
-    for pkg in $LIST; do
-	echo reprepro -A $ARCH -Vb /srv/repository/$DISTRO/ remove llvm-toolchain-$DISTRO $pkg
 
-	if test $DISTRO == "unstable"; then
-	    reprepro -A $ARCH -Vb /srv/repository/$DISTRO/ remove llvm-toolchain $pkg
-	else
-	    reprepro -A $ARCH -Vb /srv/repository/$DISTRO/ remove llvm-toolchain-$DISTRO $pkg
-	fi
+    # Remove the listed packages
+    for pkg in $LIST; do
+        echo "reprepro -A $ARCH -Vb /srv/repository/$DISTRO/ remove $PKG_NAME $pkg"
+        reprepro -A $ARCH -Vb /srv/repository/$DISTRO/ remove $PKG_NAME $pkg
     done
-    if test $DISTRO == "unstable"; then
-        reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-snapshot/*deb
-    else
-        reprepro -Vb /srv/repository/$DISTRO/ includedeb llvm-toolchain-$DISTRO /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-snapshot/*deb
-    fi
+
+    # Include the deb package(s)
+    reprepro -Vb /srv/repository/$DISTRO/ includedeb $PKG_NAME /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-snapshot/*deb
 fi
