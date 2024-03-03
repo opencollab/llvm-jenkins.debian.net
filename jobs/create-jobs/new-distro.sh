@@ -48,11 +48,10 @@ sed -i -e "s|@STABLE@|${VERSIONS[0]}|" -e "s|@DEV@|${VERSIONS[1]}|" llvm-toolcha
 sed -i -e "s|release/${VERSIONS[0]}|release/${VERSIONS[0]}.x|" llvm-toolchain-$NAME-${VERSIONS[0]}-source/config.xml
 sed -i -e "s|release/${VERSIONS[1]}|release/${VERSIONS[1]}.x|" llvm-toolchain-$NAME-${VERSIONS[1]}-source/config.xml
 
-echo "On every slave, git pull + create the symlink from $NAME for deboostrap"
-echo "including other archs"
 echo "Add the new version in /srv/salt/llvm-slave.sls on cocoro for /usr/share/debootstrap/scripts"
 echo "run with salt 'llvm*' state.apply"
-echo "Update the update of the build in the main job llvm-toolchain-$NAME-source"
+echo "OR on llvm-jenkins, run update-all.sh"
+echo "run the command on pulau"
 echo "run the following commands":
 echo "PREVIOUS=UPDATE"
 echo "cp -R /srv/repository/\$PREVIOUS/conf /srv/repository/$NAME/conf/"
