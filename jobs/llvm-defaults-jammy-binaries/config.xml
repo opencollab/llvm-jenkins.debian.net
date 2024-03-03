@@ -1,5 +1,5 @@
 <?xml version='1.1' encoding='UTF-8'?>
-<matrix-project plugin="matrix-project@785.v06b_7f47b_c631">
+<matrix-project plugin="matrix-project@822.824.v14451b_c0fd42">
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
@@ -35,10 +35,11 @@
     </hudson.matrix.TextAxis>
   </axes>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.48">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@722.v0662a_9b_e22a_c">
       <project>llvm-defaults-jammy-source</project>
       <filter>*</filter>
       <target></target>
+      <includeBuildNumberInTargetPath>false</includeBuildNumberInTargetPath>
       <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.TriggeredBuildSelector">
         <upstreamFilterStrategy>UseGlobalSetting</upstreamFilterStrategy>
@@ -62,7 +63,7 @@ export SKIP_REMOVAL=true
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>*.gz,*.bz2,*.xz,*.deb,*.dsc,*.changes,lintian.xml,*.json</artifacts>
+      <artifacts>*.bz2,*.xz,*.deb,*.dsc,*.changes,lintian.xml,*.json</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
@@ -70,7 +71,7 @@ export SKIP_REMOVAL=true
       <caseSensitive>true</caseSensitive>
       <followSymlinks>true</followSymlinks>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.Mailer plugin="mailer@438.v02c7f0a_12fa_4">
+    <hudson.tasks.Mailer plugin="mailer@463.vedf8358e006b_">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
