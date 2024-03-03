@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-@DISTRIBUTION@-binaries, llvm-toolchain-@DISTRIBUTION@-15-binaries, llvm-toolchain-@DISTRIBUTION@-16-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-defaults-@DISTRIBUTION@-binaries, llvm-toolchain-@DISTRIBUTION@-binaries, llvm-toolchain-@DISTRIBUTION@-@STABLE@-binaries, llvm-toolchain-@DISTRIBUTION@-@DEV@-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
