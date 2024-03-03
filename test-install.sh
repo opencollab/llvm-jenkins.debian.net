@@ -5,7 +5,7 @@ set -e -v
 # If 2 are provided, distro + version
 # If USE_SCRIPT=1 is set, use llvm.sh to install the packages
 
-DISTRO="buster bullseye bookworm unstable bionic focal jammy kinetic lunar mantic"
+DISTRO="buster bullseye bookworm unstable bionic focal jammy kinetic lunar mantic noble"
 VERSION="10 11 12 13 14 15 16 17 18"
 VERSION_NEXT="19"
 
