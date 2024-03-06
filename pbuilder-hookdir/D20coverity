@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -ex
+
+if echo "$DEB_BUILD_OPTIONS" | grep "coverity"; then
+    apt-get install --yes --no-install-recommends curl ca-certificates jq
+fi
