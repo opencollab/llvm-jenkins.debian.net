@@ -163,7 +163,7 @@ if [[ -z "`apt-key list 2> /dev/null | grep -i llvm`" ]]; then
     # Delete the key in the old format
     apt-key del AF4F7421
 fi
-add-apt-repository "${REPO_NAME}"
+add-apt-repository -y "${REPO_NAME}"
 apt-get update
 PKG="clang-$LLVM_VERSION lldb-$LLVM_VERSION lld-$LLVM_VERSION clangd-$LLVM_VERSION"
 if [[ $ALL -eq 1 ]]; then
