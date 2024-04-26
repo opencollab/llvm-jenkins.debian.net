@@ -26,6 +26,7 @@ BASE_URL="http://apt.llvm.org"
 # Check for required tools
 needed_binaries=(lsb_release wget add-apt-repository gpg)
 missing_binaries=()
+using_curl=
 for binary in "${needed_binaries[@]}"; do
     if ! command -v $binary &>/dev/null ; then
         if [[ "$binary" == "wget" ]] && command -v curl &>/dev/null; then
@@ -145,11 +146,13 @@ if [[ -z "$using_curl" ]]; then
     quiet_flag="-q"
     head_flag="--method=HEAD"
     stdout_flag="-O-"
+    default_flag=
 else
     download_tool=curl
     quiet_flag="-s"
     head_flag="-XHEAD"
-    default_flag="-SL"
+    default_flag="-S"
+    stdout_flag=
 fi
 
 # join the repository name
