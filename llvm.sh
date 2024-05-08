@@ -147,7 +147,7 @@ if [[ -n "${CODENAME}" ]]; then
 
     # check if the repository exists for the distro and version
     if ! wget -q --method=HEAD ${BASE_URL}/${CODENAME} &> /dev/null && \
-      ! curl -sS -XHEAD ${BASE_URL}/${CODENAME} &> /dev/null; then
+      ! curl -sSLI -XHEAD ${BASE_URL}/${CODENAME} &> /dev/null; then
         if [[ -n "${CODENAME_FROM_ARGUMENTS}" ]]; then
             echo "Specified codename '${CODENAME}' is not supported by this script."
         else
