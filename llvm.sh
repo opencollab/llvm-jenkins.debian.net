@@ -141,26 +141,13 @@ fi
 
 LLVM_VERSION_STRING=${LLVM_VERSION_PATTERNS[$LLVM_VERSION]}
 
-if [[ -z "$using_curl" ]]; then
-    download_tool=wget
-    quiet_flag="-q"
-    head_flag="--method=HEAD"
-    stdout_flag="-O-"
-    default_flag=
-else
-    download_tool=curl
-    quiet_flag="-s"
-    head_flag="-XHEAD"
-    default_flag="-S"
-    stdout_flag=
-fi
-
 # join the repository name
 if [[ -n "${CODENAME}" ]]; then
     REPO_NAME="deb ${BASE_URL}/${CODENAME}/  llvm-toolchain${LINKNAME}${LLVM_VERSION_STRING} main"
 
     # check if the repository exists for the distro and version
-    if ! "$download_tool" $default_flag $quiet_flag $head_flag ${BASE_URL}/${CODENAME} &> /dev/null; then
+    if ! wget -q --method=HEAD ${BASE_URL}/${CODENAME} &> /dev/null && \
+      ! curl -sS -XHEAD ${BASE_URL}/${CODENAME} &> /dev/null; then
         if [[ -n "${CODENAME_FROM_ARGUMENTS}" ]]; then
             echo "Specified codename '${CODENAME}' is not supported by this script."
         else
@@ -175,7 +162,11 @@ fi
 
 if [[ ! -f /etc/apt/trusted.gpg.d/apt.llvm.org.asc ]]; then
     # download GPG key once
-    "$download_tool" $default_flag $quiet_flag $stdout_flag https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+    if [[ -z "$using_curl" ]]; then
+        wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+    else
+        curl -sSL https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+    fi
 fi
 
 if [[ -z "`apt-key list 2> /dev/null | grep -i llvm`" ]]; then
