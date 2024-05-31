@@ -164,9 +164,9 @@ if [[ -z "`apt-key list 2> /dev/null | grep -i llvm`" ]]; then
     apt-key del AF4F7421
 fi
 if [[ "${VERSION_CODENAME}" == "bookworm" ]]; then
-# add it twice to workaround:
-# https://github.com/llvm/llvm-project/issues/62475
-add-apt-repository -y "${REPO_NAME}"
+    # add it twice to workaround:
+    # https://github.com/llvm/llvm-project/issues/62475
+    add-apt-repository -y "${REPO_NAME}"
 fi
 
 add-apt-repository -y "${REPO_NAME}"
