@@ -25,9 +25,9 @@ function getLastRevision($distro) {
    return str_replace("++", "", $matches[1]);
 }
 
-$stableBranch="17";
-$qualificationBranch="18";
-$devBranch="19";
+$stableBranch="18";
+$qualificationBranch="19";
+$devBranch="20";
 $isQualification=true;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -63,6 +63,8 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Jul 29th 2024 - Snapshot becomes 20, branch 19 created<br />
+Mar 22nd 2024 - Ubuntu Noble (24.04) enabled<br />
 Feb 20th 2024 - Add libllvmlibc-18-dev as new package<br />
 Jan 25th 2024 - Snapshot becomes 19, branch 18 created<br />
 Sep 18th 2023 - Ubuntu Mantic (23.10) enabled<br />
@@ -233,6 +235,20 @@ deb-src http://apt.llvm.org/mantic/ llvm-toolchain-mantic-<?=$stableBranch?> mai
 
 deb http://apt.llvm.org/mantic/ llvm-toolchain-mantic-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/mantic/ llvm-toolchain-mantic-<?=$qualificationBranch?> main
+</pre>
+
+Noble (24.04) - <small>Last update : <?=getLastUpdate("noble");?> / Revision: <?=getLastRevision("noble")?></small>
+<pre>
+deb http://apt.llvm.org/noble/ llvm-toolchain-noble main
+deb-src http://apt.llvm.org/noble/ llvm-toolchain-noble main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$qualificationBranch?> main
 </pre>
 </div>
 <a href="#" id="default_pkg" style="visibility: hidden">default_pkg</a>
