@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-bookworm-binaries, llvm-toolchain-bookworm-18-binaries, llvm-toolchain-bookworm-16-binaries, llvm-defaults-bookworm-binaries, llvm-toolchain-bookworm-17-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-bookworm-binaries, llvm-toolchain-bookworm-19-binaries, llvm-toolchain-bookworm-18-binaries, llvm-toolchain-bookworm-16-binaries, llvm-defaults-bookworm-binaries, llvm-toolchain-bookworm-17-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
