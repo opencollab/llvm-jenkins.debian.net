@@ -67,7 +67,7 @@ echo "VERSION = $VERSION"
 for d in $DISTRO; do
 
     MIRROR=""
-    if test $IS_UBUNTU == 0; then
+    if test "$d" == "buster" -o "$d" == "bullseye" -o "$d" == "unstable"; then
         # deb.debian.org is failing too often
         MIRROR=http://cloudfront.debian.net/debian
     fi
