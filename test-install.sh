@@ -9,17 +9,6 @@ DISTRO="buster bullseye bookworm unstable bionic focal jammy kinetic lunar manti
 VERSION="10 11 12 13 14 15 16 17 18 19"
 VERSION_NEXT="20"
 
-IS_UBUNTU=0
-
-if [ -f /etc/os-release ]; then
-    . /etc/os-release
-
-    if [ "$ID" == "ubuntu" ]; then
-        IS_UBUNTU=1
-    fi
-fi
-
-
 if test $# -eq 1; then
     JOB_NAME=$1
     echo "JOB_NAME passed = $JOB_NAME"
@@ -100,7 +89,7 @@ for d in $DISTRO; do
         echo $TEMPLATE|sed -e "s|@DISTRO@||g" -e "s|@DISTRO_PATH@|$d|g" >> $d.list
     fi
 
-    if test $IS_UBUNTU == 1; then
+    if test "$d" == "bionic" -o "$d" == "focal" -o "$d" == "groovy" -o "$d" == "hirsute" -o "$d" == "impish" -o "$d" == "jammy" -o "$d" == "kinetic" -o "$d" == "lunar" -o "$d" == "mantic" -o "$d" == "noble"; then
         # focal, groovy, etc need universe
         if test "$(arch)" == "s390x"; then
             echo "deb http://ports.ubuntu.com/ubuntu-ports $d universe" >> $d.list
