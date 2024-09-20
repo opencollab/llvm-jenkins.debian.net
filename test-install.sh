@@ -5,7 +5,10 @@ set -e -v
 # If 2 are provided, distro + version
 # If USE_SCRIPT=1 is set, use llvm.sh to install the packages
 
-DISTRO="buster bullseye bookworm unstable bionic focal jammy kinetic lunar mantic noble"
+DEBIAN_DISTRO="buster bullseye bookworm unstable"
+UBUNTU_DISTRO="bionic focal jammy kinetic lunar mantic noble"
+
+DISTRO="$DEBIAN_DISTRO $UBUNTU_DISTRO"
 VERSION="10 11 12 13 14 15 16 17 18 19"
 VERSION_NEXT="20"
 
@@ -56,7 +59,7 @@ echo "VERSION = $VERSION"
 for d in $DISTRO; do
 
     MIRROR=""
-    if test "$d" == "buster" -o "$d" == "bullseye" -o "$d" == "unstable"; then
+    if echo "$DEBIAN_DISTRO" | grep -qw "$d"; then
         # deb.debian.org is failing too often
         MIRROR=http://cloudfront.debian.net/debian
     fi
@@ -89,7 +92,7 @@ for d in $DISTRO; do
         echo $TEMPLATE|sed -e "s|@DISTRO@||g" -e "s|@DISTRO_PATH@|$d|g" >> $d.list
     fi
 
-    if test "$d" == "bionic" -o "$d" == "focal" -o "$d" == "groovy" -o "$d" == "hirsute" -o "$d" == "impish" -o "$d" == "jammy" -o "$d" == "kinetic" -o "$d" == "lunar" -o "$d" == "mantic" -o "$d" == "noble"; then
+    if echo "$UBUNTU_DISTRO" | grep -qw "$d"; then
         # focal, groovy, etc need universe
         if test "$(arch)" == "s390x"; then
             echo "deb http://ports.ubuntu.com/ubuntu-ports $d universe" >> $d.list
