@@ -89,7 +89,7 @@ for d in $DISTRO; do
         echo $TEMPLATE|sed -e "s|@DISTRO@||g" -e "s|@DISTRO_PATH@|$d|g" >> $d.list
     fi
 
-    if test "$d" == "bionic" -o "$d" == "focal" -o "$d" == "groovy" -o "$d" == "hirsute" -o "$d" == "impish" -o "$d" == "jammy" -o "$d" == "kinetic" -o "$d" == "lunar" -o "$d" == "mantic"; then
+    if test "$d" == "bionic" -o "$d" == "focal" -o "$d" == "groovy" -o "$d" == "hirsute" -o "$d" == "impish" -o "$d" == "jammy" -o "$d" == "kinetic" -o "$d" == "lunar" -o "$d" == "mantic" -o "$d" == "noble"; then
         # focal, groovy, etc need universe
         if test "$(arch)" == "s390x"; then
             echo "deb http://ports.ubuntu.com/ubuntu-ports $d universe" >> $d.list
