@@ -34,9 +34,9 @@ chown jenkins. /srv/repository/$NAME
 cd ~jenkins/llvm-jenkins.debian.net.git/
 sed -i "s/UBUNTU_SUITES=(/UBUNTU_SUITES=(\"$NAME\" /" pbuilderrc
 git commit -m "add $NAME in pbuilderrc" pbuilderrc
-sed -i -e "s/\(DISTRO=\".*\)\"/\1 $NAME"/" test-install.sh
+sed -i -e "s/\(DISTRO=\".*\)\"/\1 $NAME\"/" test-install.sh
 git commit -m "add $NAME in test-install.sh" test-install.sh
-sed -i -e "s/\(UBUNTU_DISTRO=\".*\)\"/\1 $NAME"/" create-refresh-image.sh
+sed -i -e "s/\(UBUNTU_DISTRO=\".*\)\"/\1 $NAME\"/" create-refresh-image.sh
 git commit -m "add $NAME in create-refresh-image.sh" create-refresh-image.sh
 cd -
 
