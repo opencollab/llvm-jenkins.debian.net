@@ -25,7 +25,11 @@ sh create-new-job-default.sh $NAME
 cd /usr/share/debootstrap/scripts
 echo "Make sure that the version for  /usr/share/debootstrap/scripts is correct"
 echo "EDIT ME to verify"
-ln -s trusty $NAME
+if ! test -f $NAME; then
+    ln -s trusty $NAME
+else
+    echo "$NAME symlink already present"
+fi
 cd -
 
 mkdir  -p /srv/repository/$NAME
@@ -57,7 +61,7 @@ echo "run the command on pulau"
 echo "run the following commands":
 echo "export PREVIOUS=UPDATE_TO_OLD_VERSION"
 echo "cp -R /srv/repository/\$PREVIOUS/conf /srv/repository/$NAME/conf/"
-echo "sed -i -e 's|\$PREVIOUS|$NAME|g' /srv/repository/$NAME/conf/distributions"
+echo "sed -i -e \"s|\$PREVIOUS|$NAME|g\" /srv/repository/$NAME/conf/distributions"
 echo "ssh jenkins@cb0dd220.packethost.net mkdir -p /srv/repository/$NAME/conf/"
 echo "ssh llvm-jenkins-s390x-1.debian.net mkdir -p /srv/repository/$NAME/conf/"
 echo "scp /srv/repository/$NAME/conf/distributions jenkins@cb0dd220.packethost.net:/srv/repository/$NAME/conf/distributions"
