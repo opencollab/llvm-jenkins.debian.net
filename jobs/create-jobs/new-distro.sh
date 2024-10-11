@@ -4,11 +4,11 @@ if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root" 1>&2
    exit 1
 fi
-NAME="noble"
+NAME="oracular"
 
 IS_UBUNTU=1
 
-VERSIONS=(17 18 snapshot)
+VERSIONS=(18 19 snapshot)
 for v in "${VERSIONS[@]}"
 do
         echo $v
@@ -34,10 +34,10 @@ chown jenkins. /srv/repository/$NAME
 cd ~jenkins/llvm-jenkins.debian.net.git/
 sed -i "s/UBUNTU_SUITES=(/UBUNTU_SUITES=(\"$NAME\" /" pbuilderrc
 git commit -m "add $NAME in pbuilderrc" pbuilderrc
-sed -i -e 's/\(DISTRO=".*\)"/\1 $NAME"/' test-install.sh
+sed -i -e "s/\(DISTRO=\".*\)\"/\1 $NAME"/" test-install.sh
 git commit -m "add $NAME in test-install.sh" test-install.sh
-ed -i -e 's/\(UBUNTU_DISTRO=".*\)"/\1 $NAME"/' create-refresh-image.sh
-it commit -m "add $NAME in create-refresh-image.sh" create-refresh-image.sh
+sed -i -e "s/\(UBUNTU_DISTRO=\".*\)\"/\1 $NAME"/" create-refresh-image.sh
+git commit -m "add $NAME in create-refresh-image.sh" create-refresh-image.sh
 cd -
 
 rm -rf llvm-toolchain-$NAME-source-trigger
@@ -53,7 +53,7 @@ echo "run with salt 'llvm*' state.apply"
 echo "OR on llvm-jenkins, run update-all.sh"
 echo "run the command on pulau"
 echo "run the following commands":
-echo "PREVIOUS=UPDATE"
+echo "export PREVIOUS=UPDATE_TO_OLD_VERSION"
 echo "cp -R /srv/repository/\$PREVIOUS/conf /srv/repository/$NAME/conf/"
 echo "sed -i -e 's|\$PREVIOUS|$NAME|g' /srv/repository/$NAME/conf/distributions"
 echo "ssh jenkins@cb0dd220.packethost.net mkdir -p /srv/repository/$NAME/conf/"
