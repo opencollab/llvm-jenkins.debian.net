@@ -65,7 +65,7 @@ echo "sed -i -e \"s|\$PREVIOUS|$NAME|g\" /srv/repository/$NAME/conf/distribution
 echo "ssh jenkins@cb0dd220.packethost.net mkdir -p /srv/repository/$NAME/conf/"
 echo "ssh llvm-jenkins-s390x-1.debian.net mkdir -p /srv/repository/$NAME/conf/"
 echo "scp /srv/repository/$NAME/conf/distributions jenkins@cb0dd220.packethost.net:/srv/repository/$NAME/conf/distributions"
-echo "scp /srv/repository/$NAME/conf/distributions llvm-jenkins-s390x-1.debian.net:/srv/repository/kinetic/conf/distributions"
+echo "scp /srv/repository/$NAME/conf/distributions llvm-jenkins-s390x-1.debian.net:/srv/repository/$NAME/conf/distributions"
 echo "Run image-update.sh on your system"
 echo "create the filter view"
 echo "start the jobs in jenkins"
