@@ -251,6 +251,20 @@ deb-src http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$stableBranch?> main
 deb http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$qualificationBranch?> main
 </pre>
+
+Oracular (24.10) - <small>Last update : <?=getLastUpdate("oracular");?> / Revision: <?=getLastRevision("oracular")?></small>
+<pre>
+deb http://apt.llvm.org/oracular/ llvm-toolchain-oracular main
+deb-src http://apt.llvm.org/oracular/ llvm-toolchain-oracular main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/oracular/ llvm-toolchain-oracular-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/oracular/ llvm-toolchain-oracular-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/oracular/ llvm-toolchain-oracular-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/oracular/ llvm-toolchain-oracular-<?=$qualificationBranch?> main
+</pre>
 </div>
 <a href="#" id="default_pkg" style="visibility: hidden">default_pkg</a>
 <div class="rel_section">Default packages</div>
