@@ -63,6 +63,8 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Oct 19th 2024 - Ubuntu Oracular (24.10) enabled<br />
+Oct 19th 2024 - Ubuntu Bionic (18.04) disabled (EOL)<br />
 Jul 29th 2024 - Snapshot becomes 20, branch 19 created<br />
 Mar 22nd 2024 - Ubuntu Noble (24.04) enabled<br />
 Feb 20th 2024 - Add libllvmlibc-18-dev as new package<br />
