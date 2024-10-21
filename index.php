@@ -162,8 +162,9 @@ deb-src http://apt.llvm.org/unstable/ llvm-toolchain-<?=$qualificationBranch?> m
 </div>
 <div class="rel_section">Ubuntu</div>
 <div class="rel_boxtext">
-Precise, Quantal, Raring, Saucy, Utopic, Artful, Cosmic, Eoan and Trusty are no longer supported by Ubuntu. Repo remains available but not updated.<br />
+Precise, Quantal, Raring, Saucy, Utopic, Artful, Cosmic, Eoan, bionic and Trusty are no longer supported by Ubuntu. Repo remains available but not updated.<br />
 <br />
+<!--<br />
 As i386 isn't supported by Ubuntu anymore, apt.llvm.org isn't either.<br />
 <br />
 Bionic LTS (18.04) - <small>Last update : <?=getLastUpdate("bionic");?> / Revision: <?=getLastRevision("bionic")?></small>
@@ -180,7 +181,7 @@ deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$stableBranch?> mai
 deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
 </pre>
-
+-->
 Focal (20.04) LTS - <small>Last update : <?=getLastUpdate("focal");?> / Revision: <?=getLastRevision("focal")?></small>
 <pre>
 deb http://apt.llvm.org/focal/ llvm-toolchain-focal main
