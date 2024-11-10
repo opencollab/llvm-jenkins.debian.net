@@ -554,7 +554,7 @@ Jan 19th 2019 - Artful jobs disabled (but packages still available)<br />
 
 <p style="font-size: smaller;">
      Contact: <a href="mailto:sylvestre@debian.org">Sylvestre Ledru</a>
-<br />Build infra by <a href="https://www.irill.org/">IRILL</a> / Hosting by LLVM Foundation / CDN by <a href="http://www.fastly.com">Fastly</a>
+<br />Hosting by LLVM Foundation / CDN by <a href="http://www.fastly.com">Fastly</a>
 </p>
 
 </div> <!-- rel_container -->
