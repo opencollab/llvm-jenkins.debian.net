@@ -1,28 +1,41 @@
 <?php
-function getLastUpdate($distro) {
-   $base="/data/apt/www";
-   if ($distro!="unstable") {
-     $fullpath=$base."/${distro}/dists/llvm-toolchain-{$distro}/Release";
-   } else {
-     $fullpath=$base."/${distro}/dists/llvm-toolchain/Release";
-   }
-   $handle = fopen($fullpath, "r");
-   $contents = fread($handle, filesize($fullpath));
-   preg_match("/Date: (.*)/",$contents,$matches);
-   return $matches[1];
+function buildFullPath($distro, $pathSuffix) {
+    $base = "/data/apt/www";
+    return ($distro != "unstable")
+        ? "{$base}/${distro}/dists/llvm-toolchain-{$distro}{$pathSuffix}"
+        : "{$base}/${distro}/dists/llvm-toolchain{$pathSuffix}";
 }
+
+function getLastUpdate($distro) {
+    $fullpath = buildFullPath($distro, "/Release");
+    $handle = fopen($fullpath, "r");
+    if (!$handle) return null;
+
+    while (($line = fgets($handle)) !== false) {
+        if (preg_match("/^Date: (.*)/", $line, $matches)) {
+            fclose($handle);
+            return $matches[1];
+        }
+    }
+
+    fclose($handle);
+    return null; // Return null if the date line isn't found
+}
+
 function getLastRevision($distro) {
-   $base="/data/apt/www";
-   if ($distro!="unstable") {
-     $fullpath=$base."/${distro}/dists/llvm-toolchain-{$distro}/main/binary-amd64/Packages";
-   } else {
-     $fullpath=$base."/${distro}/dists/llvm-toolchain/main/binary-amd64/Packages";
-   }
-//echo $fullpath;
-   $handle = fopen($fullpath, "r");
-   $contents = fread($handle, filesize($fullpath));
-   preg_match("/Version: .*~++(.*)-/",$contents,$matches);
-   return str_replace("++", "", $matches[1]);
+    $fullpath = buildFullPath($distro, "/main/binary-amd64/Packages");
+    $handle = fopen($fullpath, "r");
+    if (!$handle) return null;
+
+    while (($line = fgets($handle)) !== false) {
+        if (preg_match("/^Version: .*~\+\+(.*)-/", $line, $matches)) {
+            fclose($handle);
+            return str_replace("++", "", $matches[1]);
+        }
+    }
+
+    fclose($handle);
+    return null; // Return null if the version line isn't found
 }
 
 $stableBranch="18";
