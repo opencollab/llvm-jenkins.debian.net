@@ -75,7 +75,7 @@ $isQualification=true;
 
 <div class="rel_boxtext">
 For the past year (2022), the work on apt.llvm.org has been partially supported by the OpenSSF, Google, & The Linux Foundation.<br />
-This platform serves more than 35tb of packages every month and is used by various actors like the Linux Kernel, TensorFlow, etc and referenced more than 24k times on Github.<br />
+This platform serves more than 124tb of packages every month and is used by various actors like the Linux Kernel, TensorFlow, etc and referenced more than 24k times on Github.<br />
 The main goal of this support is to improve the security and sustainability of this platform. Previously we were running on an old rack that was no longer supported, and sooner or later would have failed. Now we're running on a <a href="https://blog.llvm.org/posts/2021-11-02-apt.llvm.org-moving-from-physical-server-to-the-cloud/">cloud-based build platform</a> where the cloud provider is keeping the hardware up-to-date.<br />
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
