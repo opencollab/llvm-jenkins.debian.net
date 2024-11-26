@@ -80,6 +80,8 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Nov 25th 2024 - Ubuntu Lunar (23.04) disabled (EOL)<br />
+Nov 21th 2024 - Ubuntu Mantic (23.10) disabled (EOL)<br />
 Oct 19th 2024 - Ubuntu Oracular (24.10) enabled<br />
 Oct 19th 2024 - Ubuntu Bionic (18.04) disabled (EOL)<br />
 Jul 29th 2024 - Snapshot becomes 20, branch 19 created<br />
@@ -227,34 +229,6 @@ deb-src http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$stableBranch?> main
 
 deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$qualificationBranch?> main
-</pre>
-
-Lunar (23.04) - <small>Last update : <?=getLastUpdate("lunar");?> / Revision: <?=getLastRevision("lunar")?></small>
-<pre>
-deb http://apt.llvm.org/lunar/ llvm-toolchain-lunar main
-deb-src http://apt.llvm.org/lunar/ llvm-toolchain-lunar main
-# <?=$stableBranch?>
-
-deb http://apt.llvm.org/lunar/ llvm-toolchain-lunar-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/lunar/ llvm-toolchain-lunar-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
-
-deb http://apt.llvm.org/lunar/ llvm-toolchain-lunar-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/lunar/ llvm-toolchain-lunar-<?=$qualificationBranch?> main
-</pre>
-
-Mantic (23.10) - <small>Last update : <?=getLastUpdate("mantic");?> / Revision: <?=getLastRevision("mantic")?></small>
-<pre>
-deb http://apt.llvm.org/mantic/ llvm-toolchain-mantic main
-deb-src http://apt.llvm.org/mantic/ llvm-toolchain-mantic main
-# <?=$stableBranch?>
-
-deb http://apt.llvm.org/mantic/ llvm-toolchain-mantic-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/mantic/ llvm-toolchain-mantic-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
-
-deb http://apt.llvm.org/mantic/ llvm-toolchain-mantic-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/mantic/ llvm-toolchain-mantic-<?=$qualificationBranch?> main
 </pre>
 
 Noble (24.04) - <small>Last update : <?=getLastUpdate("noble");?> / Revision: <?=getLastRevision("noble")?></small>
