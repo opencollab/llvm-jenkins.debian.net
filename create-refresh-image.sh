@@ -2,7 +2,7 @@
 
 ARCHS="amd64 i386"
 DEBIAN_DISTRO="buster bullseye bookworm unstable"
-UBUNTU_DISTRO="bionic focal jammy lunar mantic noble oracular"
+UBUNTU_DISTRO="bionic focal jammy noble oracular"
 EXPORT_PATH="/home/jenkins/"
 GIT_BASE_URL=https://github.com/llvm/llvm-project
 GIT_TOOLCHAIN_CHECK=https://github.com/opencollab/llvm-toolchain-integration-test-suite.git
