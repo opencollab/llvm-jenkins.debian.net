@@ -162,7 +162,7 @@ fi
 
 if [[ -z "`apt-key list 2> /dev/null | grep -i llvm`" ]]; then
     # Delete the key in the old format
-    apt-key del AF4F7421
+    apt-key del AF4F7421 || true
 fi
 if [[ "${VERSION_CODENAME}" == "bookworm" ]]; then
     # add it twice to workaround:
