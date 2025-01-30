@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-defaults-noble-binaries, llvm-toolchain-noble-binaries, llvm-toolchain-noble-19-binaries, llvm-toolchain-noble-17-binaries, llvm-toolchain-noble-18-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-defaults-noble-binaries, llvm-toolchain-noble-binaries, llvm-toolchain-noble-20-binaries, llvm-toolchain-noble-19-binaries, llvm-toolchain-noble-17-binaries, llvm-toolchain-noble-18-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

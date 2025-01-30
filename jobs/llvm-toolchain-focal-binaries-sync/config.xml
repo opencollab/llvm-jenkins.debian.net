@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-focal-binaries,llvm-toolchain-focal-16-binaries,  llvm-toolchain-focal-18-binaries,llvm-defaults-focal-binaries, llvm-toolchain-focal-17-binaries,</upstreamProjects>
+      <upstreamProjects>llvm-toolchain-focal-binaries, llvm-toolchain-focal-20-binaries,llvm-toolchain-focal-16-binaries,  llvm-toolchain-focal-18-binaries,llvm-defaults-focal-binaries, llvm-toolchain-focal-17-binaries,</upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

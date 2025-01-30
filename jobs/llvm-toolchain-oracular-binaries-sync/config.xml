@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-defaults-oracular-binaries, llvm-toolchain-oracular-binaries, llvm-toolchain-oracular-18-binaries, llvm-toolchain-oracular-19-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-defaults-oracular-binaries, llvm-toolchain-oracular-binaries, llvm-toolchain-oracular-20-binaries, llvm-toolchain-oracular-18-binaries, llvm-toolchain-oracular-19-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
