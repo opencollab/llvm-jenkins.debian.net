@@ -1,7 +1,7 @@
 #kinetic!/bin/bash
-VERSION="19"
-VERSION_2="190"
-DISTROS=( unstable buster bullseye bookworm bionic focal jammy lunar mantic noble )
+VERSION="20"
+VERSION_2="200"
+DISTROS=( unstable buster bullseye bookworm focal jammy noble oracular )
 for d in "${DISTROS[@]}"
 do
 	echo $d
