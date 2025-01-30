@@ -1,5 +1,5 @@
 <?xml version='1.1' encoding='UTF-8'?>
-<matrix-project plugin="matrix-project@822.824.v14451b_c0fd42">
+<matrix-project plugin="matrix-project@840.v812f627cb_578">
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
@@ -10,6 +10,7 @@
         <numToKeep>3</numToKeep>
         <artifactDaysToKeep>10</artifactDaysToKeep>
         <artifactNumToKeep>10</artifactNumToKeep>
+        <removeLastBuild>false</removeLastBuild>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
   </properties>
@@ -20,7 +21,7 @@
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <triggers>
     <hudson.triggers.TimerTrigger>
-      <spec>@daily</spec>
+      <spec>H 2 * * 1,3,5</spec>
     </hudson.triggers.TimerTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
@@ -34,7 +35,7 @@
     <hudson.matrix.TextAxis>
       <name>distribution</name>
       <values>
-        <string>bullseye</string>
+        <string>bookworm</string>
       </values>
     </hudson.matrix.TextAxis>
     <hudson.matrix.LabelAxis>
@@ -45,7 +46,7 @@
     </hudson.matrix.LabelAxis>
   </axes>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@722.v0662a_9b_e22a_c">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@761.vea_2b_25523e84">
       <project>llvm-toolchain-source</project>
       <filter>*</filter>
       <target></target>
@@ -55,7 +56,7 @@
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>export DEB_BUILD_OPTIONS=&quot;coverity &quot;
+      <command>export DEB_BUILD_OPTIONS=&quot;coverity parallel=10&quot;
 export BUILD_ONLY=true
 #sudo /opt/install-coverity.sh 
 if test ! -d $REPOSITORY; then mount &quot;$(dirname &quot;$REPOSITORY&quot;)&quot;; fi
@@ -64,7 +65,7 @@ if test ! -d $REPOSITORY; then mount &quot;$(dirname &quot;$REPOSITORY&quot;)&qu
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@472.vf7c289a_4b_420">
+    <hudson.tasks.Mailer plugin="mailer@489.vd4b_25144138f">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>

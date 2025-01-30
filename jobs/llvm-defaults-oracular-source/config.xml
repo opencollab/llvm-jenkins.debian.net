@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description>Build the llvm-defaults package&#xd;
@@ -8,12 +8,11 @@
     <numToKeep>3</numToKeep>
     <artifactDaysToKeep>1</artifactDaysToKeep>
     <artifactNumToKeep>1</artifactNumToKeep>
+    <removeLastBuild>false</removeLastBuild>
   </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties>
-    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.28"/>
-  </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.7.0">
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@5.7.0">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -52,12 +51,14 @@ H 22 * * *</spec>
   <builders>
     <hudson.tasks.Shell>
       <command>rm -f ./* || true</command>
+      <configuredLocalRules/>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>
 export DISTRIBUTION=oracular
 /usr/bin/generate-git-snapshot
 </command>
+      <configuredLocalRules/>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
@@ -67,8 +68,10 @@ export DISTRIBUTION=oracular
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>true</fingerprint>
       <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
+      <followSymlinks>true</followSymlinks>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.Mailer plugin="mailer@1.15">
+    <hudson.tasks.Mailer plugin="mailer@489.vd4b_25144138f">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
@@ -84,10 +87,11 @@ export DISTRIBUTION=oracular
     </hudson.tasks.BuildTrigger>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.28">
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.48">
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
+      <disableDeferredWipeout>false</disableDeferredWipeout>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
   </buildWrappers>
 </project>
