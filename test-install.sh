@@ -9,7 +9,7 @@ DEBIAN_DISTRO="buster bullseye bookworm unstable"
 UBUNTU_DISTRO="bionic focal jammy kinetic lunar mantic noble oracular"
 
 DISTRO="$DEBIAN_DISTRO $UBUNTU_DISTRO"
-VERSION="10 11 12 13 14 15 16 17 18 19"
+VERSION="10 11 12 13 14 15 16 17 18 19 20"
 VERSION_NEXT="20"
 
 if test $# -eq 1; then
