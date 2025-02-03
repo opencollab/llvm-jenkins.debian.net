@@ -20,7 +20,7 @@ usage() {
     exit 1;
 }
 
-CURRENT_LLVM_STABLE=18
+CURRENT_LLVM_STABLE=19
 BASE_URL="http://apt.llvm.org"
 
 # Check for required tools
