@@ -24,7 +24,7 @@ CURRENT_LLVM_STABLE=19
 BASE_URL="http://apt.llvm.org"
 
 # Check for required tools
-needed_binaries=(lsb_release wget add-apt-repository gpg)
+needed_binaries=(lsb_release wget gpg)
 missing_binaries=()
 for binary in "${needed_binaries[@]}"; do
     if ! which $binary &>/dev/null ; then
@@ -42,6 +42,7 @@ fi
 LLVM_VERSION=$CURRENT_LLVM_STABLE
 ALL=0
 DISTRO=$(lsb_release -is)
+VERSION_CODENAME=$(lsb_release -cs)
 VERSION=$(lsb_release -sr)
 UBUNTU_CODENAME=""
 CODENAME_FROM_ARGUMENTS=""
@@ -141,9 +142,9 @@ LLVM_VERSION_STRING=${LLVM_VERSION_PATTERNS[$LLVM_VERSION]}
 # join the repository name
 if [[ -n "${CODENAME}" ]]; then
     REPO_NAME="deb ${BASE_URL}/${CODENAME}/  llvm-toolchain${LINKNAME}${LLVM_VERSION_STRING} main"
-
+    wget --method=HEAD ${BASE_URL}/${CODENAME}
     # check if the repository exists for the distro and version
-    if ! wget -q --method=HEAD ${BASE_URL}/${CODENAME} &> /dev/null; then
+    if ! wget --method=HEAD ${BASE_URL}/${CODENAME} &> /dev/null; then
         if [[ -n "${CODENAME_FROM_ARGUMENTS}" ]]; then
             echo "Specified codename '${CODENAME}' is not supported by this script."
         else
@@ -170,8 +171,20 @@ if [[ "${VERSION_CODENAME}" == "bookworm" ]]; then
     # https://github.com/llvm/llvm-project/issues/62475
     add-apt-repository -y "${REPO_NAME}"
 fi
+if [[ "${VERSION_CODENAME}" == "trixie" ]]; then
+    # workaround missing add-apt-repository in trixie and use new source.list format
+    SOURCES_FILE="/etc/apt/sources.list.d/http_apt_llvm_org_${CODENAME}_-trixie.sources"
+    TEXT_TO_ADD="Types: deb
+Architectures: amd64 arm64
+Signed-By: /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+URIs: ${BASE_URL}/${CODENAME}/
+Suites: llvm-toolchain${LINKNAME}${LLVM_VERSION_STRING}
+Components: main"
+    echo "$TEXT_TO_ADD" | tee -a "$SOURCES_FILE" > /dev/null
+else
+    add-apt-repository -y "${REPO_NAME}"
+fi
 
-add-apt-repository -y "${REPO_NAME}"
 apt-get update
 PKG="clang-$LLVM_VERSION lldb-$LLVM_VERSION lld-$LLVM_VERSION clangd-$LLVM_VERSION"
 if [[ $ALL -eq 1 ]]; then

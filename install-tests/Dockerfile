@@ -5,7 +5,11 @@ USER root
 
 # install the required packages
 RUN apt-get update ;\
-    apt-get install -y --no-install-recommends lsb-release wget make gnupg software-properties-common
+    apt-get install -y --no-install-recommends lsb-release wget make gnupg ca-certificates; \
+    DISTRO=$(lsb_release -sc) && \
+    if [ "$DISTRO" != "trixie" ]; then \
+        apt-get install -y --no-install-recommends software-properties-common; \
+    fi
 
 # copy all the scripts
 COPY tmp/ /build/
