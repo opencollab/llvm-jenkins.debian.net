@@ -224,6 +224,16 @@ for d in $DISTRO; do
         PKG="$PKG zlib1g-dev"
     fi
 
+    echo "
+    # Check if binutils-gold package exists and install it only if it does
+    if apt-cache show binutils-gold &>/dev/null; then
+        echo 'Installing binutils-gold'
+        apt install -y binutils-gold
+    else
+        echo 'binutils-gold package not found, skipping installation'
+    fi
+    " >> $d-script.sh
+
     echo "USE_SCRIPT=$USE_SCRIPT"
     if test -z "$USE_SCRIPT"; then
         # install packages by hands
