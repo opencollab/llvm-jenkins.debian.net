@@ -23,20 +23,7 @@ usage() {
 CURRENT_LLVM_STABLE=19
 BASE_URL="http://apt.llvm.org"
 
-# Check for required tools
-needed_binaries=(lsb_release wget gpg)
-missing_binaries=()
-for binary in "${needed_binaries[@]}"; do
-    if ! which $binary &>/dev/null ; then
-        missing_binaries+=($binary)
-    fi
-done
-if [[ ${#missing_binaries[@]} -gt 0 ]] ; then
-    echo "You are missing some tools this script requires: ${missing_binaries[@]}"
-    echo "(hint: apt install lsb-release wget software-properties-common gnupg)"
-    exit 4
-fi
-
+NEW_DEBIAN_DISTROS =("trixie" )
 # Set default values for commandline arguments
 # We default to the current stable branch of LLVM
 LLVM_VERSION=$CURRENT_LLVM_STABLE
@@ -49,6 +36,36 @@ CODENAME_FROM_ARGUMENTS=""
 # Obtain VERSION_CODENAME and UBUNTU_CODENAME (for Ubuntu and its derivatives)
 source /etc/os-release
 DISTRO=${DISTRO,,}
+
+# Check for required tools
+needed_binaries=(lsb_release wget add-apt-repository gpg)
+missing_binaries=()
+for binary in "${needed_binaries[@]}"; do
+    if ! which $binary &>/dev/null ; then
+        missing_binaries+=($binary)
+    fi
+done
+
+#remove not needed binaries for newer debian distros
+case ${DISTRO} in
+    debian)
+        case ${VERSION_CODENAME} in
+            NEW_DEBIAN_DISTROS)
+            not_needed_binaries_for_newer_debian=(add-apt-repository)
+            for del in ${not_needed_binaries_for_newer_debian[@]}; do
+                missing_binaries=("${missing_binaries[@]/$del}") 
+            done
+            ;;
+        esac
+    ;;
+esac
+
+if [[ ${#missing_binaries[@]} -gt 0 ]] ; then
+    echo "You are missing some tools this script requires: ${missing_binaries[@]}"
+    echo "(hint: apt install lsb-release wget software-properties-common gnupg)"
+    exit 4
+fi
+
 case ${DISTRO} in
     debian)
         # Debian Trixie has a workaround because of
@@ -142,7 +159,6 @@ LLVM_VERSION_STRING=${LLVM_VERSION_PATTERNS[$LLVM_VERSION]}
 # join the repository name
 if [[ -n "${CODENAME}" ]]; then
     REPO_NAME="deb ${BASE_URL}/${CODENAME}/  llvm-toolchain${LINKNAME}${LLVM_VERSION_STRING} main"
-    wget --method=HEAD ${BASE_URL}/${CODENAME}
     # check if the repository exists for the distro and version
     if ! wget --method=HEAD ${BASE_URL}/${CODENAME} &> /dev/null; then
         if [[ -n "${CODENAME_FROM_ARGUMENTS}" ]]; then
@@ -166,14 +182,17 @@ if [[ -z "`apt-key list 2> /dev/null | grep -i llvm`" ]]; then
     # Delete the key in the old format
     apt-key del AF4F7421 || true
 fi
-if [[ "${VERSION_CODENAME}" == "bookworm" ]]; then
+case ${VERSION_CODENAME} in 
+    "bookworm")
     # add it twice to workaround:
     # https://github.com/llvm/llvm-project/issues/62475
     add-apt-repository -y "${REPO_NAME}"
-fi
-if [[ "${VERSION_CODENAME}" == "trixie" ]]; then
-    # workaround missing add-apt-repository in trixie and use new source.list format
-    SOURCES_FILE="/etc/apt/sources.list.d/http_apt_llvm_org_${CODENAME}_-trixie.sources"
+    add-apt-repository -y "${REPO_NAME}"
+    ;;
+
+    NEW_DEBIAN_DISTROS)
+    # workaround missing add-apt-repository in NEW_DEBIAN_DISTROS and use new source.list format
+    SOURCES_FILE="/etc/apt/sources.list.d/http_apt_llvm_org_${CODENAME}_-${VERSION_CODENAME}.sources"
     TEXT_TO_ADD="Types: deb
 Architectures: amd64 arm64
 Signed-By: /etc/apt/trusted.gpg.d/apt.llvm.org.asc
@@ -181,9 +200,12 @@ URIs: ${BASE_URL}/${CODENAME}/
 Suites: llvm-toolchain${LINKNAME}${LLVM_VERSION_STRING}
 Components: main"
     echo "$TEXT_TO_ADD" | tee -a "$SOURCES_FILE" > /dev/null
-else
+    ;;
+
+    *)
     add-apt-repository -y "${REPO_NAME}"
-fi
+    ;;
+esac
 
 apt-get update
 PKG="clang-$LLVM_VERSION lldb-$LLVM_VERSION lld-$LLVM_VERSION clangd-$LLVM_VERSION"
