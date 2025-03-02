@@ -15,7 +15,7 @@ build_run(){
   mkdir -p tmp
   cp ../llvm.sh test_installation.sh tmp
   cp -r sample_project tmp
-  
+
   # build the docker image from the distro folder
   docker build -t $IMAGE --build-arg llvm_version=$LLVM_VERSION --build-arg distro=$DISTRO .
 
