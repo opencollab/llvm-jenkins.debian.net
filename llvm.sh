@@ -38,7 +38,25 @@ source /etc/os-release
 DISTRO=${DISTRO,,}
 
 # Check for required tools
-needed_binaries=(lsb_release wget add-apt-repository gpg)
+
+# Check if this is a new Debian distro
+is_new_debian=0
+if [[ "${DISTRO}" == "debian" ]]; then
+    for new_distro in "${NEW_DEBIAN_DISTROS[@]}"; do
+        if [[ "${VERSION_CODENAME}" == "${new_distro}" ]]; then
+            is_new_debian=1
+            break
+        fi
+    done
+fi
+
+# Check for required tools
+needed_binaries=(lsb_release wget gpg)
+# add-apt-repository is not needed for newer Debian distros
+if [[ $is_new_debian -eq 0 ]]; then
+    needed_binaries+=(add-apt-repository)
+fi
+
 missing_binaries=()
 using_curl=
 for binary in "${needed_binaries[@]}"; do
@@ -50,26 +68,6 @@ for binary in "${needed_binaries[@]}"; do
         missing_binaries+=($binary)
     fi
 done
-
-# remove not needed binaries for newer debian distros
-case ${DISTRO} in
-    debian)
-        is_new_debian=0
-        for new_distro in "${NEW_DEBIAN_DISTROS[@]}"; do
-            if [[ "${VERSION_CODENAME}" == "${new_distro}" ]]; then
-                is_new_debian=1
-                break
-            fi
-        done
-
-        if [[ $is_new_debian -eq 1 ]]; then
-            not_needed_binaries_for_newer_debian=(add-apt-repository)
-            for del in "${not_needed_binaries_for_newer_debian[@]}"; do
-                missing_binaries=("${missing_binaries[@]/$del}")
-            done
-        fi
-    ;;
-esac
 
 if [[ ${#missing_binaries[@]} -gt 0 ]] ; then
     echo "You are missing some tools this script requires: ${missing_binaries[@]}"
