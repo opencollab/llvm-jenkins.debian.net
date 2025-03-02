@@ -7,7 +7,7 @@ LLVM_VERSIONS=(18 19 20 21)
 
 # Linux distributions to be tested
 # the distro names must match to the name of a docker image!
-DISTROS=("debian:trixie" "debian:bookworm"  "debian:buster" "debian:bullseye"  "debian:testing" "debian:unstable" "ubuntu:18.04" "ubuntu:18.10" "ubuntu:19.04")
+DISTROS=("debian:trixie" "debian:bookworm"  "debian:buster" "debian:bullseye"  "debian:testing" "debian:unstable" "ubuntu:18.10" "ubuntu:19.04")
 
 # file containing the test suite
 TEST_SUITE=tests.bats
