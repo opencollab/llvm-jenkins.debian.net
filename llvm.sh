@@ -67,7 +67,8 @@ esac
 
 if [[ ${#missing_binaries[@]} -gt 0 ]] ; then
     echo "You are missing some tools this script requires: ${missing_binaries[@]}"
-    echo "(hint: apt install lsb-release wget (or curl) software-properties-common gnupg)"
+    echo "(hint: apt install lsb-release wget software-properties-common gnupg)"
+    echo "curl is also supported"
     exit 4
 fi
 
