@@ -23,7 +23,7 @@ usage() {
 CURRENT_LLVM_STABLE=19
 BASE_URL="http://apt.llvm.org"
 
-NEW_DEBIAN_DISTROS =("trixie" )
+NEW_DEBIAN_DISTROS=("trixie" )
 # Set default values for commandline arguments
 # We default to the current stable branch of LLVM
 LLVM_VERSION=$CURRENT_LLVM_STABLE
