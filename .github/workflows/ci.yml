@@ -34,5 +34,5 @@ jobs:
 
       - name: Run test script
         run: |
-          cd install-tests && bash test.sh
+          cd install-tests && bash test.sh || exit 1
 
