@@ -25,7 +25,7 @@ do
   for llvm_version in "${LLVM_VERSIONS[@]}"
     do
     # we skip the test for debian:trixie with llvm 16 since the installation is not working due to unmet dependencies
-      if ! [[  [[ "${distro}" == "debian:trixie" || "${distro}" == "debian:testing" || "${distro}" == "debian:unstable" ]] &&  "${llvm_version}" == "16"  ]]; then
+      if ! [[ ("${distro}" == "debian:trixie" || "${distro}" == "debian:testing" || "${distro}" == "debian:unstable") && "${llvm_version}" == "16" ]]; then
           echo "@test \"${distro} - llvm ${llvm_version}\" {" >> $TEST_SUITE
           echo "   build_run ${distro} ${llvm_version} " >> $TEST_SUITE
           echo "}" >> $TEST_SUITE
