@@ -26,7 +26,11 @@ jobs:
       - name: Install Bats
         run: |
           sudo apt-get update
-          sudo apt-get install -y bats
+          sudo apt-get install -y bats devscripts
+
+      - name: Run checkbashisms on llvm.sh
+        run: |
+          checkbashisms llvm.sh || exit 1
 
       - name: Run test script
         run: |
