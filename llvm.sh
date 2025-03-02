@@ -58,7 +58,7 @@ case ${DISTRO} in
             NEW_DEBIAN_DISTROS)
             not_needed_binaries_for_newer_debian=(add-apt-repository)
             for del in ${not_needed_binaries_for_newer_debian[@]}; do
-                missing_binaries=("${missing_binaries[@]/$del}") 
+                missing_binaries=("${missing_binaries[@]/$del}")
             done
             ;;
         esac
