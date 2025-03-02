@@ -4,10 +4,10 @@ set -ex
 
 if echo "$DEB_BUILD_OPTIONS" | grep "scan-build"; then
     apt-get install --yes --no-install-recommends --force-yes wget gnupg apt-transport-https ca-certificates
-    echo "deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main" >> /etc/apt/sources.list
+    echo "deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm main" >> /etc/apt/sources.list
     wget --no-check-certificate -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -
     apt-get update
-    apt-get install --yes --no-install-recommends --force-yes clang-tools-19
+    apt-get install --yes --no-install-recommends --force-yes clang-tools-20
     # remove old artifacts
     rm -rf /tmp/scan-build-*
 fi

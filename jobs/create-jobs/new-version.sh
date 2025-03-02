@@ -1,7 +1,7 @@
 #kinetic!/bin/bash
-VERSION="18"
-VERSION_2="180"
-DISTROS=( unstable buster bullseye bookworm bionic focal lunar jammy mantic )
+VERSION="19"
+VERSION_2="190"
+DISTROS=( unstable buster bullseye bookworm bionic focal jammy lunar mantic noble )
 for d in "${DISTROS[@]}"
 do
 	echo $d
@@ -18,7 +18,6 @@ echo "update the sync job to upload the version (by hand in the interface) - lin
 echo "Disable i386 on recent versions of Ubuntu"
 echo "Disable the old version when ready"
 D=$(echo "{$DISTROS}"| sed -e "s| |,|g")
-echo "emacs /srv/repository/$D/conf/distributions to add the new version"
 echo "do it also on arm64 & s390x machines"
 echo "Update test-install.sh & update the build node (image-update.sh)"
 echo "Update llvm.sh"

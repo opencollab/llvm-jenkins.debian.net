@@ -7,7 +7,7 @@ LLVM_VERSIONS=(16 17 18)
 
 # Linux distributions to be tested
 # the distro names must match to the name of a docker image!
-DISTROS=("debian:buster" "debian:bullseye" "debian:testing" "debian:unstable" "ubuntu:16.04" "ubuntu:18.04" "ubuntu:18.10" "ubuntu:19.04")
+DISTROS=("debian:trixie" "debian:bookworm"  "debian:buster" "debian:bullseye"  "debian:testing" "debian:unstable" "ubuntu:16.04" "ubuntu:18.04" "ubuntu:18.10" "ubuntu:19.04")
 
 # file containing the test suite
 TEST_SUITE=tests.bats
@@ -23,12 +23,15 @@ echo "" >> $TEST_SUITE
 for distro in "${DISTROS[@]}"
 do
   for llvm_version in "${LLVM_VERSIONS[@]}"
-  do
-    echo "@test \"${distro} - llvm ${llvm_version}\" {" >> $TEST_SUITE
-    echo "   build_run ${distro} ${llvm_version} " >> $TEST_SUITE
-    echo "}" >> $TEST_SUITE
-    echo "" >> $TEST_SUITE
-  done
+    do
+    # we skip the test for debian:trixie with llvm 16 since the installation is not working due to unmet dependencies
+      if ! [[ ("${distro}" == "debian:trixie" || "${distro}" == "debian:testing" || "${distro}" == "debian:unstable") && "${llvm_version}" == "16" ]]; then
+          echo "@test \"${distro} - llvm ${llvm_version}\" {" >> $TEST_SUITE
+          echo "   build_run ${distro} ${llvm_version} " >> $TEST_SUITE
+          echo "}" >> $TEST_SUITE
+          echo "" >> $TEST_SUITE
+      fi
+    done
 done
 
 # prepare logfile

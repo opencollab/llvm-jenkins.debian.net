@@ -1,33 +1,50 @@
 <?php
-function getLastUpdate($distro) {
-   $base="/data/apt/www";
-   if ($distro!="unstable") {
-     $fullpath=$base."/${distro}/dists/llvm-toolchain-{$distro}/Release";
-   } else {
-     $fullpath=$base."/${distro}/dists/llvm-toolchain/Release";
-   }
-   $handle = fopen($fullpath, "r");
-   $contents = fread($handle, filesize($fullpath));
-   preg_match("/Date: (.*)/",$contents,$matches);
-   return $matches[1];
-}
-function getLastRevision($distro) {
-   $base="/data/apt/www";
-   if ($distro!="unstable") {
-     $fullpath=$base."/${distro}/dists/llvm-toolchain-{$distro}/main/binary-amd64/Packages";
-   } else {
-     $fullpath=$base."/${distro}/dists/llvm-toolchain/main/binary-amd64/Packages";
-   }
-//echo $fullpath;
-   $handle = fopen($fullpath, "r");
-   $contents = fread($handle, filesize($fullpath));
-   preg_match("/Version: .*~++(.*)-/",$contents,$matches);
-   return str_replace("++", "", $matches[1]);
+function buildFullPath($distro, $pathSuffix) {
+    $base = "/data/apt/www";
+    return ($distro != "unstable")
+        ? "{$base}/${distro}/dists/llvm-toolchain-{$distro}{$pathSuffix}"
+        : "{$base}/${distro}/dists/llvm-toolchain{$pathSuffix}";
 }
 
-$stableBranch="17";
-$qualificationBranch="18";
-$devBranch="19";
+function getLastUpdate($distro) {
+    $fullpath = buildFullPath($distro, "/Release");
+    $handle = fopen($fullpath, "r");
+   if (!$handle) {
+        $error = error_get_last(); // Capture the last error message
+        echo "Failed to open file: $fullpath\nError: " . $error['message'];
+        return null;
+    }
+
+    while (($line = fgets($handle)) !== false) {
+        if (preg_match("/^Date: (.*)/", $line, $matches)) {
+            fclose($handle);
+            return $matches[1];
+        }
+    }
+
+    fclose($handle);
+    return null; // Return null if the date line isn't found
+}
+
+function getLastRevision($distro) {
+    $fullpath = buildFullPath($distro, "/main/binary-amd64/Packages");
+    $handle = fopen($fullpath, "r");
+    if (!$handle) return null;
+
+    while (($line = fgets($handle)) !== false) {
+        if (preg_match("/^Version: .*~\+\+(.*)-/", $line, $matches)) {
+            fclose($handle);
+            return str_replace("++", "", $matches[1]);
+        }
+    }
+
+    fclose($handle);
+    return null; // Return null if the version line isn't found
+}
+
+$stableBranch="18";
+$qualificationBranch="19";
+$devBranch="20";
 $isQualification=true;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -58,11 +75,17 @@ $isQualification=true;
 
 <div class="rel_boxtext">
 For the past year (2022), the work on apt.llvm.org has been partially supported by the OpenSSF, Google, & The Linux Foundation.<br />
-This platform serves more than 35tb of packages every month and is used by various actors like the Linux Kernel, TensorFlow, etc and referenced more than 24k times on Github.<br />
+This platform serves more than 124tb of packages every month and is used by various actors like the Linux Kernel, TensorFlow, etc and referenced more than 24k times on Github.<br />
 The main goal of this support is to improve the security and sustainability of this platform. Previously we were running on an old rack that was no longer supported, and sooner or later would have failed. Now we're running on a <a href="https://blog.llvm.org/posts/2021-11-02-apt.llvm.org-moving-from-physical-server-to-the-cloud/">cloud-based build platform</a> where the cloud provider is keeping the hardware up-to-date.<br />
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Nov 25th 2024 - Ubuntu Lunar (23.04) disabled (EOL)<br />
+Nov 21th 2024 - Ubuntu Mantic (23.10) disabled (EOL)<br />
+Oct 19th 2024 - Ubuntu Oracular (24.10) enabled<br />
+Oct 19th 2024 - Ubuntu Bionic (18.04) disabled (EOL)<br />
+Jul 29th 2024 - Snapshot becomes 20, branch 19 created<br />
+Mar 22nd 2024 - Ubuntu Noble (24.04) enabled<br />
 Feb 20th 2024 - Add libllvmlibc-18-dev as new package<br />
 Jan 25th 2024 - Snapshot becomes 19, branch 18 created<br />
 Sep 18th 2023 - Ubuntu Mantic (23.10) enabled<br />
@@ -160,8 +183,9 @@ deb-src http://apt.llvm.org/unstable/ llvm-toolchain-<?=$qualificationBranch?> m
 </div>
 <div class="rel_section">Ubuntu</div>
 <div class="rel_boxtext">
-Precise, Quantal, Raring, Saucy, Utopic, Artful, Cosmic, Eoan and Trusty are no longer supported by Ubuntu. Repo remains available but not updated.<br />
+Precise, Quantal, Raring, Saucy, Utopic, Artful, Cosmic, Eoan, bionic and Trusty are no longer supported by Ubuntu. Repo remains available but not updated.<br />
 <br />
+<!--<br />
 As i386 isn't supported by Ubuntu anymore, apt.llvm.org isn't either.<br />
 <br />
 Bionic LTS (18.04) - <small>Last update : <?=getLastUpdate("bionic");?> / Revision: <?=getLastRevision("bionic")?></small>
@@ -178,7 +202,7 @@ deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$stableBranch?> mai
 deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
 </pre>
-
+-->
 Focal (20.04) LTS - <small>Last update : <?=getLastUpdate("focal");?> / Revision: <?=getLastRevision("focal")?></small>
 <pre>
 deb http://apt.llvm.org/focal/ llvm-toolchain-focal main
@@ -207,32 +231,32 @@ deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$qualificationBranch?> ma
 deb-src http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$qualificationBranch?> main
 </pre>
 
-Lunar (23.04) - <small>Last update : <?=getLastUpdate("lunar");?> / Revision: <?=getLastRevision("lunar")?></small>
+Noble (24.04) - <small>Last update : <?=getLastUpdate("noble");?> / Revision: <?=getLastRevision("noble")?></small>
 <pre>
-deb http://apt.llvm.org/lunar/ llvm-toolchain-lunar main
-deb-src http://apt.llvm.org/lunar/ llvm-toolchain-lunar main
+deb http://apt.llvm.org/noble/ llvm-toolchain-noble main
+deb-src http://apt.llvm.org/noble/ llvm-toolchain-noble main
 # <?=$stableBranch?>
 
-deb http://apt.llvm.org/lunar/ llvm-toolchain-lunar-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/lunar/ llvm-toolchain-lunar-<?=$stableBranch?> main
+deb http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$stableBranch?> main
 # <?=$qualificationBranch?>
 
-deb http://apt.llvm.org/lunar/ llvm-toolchain-lunar-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/lunar/ llvm-toolchain-lunar-<?=$qualificationBranch?> main
+deb http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$qualificationBranch?> main
 </pre>
 
-Mantic (23.10) - <small>Last update : <?=getLastUpdate("mantic");?> / Revision: <?=getLastRevision("mantic")?></small>
+Oracular (24.10) - <small>Last update : <?=getLastUpdate("oracular");?> / Revision: <?=getLastRevision("oracular")?></small>
 <pre>
-deb http://apt.llvm.org/mantic/ llvm-toolchain-mantic main
-deb-src http://apt.llvm.org/mantic/ llvm-toolchain-mantic main
+deb http://apt.llvm.org/oracular/ llvm-toolchain-oracular main
+deb-src http://apt.llvm.org/oracular/ llvm-toolchain-oracular main
 # <?=$stableBranch?>
 
-deb http://apt.llvm.org/mantic/ llvm-toolchain-mantic-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/mantic/ llvm-toolchain-mantic-<?=$stableBranch?> main
+deb http://apt.llvm.org/oracular/ llvm-toolchain-oracular-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/oracular/ llvm-toolchain-oracular-<?=$stableBranch?> main
 # <?=$qualificationBranch?>
 
-deb http://apt.llvm.org/mantic/ llvm-toolchain-mantic-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/mantic/ llvm-toolchain-mantic-<?=$qualificationBranch?> main
+deb http://apt.llvm.org/oracular/ llvm-toolchain-oracular-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/oracular/ llvm-toolchain-oracular-<?=$qualificationBranch?> main
 </pre>
 </div>
 <a href="#" id="default_pkg" style="visibility: hidden">default_pkg</a>
@@ -504,7 +528,7 @@ Jan 19th 2019 - Artful jobs disabled (but packages still available)<br />
 
 <p style="font-size: smaller;">
      Contact: <a href="mailto:sylvestre@debian.org">Sylvestre Ledru</a>
-<br />Build infra by <a href="https://www.irill.org/">IRILL</a> / Hosting by LLVM Foundation / CDN by <a href="http://www.fastly.com">Fastly</a>
+<br />Hosting by LLVM Foundation / CDN by <a href="http://www.fastly.com">Fastly</a>
 </p>
 
 </div> <!-- rel_container -->

@@ -19,6 +19,8 @@ echo "# Commands that you might want to run
 su
 apt update && apt dist-upgrade
 su - jenkins
+rm -f agent.jar
+wget https://llvm-jenkins.debian.net/jnlpJars/agent.jar
 cd ~/llvm-project
 git pull
 cd ~/llvm-toolchain-integration-test-suite

@@ -5,9 +5,12 @@ set -e -v
 # If 2 are provided, distro + version
 # If USE_SCRIPT=1 is set, use llvm.sh to install the packages
 
-DISTRO="buster bullseye bookworm unstable bionic focal jammy kinetic lunar mantic noble"
-VERSION="10 11 12 13 14 15 16 17 18"
-VERSION_NEXT="19"
+DEBIAN_DISTRO="buster bullseye bookworm unstable"
+UBUNTU_DISTRO="bionic focal jammy kinetic lunar mantic noble oracular"
+
+DISTRO="$DEBIAN_DISTRO $UBUNTU_DISTRO"
+VERSION="10 11 12 13 14 15 16 17 18 19 20"
+VERSION_NEXT="21"
 
 if test $# -eq 1; then
     JOB_NAME=$1
@@ -56,7 +59,7 @@ echo "VERSION = $VERSION"
 for d in $DISTRO; do
 
     MIRROR=""
-    if test "$d" == "buster" -o "$d" == "bullseye" -o "$d" == "unstable"; then
+    if echo "$DEBIAN_DISTRO" | grep -qw "$d"; then
         # deb.debian.org is failing too often
         MIRROR=http://cloudfront.debian.net/debian
     fi
@@ -89,7 +92,7 @@ for d in $DISTRO; do
         echo $TEMPLATE|sed -e "s|@DISTRO@||g" -e "s|@DISTRO_PATH@|$d|g" >> $d.list
     fi
 
-    if test "$d" == "bionic" -o "$d" == "focal" -o "$d" == "groovy" -o "$d" == "hirsute" -o "$d" == "impish" -o "$d" == "jammy" -o "$d" == "kinetic" -o "$d" == "lunar" -o "$d" == "mantic"; then
+    if echo "$UBUNTU_DISTRO" | grep -qw "$d"; then
         # focal, groovy, etc need universe
         if test "$(arch)" == "s390x"; then
             echo "deb http://ports.ubuntu.com/ubuntu-ports $d universe" >> $d.list
@@ -178,8 +181,8 @@ for d in $DISTRO; do
 
         if test -z "$USE_SCRIPT"; then
 
-            PKG="$PKG clang-$v clangd-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev libclang-$v-dev libclang-cpp$v-dev"
-            if test "$d" != "unstable" -a "$d" != "jammy" -a "$d" != "kinetic" -a "$d" != "lunar" -a "$d" != "mantic" -a "$d" != "bookworm"; then
+            PKG="$PKG clang-$v clangd-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev libclang-$v-dev libclang-cpp$v-dev  libpolly-$v-dev"
+            if test "$d" == "bionic" -o "$d" == "buster"; then
                 PKG="$PKG python"
             fi
             if test $v -gt 13; then
@@ -220,6 +223,16 @@ for d in $DISTRO; do
     if test "$d" == "jammy" -o "$d" == "buster"; then
         PKG="$PKG zlib1g-dev"
     fi
+
+    echo "
+    # Check if binutils-gold package exists and install it only if it does
+    if apt-cache show binutils-gold &>/dev/null; then
+        echo 'Installing binutils-gold'
+        apt install -y binutils-gold
+    else
+        echo 'binutils-gold package not found, skipping installation'
+    fi
+    " >> $d-script.sh
 
     echo "USE_SCRIPT=$USE_SCRIPT"
     if test -z "$USE_SCRIPT"; then
