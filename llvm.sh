@@ -51,17 +51,23 @@ for binary in "${needed_binaries[@]}"; do
     fi
 done
 
-#remove not needed binaries for newer debian distros
+# remove not needed binaries for newer debian distros
 case ${DISTRO} in
     debian)
-        case ${VERSION_CODENAME} in
-            NEW_DEBIAN_DISTROS)
+        is_new_debian=0
+        for new_distro in "${NEW_DEBIAN_DISTROS[@]}"; do
+            if [[ "${VERSION_CODENAME}" == "${new_distro}" ]]; then
+                is_new_debian=1
+                break
+            fi
+        done
+
+        if [[ $is_new_debian -eq 1 ]]; then
             not_needed_binaries_for_newer_debian=(add-apt-repository)
-            for del in ${not_needed_binaries_for_newer_debian[@]}; do
+            for del in "${not_needed_binaries_for_newer_debian[@]}"; do
                 missing_binaries=("${missing_binaries[@]/$del}")
             done
-            ;;
-        esac
+        fi
     ;;
 esac
 
