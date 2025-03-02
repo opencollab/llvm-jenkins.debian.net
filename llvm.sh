@@ -199,7 +199,7 @@ if [[ -z "`apt-key list 2> /dev/null | grep -i llvm`" ]]; then
     # Delete the key in the old format
     apt-key del AF4F7421 || true
 fi
-case ${VERSION_CODENAME} in 
+case ${VERSION_CODENAME} in
     "bookworm")
     # add it twice to workaround:
     # https://github.com/llvm/llvm-project/issues/62475
