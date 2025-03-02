@@ -40,8 +40,13 @@ DISTRO=${DISTRO,,}
 # Check for required tools
 needed_binaries=(lsb_release wget add-apt-repository gpg)
 missing_binaries=()
+using_curl=
 for binary in "${needed_binaries[@]}"; do
-    if ! which $binary &>/dev/null ; then
+    if ! command -v $binary &>/dev/null ; then
+        if [[ "$binary" == "wget" ]] && command -v curl &>/dev/null; then
+            using_curl=1
+            continue
+        fi
         missing_binaries+=($binary)
     fi
 done
@@ -62,7 +67,7 @@ esac
 
 if [[ ${#missing_binaries[@]} -gt 0 ]] ; then
     echo "You are missing some tools this script requires: ${missing_binaries[@]}"
-    echo "(hint: apt install lsb-release wget software-properties-common gnupg)"
+    echo "(hint: apt install lsb-release wget (or curl) software-properties-common gnupg)"
     exit 4
 fi
 
@@ -160,7 +165,8 @@ LLVM_VERSION_STRING=${LLVM_VERSION_PATTERNS[$LLVM_VERSION]}
 if [[ -n "${CODENAME}" ]]; then
     REPO_NAME="deb ${BASE_URL}/${CODENAME}/  llvm-toolchain${LINKNAME}${LLVM_VERSION_STRING} main"
     # check if the repository exists for the distro and version
-    if ! wget --method=HEAD ${BASE_URL}/${CODENAME} &> /dev/null; then
+    if ! wget -q --method=HEAD ${BASE_URL}/${CODENAME} &> /dev/null && \
+      ! curl -sSLI -XHEAD ${BASE_URL}/${CODENAME} &> /dev/null; then
         if [[ -n "${CODENAME_FROM_ARGUMENTS}" ]]; then
             echo "Specified codename '${CODENAME}' is not supported by this script."
         else
@@ -175,7 +181,11 @@ fi
 
 if [[ ! -f /etc/apt/trusted.gpg.d/apt.llvm.org.asc ]]; then
     # download GPG key once
-    wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+    if [[ -z "$using_curl" ]]; then
+        wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+    else
+        curl -sSL https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+    fi
 fi
 
 if [[ -z "`apt-key list 2> /dev/null | grep -i llvm`" ]]; then
