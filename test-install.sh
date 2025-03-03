@@ -181,7 +181,7 @@ for d in $DISTRO; do
 
         if test -z "$USE_SCRIPT"; then
 
-            PKG="$PKG clang-$v clangd-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev libclang-$v-dev libclang-cpp$v-dev  libpolly-$v-dev"
+            PKG="$PKG clang-$v clangd-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev libclang-$v-dev libclang-cpp$v-dev liblldb-$v-dev libpolly-$v-dev"
             if test "$d" == "bionic" -o "$d" == "buster"; then
                 PKG="$PKG python"
             fi
