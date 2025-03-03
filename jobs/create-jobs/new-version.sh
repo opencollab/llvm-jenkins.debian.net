@@ -22,6 +22,7 @@ echo "do it also on arm64 & s390x machines"
 echo "Update test-install.sh & update the build node (image-update.sh)"
 echo "Update llvm.sh"
 echo "Update https://github.com/opencollab/llvm-toolchain-integration-test-suite/edit/main/.github/workflows/CI.yml"
+echo "edit https://github.com/opencollab/llvm-jenkins.debian.net/blob/master/install-tests/test.sh to add the new version"
 echo "You can also disable the previous version with:"
 cat << EOF
 import hudson.model.*
