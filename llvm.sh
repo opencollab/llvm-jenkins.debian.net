@@ -23,7 +23,7 @@ usage() {
 CURRENT_LLVM_STABLE=19
 BASE_URL="http://apt.llvm.org"
 
-NEW_DEBIAN_DISTROS =("trixie" )
+NEW_DEBIAN_DISTROS=("trixie" "unstable")
 # Set default values for commandline arguments
 # We default to the current stable branch of LLVM
 LLVM_VERSION=$CURRENT_LLVM_STABLE
@@ -38,7 +38,25 @@ source /etc/os-release
 DISTRO=${DISTRO,,}
 
 # Check for required tools
-needed_binaries=(lsb_release wget add-apt-repository gpg)
+
+# Check if this is a new Debian distro
+is_new_debian=0
+if [[ "${DISTRO}" == "debian" ]]; then
+    for new_distro in "${NEW_DEBIAN_DISTROS[@]}"; do
+        if [[ "${VERSION_CODENAME}" == "${new_distro}" ]]; then
+            is_new_debian=1
+            break
+        fi
+    done
+fi
+
+# Check for required tools
+needed_binaries=(lsb_release wget gpg)
+# add-apt-repository is not needed for newer Debian distros
+if [[ $is_new_debian -eq 0 ]]; then
+    needed_binaries+=(add-apt-repository)
+fi
+
 missing_binaries=()
 using_curl=
 for binary in "${needed_binaries[@]}"; do
@@ -51,23 +69,10 @@ for binary in "${needed_binaries[@]}"; do
     fi
 done
 
-#remove not needed binaries for newer debian distros
-case ${DISTRO} in
-    debian)
-        case ${VERSION_CODENAME} in
-            NEW_DEBIAN_DISTROS)
-            not_needed_binaries_for_newer_debian=(add-apt-repository)
-            for del in ${not_needed_binaries_for_newer_debian[@]}; do
-                missing_binaries=("${missing_binaries[@]/$del}") 
-            done
-            ;;
-        esac
-    ;;
-esac
-
 if [[ ${#missing_binaries[@]} -gt 0 ]] ; then
     echo "You are missing some tools this script requires: ${missing_binaries[@]}"
-    echo "(hint: apt install lsb-release wget (or curl) software-properties-common gnupg)"
+    echo "(hint: apt install lsb-release wget software-properties-common gnupg)"
+    echo "curl is also supported"
     exit 4
 fi
 
@@ -192,16 +197,16 @@ if [[ -z "`apt-key list 2> /dev/null | grep -i llvm`" ]]; then
     # Delete the key in the old format
     apt-key del AF4F7421 || true
 fi
-case ${VERSION_CODENAME} in 
-    "bookworm")
+
+
+# Add repository based on distribution
+if [[ "${VERSION_CODENAME}" == "bookworm" ]]; then
     # add it twice to workaround:
     # https://github.com/llvm/llvm-project/issues/62475
     add-apt-repository -y "${REPO_NAME}"
     add-apt-repository -y "${REPO_NAME}"
-    ;;
-
-    NEW_DEBIAN_DISTROS)
-    # workaround missing add-apt-repository in NEW_DEBIAN_DISTROS and use new source.list format
+elif [[ $is_new_debian -eq 1 ]]; then
+    # workaround missing add-apt-repository in newer Debian and use new source.list format
     SOURCES_FILE="/etc/apt/sources.list.d/http_apt_llvm_org_${CODENAME}_-${VERSION_CODENAME}.sources"
     TEXT_TO_ADD="Types: deb
 Architectures: amd64 arm64
@@ -210,12 +215,9 @@ URIs: ${BASE_URL}/${CODENAME}/
 Suites: llvm-toolchain${LINKNAME}${LLVM_VERSION_STRING}
 Components: main"
     echo "$TEXT_TO_ADD" | tee -a "$SOURCES_FILE" > /dev/null
-    ;;
-
-    *)
+else
     add-apt-repository -y "${REPO_NAME}"
-    ;;
-esac
+fi
 
 apt-get update
 PKG="clang-$LLVM_VERSION lldb-$LLVM_VERSION lld-$LLVM_VERSION clangd-$LLVM_VERSION"
