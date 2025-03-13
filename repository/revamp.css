@@ -187,7 +187,7 @@ a.feedlink { /* Little orange RSS button */
     font-size: 70%                    !important;
     text-decoration: none             !important;
     vertical-align: 0.2em             !important;
-    /* Without !important, inherets from td.titlecell a:* */
+    /* Without !important, inherits from td.titlecell a:* */
 }
 
 ul { list-style-type: disc; }
