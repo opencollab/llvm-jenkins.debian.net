@@ -42,9 +42,9 @@ function getLastRevision($distro) {
     return null; // Return null if the version line isn't found
 }
 
-$stableBranch="18";
-$qualificationBranch="19";
-$devBranch="20";
+$stableBranch="19";
+$qualificationBranch="20";
+$devBranch="21";
 $isQualification=true;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -80,6 +80,7 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Feb 1st 2025 - Snapshot becomes 2&, branch 20 created<br />
 Nov 25th 2024 - Ubuntu Lunar (23.04) disabled (EOL)<br />
 Nov 21th 2024 - Ubuntu Mantic (23.10) disabled (EOL)<br />
 Oct 19th 2024 - Ubuntu Oracular (24.10) enabled<br />
