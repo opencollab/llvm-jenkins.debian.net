@@ -16,6 +16,7 @@ do
 done
 echo "update the sync job to upload the version (by hand in the interface) - links at the end"
 echo "Disable i386 on recent versions of Ubuntu"
+echo "Make sure that the label on Debian is set for i386"
 echo "Disable the old version when ready"
 D=$(echo "{$DISTROS}"| sed -e "s| |,|g")
 echo "do it also on arm64 & s390x machines"
