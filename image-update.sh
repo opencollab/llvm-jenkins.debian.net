@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-export CLOUDSDK_PYTHON="/usr/bin/python3.9"
+export CLOUDSDK_PYTHON="/usr/bin/python3.11"
 
 # Update the gcloud image
 
