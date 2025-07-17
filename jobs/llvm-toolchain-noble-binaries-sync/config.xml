@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-defaults-noble-binaries, llvm-toolchain-noble-binaries, llvm-toolchain-noble-20-binaries, llvm-toolchain-noble-19-binaries, llvm-toolchain-noble-17-binaries, llvm-toolchain-noble-18-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-defaults-noble-binaries, llvm-toolchain-noble-binaries, llvm-toolchain-noble-20-binaries, llvm-toolchain-noble-19-binaries, llvm-toolchain-noble-21-binaries, llvm-toolchain-noble-18-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -34,7 +34,7 @@ bash ~/sync-form-other-arch.sh noble $HOST_ARM64 arm64
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@408.vd726a_1130320">
+    <hudson.tasks.Mailer plugin="mailer@509.vc54d23fc427e">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>

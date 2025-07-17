@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-bookworm-binaries, llvm-toolchain-bookworm-20-binaries, llvm-toolchain-bookworm-19-binaries, llvm-toolchain-bookworm-18-binaries, llvm-toolchain-bookworm-16-binaries, llvm-defaults-bookworm-binaries, llvm-toolchain-bookworm-17-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-bookworm-binaries, llvm-toolchain-bookworm-20-binaries, llvm-toolchain-bookworm-19-binaries, llvm-toolchain-bookworm-18-binaries, llvm-toolchain-bookworm-21-binaries, llvm-defaults-bookworm-binaries, llvm-toolchain-bookworm-17-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -34,7 +34,7 @@ bash ~/sync-form-other-arch.sh bookworm $HOST_ARM64 arm64
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@463.vedf8358e006b_">
+    <hudson.tasks.Mailer plugin="mailer@509.vc54d23fc427e">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>

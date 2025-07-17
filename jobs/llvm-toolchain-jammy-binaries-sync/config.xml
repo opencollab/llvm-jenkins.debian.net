@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-jammy-binaries, llvm-toolchain-jammy-20-binaries, llvm-toolchain-jammy-19-binaries, llvm-toolchain-jammy-17-binaries, llvm-toolchain-jammy-18-binaries, llvm-toolchain-jammy-15-binaries, llvm-defaults-jammy-binaries, llvm-toolchain-jammy-16-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-toolchain-jammy-binaries, llvm-toolchain-jammy-20-binaries, llvm-toolchain-jammy-19-binaries, llvm-toolchain-jammy-21-binaries, llvm-toolchain-jammy-18-binaries, llvm-defaults-jammy-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -35,7 +35,7 @@ bash ~/sync-form-other-arch.sh jammy $HOST_ARM64 arm64
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@463.vedf8358e006b_">
+    <hudson.tasks.Mailer plugin="mailer@509.vc54d23fc427e">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>

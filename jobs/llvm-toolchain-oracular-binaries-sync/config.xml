@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-defaults-oracular-binaries, llvm-toolchain-oracular-binaries, llvm-toolchain-oracular-20-binaries, llvm-toolchain-oracular-18-binaries, llvm-toolchain-oracular-19-binaries, </upstreamProjects>
+      <upstreamProjects>llvm-defaults-oracular-binaries, llvm-toolchain-oracular-binaries, llvm-toolchain-oracular-20-binaries, llvm-toolchain-oracular-18-binaries, llvm-toolchain-oracular-19-binaries, llvm-toolchain-oracular-21-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -34,7 +34,7 @@ bash ~/sync-form-other-arch.sh oracular $HOST_ARM64 arm64
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@408.vd726a_1130320">
+    <hudson.tasks.Mailer plugin="mailer@509.vc54d23fc427e">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
