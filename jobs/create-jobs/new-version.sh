@@ -1,7 +1,9 @@
 #!/bin/bash
 VERSION="21"
 VERSION_2="210"
-DISTROS=( unstable buster bullseye bookworm focal jammy noble oracular plucky )
+DEB=( unstable buster bullseye bookworm )
+UBUNTU=( focal jammy noble oracular plucky )
+DISTROS=( "${DEB[@]}" "${UBUNTU[@]}" )
 for d in "${DISTROS[@]}"
 do
 	echo $d
@@ -46,9 +48,31 @@ do
     fi
     echo "https://llvm-jenkins.debian.net/view/sync/job/llvm-toolchain$d-binaries-sync/configure"
 done
-echo -n "emacs "
-for d in "${DISTROS[@]}"
-do
-    echo -n "/srv/repository/$d/conf/distributions "
+
+
+for d in "${DISTROS[@]}"; do
+    ARCH="amd64 source s390x arm64"
+
+    # Check if $d is in DEB
+    for deb_distro in "${DEB[@]}"; do
+        if [[ "$d" == "$deb_distro" ]]; then
+            ARCH="amd64 i386 source s390x arm64"
+            break
+        fi
+    done
+    if test "$d" == "unstable"; then
+        n=""
+    else
+        n="-$d"
+    fi
+    if grep -v llvm-toolchain$n-$VERSION /srv/repository/$d/conf/distributions; then
+	echo "
+Codename: llvm-toolchain$n-$VERSION
+Architectures: $ARCH
+Components: main
+UDebComponents: main
+Tracking: minimal
+SignWith: 6084F3CF814B57C1CF12EFD515CF4D18AF4F7421
+" >> /srv/repository/$d/conf/distributions
+    fi
 done
-echo ""
