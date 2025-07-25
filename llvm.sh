@@ -13,6 +13,7 @@ set -eux
 usage() {
     set +x
     echo "Usage: $0 [llvm_major_version] [all] [OPTIONS]" 1>&2
+    echo -e "latest\t\t\tInstall the latest available major version." 1>&2
     echo -e "all\t\t\tInstall all packages." 1>&2
     echo -e "-n=code_name\t\tSpecifies the distro codename, for example bionic" 1>&2
     echo -e "-h\t\t\tPrints this help." 1>&2
