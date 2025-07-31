@@ -19,6 +19,10 @@ echo "# Commands that you might want to run
 su
 apt update && apt dist-upgrade
 su - jenkins
+# run:
+bash update-vm.sh
+
+# which will run:
 rm -f agent.jar
 wget https://llvm-jenkins.debian.net/jnlpJars/agent.jar
 cd ~/llvm-project
