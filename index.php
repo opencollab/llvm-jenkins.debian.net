@@ -80,6 +80,7 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Apr 1st 2025 - Ubuntu Plucky (25.04) enabled<br />
 Feb 1st 2025 - Snapshot becomes 21, branch 20 created<br />
 Nov 25th 2024 - Ubuntu Lunar (23.04) disabled (EOL)<br />
 Nov 21th 2024 - Ubuntu Mantic (23.10) disabled (EOL)<br />
@@ -258,6 +259,20 @@ deb-src http://apt.llvm.org/oracular/ llvm-toolchain-oracular-<?=$stableBranch?>
 
 deb http://apt.llvm.org/oracular/ llvm-toolchain-oracular-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/oracular/ llvm-toolchain-oracular-<?=$qualificationBranch?> main
+</pre>
+
+Plucky (25.04) - <small>Last update : <?=getLastUpdate("plucky");?> / Revision: <?=getLastRevision("plucky")?></small>
+<pre>
+deb http://apt.llvm.org/plucky/ llvm-toolchain-plucky main
+deb-src http://apt.llvm.org/plucky/ llvm-toolchain-plucky main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/plucky/ llvm-toolchain-plucky-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/plucky/ llvm-toolchain-plucky-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/plucky/ llvm-toolchain-plucky-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/plucky/ llvm-toolchain-plucky-<?=$qualificationBranch?> main
 </pre>
 </div>
 <a href="#" id="default_pkg" style="visibility: hidden">default_pkg</a>
