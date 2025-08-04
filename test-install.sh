@@ -9,8 +9,8 @@ DEBIAN_DISTRO="buster bullseye bookworm unstable"
 UBUNTU_DISTRO="bionic focal jammy kinetic lunar mantic noble oracular plucky"
 
 DISTRO="$DEBIAN_DISTRO $UBUNTU_DISTRO plucky"
-VERSION="10 11 12 13 14 15 16 17 18 19 20"
-VERSION_NEXT="21"
+VERSION="10 11 12 13 14 15 16 17 18 19 20 21"
+VERSION_NEXT="22"
 
 if test $# -eq 1; then
     JOB_NAME=$1
