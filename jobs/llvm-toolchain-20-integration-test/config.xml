@@ -10,6 +10,7 @@
         <numToKeep>3</numToKeep>
         <artifactDaysToKeep>-1</artifactDaysToKeep>
         <artifactNumToKeep>-1</artifactNumToKeep>
+        <removeLastBuild>false</removeLastBuild>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
   </properties>
@@ -21,7 +22,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-unstable-binaries-sync</upstreamProjects>
+      <upstreamProjects>llvm-toolchain-binaries-sync</upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -58,8 +59,8 @@ sudo /bin/rm -rf install-all || true
       <configuredLocalRules/>
     </hudson.tasks.Shell>
   </builders>
-      <publishers>
-    <hudson.tasks.Mailer plugin="mailer@1.34">
+  <publishers>
+    <hudson.tasks.Mailer plugin="mailer@509.vc54d23fc427e">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>

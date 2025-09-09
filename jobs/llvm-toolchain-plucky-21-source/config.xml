@@ -10,10 +10,11 @@
         <numToKeep>5</numToKeep>
         <artifactDaysToKeep>1</artifactDaysToKeep>
         <artifactNumToKeep>5</artifactNumToKeep>
+        <removeLastBuild>false</removeLastBuild>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@4.8.1">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@5.7.0">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -53,7 +54,7 @@
 export GBP_OPTS=&quot;-nc --git-force-create --git-ignore-new --git-ignore-branch -S -us -uc --git-verbose --git-builder=/bin/true --git-cleaner=/bin/true --git-export-dir=   --git-tarball-dir=. --git-no-create-orig&quot;
 export SKIP_GIT_CLEANUP=true
 export DISTRIBUTION=plucky
-/usr/bin/generate-git-snapshot
+bash -v /usr/bin/generate-git-snapshot
 </command>
       <configuredLocalRules/>
     </hudson.tasks.Shell>
@@ -73,7 +74,7 @@ export DISTRIBUTION=plucky
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
     </hudson.tasks.Fingerprinter>
-    <hudson.tasks.Mailer plugin="mailer@1.34">
+    <hudson.tasks.Mailer plugin="mailer@509.vc54d23fc427e">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
@@ -89,7 +90,7 @@ export DISTRIBUTION=plucky
     </hudson.tasks.BuildTrigger>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.45">
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.48">
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>

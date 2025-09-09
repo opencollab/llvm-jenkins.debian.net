@@ -1,5 +1,5 @@
 <?xml version='1.1' encoding='UTF-8'?>
-<matrix-project plugin="matrix-project@785.v06b_7f47b_c631">
+<matrix-project plugin="matrix-project@856.v4c352b_3a_b_23e">
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
@@ -10,12 +10,13 @@
         <numToKeep>3</numToKeep>
         <artifactDaysToKeep>1</artifactDaysToKeep>
         <artifactNumToKeep>1</artifactNumToKeep>
+        <removeLastBuild>false</removeLastBuild>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
@@ -36,10 +37,11 @@
     </hudson.matrix.TextAxis>
   </axes>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.48">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@770.va_6c69e063442">
       <project>llvm-defaults-buster-source</project>
       <filter>*</filter>
       <target></target>
+      <includeBuildNumberInTargetPath>false</includeBuildNumberInTargetPath>
       <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.TriggeredBuildSelector">
         <upstreamFilterStrategy>UseGlobalSetting</upstreamFilterStrategy>
@@ -71,7 +73,7 @@ export SKIP_REMOVAL=true
       <caseSensitive>true</caseSensitive>
       <followSymlinks>true</followSymlinks>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.Mailer plugin="mailer@438.v02c7f0a_12fa_4">
+    <hudson.tasks.Mailer plugin="mailer@522.va_995fa_cfb_8b_d">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>

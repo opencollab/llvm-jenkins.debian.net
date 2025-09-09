@@ -1,5 +1,5 @@
 <?xml version='1.1' encoding='UTF-8'?>
-<matrix-project plugin="matrix-project@845.vffd7fa_f27555">
+<matrix-project plugin="matrix-project@849.v0cd64ed7e531">
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
@@ -16,7 +16,7 @@
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -46,7 +46,7 @@
     </hudson.matrix.LabelAxis>
   </axes>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@761.vea_2b_25523e84">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@770.va_6c69e063442">
       <project>llvm-toolchain-source</project>
       <filter>*</filter>
       <target></target>
@@ -56,7 +56,7 @@
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>export DEB_BUILD_OPTIONS=&quot;coverity parallel=10&quot;
+      <command>export DEB_BUILD_OPTIONS=&quot;coverity parallel=30&quot;
 export BUILD_ONLY=true
 #sudo /opt/install-coverity.sh 
 if test ! -d $REPOSITORY; then mount &quot;$(dirname &quot;$REPOSITORY&quot;)&quot;; fi

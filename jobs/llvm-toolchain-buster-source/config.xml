@@ -10,10 +10,11 @@
         <numToKeep>3</numToKeep>
         <artifactDaysToKeep>10</artifactDaysToKeep>
         <artifactNumToKeep>10</artifactNumToKeep>
+        <removeLastBuild>false</removeLastBuild>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.9.3">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@5.7.0">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -30,7 +31,7 @@
       <url></url>
       <version>8.7</version>
     </browser>
-    <submoduleCfg class="list"/>
+    <submoduleCfg class="empty-list"/>
     <extensions>
       <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
         <relativeTargetDir>source</relativeTargetDir>
@@ -38,7 +39,7 @@
     </extensions>
   </scm>
   <canRoam>true</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -52,6 +53,7 @@ H 22 * * *
   <builders>
     <hudson.tasks.Shell>
       <command>rm -f ./* || true</command>
+      <configuredLocalRules/>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>export PRE_SOURCE_HOOK=&quot;source/debian/orig-tar.sh &quot;
@@ -60,6 +62,7 @@ export SKIP_GIT_CLEANUP=true
 export DISTRIBUTION=buster
 /usr/bin/generate-git-snapshot
 </command>
+      <configuredLocalRules/>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
@@ -70,8 +73,9 @@ export DISTRIBUTION=buster
       <fingerprint>true</fingerprint>
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
+      <followSymlinks>true</followSymlinks>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.Mailer plugin="mailer@1.23">
+    <hudson.tasks.Mailer plugin="mailer@522.va_995fa_cfb_8b_d">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
@@ -87,7 +91,7 @@ export DISTRIBUTION=buster
     </hudson.tasks.BuildTrigger>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.45">
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.49">
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
