@@ -138,9 +138,11 @@ Bullseye (Debian 11 - <a href="https://wiki.debian.org/DebianOldOldStable">oldol
 deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
 deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
 # <?=$stableBranch?>
+
 deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$stableBranch?> main
 deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$stableBranch?> main
 # <?=$qualificationBranch?>
+
 deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranch?> main
 </pre>
@@ -150,9 +152,11 @@ Bookworm (Debian 12 - <a href="https://wiki.debian.org/DebianOldStable">oldstabl
 deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm main
 deb-src http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm main
 # <?=$stableBranch?>
+
 deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$stableBranch?> main
 deb-src http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$stableBranch?> main
 # <?=$qualificationBranch?>
+
 deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$qualificationBranch?> main
 </pre>
@@ -162,9 +166,11 @@ Trixie (Debian 13 - <a href="https://wiki.debian.org/DebianStable">stable</a>) -
 deb http://apt.llvm.org/trixie/ llvm-toolchain-trixie main
 deb-src http://apt.llvm.org/trixie/ llvm-toolchain-trixie main
 # <?=$stableBranch?>
+
 deb http://apt.llvm.org/trixie/ llvm-toolchain-trixie-<?=$stableBranch?> main
 deb-src http://apt.llvm.org/trixie/ llvm-toolchain-trixie-<?=$stableBranch?> main
 # <?=$qualificationBranch?>
+
 deb http://apt.llvm.org/trixie/ llvm-toolchain-trixie-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/trixie/ llvm-toolchain-trixie-<?=$qualificationBranch?> main
 </pre>
@@ -175,9 +181,11 @@ Forky / sid (Debian 14 - <a href="https://wiki.debian.org/DebianUnstable">unstab
 deb http://apt.llvm.org/unstable/ llvm-toolchain main
 deb-src http://apt.llvm.org/unstable/ llvm-toolchain main
 # <?=$stableBranch?>
+
 deb http://apt.llvm.org/unstable/ llvm-toolchain-<?=$stableBranch?> main
 deb-src http://apt.llvm.org/unstable/ llvm-toolchain-<?=$stableBranch?> main
 # <?=$qualificationBranch?>
+
 deb http://apt.llvm.org/unstable/ llvm-toolchain-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/unstable/ llvm-toolchain-<?=$qualificationBranch?> main
 
