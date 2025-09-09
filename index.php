@@ -80,6 +80,8 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Sep 9th 2025 - Debian Buster disabled (EOL)<br />
+Aug 4th 2025 - Snapshot becomes 22, branch 21 created<br />
 Apr 1st 2025 - Ubuntu Plucky (25.04) enabled<br />
 Feb 1st 2025 - Snapshot becomes 21, branch 20 created<br />
 Nov 25th 2024 - Ubuntu Lunar (23.04) disabled (EOL)<br />
@@ -130,19 +132,6 @@ sudo ./llvm.sh all
 <div class="rel_section">Debian</div>
 
 <div class="rel_boxtext">
-
-
-Buster (Debian 10 - archived, paid LTS) - <small>Last update : <?=getLastUpdate("buster");?> / Revision: <?=getLastRevision("buster")?></small>
-<pre>
-deb http://apt.llvm.org/buster/ llvm-toolchain-buster main
-deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster main
-# <?=$stableBranch?>
-deb http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
-deb http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$qualificationBranch?> main
-</pre>
 
 Bullseye (Debian 11 - <a href="https://wiki.debian.org/DebianOldOldStable">oldoldstable</a>) - <small>Last update : <?=getLastUpdate("bullseye");?> / Revision: <?=getLastRevision("bullseye")?></small>
 <pre>
