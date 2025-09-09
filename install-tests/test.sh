@@ -2,6 +2,8 @@
 #
 # test the llvm.sh installation script for the different distros
 
+shopt -s extglob
+
 # LLVM versions to be tested
 LLVM_VERSIONS=(18 19 20 21 22)
 
@@ -25,7 +27,7 @@ do
   for llvm_version in "${LLVM_VERSIONS[@]}"
     do
     # we skip the test for debian:trixie with llvm 16 since the installation is not working due to unmet dependencies
-      if ! [[ ("${distro}" == "debian:trixie" || "${distro}" == "debian:testing" || "${distro}" == "debian:unstable") && "${llvm_version}" == "16" ]]; then
+      if ! [[ "${llvm_version}" == "16" && $distro == debian:@(trixie|testing|unstable) ]]; then
           echo "@test \"${distro} - llvm ${llvm_version}\" {" >> $TEST_SUITE
           echo "   build_run ${distro} ${llvm_version} " >> $TEST_SUITE
           echo "}" >> $TEST_SUITE

@@ -67,7 +67,7 @@ $isQualification=true;
 
 <div class="rel_boxtext">
 
-  <p>The goal is to provide Debian and Ubuntu nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64, i386 (Debian only), s390x and arm64 (aka aarch64). This for both the stable, <?php if ($isQualification) {?>qualification<?php } else {?>old-stable<?php } ?> and development branches (currently <?=$stableBranch?>, <?=$qualificationBranch?> and <?=$devBranch?>).</p>
+<p>The goal is to provide <a href="https://www.debian.org/releases/">Debian</a> and <a href="https://www.releases.ubuntu.com/">Ubuntu</a> nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64, i386 (Debian only), s390x and arm64 (aka aarch64). This for both the stable, <?php if ($isQualification) {?>qualification<?php } else {?>old-stable<?php } ?> and development branches (currently <?=$stableBranch?>, <?=$qualificationBranch?> and <?=$devBranch?>).</p>
 <p>Packages are built using stage2 and extremely similar to the one shipping in Debian & Ubuntu.</p>
 <p>The packages provide <a href="https://llvm.org/">LLVM</a> + <a href="https://clang.llvm.org/">Clang</a> + <a href="https://compiler-rt.llvm.org/">compiler-rt</a> + <a href="https://polly.llvm.org/">polly</a> + <a href="https://lldb.llvm.org/">LLDB</a> + <a href="https://lld.llvm.org/">LLD</a> + <a href="https://llvm.org/docs/LibFuzzer.html">libFuzzer</a> + <a href="https://libcxx.llvm.org/">libc++</a> + <a href="https://libcxxabi.llvm.org/">libc++abi</a> + <a href="https://openmp.llvm.org/">openmp</a> + <a href="https://libclc.llvm.org/">libclc</a> + <a href="https://github.com/llvm/llvm-project/tree/main/libunwind">libunwind</a> + <a href="https://mlir.llvm.org/">MLIR</a> + <a href="https://github.com/llvm/llvm-project/tree/main/bolt">BOLT</a> + <a href="https://flang.llvm.org/docs/">flang</a> + <a href="https://libc.llvm.org/">libc</a> + wasm support</p>
 </div>
@@ -132,51 +132,63 @@ sudo ./llvm.sh all
 <div class="rel_boxtext">
 
 
-Buster (Debian 10 - old-old-stable) - <small>Last update : <?=getLastUpdate("buster");?> / Revision: <?=getLastRevision("buster")?></small>
+Buster (Debian 10 - archived, paid LTS) - <small>Last update : <?=getLastUpdate("buster");?> / Revision: <?=getLastRevision("buster")?></small>
 <pre>
 deb http://apt.llvm.org/buster/ llvm-toolchain-buster main
 deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster main
-# <?=$stableBranch?> 
+# <?=$stableBranch?>
 deb http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$stableBranch?> main
 deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$stableBranch?> main
-# <?=$qualificationBranch?> 
+# <?=$qualificationBranch?>
 deb http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-<?=$qualificationBranch?> main
 </pre>
 
-Bullseye (Debian 11 - old-stable) - <small>Last update : <?=getLastUpdate("bullseye");?> / Revision: <?=getLastRevision("bullseye")?></small>
+Bullseye (Debian 11 - <a href="https://wiki.debian.org/DebianOldOldStable">oldoldstable</a>) - <small>Last update : <?=getLastUpdate("bullseye");?> / Revision: <?=getLastRevision("bullseye")?></small>
 <pre>
 deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
 deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
-# <?=$stableBranch?> 
+# <?=$stableBranch?>
 deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$stableBranch?> main
 deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$stableBranch?> main
-# <?=$qualificationBranch?> 
+# <?=$qualificationBranch?>
 deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranch?> main
 </pre>
 
-Bookworm (Debian 12 - stable) - <small>Last update : <?=getLastUpdate("bookworm");?> / Revision: <?=getLastRevision("bookworm")?></small>
+Bookworm (Debian 12 - <a href="https://wiki.debian.org/DebianOldStable">oldstable</a>) - <small>Last update : <?=getLastUpdate("bookworm");?> / Revision: <?=getLastRevision("bookworm")?></small>
 <pre>
 deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm main
 deb-src http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm main
-# <?=$stableBranch?> 
+# <?=$stableBranch?>
 deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$stableBranch?> main
 deb-src http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$stableBranch?> main
-# <?=$qualificationBranch?> 
+# <?=$qualificationBranch?>
 deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$qualificationBranch?> main
 </pre>
 
-Trixie / sid (unstable) - <small>Last update : <?=getLastUpdate("unstable");?> / Revision: <?=getLastRevision("unstable")?></small>
+Trixie (Debian 13 - <a href="https://wiki.debian.org/DebianStable">stable</a>) - <small>Last update : <?=getLastUpdate("trixie");?> / Revision: <?=getLastRevision("trixie")?></small>
+<pre>
+deb http://apt.llvm.org/trixie/ llvm-toolchain-trixie main
+deb-src http://apt.llvm.org/trixie/ llvm-toolchain-trixie main
+# <?=$stableBranch?>
+deb http://apt.llvm.org/trixie/ llvm-toolchain-trixie-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/trixie/ llvm-toolchain-trixie-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+deb http://apt.llvm.org/trixie/ llvm-toolchain-trixie-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/trixie/ llvm-toolchain-trixie-<?=$qualificationBranch?> main
+</pre>
+
+Forky / sid (Debian 14 - <a href="https://wiki.debian.org/DebianUnstable">unstable</a>) - <small>Last update : <?=getLastUpdate("unstable");?> / Revision: <?=getLastRevision("unstable")?></small>
 <!--# Need Debian experimental too-->
 <pre>
 deb http://apt.llvm.org/unstable/ llvm-toolchain main
 deb-src http://apt.llvm.org/unstable/ llvm-toolchain main
-# <?=$stableBranch?> 
+# <?=$stableBranch?>
 deb http://apt.llvm.org/unstable/ llvm-toolchain-<?=$stableBranch?> main
 deb-src http://apt.llvm.org/unstable/ llvm-toolchain-<?=$stableBranch?> main
-# <?=$qualificationBranch?> 
+# <?=$qualificationBranch?>
 deb http://apt.llvm.org/unstable/ llvm-toolchain-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/unstable/ llvm-toolchain-<?=$qualificationBranch?> main
 

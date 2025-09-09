@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0  # Fetch all history for submodules
 
@@ -35,4 +35,3 @@ jobs:
       - name: Run test script
         run: |
           cd install-tests && bash test.sh || exit 1
-
