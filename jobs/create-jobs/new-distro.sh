@@ -4,11 +4,11 @@ if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root" 1>&2
    exit 1
 fi
-NAME="plucky"
+NAME="trixie"
 
-IS_UBUNTU=1
+IS_UBUNTU=0
 
-VERSIONS=(19 20 snapshot)
+VERSIONS=(20 21 snapshot)
 for v in "${VERSIONS[@]}"
 do
         echo $v
