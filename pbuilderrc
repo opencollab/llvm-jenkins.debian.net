@@ -10,7 +10,7 @@ DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME
     "unstable" "testing" "stable" "buster" "bullseye" "bookworm" "trixie")
 
 # List of Ubuntu suites. Update these when needed.
-UBUNTU_SUITES=("plucky" "oracular" "noble" "mantic" "lunar" "kinetic" "jammy" "impish" "hirsute" "groovy" "focal" "eoan" "disco" "cosmic" "bionic" "artful" "zesty" "yakkety" "xenial" "wily" "vivid" "utopic" "trusty" "saucy" "raring" "quantal" "precise" "oneiric" "natty" "lucid" "hardy")
+UBUNTU_SUITES=("quokka" "plucky" "oracular" "noble" "mantic" "lunar" "kinetic" "jammy" "impish" "hirsute" "groovy" "focal" "eoan" "disco" "cosmic" "bionic" "artful" "zesty" "yakkety" "xenial" "wily" "vivid" "utopic" "trusty" "saucy" "raring" "quantal" "precise" "oneiric" "natty" "lucid" "hardy")
 
 
 # Mirrors to use. Update these to your preferred mirror.
