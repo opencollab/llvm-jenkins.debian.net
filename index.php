@@ -80,6 +80,7 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Sep 14th 2025 - Ubuntu Oracular (24.10) disabled (EOL)<br />
 Sep 9th 2025 - Debian Buster disabled (EOL)<br />
 Aug 4th 2025 - Snapshot becomes 22, branch 21 created<br />
 Apr 1st 2025 - Ubuntu Plucky (25.04) enabled<br />
@@ -254,20 +255,6 @@ deb-src http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$stableBranch?> main
 
 deb http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$qualificationBranch?> main
-</pre>
-
-Oracular (24.10) - <small>Last update : <?=getLastUpdate("oracular");?> / Revision: <?=getLastRevision("oracular")?></small>
-<pre>
-deb http://apt.llvm.org/oracular/ llvm-toolchain-oracular main
-deb-src http://apt.llvm.org/oracular/ llvm-toolchain-oracular main
-# <?=$stableBranch?>
-
-deb http://apt.llvm.org/oracular/ llvm-toolchain-oracular-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/oracular/ llvm-toolchain-oracular-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
-
-deb http://apt.llvm.org/oracular/ llvm-toolchain-oracular-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/oracular/ llvm-toolchain-oracular-<?=$qualificationBranch?> main
 </pre>
 
 Plucky (25.04) - <small>Last update : <?=getLastUpdate("plucky");?> / Revision: <?=getLastRevision("plucky")?></small>
