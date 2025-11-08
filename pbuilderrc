@@ -19,7 +19,8 @@ DEBIAN_MIRROR="cloudfront.debian.net/"
 if [ "${ARCH}" != 'i386' ] && [ "${ARCH}" != 'amd64' ]; then
     UBUNTU_MIRROR="ports.ubuntu.com/ubuntu-ports/"
 else
-    UBUNTU_MIRROR="www-ftp.lip6.fr/pub/linux/distributions/"
+    UBUNTU_MIRROR="europe-west1.gce.archive.ubuntu.com/ubuntu/"
+    #www-ftp.lip6.fr/pub/linux/distributions/"
 fi
 
 # Optionally use the changelog of a package to determine the suite to use if
