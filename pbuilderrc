@@ -94,6 +94,7 @@ if $(echo ${DEBIAN_SUITES[@]} | grep -q $DIST); then
     fi
 elif $(echo ${UBUNTU_SUITES[@]} | grep -q $DIST); then
     # Ubuntu configuration
+    MIRRORSITE="http://$UBUNTU_MIRROR/"
     COMPONENTS="main restricted universe multiverse"
 else
     echo "Unknown distribution: $DIST"
