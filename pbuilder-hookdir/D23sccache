@@ -9,6 +9,7 @@ fi
 echo "Also start sccache to test"
 mkdir -p /opt/sccache
 cd /opt/sccache/
+mkdir -p /opt/sccache/cache/preprocessor
 if test ! -f sccache; then
     # Determine which files to download based on the system architecture
     if [ "$ARCH" = "i686" ] || [ "$ARCH" = "i386" ]; then
@@ -35,6 +36,7 @@ else
     mkdir -p /opt/sccache/cache/
     export SCCACHE_DIR=/opt/sccache/cache/
     export SCCACHE_DIRECT=true
+    chmod 777 /opt/sccache/cache/preprocessor /opt/sccache/cache/
 fi
 export SCCACHE_VERBOSE_STATS=1
 SCCACHE_LOG=sccache=debug SCCACHE_ERROR_LOG=sccache.log LD_LIBRARY_PATH=/opt/sccache/ /opt/sccache/sccache --show-stats || { exit_status=$?; true; }
