@@ -23,7 +23,7 @@ usage() {
 CURRENT_LLVM_STABLE=20
 BASE_URL="http://apt.llvm.org"
 
-NEW_DEBIAN_DISTROS=("trixie" "unstable")
+NEW_DEBIAN_DISTROS=("trixie" "forky" "unstable")
 # Set default values for commandline arguments
 # We default to the current stable branch of LLVM
 LLVM_VERSION=$CURRENT_LLVM_STABLE
@@ -78,9 +78,9 @@ fi
 
 case ${DISTRO} in
     debian)
-        # Debian Trixie has a workaround because of
+        # Debian Forky has a workaround because of
         # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1038383
-        if [[ "${VERSION}" == "unstable" ]] || [[ "${VERSION}" == "testing" ]] || [[ "${VERSION_CODENAME}" == "trixie" ]]; then
+        if [[ "${VERSION}" == "unstable" ]] || [[ "${VERSION}" == "testing" ]] || [[ "${VERSION_CODENAME}" == "forky" ]]; then
             CODENAME=unstable
             LINKNAME=
         else
