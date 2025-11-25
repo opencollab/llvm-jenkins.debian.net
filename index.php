@@ -80,6 +80,7 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Nov 24th 2025 - Ubuntu Questing (25.10) enabled<br />
 Sep 14th 2025 - Ubuntu Oracular (24.10) disabled (EOL)<br />
 Sep 9th 2025 - Debian Buster disabled (EOL)<br />
 Aug 4th 2025 - Snapshot becomes 22, branch 21 created<br />
@@ -269,6 +270,20 @@ deb-src http://apt.llvm.org/plucky/ llvm-toolchain-plucky-<?=$stableBranch?> mai
 
 deb http://apt.llvm.org/plucky/ llvm-toolchain-plucky-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/plucky/ llvm-toolchain-plucky-<?=$qualificationBranch?> main
+</pre>
+
+Questing (25.10) - <small>Last update : <?=getLastUpdate("questing");?> / Revision: <?=getLastRevision("questing")?></small>
+<pre>
+deb http://apt.llvm.org/questing/ llvm-toolchain-questing main
+deb-src http://apt.llvm.org/questing/ llvm-toolchain-questing main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/questing/ llvm-toolchain-questing-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/questing/ llvm-toolchain-questing-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/questing/ llvm-toolchain-questing-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/questing/ llvm-toolchain-questing-<?=$qualificationBranch?> main
 </pre>
 </div>
 <a href="#" id="default_pkg" style="visibility: hidden">default_pkg</a>
