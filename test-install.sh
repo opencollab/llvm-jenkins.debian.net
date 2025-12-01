@@ -5,7 +5,7 @@ set -e -v
 # If 2 are provided, distro + version
 # If USE_SCRIPT=1 is set, use llvm.sh to install the packages
 
-DEBIAN_DISTRO="buster bullseye bookworm unstable"
+DEBIAN_DISTRO="buster bullseye bookworm trixie unstable"
 UBUNTU_DISTRO="bionic focal jammy kinetic lunar mantic noble oracular plucky questing"
 
 DISTRO="$DEBIAN_DISTRO $UBUNTU_DISTRO plucky quokka questing"
