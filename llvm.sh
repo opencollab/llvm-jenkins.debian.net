@@ -8,6 +8,9 @@
 # This script will install the llvm toolchain on the different
 # Debian and Ubuntu versions
 
+# This script is stored on:
+# https://github.com/opencollab/llvm-jenkins.debian.net/blob/master/llvm.sh
+
 set -eux
 
 usage() {
