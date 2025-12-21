@@ -27,12 +27,11 @@ fi
 
 if test "$DIST" = "jammy" -a $LLVM_VERSION -ge 21 -a "$(arch)" = "s390x"; then
     apt-get install --assume-yes --no-install-recommends gnupg ca-certificates software-properties-common
-    add-apt-repository -y universe
+    add-apt-repository -y main restricted universe multiverse
+    apt update
     # Add apt.llvm.org repository for LLVM packages including lld on s390x
     wget --no-check-certificate -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
     echo "deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy main" >> /etc/apt/sources.list.d/llvm.list
     apt update
-    apt install lld
-    apt install lld-22
     apt-cache policy lld
 fi
