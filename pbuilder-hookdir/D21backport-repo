@@ -27,7 +27,8 @@ fi
 
 if test "$DIST" = "jammy" -a $LLVM_VERSION -ge 21 -a "$(arch)" = "s390x"; then
     # Add apt.llvm.org repository for LLVM packages including lld on s390x
-    wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
+    apt-get install --assume-yes --no-install-recommends gnupg ca-certificates
+    wget --no-check-certificate -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
     echo "deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-$LLVM_VERSION main" >> /etc/apt/sources.list.d/llvm.list
     apt update
 fi
