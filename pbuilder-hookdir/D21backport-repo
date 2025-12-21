@@ -31,4 +31,5 @@ if test "$DIST" = "jammy" -a $LLVM_VERSION -ge 21 -a "$(arch)" = "s390x"; then
     wget --no-check-certificate -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
     echo "deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy main" >> /etc/apt/sources.list.d/llvm.list
     apt update
+    apt-cache policy lld
 fi
