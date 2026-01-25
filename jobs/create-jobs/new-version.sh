@@ -65,7 +65,7 @@ for d in "${DISTROS[@]}"; do
     else
         n="-$d"
     fi
-    if grep -v llvm-toolchain$n-$VERSION /srv/repository/$d/conf/distributions; then
+    if ! grep -q llvm-toolchain$n-$VERSION /srv/repository/$d/conf/distributions; then
 	echo "
 Codename: llvm-toolchain$n-$VERSION
 Architectures: $ARCH
