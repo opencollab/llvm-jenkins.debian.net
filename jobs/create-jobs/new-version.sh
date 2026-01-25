@@ -1,6 +1,6 @@
 #!/bin/bash
-VERSION="21"
-VERSION_2="210"
+VERSION="22"
+VERSION_2="220"
 DEB=( unstable buster bullseye bookworm trixie )
 UBUNTU=( focal jammy noble plucky questing )
 DISTROS=( "${DEB[@]}" "${UBUNTU[@]}" )
