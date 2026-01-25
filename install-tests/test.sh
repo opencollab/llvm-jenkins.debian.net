@@ -5,7 +5,7 @@
 shopt -s extglob
 
 # LLVM versions to be tested
-LLVM_VERSIONS=(18 19 20 21 22)
+LLVM_VERSIONS=(18 19 20 21 22 23)
 
 # Linux distributions to be tested
 # the distro names must match to the name of a docker image!
