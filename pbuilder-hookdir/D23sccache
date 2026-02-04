@@ -36,7 +36,7 @@ else
     mkdir -p /opt/sccache/cache/preprocessor
     export SCCACHE_DIR=/opt/sccache/cache/
     export SCCACHE_DIRECT=true
-    chmod 777 /opt/sccache/cache/preprocessor /opt/sccache/cache/
+    chmod 777 /opt/sccache/cache/preprocessor $(SCCACHE_DIR)
 fi
 export SCCACHE_VERBOSE_STATS=1
 SCCACHE_LOG=sccache=debug SCCACHE_ERROR_LOG=sccache.log LD_LIBRARY_PATH=/opt/sccache/ /opt/sccache/sccache --show-stats || { exit_status=$?; true; }
