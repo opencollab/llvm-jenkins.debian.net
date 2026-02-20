@@ -80,6 +80,8 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Feb 19th 2026 - https://apt.llvm.org/llvm-snapshot.gpg.key has been updated to support sha2512<br />
+Jan 10th 2026 - Snapshot becomes 23, branch 22 created<br />
 Nov 24th 2025 - Ubuntu Questing (25.10) enabled<br />
 Sep 14th 2025 - Ubuntu Oracular (24.10) disabled (EOL)<br />
 Sep 9th 2025 - Debian Buster disabled (EOL)<br />
