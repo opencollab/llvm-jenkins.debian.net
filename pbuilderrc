@@ -56,7 +56,7 @@ if test "$DIST" == "bookworm"; then
   DEBIAN_MIRROR="deb.debian.org/"
 fi
 
-if test "$DIST" == "buster"; then
+if test "$DIST" == "buster" -o "$DIST" == "bullseye"; then
   DEBIAN_MIRROR="archive.debian.org/"
 fi
 
