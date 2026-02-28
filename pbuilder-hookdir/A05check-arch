@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Early check to fail fast if building on unsupported architecture
+# This prevents wasting time on builds that won't work due to missing
+# architecture support in repository configuration
+
+ARCH=$(dpkg --print-architecture)
+
+# Check if current architecture is supported in distributions
+# Look for the distribution matching the current build
+DIST_FILE=""
+if [ -n "$DISTRIBUTION" ]; then
+    DIST_FILE="$DISTRIBUTION/conf/distributions"
+elif [ -f "unstable/conf/distributions" ]; then
+    DIST_FILE="unstable/conf/distributions"
+fi
+
+if [ -n "$DIST_FILE" ] && [ -f "$DIST_FILE" ]; then
+    if ! grep -q "Architectures:.*$ARCH" "$DIST_FILE"; then
+        echo "ERROR: Architecture $ARCH is not supported in $DIST_FILE"
+        echo "Current architectures line:"
+        grep "Architectures:" "$DIST_FILE" || echo "  (Architectures line not found)"
+        echo ""
+        echo "To fix this, add '$ARCH' to the Architectures line in $DIST_FILE"
+        exit 1
+    fi
+fi
+
+echo "Architecture check passed: $ARCH"
