@@ -10,9 +10,9 @@ ARCH=$(dpkg --print-architecture)
 # Look for the distribution matching the current build
 DIST_FILE=""
 if [ -n "$DISTRIBUTION" ]; then
-    DIST_FILE="$DISTRIBUTION/conf/distributions"
-elif [ -f "unstable/conf/distributions" ]; then
-    DIST_FILE="unstable/conf/distributions"
+    DIST_FILE="/srv/repository/$DISTRIBUTION/conf/distributions"
+elif [ -f "/srv/repository/unstable/conf/distributions" ]; then
+    DIST_FILE="/srv/repository/unstable/conf/distributions"
 fi
 
 if [ -n "$DIST_FILE" ] && [ -f "$DIST_FILE" ]; then
