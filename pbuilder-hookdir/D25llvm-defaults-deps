@@ -1,0 +1,112 @@
+#!/bin/bash
+# Hook to handle LLVM version dependencies for llvm-defaults builds
+
+set -e
+
+# Check if we're building llvm-defaults
+for dsc_file in /build/*.dsc; do
+    if [ -f "$dsc_file" ] && grep -q llvm-defaults "$dsc_file"; then
+        echo "I: Detected llvm-defaults build, checking LLVM dependencies"
+
+        # Parse the required LLVM version from the .dsc file
+        LLVM_VERSION=$(grep -E "llvm-[0-9]+" "$dsc_file" | head -1 | sed -E 's/.*llvm-([0-9]+).*/\1/')
+
+        if [ -z "$LLVM_VERSION" ]; then
+            echo "W: Could not determine LLVM version from .dsc file"
+            exit 0
+        fi
+
+        echo "I: llvm-defaults requires LLVM version $LLVM_VERSION"
+
+        # Get distribution info
+        # shellcheck source=/dev/null
+        . /etc/os-release
+        DIST=$(lsb_release -sc 2>/dev/null || echo "$VERSION_CODENAME")
+
+        # Check if the required LLVM packages are available
+        apt-get update
+
+        if ! apt-cache show "llvm-$LLVM_VERSION" 2>/dev/null | grep -q "Package:"; then
+                echo "W: llvm-$LLVM_VERSION is not available in the current repositories"
+
+            # Try to add the LLVM snapshot repository if needed
+            if [ "$LLVM_VERSION" -ge 19 ]; then
+                echo "I: Adding LLVM snapshot repository for version $LLVM_VERSION"
+
+                # Add the apt.llvm.org repository for the snapshot
+                echo "deb http://apt.llvm.org/$DIST/ llvm-toolchain-$DIST-$LLVM_VERSION main" > /etc/apt/sources.list.d/llvm-snapshot.list
+
+                # Import the GPG key
+                wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - || true
+
+                # Update package lists
+                apt-get update
+
+                # Check again if packages are available
+                if ! apt-cache show "llvm-$LLVM_VERSION" 2>/dev/null | grep -q "Package:"; then
+                    echo "E: llvm-$LLVM_VERSION is still not available after adding snapshot repository"
+                    echo "E: llvm-defaults build requires llvm-$LLVM_VERSION packages to be built first"
+                    echo "E: Please ensure llvm-toolchain-snapshot-$LLVM_VERSION is built for $DIST before building llvm-defaults"
+
+                    # Exit with error to fail the build early
+                    exit 1
+                fi
+            else
+                echo "E: llvm-$LLVM_VERSION packages are not available and version is not a snapshot"
+                echo "E: Please ensure llvm-$LLVM_VERSION packages are available before building llvm-defaults"
+                exit 1
+            fi
+        else
+            echo "I: llvm-$LLVM_VERSION packages are available"
+        fi
+
+        # Check for local repository
+        # Determine the repository path based on distribution
+        if [ "$DIST" = "sid" ] || [ "$DIST" = "unstable" ]; then
+            REPO_PATH="/srv/repository/unstable"
+            REPO_NAME="llvm-toolchain"
+        else
+            REPO_PATH="/srv/repository/$DIST"
+            REPO_NAME="llvm-toolchain-$DIST"
+        fi
+
+        if [ -d "$REPO_PATH" ]; then
+            echo "I: Checking local repository for LLVM $LLVM_VERSION packages in $REPO_PATH"
+
+            # Check for snapshot packages (version >= 19 typically)
+            if find "$REPO_PATH/pool/main/l/llvm-toolchain-snapshot/" -name "*llvm-${LLVM_VERSION}*.deb" 2>/dev/null | head -1 | grep -q .; then
+                echo "deb file://$REPO_PATH $DIST main" > /etc/apt/sources.list.d/local.list
+                apt-get update
+                echo "I: Added local repository with LLVM $LLVM_VERSION snapshot packages"
+            # Check for packages under the distribution-versioned path (for stable releases)
+            elif [ "$DIST" != "unstable" ] && [ "$DIST" != "sid" ]; then
+                if find "$REPO_PATH/pool/main/l/${REPO_NAME}-${LLVM_VERSION}/" -name "*llvm-${LLVM_VERSION}*.deb" 2>/dev/null | head -1 | grep -q .; then
+                    echo "deb file://$REPO_PATH $DIST main" > /etc/apt/sources.list.d/local.list
+                    apt-get update
+                    echo "I: Added local repository with LLVM $LLVM_VERSION packages from ${REPO_NAME}-${LLVM_VERSION}"
+                fi
+            fi
+        fi
+
+        # Final check for all required packages
+        REQUIRED_PACKAGES="llvm-$LLVM_VERSION llvm-$LLVM_VERSION-runtime llvm-$LLVM_VERSION-dev clang-$LLVM_VERSION"
+        MISSING_PACKAGES=""
+
+        for pkg in $REQUIRED_PACKAGES; do
+            if ! apt-cache show "$pkg" 2>/dev/null | grep -q "Package:"; then
+                MISSING_PACKAGES="$MISSING_PACKAGES $pkg"
+            fi
+        done
+
+        if [ -n "$MISSING_PACKAGES" ]; then
+            echo "E: The following required packages are not available:$MISSING_PACKAGES"
+            echo "E: Cannot proceed with llvm-defaults build"
+            exit 1
+        fi
+
+        echo "I: All required LLVM $LLVM_VERSION packages are available"
+        break  # Exit the loop after processing the first llvm-defaults .dsc file
+    fi
+done
+
+exit 0
