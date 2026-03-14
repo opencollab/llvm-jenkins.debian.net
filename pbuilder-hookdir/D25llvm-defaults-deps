@@ -36,6 +36,9 @@ for dsc_file in /build/*.dsc; do
                 # Install required packages for adding repositories
                 apt-get install -y --no-install-recommends ca-certificates gnupg wget 2>/dev/null || true
 
+                # Remove any existing LLVM repository entries to avoid conflicts
+                rm -f /etc/apt/sources.list.d/llvm*.list 2>/dev/null || true
+
                 # Add the apt.llvm.org repository for the snapshot
                 # For snapshot versions, the repository is just llvm-toolchain-$DIST
                 echo "deb http://apt.llvm.org/$DIST/ llvm-toolchain-$DIST main" > /etc/apt/sources.list.d/llvm-snapshot.list
