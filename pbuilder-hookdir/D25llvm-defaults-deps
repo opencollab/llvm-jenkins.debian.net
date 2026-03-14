@@ -37,7 +37,8 @@ for dsc_file in /build/*.dsc; do
                 apt-get install -y --no-install-recommends ca-certificates gnupg wget 2>/dev/null || true
 
                 # Add the apt.llvm.org repository for the snapshot
-                echo "deb http://apt.llvm.org/$DIST/ llvm-toolchain-$DIST-$LLVM_VERSION main" > /etc/apt/sources.list.d/llvm-snapshot.list
+                # For snapshot versions, the repository is just llvm-toolchain-$DIST
+                echo "deb http://apt.llvm.org/$DIST/ llvm-toolchain-$DIST main" > /etc/apt/sources.list.d/llvm-snapshot.list
 
                 # Import the GPG key
                 wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - 2>/dev/null || true
