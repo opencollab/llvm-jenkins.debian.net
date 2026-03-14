@@ -39,12 +39,16 @@ for dsc_file in /build/*.dsc; do
                 # Remove any existing LLVM repository entries to avoid conflicts
                 rm -f /etc/apt/sources.list.d/llvm*.list 2>/dev/null || true
 
-                # Add the apt.llvm.org repository for the snapshot
-                # For snapshot versions, the repository is just llvm-toolchain-$DIST
-                echo "deb http://apt.llvm.org/$DIST/ llvm-toolchain-$DIST main" > /etc/apt/sources.list.d/llvm-snapshot.list
-
-                # Import the GPG key
-                wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - 2>/dev/null || true
+                # Import the GPG key - try modern method first, fall back to apt-key
+                mkdir -p /etc/apt/trusted.gpg.d/
+                if wget -qO /etc/apt/trusted.gpg.d/apt.llvm.org.asc https://apt.llvm.org/llvm-snapshot.gpg.key; then
+                    # Use modern signed-by method if key downloaded successfully
+                    echo "deb [signed-by=/etc/apt/trusted.gpg.d/apt.llvm.org.asc] http://apt.llvm.org/$DIST/ llvm-toolchain-$DIST main" > /etc/apt/sources.list.d/llvm-snapshot.list
+                else
+                    # Fall back to old method for compatibility
+                    echo "deb http://apt.llvm.org/$DIST/ llvm-toolchain-$DIST main" > /etc/apt/sources.list.d/llvm-snapshot.list
+                    wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - || true
+                fi
 
                 # Update package lists
                 apt-get update
