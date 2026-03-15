@@ -34,7 +34,11 @@ for dsc_file in /build/*.dsc; do
                 echo "I: Adding LLVM snapshot repository for version $LLVM_VERSION"
 
                 # Install required packages for adding repositories
+                apt-get update
                 apt-get install -y --no-install-recommends ca-certificates gnupg wget lsb-release software-properties-common 2>/dev/null || true
+
+                # Ensure ca-certificates are properly configured
+                update-ca-certificates 2>/dev/null || true
 
                 # Use the official LLVM script or manual setup
                 # The llvm.sh script handles all the complexity but we'll extract just the repo setup part
@@ -53,7 +57,7 @@ for dsc_file in /build/*.dsc; do
                     REPO_COMPONENT="llvm-toolchain-$DIST"
                     REPO_DIST="$DIST"
                 fi
-                
+
                 # Add repository using add-apt-repository if available, otherwise manually
                 if command -v add-apt-repository >/dev/null 2>&1; then
                     add-apt-repository -y "deb http://apt.llvm.org/$REPO_DIST/ $REPO_COMPONENT main" 2>/dev/null || \
