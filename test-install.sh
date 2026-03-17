@@ -208,7 +208,10 @@ for d in $DISTRO; do
 
     echo "
          set -e
-         apt install -y wget gnupg git cmake g++ lsb-release software-properties-common
+         apt install -y wget gnupg git cmake g++ lsb-release
+         if apt-cache show software-properties-common &>/dev/null; then
+             apt install -y software-properties-common
+         fi
          wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
     " > $d-script.sh
 
