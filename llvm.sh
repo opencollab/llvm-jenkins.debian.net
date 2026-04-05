@@ -40,7 +40,29 @@ CODENAME_FROM_ARGUMENTS=""
 source /etc/os-release
 DISTRO=${DISTRO,,}
 
-# Check for required tools
+# Downloader abstraction: prefer wget, fall back to curl
+download_key() {
+    local url="$1"
+    if command -v wget &>/dev/null; then
+        wget -qO- --retry-connrefused --waitretry=1 --tries=3 "$url"
+    elif command -v curl &>/dev/null; then
+        curl --proto '=https' --tlsv1.2 -sSf --retry 3 "$url"
+    else
+        echo "Neither wget nor curl found. Install one and retry." >&2
+        exit 4
+    fi
+}
+
+check_url() {
+    local url="$1"
+    if command -v wget &>/dev/null; then
+        wget -q --method=HEAD "$url" &>/dev/null
+    elif command -v curl &>/dev/null; then
+        curl --proto '=https' --tlsv1.2 -sSf --head --retry 2 "$url" >/dev/null 2>&1
+    else
+        return 1
+    fi
+}
 
 # Check if this is a new Debian distro
 is_new_debian=0
@@ -61,14 +83,12 @@ if [[ $is_new_debian -eq 0 ]]; then
 fi
 
 missing_binaries=()
-using_curl=
 for binary in "${needed_binaries[@]}"; do
-    if ! command -v $binary &>/dev/null ; then
+    if ! command -v "$binary" &>/dev/null; then
         if [[ "$binary" == "wget" ]] && command -v curl &>/dev/null; then
-            using_curl=1
             continue
         fi
-        missing_binaries+=($binary)
+        missing_binaries+=("$binary")
     fi
 done
 
@@ -175,8 +195,7 @@ LLVM_VERSION_STRING=${LLVM_VERSION_PATTERNS[$LLVM_VERSION]}
 if [[ -n "${CODENAME}" ]]; then
     REPO_NAME="deb ${BASE_URL}/${CODENAME}/  llvm-toolchain${LINKNAME}${LLVM_VERSION_STRING} main"
     # check if the repository exists for the distro and version
-    if ! wget -q --method=HEAD ${BASE_URL}/${CODENAME} &> /dev/null && \
-      ! curl -sSLI -XHEAD ${BASE_URL}/${CODENAME} &> /dev/null; then
+    if ! check_url "${BASE_URL}/${CODENAME}"; then
         if [[ -n "${CODENAME_FROM_ARGUMENTS}" ]]; then
             echo "Specified codename '${CODENAME}' is not supported by this script."
         else
@@ -191,11 +210,7 @@ fi
 
 if [[ ! -f /etc/apt/trusted.gpg.d/apt.llvm.org.asc ]]; then
     # download GPG key once
-    if [[ -z "$using_curl" ]]; then
-        wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
-    else
-        curl -sSL https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
-    fi
+    download_key https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
 fi
 
 if [[ -z "`apt-key list 2> /dev/null | grep -i llvm`" ]]; then
