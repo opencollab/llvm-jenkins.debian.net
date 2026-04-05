@@ -13,6 +13,16 @@
 
 set -eux
 
+info()  { printf "[info] %s\n" "$*"; }
+warn()  { printf "[warn] %s\n" "$*" >&2; }
+# error MESSAGE [EXIT_CODE] — default exit code is 1
+error() {
+    local msg="$1"
+    local code="${2:-1}"
+    printf "[error] %s\n" "$msg" >&2
+    exit "$code"
+}
+
 usage() {
     set +x
     echo "Usage: $0 [llvm_major_version] [all] [OPTIONS]" 1>&2
@@ -48,8 +58,7 @@ download_key() {
     elif command -v curl &>/dev/null; then
         curl --proto '=https' --tlsv1.2 -sSf --retry 3 "$url"
     else
-        echo "Neither wget nor curl found. Install one and retry." >&2
-        exit 4
+        error "Neither wget nor curl found. Install one and retry." 4
     fi
 }
 
@@ -93,10 +102,9 @@ for binary in "${needed_binaries[@]}"; do
 done
 
 if [[ ${#missing_binaries[@]} -gt 0 ]] ; then
-    echo "You are missing some tools this script requires: ${missing_binaries[@]}"
-    echo "(hint: apt install lsb-release wget software-properties-common gnupg)"
-    echo "curl is also supported"
-    exit 4
+    error "Missing required tools: ${missing_binaries[*]}
+(hint: apt install lsb-release wget software-properties-common gnupg)
+curl is also supported as an alternative to wget" 4
 fi
 
 case ${DISTRO} in
@@ -163,8 +171,7 @@ while getopts ":hm:n:" arg; do
 done
 
 if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root!"
-   exit 1
+    error "This script must be run as root!"
 fi
 
 declare -A LLVM_VERSION_PATTERNS
@@ -185,8 +192,7 @@ LLVM_VERSION_PATTERNS[22]="-22"
 LLVM_VERSION_PATTERNS[23]=""
 
 if [ ! ${LLVM_VERSION_PATTERNS[$LLVM_VERSION]+_} ]; then
-    echo "This script does not support LLVM version $LLVM_VERSION"
-    exit 3
+    error "This script does not support LLVM version $LLVM_VERSION" 3
 fi
 
 LLVM_VERSION_STRING=${LLVM_VERSION_PATTERNS[$LLVM_VERSION]}
@@ -197,11 +203,10 @@ if [[ -n "${CODENAME}" ]]; then
     # check if the repository exists for the distro and version
     if ! check_url "${BASE_URL}/${CODENAME}"; then
         if [[ -n "${CODENAME_FROM_ARGUMENTS}" ]]; then
-            echo "Specified codename '${CODENAME}' is not supported by this script."
+            error "Specified codename '${CODENAME}' is not supported by this script." 2
         else
-            echo "Distribution '${DISTRO}' in version '${VERSION}' is not supported by this script."
+            error "Distribution '${DISTRO}' in version '${VERSION}' is not supported by this script." 2
         fi
-        exit 2
     fi
 fi
 
