@@ -214,8 +214,11 @@ fi
 # install everything
 
 if [[ ! -f /etc/apt/trusted.gpg.d/apt.llvm.org.asc ]]; then
-    # download GPG key once
-    download_key https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+    GPG_KEY_URL="https://apt.llvm.org/llvm-snapshot.gpg.key"
+    if ! check_url "$GPG_KEY_URL"; then
+        error "GPG key not reachable at $GPG_KEY_URL" 2
+    fi
+    download_key "$GPG_KEY_URL" | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
 fi
 
 if [[ -z "`apt-key list 2> /dev/null | grep -i llvm`" ]]; then
