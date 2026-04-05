@@ -11,7 +11,7 @@
 # This script is stored on:
 # https://github.com/opencollab/llvm-jenkins.debian.net/blob/master/llvm.sh
 
-set -eux
+set -euxo pipefail
 
 info()  { printf "[info] %s\n" "$*"; }
 warn()  { printf "[warn] %s\n" "$*" >&2; }
