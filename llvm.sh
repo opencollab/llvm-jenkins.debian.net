@@ -34,7 +34,7 @@ usage() {
 }
 
 CURRENT_LLVM_STABLE=20
-BASE_URL="http://apt.llvm.org"
+BASE_URL="https://apt.llvm.org"
 
 NEW_DEBIAN_DISTROS=("trixie" "forky" "unstable")
 # Set default values for commandline arguments
