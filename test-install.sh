@@ -6,9 +6,9 @@ set -e -v
 # If USE_SCRIPT=1 is set, use llvm.sh to install the packages
 
 DEBIAN_DISTRO="buster bullseye bookworm trixie unstable"
-UBUNTU_DISTRO="bionic focal jammy kinetic lunar mantic noble oracular plucky questing"
+UBUNTU_DISTRO="bionic focal jammy kinetic lunar mantic noble oracular plucky questing resolute"
 
-DISTRO="$DEBIAN_DISTRO $UBUNTU_DISTRO plucky quokka questing"
+DISTRO="$DEBIAN_DISTRO $UBUNTU_DISTRO quokka"
 VERSION="10 11 12 13 14 15 16 17 18 19 20 21 22"
 VERSION_NEXT="23"
 
