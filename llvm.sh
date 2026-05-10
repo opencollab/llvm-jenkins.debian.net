@@ -30,7 +30,7 @@ usage() {
     echo -e "-n=code_name\t\tSpecifies the distro codename, for example bionic" 1>&2
     echo -e "-h\t\t\tPrints this help." 1>&2
     echo -e "-m=repo_base_url\tSpecifies the base URL from which to download." 1>&2
-    exit 1;
+    exit $#
 }
 
 CURRENT_LLVM_STABLE=20
@@ -130,6 +130,15 @@ case ${DISTRO} in
         fi
         ;;
 esac
+
+# check for long options
+for arg in "$@"; do
+    case "${arg}" in
+        (--help|-h) usage ;;
+        (--version) usage error ;;
+        (--) break ;;
+    esac
+done
 
 # read optional command line arguments
 if [ "$#" -ge 1 ] && [ "${1::1}" != "-" ]; then
