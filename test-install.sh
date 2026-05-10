@@ -265,11 +265,26 @@ for d in $DISTRO; do
     fi
     echo "
      set -e -v
+     # Find lit.py: prefer the llvm-shipped version, fall back to system lit
+     LIT_PATH=/usr/lib/llvm-$v/build/utils/lit/lit.py
+     if [ ! -f \$LIT_PATH ]; then
+         LIT_PATH=\$(find /usr/lib/llvm-$v -name lit.py 2>/dev/null | head -1)
+     fi
+     if [ -z \$LIT_PATH ] || [ ! -f \$LIT_PATH ]; then
+         LIT_PATH=\$(command -v lit 2>/dev/null || true)
+     fi
+     if [ -z \$LIT_PATH ]; then
+         echo "ERROR: lit.py not found for LLVM $v"
+         echo "Tried: /usr/lib/llvm-$v/build/utils/lit/lit.py, find, and system PATH"
+         echo "Make sure llvm-$v-tools or python3-lit is installed"
+         exit 1
+     fi
+     echo "Using lit: \$LIT_PATH"
      rm -rf check
      git clone https://github.com/opencollab/llvm-toolchain-integration-test-suite.git check
      cd check
      mkdir build && cd build &&
-     cmake -DLIT=/usr/lib/llvm-$v/build/utils/lit/lit.py \
+     cmake -DLIT=\$LIT_PATH \
           -DCLANG_BINARY=/usr/bin/clang-$v \
           -DCLANGD_BINARY=/usr/bin/clangd-$v \
           -DCLANGXX_BINARY=/usr/bin/clang++-$v \
