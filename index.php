@@ -42,9 +42,9 @@ function getLastRevision($distro) {
     return null; // Return null if the version line isn't found
 }
 
-$stableBranch="20";
-$qualificationBranch="21";
-$devBranch="22";
+$stableBranch="21";
+$qualificationBranch="22";
+$devBranch="23";
 $isQualification=true;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
