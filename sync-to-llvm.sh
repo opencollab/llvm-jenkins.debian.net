@@ -31,13 +31,31 @@ check_package_versions() {
     # don't care about i386
     local archs=("amd64" "s390x" "arm64")
 
-    # specify versions here
-    local versions=("15" "16" "")
     if test "$base_dist" != "unstable"; then
 	base_dist="-$base_dist"
     else
 	base_dist=""
     fi
+
+    # discover the versions present in the repo instead of hard-coding them.
+    # distributions are named llvm-toolchain[-<dist>][-<version>]; list the
+    # matching dists directories and extract the trailing version suffix
+    # ("" for the unversioned/dev distribution).
+    local prefix="llvm-toolchain${base_dist}"
+    local versions=()
+    local d name ver
+    for d in "$path_repo/$1/dists/${prefix}"*; do
+        [ -d "$d" ] || continue
+        name=$(basename "$d")
+        ver="${name#"$prefix"}"   # "" or "-15"
+        ver="${ver#-}"            # "" or "15"
+        versions+=("$ver")
+    done
+    if [ ${#versions[@]} -eq 0 ]; then
+        echo "Error: no llvm-toolchain distributions found under $path_repo/$1/dists/"
+        return 1
+    fi
+    echo "Detected versions: ${versions[*]}"
     for ver in "${versions[@]}"; do
         local dist="llvm-toolchain${base_dist}${ver:+-}$ver"
         echo "Checking distribution $dist"
