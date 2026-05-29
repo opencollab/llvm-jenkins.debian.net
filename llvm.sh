@@ -33,7 +33,7 @@ usage() {
     exit 1;
 }
 
-CURRENT_LLVM_STABLE=20
+CURRENT_LLVM_STABLE=22
 BASE_URL="https://apt.llvm.org"
 
 NEW_DEBIAN_DISTROS=("trixie" "forky" "unstable")
