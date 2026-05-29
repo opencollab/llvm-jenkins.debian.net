@@ -74,12 +74,13 @@ $isQualification=true;
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
-For the past year (2022), the work on apt.llvm.org has been partially supported by the OpenSSF, Google, & The Linux Foundation.<br />
+The work on apt.llvm.org has been partially supported by the OpenSSF, Google, & The Linux Foundation.<br />
 This platform serves more than 124tb of packages every month and is used by various actors like the Linux Kernel, TensorFlow, etc and referenced more than 24k times on Github.<br />
 The main goal of this support is to improve the security and sustainability of this platform. Previously we were running on an old rack that was no longer supported, and sooner or later would have failed. Now we're running on a <a href="https://blog.llvm.org/posts/2021-11-02-apt.llvm.org-moving-from-physical-server-to-the-cloud/">cloud-based build platform</a> where the cloud provider is keeping the hardware up-to-date.<br />
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+May 20th 2026 - Ubuntu Resolute (26.04) enabled<br />
 Feb 19th 2026 - https://apt.llvm.org/llvm-snapshot.gpg.key has been updated to support sha512<br />
 Jan 10th 2026 - Snapshot becomes 23, branch 22 created<br />
 Nov 24th 2025 - Ubuntu Questing (25.10) enabled<br />
@@ -286,6 +287,20 @@ deb-src http://apt.llvm.org/questing/ llvm-toolchain-questing-<?=$stableBranch?>
 
 deb http://apt.llvm.org/questing/ llvm-toolchain-questing-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/questing/ llvm-toolchain-questing-<?=$qualificationBranch?> main
+</pre>
+
+Resolute (26.04) - <small>Last update : <?=getLastUpdate("resolute");?> / Revision: <?=getLastRevision("resolute")?></small>
+<pre>
+deb http://apt.llvm.org/resolute/ llvm-toolchain-resolute main
+deb-src http://apt.llvm.org/resolute/ llvm-toolchain-resolute main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/resolute/ llvm-toolchain-resolute-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/resolute/ llvm-toolchain-resolute-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/resolute/ llvm-toolchain-resolute-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/resolute/ llvm-toolchain-resolute-<?=$qualificationBranch?> main
 </pre>
 </div>
 <a href="#" id="default_pkg" style="visibility: hidden">default_pkg</a>
