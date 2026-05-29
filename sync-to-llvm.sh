@@ -48,7 +48,7 @@ check_package_versions() {
         for arch in "${archs[@]}"; do
             echo "Architecture $arch"
             # list packages and versions
-            echo reprepro -b $path_repo/$1 list "${dist}" 
+            echo reprepro -b $path_repo/$1 list "${dist}"
             local packages=$(reprepro -b $path_repo/$1 list "${dist}" | grep "$arch" | awk '{print $2,$3}')
 
             while read -r line; do
