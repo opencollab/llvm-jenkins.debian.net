@@ -69,6 +69,12 @@ $isQualification=true;
 
 <p>The goal is to provide <a href="https://www.debian.org/releases/">Debian</a> and <a href="https://www.releases.ubuntu.com/">Ubuntu</a> nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64, i386 (Debian only), s390x and arm64 (aka aarch64). This for both the stable, <?php if ($isQualification) {?>qualification<?php } else {?>old-stable<?php } ?> and development branches (currently <?=$stableBranch?>, <?=$qualificationBranch?> and <?=$devBranch?>).</p>
 <p>Packages are built using stage2 and extremely similar to the one shipping in Debian & Ubuntu.</p>
+<p><b>Version &amp; distribution support policy:</b> on a best-effort basis, we provide:</p>
+<ul>
+<li>main (the development branch)</li>
+<li>the last 2 LLVM releases</li>
+<li>all currently supported Debian &amp; Ubuntu versions (with the exception that we may stop maintaining old LTS releases if this becomes too hard or complex to maintain)</li>
+</ul>
 <p>The packages provide <a href="https://llvm.org/">LLVM</a> + <a href="https://clang.llvm.org/">Clang</a> + <a href="https://compiler-rt.llvm.org/">compiler-rt</a> + <a href="https://polly.llvm.org/">polly</a> + <a href="https://lldb.llvm.org/">LLDB</a> + <a href="https://lld.llvm.org/">LLD</a> + <a href="https://llvm.org/docs/LibFuzzer.html">libFuzzer</a> + <a href="https://libcxx.llvm.org/">libc++</a> + <a href="https://libcxxabi.llvm.org/">libc++abi</a> + <a href="https://openmp.llvm.org/">openmp</a> + <a href="https://libclc.llvm.org/">libclc</a> + <a href="https://github.com/llvm/llvm-project/tree/main/libunwind">libunwind</a> + <a href="https://mlir.llvm.org/">MLIR</a> + <a href="https://github.com/llvm/llvm-project/tree/main/bolt">BOLT</a> + <a href="https://flang.llvm.org/docs/">flang</a> + <a href="https://libc.llvm.org/">libc</a> + wasm support</p>
 </div>
 <div class="rel_section">News</div>
