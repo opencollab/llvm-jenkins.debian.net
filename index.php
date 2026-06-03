@@ -369,7 +369,7 @@ apt-get install libbolt-<?=$stableBranch?>-dev bolt-<?=$stableBranch?><br />
 <b># flang</b><br />
 apt-get install flang-<?=$stableBranch?><br />
 <b># wasm support</b><br />
-apt-get install libclang-rt-<?=$stableBranch?>-dev-wasm32 libclang-rt-<?=$stableBranch?>-dev-wasm64 libc++-<?=$stableBranch?>-dev-wasm32 libc++abi-<?=$stableBranch?>-dev-wasm32 libclang-rt-<?=$stableBranch?>-dev-wasm32 libclang-rt-<?=$stableBranch?>-dev-wasm64<br />
+apt-get install libclang-rt-<?=$stableBranch?>-dev-wasm32 libclang-rt-<?=$stableBranch?>-dev-wasm64 libc++-<?=$stableBranch?>-dev-wasm32 libc++abi-<?=$stableBranch?>-dev-wasm32<br />
 <!--<b># LLVM libc</b><br />
 apt-get install libllvmlibc-<?=$stableBranch?>-dev-->
 </p>
@@ -419,7 +419,7 @@ apt-get install libbolt-<?=$qualificationBranch?>-dev bolt-<?=$qualificationBran
 <b># flang</b><br />
 apt-get install flang-<?=$qualificationBranch?><br />
 <b># wasm support</b><br />
-apt-get install libclang-rt-<?=$qualificationBranch?>-dev-wasm32 libclang-rt-<?=$qualificationBranch?>-dev-wasm64 libc++-<?=$qualificationBranch?>-dev-wasm32 libc++abi-<?=$qualificationBranch?>-dev-wasm32 libclang-rt-<?=$qualificationBranch?>-dev-wasm32 libclang-rt-<?=$qualificationBranch?>-dev-wasm64<br />
+apt-get install libclang-rt-<?=$qualificationBranch?>-dev-wasm32 libclang-rt-<?=$qualificationBranch?>-dev-wasm64 libc++-<?=$qualificationBranch?>-dev-wasm32 libc++abi-<?=$qualificationBranch?>-dev-wasm32<br />
 <b># LLVM libc</b><br />
 apt-get install libllvmlibc-<?=$qualificationBranch?>-dev
 </p>
@@ -477,7 +477,7 @@ apt-get install libbolt-<?=$devBranch?>-dev bolt-<?=$devBranch?><br />
 <b># flang</b><br />
 apt-get install flang-<?=$devBranch?><br />
 <b># wasm support</b><br />
-apt-get install libclang-rt-<?=$devBranch?>-dev-wasm32 libclang-rt-<?=$devBranch?>-dev-wasm64 libc++-<?=$devBranch?>-dev-wasm32 libc++abi-<?=$devBranch?>-dev-wasm32 libclang-rt-<?=$devBranch?>-dev-wasm32 libclang-rt-<?=$devBranch?>-dev-wasm64<br />
+apt-get install libclang-rt-<?=$devBranch?>-dev-wasm32 libclang-rt-<?=$devBranch?>-dev-wasm64 libc++-<?=$devBranch?>-dev-wasm32 libc++abi-<?=$devBranch?>-dev-wasm32<br />
 <b># LLVM libc</b><br />
 apt-get install libllvmlibc-<?=$devBranch?>-dev
 </p>
