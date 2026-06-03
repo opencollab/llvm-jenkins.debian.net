@@ -47,15 +47,23 @@ $qualificationBranch="22";
 $devBranch="23";
 $isQualification=true;
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-                      "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LLVM Debian/Ubuntu packages</title>
-  <link rel="stylesheet" type="text/css" href="//llvm.org/llvm.css">
+  <meta name="description" content="Debian and Ubuntu nightly apt packages for LLVM, Clang and the whole LLVM toolchain.">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <span class="site-header__brand">apt.llvm.org<span class="dot">.</span></span>
+    <nav class="site-nav" id="site-nav" aria-label="Sections"></nav>
+  </div>
+</header>
 
 <div class="rel_title">
   LLVM Debian/Ubuntu nightly packages
@@ -584,6 +592,75 @@ Jan 19th 2019 - Artful jobs disabled (but packages still available)<br />
 </div> <!-- rel_container -->
 
 <!--#include virtual="../attrib.incl" -->
+
+<script>
+(function () {
+  // Build the sticky section navigation from the page's sections
+  var slug = function (t) {
+    return t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  };
+  var nav = document.getElementById("site-nav");
+  var sections = document.querySelectorAll(".rel_section");
+
+  // Assign an id to every section so all in-page anchors keep working,
+  // but only show a curated, short-labelled subset in the top bar.
+  var menu = [
+    { match: "Download", label: "Download" },
+    { match: "Automatic installation", label: "Install script" },
+    { match: "Debian", label: "Debian" },
+    { match: "Ubuntu", label: "Ubuntu" },
+    { match: "stable branch", label: "Install" },
+    { match: "sigstore", label: "Verify" },
+    { match: "Technical", label: "Technical" }
+  ];
+  var used = {};
+
+  sections.forEach(function (sec) {
+    var text = sec.textContent.replace(/\s+/g, " ").trim();
+    if (!sec.id) sec.id = slug(text);
+
+    for (var i = 0; i < menu.length; i++) {
+      var m = menu[i];
+      if (used[m.label]) continue;
+      if (text.toLowerCase().indexOf(m.match.toLowerCase()) !== -1) {
+        used[m.label] = true;
+        var a = document.createElement("a");
+        a.href = "#" + sec.id;
+        a.textContent = m.label;
+        nav.appendChild(a);
+        break;
+      }
+    }
+  });
+
+  // Add a copy-to-clipboard button to every code block
+  var blocks = document.querySelectorAll("pre, .www_code");
+  blocks.forEach(function (block) {
+    var wrap = document.createElement("div");
+    wrap.className = "code-wrap";
+    block.parentNode.insertBefore(wrap, block);
+    wrap.appendChild(block);
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "copy-btn";
+    btn.textContent = "Copy";
+    wrap.appendChild(btn);
+
+    btn.addEventListener("click", function () {
+      var text = block.innerText.trim();
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = "Copied!";
+        btn.classList.add("copied");
+        setTimeout(function () {
+          btn.textContent = "Copy";
+          btn.classList.remove("copied");
+        }, 1500);
+      });
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
