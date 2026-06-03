@@ -112,12 +112,12 @@ Mar 22nd 2024 - Ubuntu Noble (24.04) enabled<br />
 Feb 20th 2024 - Add libllvmlibc-18-dev as new package<br />
 Jan 25th 2024 - Snapshot becomes 19, branch 18 created<br />
 Sep 18th 2023 - Ubuntu Mantic (23.10) enabled<br />
-Sep 14th 2022 - Ubuntu Kinetic (22.10) disabled (EOL)<br />
+Sep 14th 2023 - Ubuntu Kinetic (22.10) disabled (EOL)<br />
 Jul 26th 2023 - Snapshot becomes 18, branch 17 created<br />
 Jun 04th 2023 - Debian bookworm (12) enabled as a new distro<br />
 Mar 22nd 2023 - Ubuntu Lunar (23.04) enabled<br />
 Jan 03rd 2023 - libclang-common-X.Y-dev split into: libclang-rt-X.Y-dev, libpolly-X.Y-dev, libclang-rt-X.Y-dev-wasm32 and libclang-rt-X.Y-dev-wasm64<br />
-Jan 03rt 2023 - Support of wasm improved with new packages: libc++-X.Y-dev-wasm32, libc++abi-X.Y-dev-wasm32, libclang-rt-X.Y-dev-wasm32 and libclang-rt-X.Y-dev-wasm64 (recent distros)<br />
+Jan 03rd 2023 - Support of wasm improved with new packages: libc++-X.Y-dev-wasm32, libc++abi-X.Y-dev-wasm32, libclang-rt-X.Y-dev-wasm32 and libclang-rt-X.Y-dev-wasm64 (recent distros)<br />
 Jan 03rd 2023 - flang packages added<br />
 </div>
 
@@ -513,7 +513,7 @@ sha=$(sha256sum $file|awk '{print $1}')<br />
 <div class="rel_section">Technical aspects</div>
 <div class="rel_boxtext">
 Packages are rebuilt against the trunk of the various LLVM projects.<br />
-They are rebuild through a Jenkins instance:<br />
+They are rebuilt through a Jenkins instance:<br />
 <a href="https://llvm-jenkins.debian.net">https://llvm-jenkins.debian.net</a>
 
 <h2>Bugs</h2>
@@ -535,7 +535,7 @@ In the <i>llvm-toolchain-*-source</i>, the following tasks will be performed:
 </ul>
 Then, the job <i>llvm-toolchain-X-binary</i> will:
 <ul>
-<li>Create a chroot using cowbuilder or update it is already existing</li>
+<li>Create a chroot using cowbuilder or update it if it already exists</li>
 <li>Build all the packages</li>
 <li>Launch lintian, the Debian static analyzer</li>
 <li>Publish the result on the LLVM repository</li>
