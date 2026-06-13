@@ -3,14 +3,17 @@
   <disabledAdministrativeMonitors>
     <string>hudsonHomeIsFull</string>
     <string>OldData</string>
+    <string>jenkins.model.BuiltInNodeMigration</string>
+    <string>hudson.util.DoubleLaunchChecker</string>
+    <string>jenkins.diagnostics.ControllerExecutorsAgents</string>
     <string>hudson.diagnosis.ReverseProxySetupMonitor</string>
   </disabledAdministrativeMonitors>
-  <version>2.303.1</version>
+  <version>2.568</version>
   <numExecutors>1</numExecutors>
   <mode>EXCLUSIVE</mode>
   <useSecurity>true</useSecurity>
-  <authorizationStrategy class="hudson.security.GlobalMatrixAuthorizationStrategy">
-    <permission>hudson.model.Hudson.Administer:sylvestre</permission>
+  <authorizationStrategy class="hudson.security.FullControlOnceLoggedInAuthorizationStrategy">
+    <denyAnonymousReadAccess>false</denyAnonymousReadAccess>
   </authorizationStrategy>
   <securityRealm class="hudson.security.HudsonPrivateSecurityRealm">
     <disableSignup>true</disableSignup>
@@ -20,15 +23,152 @@
   <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
   <workspaceDir>${ITEM_ROOTDIR}/workspace</workspaceDir>
   <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
-  <systemMessage>See &lt;a href=&quot;https://apt.llvm.org/&quot;&gt;apt.llvm.org&lt;/a&gt; and &lt;a href=&quot;http://blog.llvm.org/2013/04/llvm-debianubuntu-nightly-packages.html&quot;&gt;the blog post&lt;/a&gt;&#xd;
-&lt;br /&gt;Contact: sylvestre@debian.org</systemMessage>
-  <markupFormatter class="hudson.markup.RawHtmlMarkupFormatter" plugin="antisamy-markup-formatter@2.1">
-    <disableSyntaxHighlighting>false</disableSyntaxHighlighting>
-  </markupFormatter>
+  <systemMessage>See https://apt.llvm.org/ and http://blog.llvm.org/2013/04/llvm-debianubuntu-nightly-packages.html&#xd;
+Contact: sylvestre@debian.org</systemMessage>
+  <markupFormatter class="hudson.markup.EscapedMarkupFormatter"/>
   <jdks/>
   <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
   <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
-  <clouds/>
+  <clouds>
+    <com.google.jenkins.plugins.computeengine.ComputeEngineCloud plugin="google-compute-engine@4.814.v531c47649a_5f">
+      <name>gce-gce</name>
+      <instanceCap>10</instanceCap>
+      <projectId>secret-envoy-319113</projectId>
+      <credentialsId>secret-envoy-319113</credentialsId>
+      <instanceId>17df13f8-c117-4760-86a2-3dfec8c9477b</instanceId>
+      <configurations>
+        <com.google.jenkins.plugins.computeengine.InstanceConfiguration>
+          <description>deb system</description>
+          <namePrefix>deb</namePrefix>
+          <region>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/regions/europe-west1</region>
+          <zone>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/zones/europe-west1-b</zone>
+          <machineType>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/zones/europe-west1-b/machineTypes/e2-standard-32</machineType>
+          <numExecutorsStr>1</numExecutorsStr>
+          <startupScript>su - jenkins -c &quot;cd ~jenkins/llvm-jenkins.debian.net.git &amp;&amp; git stash &amp;&amp; git pull &amp;&amp; git stash apply&quot;</startupScript>
+          <startupScriptExitReporterLinux>curl -s -X PUT -H &quot;Metadata-Flavor: Google&quot; \
+  &quot;http://metadata.google.internal/computeMetadata/v1/instance/guest-attributes/startup-script/status&quot; \
+  -d &quot;$1&quot;</startupScriptExitReporterLinux>
+          <startupScriptExitReporterWindows>Invoke-RestMethod -Method PUT -Body &quot;$($args[0])&quot; `
+  -Headers @{&apos;Metadata-Flavor&apos;=&apos;Google&apos;} `
+  -Uri &quot;http://metadata.google.internal/computeMetadata/v1/instance/guest-attributes/startup-script/status&quot;</startupScriptExitReporterWindows>
+          <provisioningType class="com.google.jenkins.plugins.computeengine.config.Standard">
+            <maxRunDurationSeconds>0</maxRunDurationSeconds>
+          </provisioningType>
+          <minCpuPlatform></minCpuPlatform>
+          <labels>amd64 i386</labels>
+          <runAsUser>jenkins</runAsUser>
+          <bootDiskType>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/zones/europe-west1-b/diskTypes/pd-ssd</bootDiskType>
+          <bootDiskAutoDelete>true</bootDiskAutoDelete>
+          <bootDiskSourceImageName>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/global/images/image-debian-node-166</bootDiskSourceImageName>
+          <bootDiskSourceImageProject>secret-envoy-319113</bootDiskSourceImageProject>
+          <networkConfiguration class="com.google.jenkins.plugins.computeengine.AutofilledNetworkConfiguration">
+            <network>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/global/networks/default</network>
+            <subnetwork>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/regions/europe-west1/subnetworks/default</subnetwork>
+          </networkConfiguration>
+          <networkInterfaceIpStackMode class="com.google.jenkins.plugins.computeengine.NetworkInterfaceSingleStack">
+            <externalIPV4Address>false</externalIPV4Address>
+          </networkInterfaceIpStackMode>
+          <useInternalAddress>true</useInternalAddress>
+          <ignoreProxy>false</ignoreProxy>
+          <networkTags></networkTags>
+          <serviceAccountEmail></serviceAccountEmail>
+          <mode>NORMAL</mode>
+          <retentionTimeMinutesStr>5</retentionTimeMinutesStr>
+          <launchTimeoutSecondsStr>300</launchTimeoutSecondsStr>
+          <bootDiskSizeGbStr>150</bootDiskSizeGbStr>
+          <oneShot>false</oneShot>
+          <minimumNumberOfInstances>0</minimumNumberOfInstances>
+          <minimumNumberOfSpareInstances>0</minimumNumberOfSpareInstances>
+          <template></template>
+          <createSnapshot>false</createSnapshot>
+          <diskMapping></diskMapping>
+          <remoteFs></remoteFs>
+          <javaExecPath>/usr/bin/java</javaExecPath>
+          <sshPort>22</sshPort>
+          <googleLabels>
+            <entry>
+              <string>jenkins_cloud_id</string>
+              <string>17df13f8-c117-4760-86a2-3dfec8c9477b</string>
+            </entry>
+            <entry>
+              <string>jenkins_config_name</string>
+              <string>deb</string>
+            </entry>
+          </googleLabels>
+          <numExecutors>1</numExecutors>
+          <terminateIdleDuringShutdown>false</terminateIdleDuringShutdown>
+          <retentionTimeMinutes>5</retentionTimeMinutes>
+          <launchTimeoutSeconds>300</launchTimeoutSeconds>
+          <bootDiskSizeGb>150</bootDiskSizeGb>
+        </com.google.jenkins.plugins.computeengine.InstanceConfiguration>
+        <com.google.jenkins.plugins.computeengine.InstanceConfiguration>
+          <description>desc</description>
+          <namePrefix>prefix</namePrefix>
+          <region>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/regions/europe-west1</region>
+          <zone>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/zones/europe-west1-b</zone>
+          <machineType>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/zones/europe-west1-b/machineTypes/e2-standard-32</machineType>
+          <numExecutorsStr>1</numExecutorsStr>
+          <startupScript></startupScript>
+          <startupScriptExitReporterLinux>curl -s -X PUT -H &quot;Metadata-Flavor: Google&quot; \
+  &quot;http://metadata.google.internal/computeMetadata/v1/instance/guest-attributes/startup-script/status&quot; \
+  -d &quot;$1&quot;</startupScriptExitReporterLinux>
+          <startupScriptExitReporterWindows>Invoke-RestMethod -Method PUT -Body &quot;$($args[0])&quot; `
+  -Headers @{&apos;Metadata-Flavor&apos;=&apos;Google&apos;} `
+  -Uri &quot;http://metadata.google.internal/computeMetadata/v1/instance/guest-attributes/startup-script/status&quot;</startupScriptExitReporterWindows>
+          <provisioningType class="com.google.jenkins.plugins.computeengine.config.Standard">
+            <maxRunDurationSeconds>0</maxRunDurationSeconds>
+          </provisioningType>
+          <minCpuPlatform></minCpuPlatform>
+          <labels></labels>
+          <runAsUser>jenkins</runAsUser>
+          <bootDiskType>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/zones/europe-west1-b/diskTypes/hyperdisk-balanced</bootDiskType>
+          <bootDiskAutoDelete>true</bootDiskAutoDelete>
+          <bootDiskSourceImageName>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/global/images/image-debian-node-166</bootDiskSourceImageName>
+          <bootDiskSourceImageProject>secret-envoy-319113</bootDiskSourceImageProject>
+          <networkConfiguration class="com.google.jenkins.plugins.computeengine.AutofilledNetworkConfiguration">
+            <network>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/global/networks/default</network>
+            <subnetwork>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/regions/europe-west1/subnetworks/default</subnetwork>
+          </networkConfiguration>
+          <networkInterfaceIpStackMode class="com.google.jenkins.plugins.computeengine.NetworkInterfaceSingleStack">
+            <externalIPV4Address>false</externalIPV4Address>
+          </networkInterfaceIpStackMode>
+          <useInternalAddress>false</useInternalAddress>
+          <ignoreProxy>false</ignoreProxy>
+          <networkTags></networkTags>
+          <serviceAccountEmail></serviceAccountEmail>
+          <mode>NORMAL</mode>
+          <retentionTimeMinutesStr>6</retentionTimeMinutesStr>
+          <launchTimeoutSecondsStr>300</launchTimeoutSecondsStr>
+          <bootDiskSizeGbStr>150</bootDiskSizeGbStr>
+          <oneShot>false</oneShot>
+          <minimumNumberOfInstances>0</minimumNumberOfInstances>
+          <minimumNumberOfSpareInstances>0</minimumNumberOfSpareInstances>
+          <template></template>
+          <createSnapshot>false</createSnapshot>
+          <diskMapping></diskMapping>
+          <remoteFs></remoteFs>
+          <javaExecPath>java</javaExecPath>
+          <sshPort>22</sshPort>
+          <googleLabels>
+            <entry>
+              <string>jenkins_cloud_id</string>
+              <string>17df13f8-c117-4760-86a2-3dfec8c9477b</string>
+            </entry>
+            <entry>
+              <string>jenkins_config_name</string>
+              <string>prefix</string>
+            </entry>
+          </googleLabels>
+          <numExecutors>1</numExecutors>
+          <terminateIdleDuringShutdown>false</terminateIdleDuringShutdown>
+          <retentionTimeMinutes>6</retentionTimeMinutes>
+          <launchTimeoutSeconds>300</launchTimeoutSeconds>
+          <bootDiskSizeGb>150</bootDiskSizeGb>
+        </com.google.jenkins.plugins.computeengine.InstanceConfiguration>
+      </configurations>
+      <noDelayProvisioning>false</noDelayProvisioning>
+    </com.google.jenkins.plugins.computeengine.ComputeEngineCloud>
+  </clouds>
   <quietPeriod>5</quietPeriod>
   <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
   <views>
@@ -41,36 +181,13 @@
     </hudson.model.AllView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>Ubuntu Bionic</name>
-      <description>EOL April, 2023</description>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*bionic.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
       <name>Debian 10 - Buster</name>
       <description>EOL June, 2024 </description>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
       </jobNames>
       <jobFilters/>
       <columns>
@@ -110,28 +227,6 @@
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>11</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*11.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
       <name>Debian sid</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
@@ -140,22 +235,27 @@
         <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
         <string>llvm-defaults-binaries</string>
         <string>llvm-defaults-source</string>
-        <string>llvm-toolchain-10-binaries</string>
-        <string>llvm-toolchain-10-source</string>
-        <string>llvm-toolchain-10-source-trigger</string>
-        <string>llvm-toolchain-11-binaries</string>
-        <string>llvm-toolchain-11-source</string>
-        <string>llvm-toolchain-11-source-trigger</string>
-        <string>llvm-toolchain-12-binaries</string>
-        <string>llvm-toolchain-12-source</string>
-        <string>llvm-toolchain-12-source-trigger</string>
-        <string>llvm-toolchain-9-binaries</string>
-        <string>llvm-toolchain-9-source</string>
-        <string>llvm-toolchain-9-source-trigger</string>
+        <string>llvm-toolchain-18-binaries</string>
+        <string>llvm-toolchain-18-integration-test</string>
+        <string>llvm-toolchain-18-source</string>
+        <string>llvm-toolchain-18-source-trigger</string>
+        <string>llvm-toolchain-19-binaries</string>
+        <string>llvm-toolchain-19-integration-test</string>
+        <string>llvm-toolchain-19-source</string>
+        <string>llvm-toolchain-19-source-trigger</string>
+        <string>llvm-toolchain-20-binaries</string>
+        <string>llvm-toolchain-20-integration-test</string>
+        <string>llvm-toolchain-20-source</string>
+        <string>llvm-toolchain-20-source-trigger</string>
+        <string>llvm-toolchain-21-binaries</string>
+        <string>llvm-toolchain-21-integration-test</string>
+        <string>llvm-toolchain-21-source</string>
+        <string>llvm-toolchain-21-source-trigger</string>
+        <string>llvm-toolchain-22-binaries</string>
+        <string>llvm-toolchain-22-integration-test</string>
+        <string>llvm-toolchain-22-source</string>
+        <string>llvm-toolchain-22-source-trigger</string>
         <string>llvm-toolchain-binaries</string>
-        <string>llvm-toolchain-binaries-11-integration-test</string>
-        <string>llvm-toolchain-binaries-12-integration-test</string>
-        <string>llvm-toolchain-binaries-integration-test</string>
         <string>llvm-toolchain-binaries-sync</string>
         <string>llvm-toolchain-source</string>
       </jobNames>
@@ -169,52 +269,6 @@
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
       </columns>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
-      <name>Ubuntu Groovy</name>
-      <description>EOL July, 2020</description>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*groovy.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
-      <name>Ubuntu Hirsute</name>
-      <description>EOL January 2022 </description>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*hirsute.*</includeRegex>
       <recurse>false</recurse>
     </listView>
     <listView>
@@ -237,28 +291,6 @@
         <hudson.views.BuildButtonColumn/>
       </columns>
       <includeRegex>.*sync.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
-      <name>12</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*12.*</includeRegex>
       <recurse>false</recurse>
     </listView>
     <listView>
@@ -351,12 +383,12 @@
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>13</name>
+      <name>Ubuntu Jammy</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
+        <comparator class="java.lang.String$CaseInsensitiveComparator"/>
       </jobNames>
       <jobFilters/>
       <columns>
@@ -368,17 +400,17 @@
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
       </columns>
-      <includeRegex>.*13.*</includeRegex>
+      <includeRegex>.*jammy.*</includeRegex>
       <recurse>false</recurse>
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>Ubuntu Impish</name>
+      <name>Debian 12 - bookworm</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
-        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
+        <comparator class="java.lang.String$CaseInsensitiveComparator" reference="../../../listView[9]/jobNames/comparator"/>
       </jobNames>
       <jobFilters/>
       <columns>
@@ -390,16 +422,242 @@
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
       </columns>
-      <includeRegex>.*impish.*</includeRegex>
+      <includeRegex>.*bookworm.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>18</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="java.lang.String$CaseInsensitiveComparator" reference="../../../listView[9]/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*18.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Ubuntu Noble</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="java.lang.String$CaseInsensitiveComparator" reference="../../../listView[9]/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*noble.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>19</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="java.lang.String$CaseInsensitiveComparator" reference="../../../listView[9]/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*19.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>20</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="java.lang.String$CaseInsensitiveComparator" reference="../../../listView[9]/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*20.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Ubuntu Plucky</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="java.lang.String$CaseInsensitiveComparator" reference="../../../listView[9]/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*plucky.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>21</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="java.lang.String$CaseInsensitiveComparator" reference="../../../listView[9]/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters>
+        <hudson.views.StatusFilter>
+          <statusFilter>true</statusFilter>
+        </hudson.views.StatusFilter>
+      </jobFilters>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*21.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Debian 13 - trixie</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="java.lang.String$CaseInsensitiveComparator" reference="../../../listView[9]/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*trixie.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Ubuntu Questing</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="java.lang.String$CaseInsensitiveComparator" reference="../../../listView[9]/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*questing.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>22</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="java.lang.String$CaseInsensitiveComparator" reference="../../../listView[9]/jobNames/comparator"/>
+        <string>llvm-toolchain-22-binaries</string>
+        <string>llvm-toolchain-22-integration-test</string>
+        <string>llvm-toolchain-22-source</string>
+        <string>llvm-toolchain-22-source-trigger</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*22.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Ubuntu Resolute</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="java.lang.String$CaseInsensitiveComparator" reference="../../../listView[9]/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*resolute.*</includeRegex>
       <recurse>false</recurse>
     </listView>
   </views>
   <primaryView>all</primaryView>
-  <slaveAgentPort>-1</slaveAgentPort>
+  <slaveAgentPort>46269</slaveAgentPort>
   <label></label>
-  <crumbIssuer class="hudson.security.csrf.DefaultCrumbIssuer">
-    <excludeClientIPFromCrumb>false</excludeClientIPFromCrumb>
-  </crumbIssuer>
+  <crumbIssuer class="hudson.security.csrf.DefaultCrumbIssuer"/>
   <nodeProperties/>
   <globalNodeProperties>
     <hudson.slaves.EnvironmentVariablesNodeProperty>
@@ -407,9 +665,11 @@
         <unserializable-parents/>
         <tree-map>
           <default>
-            <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../../../../views/listView/jobNames/comparator"/>
+            <comparator class="java.lang.String$CaseInsensitiveComparator" reference="../../../../../../views/listView[9]/jobNames/comparator"/>
           </default>
-          <int>2</int>
+          <int>3</int>
+          <string>HOST_ARM64</string>
+          <string>10.132.0.38</string>
           <string>HOST_S390X</string>
           <string>148.100.84.86</string>
           <string>SKIP_PKG_RM</string>
@@ -418,4 +678,5 @@
       </envVars>
     </hudson.slaves.EnvironmentVariablesNodeProperty>
   </globalNodeProperties>
+  <nodeRenameMigrationNeeded>true</nodeRenameMigrationNeeded>
 </hudson>
