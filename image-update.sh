@@ -7,6 +7,48 @@ export CLOUDSDK_PYTHON="/usr/bin/python3.11"
 # List what we have
 gcloud compute instances list
 
+# Warn about stale build agents.
+# deb-* agents are meant to be short-lived (minutes). If any are more than a few
+# days old, Jenkins is almost certainly re-attaching to VMs built from an obsolete
+# image (e.g. an agent Java older than the controller's), which fails the remoting
+# handshake, pins the cloud at its instanceCap and blocks ALL builds.
+STALE_DEB_DAYS=${STALE_DEB_DAYS:-3}
+check_stale_deb_instances() {
+    local now cutoff name created created_epoch age_days found=0
+    now=$(date +%s)
+    cutoff=$(( STALE_DEB_DAYS * 86400 ))
+    while read -r name created; do
+        [ -z "$name" ] && continue
+        created_epoch=$(date -d "$created" +%s 2>/dev/null) || continue
+        if [ $(( now - created_epoch )) -gt "$cutoff" ]; then
+            found=1
+            age_days=$(( (now - created_epoch) / 86400 ))
+            printf '   %-18s created %s  (%d days old)\n' "$name" "$created" "$age_days"
+        fi
+    done < <(gcloud compute instances list \
+                 --filter="name~'^deb-'" \
+                 --format="value(name,creationTimestamp)" 2>/dev/null)
+
+    if [ "$found" -eq 1 ]; then
+        echo ""
+        echo "=============================================================================="
+        echo "  WARNING: stale deb-* build agents detected (older than ${STALE_DEB_DAYS} days, listed above)"
+        echo ""
+        echo "  They are almost certainly bound to an OBSOLETE image and will fail to"
+        echo "  connect (e.g. agent Java < controller Java), pinning the cloud at its"
+        echo "  instanceCap and blocking ALL builds."
+        echo ""
+        echo "  >>> KILL THEM in the GCP console (delete the VMs), then remove the matching"
+        echo "      node in Manage Jenkins -> Nodes so a fresh agent is provisioned:"
+        echo "      https://console.cloud.google.com/compute/instances?project=secret-envoy-319113"
+        echo "=============================================================================="
+        echo ""
+    else
+        echo "No stale deb-* agents (none older than ${STALE_DEB_DAYS} days)."
+    fi
+}
+check_stale_deb_instances
+
 # Start the VM
 gcloud compute instances start debian-build-node --zone europe-west1-b &> out.log
 
