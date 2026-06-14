@@ -6,40 +6,28 @@ echo "Also start sccache to test"
 mkdir -p /opt/sccache
 cd /opt/sccache/
 if test ! -f sccache; then
-    # Map the system architecture to the upstream musl release triple.
-    # mozilla/sccache only ships static musl binaries for x86_64 and aarch64;
-    # for the other arches (i386, s390x) we fall back to the binaries shipped
-    # in this repo.
+    # Map the system architecture to the upstream release triple.
+    # mozilla/sccache ships static musl binaries (no libssl/libcrypto needed,
+    # GCS support built in) for all the arches we build on.
     case "$ARCH" in
-        x86_64)  triple="x86_64-unknown-linux-musl" ;;
-        aarch64) triple="aarch64-unknown-linux-musl" ;;
-        *)       triple="" ;;
+        x86_64)          triple="x86_64-unknown-linux-musl" ;;
+        aarch64)         triple="aarch64-unknown-linux-musl" ;;
+        i686 | i386)     triple="i686-unknown-linux-musl" ;;
+        s390x)           triple="s390x-unknown-linux-musl" ;;
+        *)
+            echo "no sccache binary available for arch $ARCH"
+            exit 0
+            ;;
     esac
 
-    if [ -n "$triple" ]; then
-        # Download the latest sccache release from GitHub. The musl binaries are
-        # statically linked (no libssl/libcrypto needed) and include GCS support.
-        TAG=$(wget -qO- --no-check-certificate https://api.github.com/repos/mozilla/sccache/releases/latest \
-            | grep -m1 '"tag_name"' | cut -d'"' -f4)
-        echo "Downloading sccache $TAG for $triple"
-        time wget -O sccache.tar.gz --no-check-certificate \
-            "https://github.com/mozilla/sccache/releases/download/$TAG/sccache-$TAG-$triple.tar.gz"
-        tar -xzf sccache.tar.gz --strip-components=1 "sccache-$TAG-$triple/sccache"
-        rm -f sccache.tar.gz
-    else
-        # No upstream release for this arch: use the binary shipped in the repo.
-        if [ "$ARCH" = "i686" ] || [ "$ARCH" = "i386" ]; then
-            suffix=".i386"
-        elif [ "$ARCH" = "s390x" ]; then
-            suffix=".s390x"
-        else
-            suffix=""
-        fi
-
-        time wget -O sccache --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/sccache$suffix
-        time wget -O libssl.so.1.1 --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libssl.so.1.1$suffix
-        time wget -O libcrypto.so.1.1 --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libcrypto.so.1.1$suffix
-    fi
+    # Download the latest sccache release from GitHub.
+    TAG=$(wget -qO- --no-check-certificate https://api.github.com/repos/mozilla/sccache/releases/latest \
+        | grep -m1 '"tag_name"' | cut -d'"' -f4)
+    echo "Downloading sccache $TAG for $triple"
+    time wget -O sccache.tar.gz --no-check-certificate \
+        "https://github.com/mozilla/sccache/releases/download/$TAG/sccache-$TAG-$triple.tar.gz"
+    tar -xzf sccache.tar.gz --strip-components=1 "sccache-$TAG-$triple/sccache"
+    rm -f sccache.tar.gz
 
     chmod +x sccache
 fi
