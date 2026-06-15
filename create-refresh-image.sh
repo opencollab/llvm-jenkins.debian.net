@@ -6,6 +6,9 @@ UBUNTU_DISTRO="bionic focal jammy noble oracular plucky questing resolute"
 EXPORT_PATH="/home/jenkins/"
 GIT_BASE_URL=https://github.com/llvm/llvm-project
 GIT_TOOLCHAIN_CHECK=https://github.com/opencollab/llvm-toolchain-integration-test-suite.git
+# Use the pbuilder hooks from this git checkout directly, so a `git pull`
+# is enough to update them (must match PBUILDER_HOOKDIR in /etc/jenkins/debian_glue).
+HOOKDIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)/pbuilder-hookdir"
 
 if test -d $EXPORT_PATH/llvm-project; then
     echo "Updating repo in $EXPORT_PATH/llvm-project"
@@ -45,7 +48,7 @@ for d in $DEBIAN_DISTRO; do
         if test -d /var/cache/pbuilder/base-$d-$a.cow; then
             sudo DIST=$d ARCH=$a cowbuilder --update --basepath /var/cache/pbuilder/base-$d-$a.cow
         else
-            sudo DIST=$d ARCH=$a cowbuilder --create --basepath /var/cache/pbuilder/base-$d-$a.cow --distribution $d --debootstrap debootstrap --mirror $DEBIAN_MIRROR --architecture $a --debootstrapopts --arch --debootstrapopts $a --debootstrapopts --variant=buildd --hookdir /usr/share/jenkins-debian-glue/pbuilder-hookdir/
+            sudo DIST=$d ARCH=$a cowbuilder --create --basepath /var/cache/pbuilder/base-$d-$a.cow --distribution $d --debootstrap debootstrap --mirror $DEBIAN_MIRROR --architecture $a --debootstrapopts --arch --debootstrapopts $a --debootstrapopts --variant=buildd --hookdir "$HOOKDIR"
         fi
     done
 done
@@ -56,7 +59,7 @@ for d in $UBUNTU_DISTRO; do
     if test -d /var/cache/pbuilder/base-$d-$a.cow; then
         sudo DIST=$d ARCH=$a cowbuilder --update --basepath /var/cache/pbuilder/base-$d-$a.cow
     else
-        sudo DIST=$d ARCH=$a cowbuilder --create --basepath /var/cache/pbuilder/base-$d-$a.cow --distribution $d --debootstrap debootstrap --architecture $a --debootstrapopts --arch --debootstrapopts $a --debootstrapopts --variant=buildd --configfile=/tmp/configfile --hookdir /usr/share/jenkins-debian-glue/pbuilder-hookdir/
+        sudo DIST=$d ARCH=$a cowbuilder --create --basepath /var/cache/pbuilder/base-$d-$a.cow --distribution $d --debootstrap debootstrap --architecture $a --debootstrapopts --arch --debootstrapopts $a --debootstrapopts --variant=buildd --configfile=/tmp/configfile --hookdir "$HOOKDIR"
     fi
 done
 rm -f /tmp/configfile
