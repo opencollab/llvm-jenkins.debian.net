@@ -105,9 +105,9 @@ if test ! -d /opt/cov-analysis/; then
 fi
 ADDITIONAL_BUILDRESULTS=(codecoverage.tar.gz scan-build.tar.gz sccache-stats.json)
 
-if [ "${ARCH}" == 'i386' ] || [ "${ARCH}" == 'amd64' ]; then
+if [ "${ARCH}" == 'i386' ] || [ "${ARCH}" == 'amd64' ] || [ "${ARCH}" == 'arm64' ]; then
    # Sccache needs network
-   # For now, only do it on intel CPU as it is in google cloud
+   # i386/amd64/arm64 all build on ephemeral google cloud nodes
    USENETWORK=yes
 fi
 
@@ -117,7 +117,7 @@ export CCACHE_DIR="/var/cache/pbuilder/ccache"
 #EXTRAPACKAGES="$EXTRAPACKAGES ccache"
 BINDMOUNTS="/opt/cov-analysis/ ${CCACHE_DIR}"
 
-if [ "${ARCH}" == 'i386' -o "${ARCH}" == 'amd64' -o "${ARCH}" == 's390x' ]; then
+if [ "${ARCH}" == 'i386' -o "${ARCH}" == 'amd64' -o "${ARCH}" == 's390x' -o "${ARCH}" == 'arm64' ]; then
    BINDMOUNTS="${BINDMOUNTS} /opt/sccache/"
 fi
 
