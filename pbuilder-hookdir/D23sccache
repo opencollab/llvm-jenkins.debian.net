@@ -5,6 +5,13 @@ ARCH=$(uname -m)
 echo "Also start sccache to test"
 mkdir -p /opt/sccache
 cd /opt/sccache/
+# This hook runs as root, but debian/rules starts the sccache server as the
+# non-root pbuilder build user. Both write SCCACHE_ERROR_LOG=/opt/sccache/sccache.log,
+# so the log (and dir) must be writable by both. Otherwise the root-created log is
+# unwritable by the builder -> "Cannot open/write log file" -> FTBFS at configure.
+# (amd64's image happens to ship a 0666 sccache.log; make every arch self-healing.)
+chmod 777 /opt/sccache 2>/dev/null || true
+touch /opt/sccache/sccache.log 2>/dev/null && chmod 666 /opt/sccache/sccache.log 2>/dev/null || true
 if test ! -f sccache; then
     # Map the system architecture to the upstream release triple.
     # mozilla/sccache ships static musl binaries (no libssl/libcrypto needed,
