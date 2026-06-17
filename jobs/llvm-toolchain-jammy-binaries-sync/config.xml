@@ -27,7 +27,6 @@
     <hudson.tasks.Shell>
       <command>sudo /usr/bin/chown -R jenkins. /srv/repository/jammy/
 bash ~/sync-form-other-arch.sh jammy $HOST_S390X s390x
-bash ~/sync-form-other-arch.sh jammy $HOST_ARM64 arm64
 /srv/repository/sync-to-llvm.sh jammy
 /srv/repository/sync-to-llvm.sh jammy sync
 </command>

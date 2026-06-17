@@ -123,7 +123,7 @@ Contact: sylvestre@debian.org</systemMessage>
           <runAsUser>jenkins</runAsUser>
           <bootDiskType>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/zones/europe-west1-c/diskTypes/hyperdisk-balanced</bootDiskType>
           <bootDiskAutoDelete>true</bootDiskAutoDelete>
-          <bootDiskSourceImageName>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/global/images/image-debian-node-arm64-1</bootDiskSourceImageName>
+          <bootDiskSourceImageName>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/global/images/image-debian-node-arm64-2</bootDiskSourceImageName>
           <bootDiskSourceImageProject>secret-envoy-319113</bootDiskSourceImageProject>
           <networkConfiguration class="com.google.jenkins.plugins.computeengine.AutofilledNetworkConfiguration">
             <network>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/global/networks/default</network>
