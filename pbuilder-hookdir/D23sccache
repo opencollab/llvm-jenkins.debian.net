@@ -12,7 +12,11 @@ cd /opt/sccache/
 # (amd64's image happens to ship a 0666 sccache.log; make every arch self-healing.)
 chmod 777 /opt/sccache 2>/dev/null || true
 touch /opt/sccache/sccache.log 2>/dev/null && chmod 666 /opt/sccache/sccache.log 2>/dev/null || true
-if test ! -f sccache; then
+# Re-download if the binary is missing, empty (a truncated/interrupted prior
+# download leaves a 0-byte stub on the persistent s390x host), or not runnable.
+# A bare `test ! -f` would keep a broken stub and FTBFS with "Permission denied".
+if test ! -s sccache || test ! -x sccache; then
+    rm -f sccache
     # Map the system architecture to the upstream release triple.
     # mozilla/sccache ships static musl binaries (no libssl/libcrypto needed,
     # GCS support built in) for all the arches we build on.
