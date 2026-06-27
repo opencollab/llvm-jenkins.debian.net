@@ -14,20 +14,29 @@ chmod 777 /opt/sccache 2>/dev/null || true
 touch /opt/sccache/sccache.log 2>/dev/null && chmod 666 /opt/sccache/sccache.log 2>/dev/null || true
 # Re-download if the binary is missing, empty (a truncated/interrupted prior
 # download leaves a 0-byte stub on the persistent s390x host), not runnable, or
-# present-but-broken: a stale GNU/dynamic build whose ELF interpreter is gone
-# runs as exit 127 "not found" despite being non-empty and +x, so the size/+x
-# tests alone keep it and FTBFS. `./sccache --version` is the real liveness check
-# (cheap, needs no server) -- if it can't even print its version, re-download.
-if test ! -s sccache || test ! -x sccache || ! ./sccache --version >/dev/null 2>&1; then
+# present-but-broken: a stale build whose ELF interpreter is gone runs as exit
+# 127 "not found" despite being non-empty and +x, so the size/+x tests alone
+# keep it and FTBFS. `--version` is the liveness probe -- it execs the binary
+# (exercising the loader -> 127 if the interpreter/arch is wrong) and prints the
+# version in milliseconds without touching the server. Must be invoked as
+# `./sccache` (file stem "sccache"): under any other name sccache assumes it is
+# a compiler masquerade, treats `--version` as a compile arg and self-probes
+# with `-vV` -- which is why this binary is always named exactly sccache.
+# Wrap in `timeout` so a hang can never wedge the hook.
+if test ! -s sccache || test ! -x sccache || ! timeout 30 ./sccache --version >/dev/null 2>&1; then
     rm -f sccache
     # Map the system architecture to the upstream release triple.
-    # mozilla/sccache ships static musl binaries (no libssl/libcrypto needed,
-    # GCS support built in) for all the arches we build on.
+    # mozilla/sccache ships *static* musl binaries for x86_64/aarch64/i686, so
+    # those need no runtime libs. s390x is the exception: its musl build is
+    # dynamically linked against /lib/ld-musl-s390x.so.1, which the glibc build
+    # chroot does NOT ship -> "not found" (127). Use the s390x *gnu* build, whose
+    # interpreter (/lib/ld64.so.1) and NEEDED libs (libgcc_s, libm, libc) are all
+    # present in the chroot.
     case "$ARCH" in
         x86_64)          triple="x86_64-unknown-linux-musl" ;;
         aarch64)         triple="aarch64-unknown-linux-musl" ;;
         i686 | i386)     triple="i686-unknown-linux-musl" ;;
-        s390x)           triple="s390x-unknown-linux-musl" ;;
+        s390x)           triple="s390x-unknown-linux-gnu" ;;
         *)
             echo "no sccache binary available for arch $ARCH"
             exit 0
