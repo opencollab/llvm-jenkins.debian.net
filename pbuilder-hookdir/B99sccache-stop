@@ -1,0 +1,28 @@
+#!/bin/sh
+# Runs after the package build (B* hooks execute post-build, just before
+# pbuilder unmounts the bind mounts).
+#
+# debian/rules starts an sccache *server* daemon during the build with
+# SCCACHE_IDLE_TIMEOUT=0, which disables the idle shutdown -- so the daemon
+# never exits on its own, and rules only ever stops it at the *start* of the
+# next build, never at the end of this one. The daemon's executable mapping
+# (/opt/sccache/sccache) and open log keep the bind-mounted /opt/sccache/
+# busy, so pbuilder's final `umount /opt/sccache/` fails with "target is
+# busy" and retries forever -- hanging the job on the ephemeral GCE build
+# nodes after an otherwise successful build.
+#
+# Stop the server here so the bind mount can be released.
+set -x
+
+if test -x /opt/sccache/sccache; then
+    # --stop-server connects to the daemon (default 127.0.0.1:4226) and asks it
+    # to shut down, releasing every file it held under /opt/sccache/.
+    LD_LIBRARY_PATH=/opt/sccache/ /opt/sccache/sccache --stop-server || true
+fi
+
+# Belt and braces: if anything still pins the mount, kill it so umount proceeds.
+if command -v fuser >/dev/null 2>&1; then
+    fuser -k /opt/sccache/ 2>/dev/null || true
+fi
+
+exit 0
