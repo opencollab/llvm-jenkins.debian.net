@@ -65,7 +65,7 @@ download_key() {
 check_url() {
     local url="$1"
     if command -v wget &>/dev/null; then
-        wget -q --method=HEAD "$url" &>/dev/null
+        wget -q --method=HEAD --timeout=15 --tries=3 "$url" &>/dev/null
     elif command -v curl &>/dev/null; then
         curl --proto '=https' --tlsv1.2 -sSf --head --retry 2 "$url" >/dev/null 2>&1
     else
@@ -201,7 +201,7 @@ LLVM_VERSION_STRING=${LLVM_VERSION_PATTERNS[$LLVM_VERSION]}
 if [[ -n "${CODENAME}" ]]; then
     REPO_NAME="deb ${BASE_URL}/${CODENAME}/  llvm-toolchain${LINKNAME}${LLVM_VERSION_STRING} main"
     # check if the repository exists for the distro and version
-    if ! check_url "${BASE_URL}/${CODENAME}"; then
+    if ! check_url "${BASE_URL}/${CODENAME}/"; then
         if [[ -n "${CODENAME_FROM_ARGUMENTS}" ]]; then
             error "Specified codename '${CODENAME}' is not supported by this script." 2
         else
