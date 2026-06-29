@@ -6,23 +6,51 @@
 # SCCACHE_IDLE_TIMEOUT=0, which disables the idle shutdown -- so the daemon
 # never exits on its own, and rules only ever stops it at the *start* of the
 # next build, never at the end of this one. The daemon's executable mapping
-# (/opt/sccache/sccache) and open log keep the bind-mounted /opt/sccache/
-# busy, so pbuilder's final `umount /opt/sccache/` fails with "target is
-# busy" and retries forever -- hanging the job on the ephemeral GCE build
-# nodes after an otherwise successful build.
+# (/opt/sccache/sccache) and the libssl/libcrypto .so it loads via
+# LD_LIBRARY_PATH=/opt/sccache/ keep the bind-mounted /opt/sccache/ busy, so
+# pbuilder's final `umount /opt/sccache/` fails with "target is busy" and
+# retries forever -- hanging the job on the ephemeral GCE build nodes after an
+# otherwise successful build.
 #
 # Stop the server here so the bind mount can be released.
 set -x
 
+# 1. Graceful shutdown -- best effort only. This is unreliable here: the daemon
+#    may listen on a non-default SCCACHE_SERVER_PORT (set by debian/rules), so
+#    root's --stop-server hits the default 127.0.0.1:4226, gets "connection
+#    refused", and exits while the real daemon keeps running.
 if test -x /opt/sccache/sccache; then
-    # --stop-server connects to the daemon (default 127.0.0.1:4226) and asks it
-    # to shut down, releasing every file it held under /opt/sccache/.
     LD_LIBRARY_PATH=/opt/sccache/ /opt/sccache/sccache --stop-server || true
 fi
 
-# Belt and braces: if anything still pins the mount, kill it so umount proceeds.
-if command -v fuser >/dev/null 2>&1; then
-    fuser -k /opt/sccache/ 2>/dev/null || true
-fi
+# 2. The reliable part: kill every process that still pins the mount, i.e. whose
+#    executable, cwd, root, or any mmap'd file lives under /opt/sccache/. We scan
+#    /proc directly instead of using fuser/pkill -- psmisc/procps are not
+#    installed in the build chroot (the old `command -v fuser` guard was always
+#    false, so the kill was silently skipped), and /proc needs no packages and
+#    is immune to the --stop-server port mismatch.
+for pid_dir in /proc/[0-9]*; do
+    pid=${pid_dir#/proc/}
+    # Skip ourselves.
+    test "$pid" = "$$" && continue
+
+    hit=""
+    for link in exe cwd root; do
+        target=$(readlink "$pid_dir/$link" 2>/dev/null) || continue
+        case "$target" in
+            /opt/sccache|/opt/sccache/*) hit=1; break ;;
+        esac
+    done
+    # Also catch a process that only mmap'd a file under /opt/sccache/ (the
+    # binary or the libssl/libcrypto .so) without its exe/cwd pointing there.
+    if [ -z "$hit" ] && grep -q ' /opt/sccache/' "$pid_dir/maps" 2>/dev/null; then
+        hit=1
+    fi
+
+    if [ -n "$hit" ]; then
+        echo "Killing PID $pid still holding /opt/sccache/"
+        kill -9 "$pid" 2>/dev/null || true
+    fi
+done
 
 exit 0
