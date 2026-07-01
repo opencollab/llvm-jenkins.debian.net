@@ -13,7 +13,6 @@
 # otherwise successful build.
 #
 # Stop the server here so the bind mount can be released.
-set -x
 
 # 1. Graceful shutdown -- best effort only. This is unreliable here: the daemon
 #    may listen on a non-default SCCACHE_SERVER_PORT (set by debian/rules), so
@@ -23,34 +22,65 @@ if test -x /opt/sccache/sccache; then
     LD_LIBRARY_PATH=/opt/sccache/ /opt/sccache/sccache --stop-server || true
 fi
 
-# 2. The reliable part: kill every process that still pins the mount, i.e. whose
-#    executable, cwd, root, or any mmap'd file lives under /opt/sccache/. We scan
+# 2. The reliable part: kill every process that still pins the mount. A process
+#    pins a bind mount if any of its exe / cwd / root symlinks, mmap'd files
+#    (maps), or open file descriptors (fd/*) resolve under /opt/sccache/. We scan
 #    /proc directly instead of using fuser/pkill -- psmisc/procps are not
 #    installed in the build chroot (the old `command -v fuser` guard was always
 #    false, so the kill was silently skipped), and /proc needs no packages and
 #    is immune to the --stop-server port mismatch.
+#
+#    No `set -x` around the scan: it would emit one trace line per PID and bury
+#    the useful output. We echo each kill explicitly instead.
+
+# Returns 0 if $1 (a /proc/<pid> dir) holds anything under /opt/sccache/.
+holds_mount() {
+    _d=$1
+    for _link in exe cwd root; do
+        case "$(readlink "$_d/$_link" 2>/dev/null)" in
+            /opt/sccache|/opt/sccache/*) return 0 ;;
+        esac
+    done
+    # Open file descriptors (the binary, the libssl/libcrypto .so, or any file
+    # the daemon keeps open under the mount).
+    if [ -d "$_d/fd" ]; then
+        for _fd in "$_d"/fd/*; do
+            case "$(readlink "$_fd" 2>/dev/null)" in
+                /opt/sccache|/opt/sccache/*) return 0 ;;
+            esac
+        done
+    fi
+    # mmap'd files without exe/fd pointing there.
+    grep -q ' /opt/sccache/' "$_d/maps" 2>/dev/null && return 0
+    return 1
+}
+
 for pid_dir in /proc/[0-9]*; do
     pid=${pid_dir#/proc/}
     # Skip ourselves.
     test "$pid" = "$$" && continue
 
-    hit=""
-    for link in exe cwd root; do
-        target=$(readlink "$pid_dir/$link" 2>/dev/null) || continue
-        case "$target" in
-            /opt/sccache|/opt/sccache/*) hit=1; break ;;
-        esac
-    done
-    # Also catch a process that only mmap'd a file under /opt/sccache/ (the
-    # binary or the libssl/libcrypto .so) without its exe/cwd pointing there.
-    if [ -z "$hit" ] && grep -q ' /opt/sccache/' "$pid_dir/maps" 2>/dev/null; then
-        hit=1
-    fi
-
-    if [ -n "$hit" ]; then
-        echo "Killing PID $pid still holding /opt/sccache/"
+    if holds_mount "$pid_dir"; then
+        echo "B99sccache-stop: killing PID $pid ($(cat "$pid_dir/comm" 2>/dev/null)) holding /opt/sccache/"
         kill -9 "$pid" 2>/dev/null || true
     fi
 done
+
+# 3. Diagnostic: kill -9 is asynchronous, so give the kernel a moment to release
+#    the references, then report anything still pinning the mount. If this prints
+#    a PID, that process is why pbuilder's umount will retry -- and we now know
+#    which one to chase next time.
+sleep 1
+remaining=""
+for pid_dir in /proc/[0-9]*; do
+    pid=${pid_dir#/proc/}
+    test "$pid" = "$$" && continue
+    holds_mount "$pid_dir" && remaining="$remaining $pid($(cat "$pid_dir/comm" 2>/dev/null))"
+done
+if [ -n "$remaining" ]; then
+    echo "B99sccache-stop: WARNING still holding /opt/sccache/ after kill:$remaining"
+else
+    echo "B99sccache-stop: nothing left holding /opt/sccache/"
+fi
 
 exit 0
