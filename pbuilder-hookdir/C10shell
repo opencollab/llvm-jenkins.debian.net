@@ -2,8 +2,20 @@
 # Copyright 2013 Michael Prokop <mika@debian.org>
 # Licensed under the terms of the MIT License.
 
-echo "Kill sccache if exists"
-kill -9 $(pidof sccache)||true
+# Stop sccache so pbuilder can unmount /opt/sccache/ afterwards.
+#
+# This is the FTBFS (failure) path: pbuilder runs C* hooks -- but NOT the B*
+# hooks -- when the build fails, so B99sccache-stop never runs here and the
+# sccache daemon would keep the /opt/sccache/ bind mount busy, hanging the job
+# on the umount retry loop. `pidof` is unreliable (procps isn't installed in
+# the build chroot), so reuse B99sccache-stop's robust /proc-based killer,
+# which is copied into the same /tmp/hooks/ directory.
+echo "Stopping sccache so /opt/sccache/ can be unmounted"
+if [ -x "$(dirname "$0")/B99sccache-stop" ]; then
+    "$(dirname "$0")/B99sccache-stop" || true
+else
+    kill -9 $(pidof sccache) 2>/dev/null || true
+fi
 
 cat <<EOF
   ┌──────────────────────────────────────────────────────────────────────────────┐
