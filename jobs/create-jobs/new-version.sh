@@ -1,8 +1,8 @@
 #!/bin/bash
-VERSION="22"
-VERSION_2="220"
+VERSION="23"
+VERSION_2="230"
 DEB=( unstable buster bullseye bookworm trixie )
-UBUNTU=( focal jammy noble plucky questing )
+UBUNTU=( focal jammy noble plucky questing resolute )
 DISTROS=( "${DEB[@]}" "${UBUNTU[@]}" )
 for d in "${DISTROS[@]}"
 do
