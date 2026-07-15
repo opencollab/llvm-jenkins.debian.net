@@ -13,7 +13,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-defaults-plucky-binaries, llvm-toolchain-plucky-binaries, llvm-toolchain-plucky-19-binaries, llvm-toolchain-plucky-20-binaries, llvm-toolchain-plucky-21-binaries,</upstreamProjects>
+      <upstreamProjects>llvm-defaults-plucky-binaries, llvm-toolchain-plucky-binaries, llvm-toolchain-plucky-22-binaries, llvm-toolchain-plucky-23-binaries, llvm-toolchain-plucky-21-binaries,</upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -33,7 +33,7 @@ bash ~/sync-form-other-arch.sh plucky $HOST_S390X s390x
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.Mailer plugin="mailer@509.vc54d23fc427e">
+    <hudson.tasks.Mailer plugin="mailer@534.v1b_36f5864073">
       <recipients>sylvestre@debian.org</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>

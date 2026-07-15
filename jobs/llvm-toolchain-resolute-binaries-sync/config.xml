@@ -7,13 +7,13 @@
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>llvm-toolchain-buster-binaries, llvm-toolchain-buster-20-binaries, llvm-toolchain-buster-23-binaries,llvm-toolchain-buster-22-binaries,llvm-defaults-buster-binaries, llvm-toolchain-buster-21-binaries,</upstreamProjects>
+      <upstreamProjects>llvm-defaults-resolute-binaries, llvm-toolchain-resolute-binaries, llvm-toolchain-resolute-21-binaries, llvm-toolchain-resolute-22-binaries, llvm-toolchain-resolute-23-binaries, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -25,11 +25,9 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>sudo /usr/bin/chown -R jenkins. /srv/repository/buster/
-bash ~/sync-form-other-arch.sh buster $HOST_S390X s390x
-/srv/repository/sync-to-llvm.sh buster
-# Force the sync a second time
-/srv/repository/sync-to-llvm.sh buster sync
+      <command>sudo /usr/bin/chown -R jenkins. /srv/repository/resolute/
+bash ~/sync-form-other-arch.sh resolute $HOST_S390X s390x
+/srv/repository/sync-to-llvm.sh resolute
 </command>
       <configuredLocalRules/>
     </hudson.tasks.Shell>
