@@ -14,6 +14,21 @@ DISTRO=$1
 HOST=$2
 ARCH=$3
 
+# reprepro needs to create db/lockfile. If anything left the repository owned by
+# root (a manual run, a job that forgot the chown), every reprepro call below
+# dies with "Error 13 creating lock file". Take ownership back here so the
+# guarantee lives with the script instead of each job's config.
+REPO_DIR=/srv/repository/$DISTRO
+if test -d "$REPO_DIR" && ! test -w "$REPO_DIR/db"; then
+    echo "$REPO_DIR/db not writable by $(whoami), taking ownership"
+    ls -ld "$REPO_DIR" "$REPO_DIR/db" || true
+    sudo /usr/bin/chown -R "$(id -un):$(id -gn)" "$REPO_DIR/"
+    if ! test -w "$REPO_DIR/db"; then
+        echo "ERROR: $REPO_DIR/db is still not writable after chown"
+        exit 1
+    fi
+fi
+
 
 declare -a old_versions=("9" "10" "11" "12" "13" "14" "15")
 

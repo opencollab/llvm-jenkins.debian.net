@@ -265,21 +265,35 @@ for d in $DISTRO; do
     fi
     echo "
      set -e -v
-     # Find lit.py: prefer the llvm-shipped version, fall back to system lit
-     LIT_PATH=/usr/lib/llvm-$v/build/utils/lit/lit.py
-     if [ ! -f \$LIT_PATH ]; then
-         LIT_PATH=\$(find /usr/lib/llvm-$v -name lit.py 2>/dev/null | head -1)
+     # Find lit. llvm-N-tools ships it as bin/lit (and /usr/bin/lit-N) since
+     # LLVM 21; up to LLVM 20 it was the unwrapped build/utils/lit/lit.py.
+     LIT_CANDIDATES='/usr/lib/llvm-$v/bin/lit
+/usr/bin/lit-$v
+/usr/lib/llvm-$v/build/utils/lit/lit.py'
+     LIT_PATH=
+     for c in \$LIT_CANDIDATES; do
+         if [ -x \"\$c\" ] || [ -f \"\$c\" ]; then
+             LIT_PATH=\$c
+             break
+         fi
+     done
+     if [ -z \"\$LIT_PATH\" ]; then
+         LIT_PATH=\$(find /usr/lib/llvm-$v -name 'lit.py' -o -name 'lit' -type f 2>/dev/null | head -1)
      fi
-     if [ -z \$LIT_PATH ] || [ ! -f \$LIT_PATH ]; then
+     if [ -z \"\$LIT_PATH\" ]; then
          LIT_PATH=\$(command -v lit 2>/dev/null || true)
      fi
-     if [ -z \$LIT_PATH ]; then
-         echo "ERROR: lit.py not found for LLVM $v"
-         echo "Tried: /usr/lib/llvm-$v/build/utils/lit/lit.py, find, and system PATH"
-         echo "Make sure llvm-$v-tools or python3-lit is installed"
+     if [ -z \"\$LIT_PATH\" ]; then
+         echo 'ERROR: lit not found for LLVM $v'
+         echo \"Tried: \$LIT_CANDIDATES, a find under /usr/lib/llvm-$v, and the system PATH\"
+         echo 'Contents of /usr/lib/llvm-$v/bin and /usr/bin/lit*:'
+         ls -l /usr/lib/llvm-$v/bin/ | grep -i lit || true
+         ls -l /usr/bin/lit* || true
+         dpkg -l 'llvm-$v-tools' 'python3-lit' || true
+         echo 'Make sure llvm-$v-tools or python3-lit is installed'
          exit 1
      fi
-     echo "Using lit: \$LIT_PATH"
+     echo \"Using lit: \$LIT_PATH\"
      rm -rf check
      git clone https://github.com/opencollab/llvm-toolchain-integration-test-suite.git check
      cd check
