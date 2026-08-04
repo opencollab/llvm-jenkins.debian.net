@@ -75,6 +75,9 @@ DISTRIBUTION="$DIST"
 BUILDRESULT="/var/cache/pbuilder/$NAME/result/"
 APTCACHE="/var/cache/pbuilder/$NAME/aptcache/"
 BUILDPLACE="/var/cache/pbuilder/build/"
+# pbuilder aborts ("E: $APTCACHE: No such directory") instead of creating
+# these itself, which kills the base-image creation on a fresh node.
+mkdir -p "$BUILDRESULT" "$APTCACHE" 2>/dev/null || true
 
 # Use apt as resolver
 PBUILDERSATISFYDEPENDSCMD=/usr/lib/pbuilder/
