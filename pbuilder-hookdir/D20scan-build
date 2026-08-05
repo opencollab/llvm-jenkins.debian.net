@@ -7,7 +7,10 @@ if echo "$DEB_BUILD_OPTIONS" | grep "scan-build"; then
     echo "deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm main" >> /etc/apt/sources.list
     wget --no-check-certificate -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -
     apt-get update
-    apt-get install --yes --no-install-recommends --force-yes clang-tools-23
+    # install the newest clang-tools the suites offer, so the yearly
+    # snapshot version bump (23 -> 24 -> ...) doesn't break this hook
+    tools=$(apt-cache pkgnames clang-tools- | grep -E '^clang-tools-[0-9]+$' | sort -t- -k3 -n | tail -1)
+    apt-get install --yes --no-install-recommends --force-yes "$tools"
     # remove old artifacts
     rm -rf /tmp/scan-build-*
 fi
