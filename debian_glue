@@ -121,3 +121,25 @@ PBUILDER_HOOKDIR=/home/jenkins/llvm-jenkins.debian.net.git/pbuilder-hookdir/
 # this.
 # Default: false
 # UNRELEASED_APPEND_COMMIT=false
+
+# ---------------------------------------------------------------------------
+# Not upstream config: this file is sourced as shell by the
+# jenkins-debian-glue scripts on the host, so it can also carry node fixups.
+#
+# On the s390x node (llvm04) /srv/repository is a separate filesystem and has
+# been seen unmounted (2026-08-05): every build then succeeds but the final
+# deploy bails out with
+# "Error: repository /srv/repository/<suite> does not exist."
+# Remount it here, before the build starts, so the publish step finds it.
+# Needs an /etc/fstab entry for /srv/repository on the node; jenkins already
+# has sudo for cowbuilder. A pbuilder hook cannot do this job -- hooks run
+# inside the chroot, where neither the mount point nor the fstab entry exist.
+if [ "$(dpkg --print-architecture 2>/dev/null)" = "s390x" ] \
+   && ! mountpoint -q /srv/repository 2>/dev/null; then
+    echo "WARNING: /srv/repository is not mounted; attempting to mount it"
+    if sudo -n mount /srv/repository; then
+        echo "INFO: mounted /srv/repository"
+    else
+        echo "WARNING: could not mount /srv/repository - the final deploy will bail out"
+    fi
+fi
