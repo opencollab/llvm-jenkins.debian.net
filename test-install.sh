@@ -94,10 +94,11 @@ for d in $DISTRO; do
 
     if echo "$UBUNTU_DISTRO" | grep -qw "$d"; then
         # focal, groovy, etc need universe
-        if test "$(arch)" == "s390x"; then
-            echo "deb http://ports.ubuntu.com/ubuntu-ports $d universe" >> $d.list
-        else
+        # lip6 only mirrors the x86 archive; every other arch lives on ports
+        if test "$(arch)" == "x86_64" -o "$(arch)" == "i686"; then
             echo "deb http://www-ftp.lip6.fr/pub/linux/distributions/Ubuntu/ $d universe"  >> $d.list
+        else
+            echo "deb http://ports.ubuntu.com/ubuntu-ports $d universe" >> $d.list
         fi
     fi
 
