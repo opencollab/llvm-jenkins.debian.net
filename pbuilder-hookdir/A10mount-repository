@@ -1,0 +1,27 @@
+#!/bin/bash
+# Ensure /srv/repository is mounted on build nodes
+# This hook runs early in the pbuilder process to ensure repository access
+
+set -e
+
+# Check if /srv/repository is already mounted
+if mountpoint -q /srv/repository; then
+    echo "INFO: /srv/repository is already mounted"
+    exit 0
+fi
+
+# Attempt to mount /srv/repository
+# Note: This assumes the mount is configured in /etc/fstab or similar
+# Adjust the mount command based on your actual setup
+if mount /srv/repository 2>/dev/null; then
+    echo "INFO: Successfully mounted /srv/repository"
+
+    # Ensure proper ownership for jenkins user if it exists
+    if id jenkins >/dev/null 2>&1; then
+        chown jenkins:jenkins /srv/repository
+        echo "INFO: Set jenkins ownership on /srv/repository"
+    fi
+else
+    echo "WARNING: Failed to mount /srv/repository - continuing without mount"
+    echo "This may cause repository operations to fail"
+fi

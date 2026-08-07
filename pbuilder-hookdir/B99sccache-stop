@@ -1,0 +1,25 @@
+#!/bin/sh
+# Second, last-chance sccache stop, run immediately before pbuilder unmounts
+# the bind mounts.
+#
+# B01sccache-stop already stopped the daemon at the very start of the B* hook
+# sequence (see the comment there: a hook exiting non-zero aborts pbuilder's
+# `set -e` loop, so anything that must happen has to happen first). This re-run
+# catches a daemon respawned in the meantime by one of the hooks in between --
+# any sccache invocation transparently starts a fresh server -- and, if
+# something is still pinning the mount, detaches it lazily so pbuilder's
+# "target is busy" retry loop cannot hang the job.
+#
+# The script is idempotent, so running it twice costs nothing when the first
+# run already did the job.
+
+HOOKDIR=$(dirname "$0")
+
+if [ -x "$HOOKDIR/B01sccache-stop" ]; then
+    "$HOOKDIR/B01sccache-stop" --umount-fallback || true
+else
+    echo "B99sccache-stop: B01sccache-stop missing, falling back to a lazy unmount"
+    umount -l /opt/sccache 2>&1 || true
+fi
+
+exit 0

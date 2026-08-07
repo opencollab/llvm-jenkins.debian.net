@@ -4,11 +4,11 @@ if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root" 1>&2
    exit 1
 fi
-NAME="questing"
+NAME="resolute"
 
 IS_UBUNTU=1
 
-VERSIONS=(20 21 snapshot)
+VERSIONS=(21 22 snapshot)
 for v in "${VERSIONS[@]}"
 do
         echo $v
@@ -57,14 +57,16 @@ sed -i -e "s|release/${VERSIONS[1]}|release/${VERSIONS[1]}.x|" llvm-toolchain-$N
 echo "Add the new version in /srv/salt/llvm-slave.sls on cocoro for /usr/share/debootstrap/scripts"
 echo "run with salt 'llvm*' state.apply"
 echo "OR on llvm-jenkins, run update-all.sh"
-echo "run the command on pulau"
-echo "run the following commands":
+
+echo "run the following commands on jenkins-master:"
 echo "export PREVIOUS=UPDATE_TO_OLD_VERSION"
 echo "cp -R /srv/repository/\$PREVIOUS/conf /srv/repository/$NAME/conf/"
 echo "sed -i -e \"s|\$PREVIOUS|$NAME|g\" /srv/repository/$NAME/conf/distributions"
-echo "ssh jenkins@cb0dd220.packethost.net mkdir -p /srv/repository/$NAME/conf/"
+
+echo "run the command on jenkins-master:"
+echo "ssh jenkins@10.132.0.38 mkdir -p /srv/repository/$NAME/conf/"
 echo "ssh llvm-jenkins-s390x-1.debian.net mkdir -p /srv/repository/$NAME/conf/"
-echo "scp /srv/repository/$NAME/conf/distributions jenkins@cb0dd220.packethost.net:/srv/repository/$NAME/conf/distributions"
+echo "scp /srv/repository/$NAME/conf/distributions jenkins@10.132.0.38:/srv/repository/$NAME/conf/distributions"
 echo "scp /srv/repository/$NAME/conf/distributions llvm-jenkins-s390x-1.debian.net:/srv/repository/$NAME/conf/distributions"
 echo "edit https://github.com/opencollab/llvm-jenkins.debian.net/blob/master/install-tests/test.sh to add the new distro"
 echo "Run image-update.sh on your system"

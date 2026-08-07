@@ -1,8 +1,8 @@
 #!/bin/bash
-VERSION="21"
-VERSION_2="210"
-DEB=( unstable buster bullseye bookworm )
-UBUNTU=( focal jammy noble oracular plucky )
+VERSION="23"
+VERSION_2="230"
+DEB=( unstable buster bullseye bookworm trixie )
+UBUNTU=( focal jammy noble plucky questing resolute )
 DISTROS=( "${DEB[@]}" "${UBUNTU[@]}" )
 for d in "${DISTROS[@]}"
 do
@@ -19,6 +19,9 @@ done
 echo "update the sync job to upload the version (by hand in the interface) - links at the end"
 echo "Disable i386 on recent versions of Ubuntu"
 echo "Make sure that the label on Debian is set for i386"
+echo "mv *$VERSION* ../"
+echo "in jenkins, reload the configuration"
+echo "create a group"
 echo "Disable the old version when ready"
 D=$(echo "{$DISTROS}"| sed -e "s| |,|g")
 echo "do it also on arm64 & s390x machines"
@@ -65,7 +68,7 @@ for d in "${DISTROS[@]}"; do
     else
         n="-$d"
     fi
-    if grep -v llvm-toolchain$n-$VERSION /srv/repository/$d/conf/distributions; then
+    if ! grep -q llvm-toolchain$n-$VERSION /srv/repository/$d/conf/distributions; then
 	echo "
 Codename: llvm-toolchain$n-$VERSION
 Architectures: $ARCH

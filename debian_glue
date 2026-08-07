@@ -23,8 +23,10 @@ KEY_ID=6084F3CF814B57C1CF12EFD515CF4D18AF4F7421
 # MAIN_ARCHITECTURE="amd64"
 
 # Hook scripts for pbuilder/cowbuilder, used e.g. for autopkgtest.
-# Default:
-# PBUILDER_HOOKDIR=/usr/share/jenkins-debian-glue/pbuilder-hookdir/
+# Point this at the live git checkout so that a plain `git pull` updates the
+# hooks for the next build -- no manual copy into /usr/share is needed.
+# (Default would be /usr/share/jenkins-debian-glue/pbuilder-hookdir/)
+PBUILDER_HOOKDIR=/home/jenkins/llvm-jenkins.debian.net.git/pbuilder-hookdir/
 
 # To enable a pbuilder configuration file for usage as documented
 # in man pbuilder(8) under --configfile set this option.

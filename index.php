@@ -42,20 +42,28 @@ function getLastRevision($distro) {
     return null; // Return null if the version line isn't found
 }
 
-$stableBranch="20";
-$qualificationBranch="21";
-$devBranch="22";
+$stableBranch="21";
+$qualificationBranch="22";
+$devBranch="23";
 $isQualification=true;
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-                      "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LLVM Debian/Ubuntu packages</title>
-  <link rel="stylesheet" type="text/css" href="//llvm.org/llvm.css">
+  <meta name="description" content="Debian and Ubuntu nightly apt packages for LLVM, Clang and the whole LLVM toolchain.">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <span class="site-header__brand">apt.llvm.org<span class="dot">.</span></span>
+    <nav class="site-nav" id="site-nav" aria-label="Sections"></nav>
+  </div>
+</header>
 
 <div class="rel_title">
   LLVM Debian/Ubuntu nightly packages
@@ -69,17 +77,26 @@ $isQualification=true;
 
 <p>The goal is to provide <a href="https://www.debian.org/releases/">Debian</a> and <a href="https://www.releases.ubuntu.com/">Ubuntu</a> nightly packages ready to be installed with minimal impact on the distribution.<br />Packages are available for amd64, i386 (Debian only), s390x and arm64 (aka aarch64). This for both the stable, <?php if ($isQualification) {?>qualification<?php } else {?>old-stable<?php } ?> and development branches (currently <?=$stableBranch?>, <?=$qualificationBranch?> and <?=$devBranch?>).</p>
 <p>Packages are built using stage2 and extremely similar to the one shipping in Debian & Ubuntu.</p>
+<p><b>Version &amp; distribution support policy:</b> on a best-effort basis, we provide:</p>
+<ul>
+<li>main (the development branch)</li>
+<li>the last 2 LLVM releases</li>
+<li>all currently supported Debian &amp; Ubuntu versions (with the exception that we may stop maintaining old LTS releases if this becomes too hard or complex to maintain)</li>
+</ul>
 <p>The packages provide <a href="https://llvm.org/">LLVM</a> + <a href="https://clang.llvm.org/">Clang</a> + <a href="https://compiler-rt.llvm.org/">compiler-rt</a> + <a href="https://polly.llvm.org/">polly</a> + <a href="https://lldb.llvm.org/">LLDB</a> + <a href="https://lld.llvm.org/">LLD</a> + <a href="https://llvm.org/docs/LibFuzzer.html">libFuzzer</a> + <a href="https://libcxx.llvm.org/">libc++</a> + <a href="https://libcxxabi.llvm.org/">libc++abi</a> + <a href="https://openmp.llvm.org/">openmp</a> + <a href="https://libclc.llvm.org/">libclc</a> + <a href="https://github.com/llvm/llvm-project/tree/main/libunwind">libunwind</a> + <a href="https://mlir.llvm.org/">MLIR</a> + <a href="https://github.com/llvm/llvm-project/tree/main/bolt">BOLT</a> + <a href="https://flang.llvm.org/docs/">flang</a> + <a href="https://libc.llvm.org/">libc</a> + wasm support</p>
 </div>
 <div class="rel_section">News</div>
 
 <div class="rel_boxtext">
-For the past year (2022), the work on apt.llvm.org has been partially supported by the OpenSSF, Google, & The Linux Foundation.<br />
+The work on apt.llvm.org has been partially supported by the OpenSSF, Google, & The Linux Foundation.<br />
 This platform serves more than 124tb of packages every month and is used by various actors like the Linux Kernel, TensorFlow, etc and referenced more than 24k times on Github.<br />
 The main goal of this support is to improve the security and sustainability of this platform. Previously we were running on an old rack that was no longer supported, and sooner or later would have failed. Now we're running on a <a href="https://blog.llvm.org/posts/2021-11-02-apt.llvm.org-moving-from-physical-server-to-the-cloud/">cloud-based build platform</a> where the cloud provider is keeping the hardware up-to-date.<br />
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+May 20th 2026 - Ubuntu Resolute (26.04) enabled<br />
+Feb 19th 2026 - https://apt.llvm.org/llvm-snapshot.gpg.key has been updated to support sha512<br />
+Jan 10th 2026 - Snapshot becomes 23, branch 22 created<br />
 Nov 24th 2025 - Ubuntu Questing (25.10) enabled<br />
 Sep 14th 2025 - Ubuntu Oracular (24.10) disabled (EOL)<br />
 Sep 9th 2025 - Debian Buster disabled (EOL)<br />
@@ -95,12 +112,12 @@ Mar 22nd 2024 - Ubuntu Noble (24.04) enabled<br />
 Feb 20th 2024 - Add libllvmlibc-18-dev as new package<br />
 Jan 25th 2024 - Snapshot becomes 19, branch 18 created<br />
 Sep 18th 2023 - Ubuntu Mantic (23.10) enabled<br />
-Sep 14th 2022 - Ubuntu Kinetic (22.10) disabled (EOL)<br />
+Sep 14th 2023 - Ubuntu Kinetic (22.10) disabled (EOL)<br />
 Jul 26th 2023 - Snapshot becomes 18, branch 17 created<br />
 Jun 04th 2023 - Debian bookworm (12) enabled as a new distro<br />
 Mar 22nd 2023 - Ubuntu Lunar (23.04) enabled<br />
 Jan 03rd 2023 - libclang-common-X.Y-dev split into: libclang-rt-X.Y-dev, libpolly-X.Y-dev, libclang-rt-X.Y-dev-wasm32 and libclang-rt-X.Y-dev-wasm64<br />
-Jan 03rt 2023 - Support of wasm improved with new packages: libc++-X.Y-dev-wasm32, libc++abi-X.Y-dev-wasm32, libclang-rt-X.Y-dev-wasm32 and libclang-rt-X.Y-dev-wasm64 (recent distros)<br />
+Jan 03rd 2023 - Support of wasm improved with new packages: libc++-X.Y-dev-wasm32, libc++abi-X.Y-dev-wasm32, libclang-rt-X.Y-dev-wasm32 and libclang-rt-X.Y-dev-wasm64 (recent distros)<br />
 Jan 03rd 2023 - flang packages added<br />
 </div>
 
@@ -285,6 +302,20 @@ deb-src http://apt.llvm.org/questing/ llvm-toolchain-questing-<?=$stableBranch?>
 deb http://apt.llvm.org/questing/ llvm-toolchain-questing-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/questing/ llvm-toolchain-questing-<?=$qualificationBranch?> main
 </pre>
+
+Resolute (26.04) - <small>Last update : <?=getLastUpdate("resolute");?> / Revision: <?=getLastRevision("resolute")?></small>
+<pre>
+deb http://apt.llvm.org/resolute/ llvm-toolchain-resolute main
+deb-src http://apt.llvm.org/resolute/ llvm-toolchain-resolute main
+# <?=$stableBranch?>
+
+deb http://apt.llvm.org/resolute/ llvm-toolchain-resolute-<?=$stableBranch?> main
+deb-src http://apt.llvm.org/resolute/ llvm-toolchain-resolute-<?=$stableBranch?> main
+# <?=$qualificationBranch?>
+
+deb http://apt.llvm.org/resolute/ llvm-toolchain-resolute-<?=$qualificationBranch?> main
+deb-src http://apt.llvm.org/resolute/ llvm-toolchain-resolute-<?=$qualificationBranch?> main
+</pre>
 </div>
 <a href="#" id="default_pkg" style="visibility: hidden">default_pkg</a>
 <div class="rel_section">Default packages</div>
@@ -338,7 +369,7 @@ apt-get install libbolt-<?=$stableBranch?>-dev bolt-<?=$stableBranch?><br />
 <b># flang</b><br />
 apt-get install flang-<?=$stableBranch?><br />
 <b># wasm support</b><br />
-apt-get install libclang-rt-<?=$stableBranch?>-dev-wasm32 libclang-rt-<?=$stableBranch?>-dev-wasm64 libc++-<?=$stableBranch?>-dev-wasm32 libc++abi-<?=$stableBranch?>-dev-wasm32 libclang-rt-<?=$stableBranch?>-dev-wasm32 libclang-rt-<?=$stableBranch?>-dev-wasm64<br />
+apt-get install libclang-rt-<?=$stableBranch?>-dev-wasm32 libclang-rt-<?=$stableBranch?>-dev-wasm64 libc++-<?=$stableBranch?>-dev-wasm32 libc++abi-<?=$stableBranch?>-dev-wasm32<br />
 <!--<b># LLVM libc</b><br />
 apt-get install libllvmlibc-<?=$stableBranch?>-dev-->
 </p>
@@ -388,7 +419,7 @@ apt-get install libbolt-<?=$qualificationBranch?>-dev bolt-<?=$qualificationBran
 <b># flang</b><br />
 apt-get install flang-<?=$qualificationBranch?><br />
 <b># wasm support</b><br />
-apt-get install libclang-rt-<?=$qualificationBranch?>-dev-wasm32 libclang-rt-<?=$qualificationBranch?>-dev-wasm64 libc++-<?=$qualificationBranch?>-dev-wasm32 libc++abi-<?=$qualificationBranch?>-dev-wasm32 libclang-rt-<?=$qualificationBranch?>-dev-wasm32 libclang-rt-<?=$qualificationBranch?>-dev-wasm64<br />
+apt-get install libclang-rt-<?=$qualificationBranch?>-dev-wasm32 libclang-rt-<?=$qualificationBranch?>-dev-wasm64 libc++-<?=$qualificationBranch?>-dev-wasm32 libc++abi-<?=$qualificationBranch?>-dev-wasm32<br />
 <b># LLVM libc</b><br />
 apt-get install libllvmlibc-<?=$qualificationBranch?>-dev
 </p>
@@ -446,7 +477,7 @@ apt-get install libbolt-<?=$devBranch?>-dev bolt-<?=$devBranch?><br />
 <b># flang</b><br />
 apt-get install flang-<?=$devBranch?><br />
 <b># wasm support</b><br />
-apt-get install libclang-rt-<?=$devBranch?>-dev-wasm32 libclang-rt-<?=$devBranch?>-dev-wasm64 libc++-<?=$devBranch?>-dev-wasm32 libc++abi-<?=$devBranch?>-dev-wasm32 libclang-rt-<?=$devBranch?>-dev-wasm32 libclang-rt-<?=$devBranch?>-dev-wasm64<br />
+apt-get install libclang-rt-<?=$devBranch?>-dev-wasm32 libclang-rt-<?=$devBranch?>-dev-wasm64 libc++-<?=$devBranch?>-dev-wasm32 libc++abi-<?=$devBranch?>-dev-wasm32<br />
 <b># LLVM libc</b><br />
 apt-get install libllvmlibc-<?=$devBranch?>-dev
 </p>
@@ -482,7 +513,7 @@ sha=$(sha256sum $file|awk '{print $1}')<br />
 <div class="rel_section">Technical aspects</div>
 <div class="rel_boxtext">
 Packages are rebuilt against the trunk of the various LLVM projects.<br />
-They are rebuild through a Jenkins instance:<br />
+They are rebuilt through a Jenkins instance:<br />
 <a href="https://llvm-jenkins.debian.net">https://llvm-jenkins.debian.net</a>
 
 <h2>Bugs</h2>
@@ -504,7 +535,7 @@ In the <i>llvm-toolchain-*-source</i>, the following tasks will be performed:
 </ul>
 Then, the job <i>llvm-toolchain-X-binary</i> will:
 <ul>
-<li>Create a chroot using cowbuilder or update it is already existing</li>
+<li>Create a chroot using cowbuilder or update it if it already exists</li>
 <li>Build all the packages</li>
 <li>Launch lintian, the Debian static analyzer</li>
 <li>Publish the result on the LLVM repository</li>
@@ -561,6 +592,75 @@ Jan 19th 2019 - Artful jobs disabled (but packages still available)<br />
 </div> <!-- rel_container -->
 
 <!--#include virtual="../attrib.incl" -->
+
+<script>
+(function () {
+  // Build the sticky section navigation from the page's sections
+  var slug = function (t) {
+    return t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  };
+  var nav = document.getElementById("site-nav");
+  var sections = document.querySelectorAll(".rel_section");
+
+  // Assign an id to every section so all in-page anchors keep working,
+  // but only show a curated, short-labelled subset in the top bar.
+  var menu = [
+    { match: "Download", label: "Download" },
+    { match: "Automatic installation", label: "Install script" },
+    { match: "Debian", label: "Debian" },
+    { match: "Ubuntu", label: "Ubuntu" },
+    { match: "stable branch", label: "Install" },
+    { match: "sigstore", label: "Verify" },
+    { match: "Technical", label: "Technical" }
+  ];
+  var used = {};
+
+  sections.forEach(function (sec) {
+    var text = sec.textContent.replace(/\s+/g, " ").trim();
+    if (!sec.id) sec.id = slug(text);
+
+    for (var i = 0; i < menu.length; i++) {
+      var m = menu[i];
+      if (used[m.label]) continue;
+      if (text.toLowerCase().indexOf(m.match.toLowerCase()) !== -1) {
+        used[m.label] = true;
+        var a = document.createElement("a");
+        a.href = "#" + sec.id;
+        a.textContent = m.label;
+        nav.appendChild(a);
+        break;
+      }
+    }
+  });
+
+  // Add a copy-to-clipboard button to every code block
+  var blocks = document.querySelectorAll("pre, .www_code");
+  blocks.forEach(function (block) {
+    var wrap = document.createElement("div");
+    wrap.className = "code-wrap";
+    block.parentNode.insertBefore(wrap, block);
+    wrap.appendChild(block);
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "copy-btn";
+    btn.textContent = "Copy";
+    wrap.appendChild(btn);
+
+    btn.addEventListener("click", function () {
+      var text = block.innerText.trim();
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = "Copied!";
+        btn.classList.add("copied");
+        setTimeout(function () {
+          btn.textContent = "Copy";
+          btn.classList.remove("copied");
+        }, 1500);
+      });
+    });
+  });
+})();
+</script>
 
 </body>
 </html>

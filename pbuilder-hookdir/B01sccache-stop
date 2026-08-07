@@ -1,0 +1,144 @@
+#!/bin/sh
+# Stop the sccache daemon so pbuilder can unmount the /opt/sccache/ bind mount.
+#
+# Why this exists
+# ---------------
+# debian/rules starts an sccache *server* daemon during the build with
+# SCCACHE_IDLE_TIMEOUT=0, which disables the idle shutdown -- so the daemon
+# never exits on its own, and rules only ever stops it at the *start* of the
+# next build, never at the end of this one. The daemon's executable mapping
+# (/opt/sccache/sccache) and the libssl/libcrypto .so it loads via
+# LD_LIBRARY_PATH=/opt/sccache/ keep the bind-mounted /opt/sccache/ busy, so
+# pbuilder's final `umount /opt/sccache/` fails with "target is busy" and
+# retries *forever* -- the job hangs after an otherwise successful build.
+#
+# Why B01 and not B99
+# -------------------
+# /usr/lib/pbuilder/pbuilder-buildpackage runs `set -e` and executes the B*
+# hooks in a plain loop, so the *first* hook that exits non-zero aborts the
+# whole sequence and every later hook is silently skipped. That is exactly how
+# the s390x node hung on 2026-08-03: B20autopkgtest exited 16 (autopkgtest
+# "testbed failure" -- an infrastructure flake, not a package regression), the
+# hook chain aborted, the sccache stop that used to live in B99 never ran, and
+# pbuilder looped on umount for four hours.
+#
+# Running first means no other hook can prevent the stop from happening.
+# B99sccache-stop re-runs this script at the end (it is idempotent) to catch a
+# daemon respawned by a later hook, and lazily unmounts as a last resort.
+#
+# Usage: B01sccache-stop [--umount-fallback]
+
+UMOUNT_FALLBACK=0
+test "$1" = "--umount-fallback" && UMOUNT_FALLBACK=1
+
+# 1. Graceful shutdown -- best effort only. This is unreliable here: the daemon
+#    may listen on a non-default SCCACHE_SERVER_PORT (set by debian/rules), so
+#    root's --stop-server hits the default 127.0.0.1:4226, gets "connection
+#    refused", and exits while the real daemon keeps running.
+if test -x /opt/sccache/sccache; then
+    LD_LIBRARY_PATH=/opt/sccache/ /opt/sccache/sccache --stop-server || true
+fi
+
+# 2. The reliable part: kill every process that still pins the mount. A process
+#    pins a bind mount if any of its exe / cwd / root symlinks, mmap'd files
+#    (maps), or open file descriptors (fd/*) resolve under /opt/sccache/. We scan
+#    /proc directly instead of using fuser/pkill -- psmisc/procps are not
+#    installed in the build chroot (the old `command -v fuser` guard was always
+#    false, so the kill was silently skipped), and /proc needs no packages and
+#    is immune to the --stop-server port mismatch.
+#
+#    procfs renders these paths relative to the *reader's* root, so from inside
+#    the chroot the daemon's exe reads as /opt/sccache/sccache even though on
+#    the host it is /var/cache/pbuilder/build/cow.<N>/opt/sccache/sccache. That
+#    also means we only ever see -- and therefore only ever kill -- processes in
+#    *our* chroot, never the sccache daemon of a build running concurrently on
+#    the same node.
+#
+#    No `set -x` around the scan: it would emit one trace line per PID and bury
+#    the useful output. We echo each kill explicitly instead.
+
+# PIDs we must never kill: ourselves and our ancestors (pbuilder's chroot exec
+# chain). Killing one of those would break the build far more thoroughly than a
+# stuck mount ever could.
+protected=" $$ "
+_p=$$
+while [ -n "$_p" ] && [ "$_p" != "0" ] && [ "$_p" != "1" ]; do
+    # Field 4 of /proc/<pid>/stat is the ppid, but comm (field 2) may itself
+    # contain spaces or parentheses, so drop everything up to the last ") "
+    # first and count from there.
+    _p=$(sed -e 's/^.*) //' "/proc/$_p/stat" 2>/dev/null | cut -d' ' -f2)
+    test -n "$_p" && protected="$protected$_p "
+done
+
+# Returns 0 if $1 (a /proc/<pid> dir) holds anything under /opt/sccache/.
+holds_mount() {
+    _d=$1
+    for _link in exe cwd root; do
+        case "$(readlink "$_d/$_link" 2>/dev/null)" in
+            /opt/sccache|/opt/sccache/*) return 0 ;;
+        esac
+    done
+    # Open file descriptors (the binary, the libssl/libcrypto .so, or any file
+    # the daemon keeps open under the mount).
+    if [ -d "$_d/fd" ]; then
+        for _fd in "$_d"/fd/*; do
+            case "$(readlink "$_fd" 2>/dev/null)" in
+                /opt/sccache|/opt/sccache/*) return 0 ;;
+            esac
+        done
+    fi
+    # mmap'd files without exe/fd pointing there.
+    grep -q ' /opt/sccache/' "$_d/maps" 2>/dev/null && return 0
+    return 1
+}
+
+# Print the PIDs pinning the mount, minus the protected ones.
+pinning_pids() {
+    for _pid_dir in /proc/[0-9]*; do
+        _pid=${_pid_dir#/proc/}
+        case "$protected" in *" $_pid "*) continue ;; esac
+        holds_mount "$_pid_dir" && echo "$_pid"
+    done
+}
+
+# SIGTERM first so sccache can flush its pending cache writes, SIGKILL for
+# whatever survives it.
+for signal in TERM KILL; do
+    victims=$(pinning_pids)
+    test -z "$victims" && break
+    for pid in $victims; do
+        echo "sccache-stop: SIG$signal to PID $pid ($(cat "/proc/$pid/comm" 2>/dev/null)) holding /opt/sccache/"
+        kill "-$signal" "$pid" 2>/dev/null || true
+    done
+    # Signal delivery and process teardown are asynchronous; give the kernel a
+    # moment to drop the references before re-checking.
+    sleep 3
+done
+
+# 3. Report, and -- when called at the very end of the build -- make sure
+#    pbuilder can never loop on umount even if something we failed to identify
+#    is still holding the mount. A lazy unmount detaches it immediately; the
+#    kernel releases the backing filesystem once the last reference goes away.
+remaining=""
+for pid in $(pinning_pids); do
+    remaining="$remaining $pid($(cat "/proc/$pid/comm" 2>/dev/null))"
+done
+
+if [ -z "$remaining" ]; then
+    echo "sccache-stop: nothing left holding /opt/sccache/"
+else
+    echo "sccache-stop: WARNING still holding /opt/sccache/ after kill:$remaining"
+    if [ "$UMOUNT_FALLBACK" = "1" ]; then
+        echo "sccache-stop: detaching /opt/sccache/ lazily so pbuilder's umount cannot hang"
+        # The host's /opt/sccache is a *shared* mount, so every chroot's bind of
+        # it sits in the same propagation group. Detach ours from that group
+        # first, so this unmount cannot reach the builds running concurrently on
+        # the same node.
+        mount --make-private /opt/sccache 2>/dev/null || true
+        umount -l /opt/sccache 2>&1 || true
+    fi
+fi
+
+# Never fail: pbuilder runs the B* hooks under `set -e`, so a non-zero exit
+# here would abort the hook chain and skip every hook after us.
+exit 0

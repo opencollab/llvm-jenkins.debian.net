@@ -1,0 +1,139 @@
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface-2: #f0f2f5;
+  --text: #1c2230;
+  --muted: #5b6678;
+  --border: #e2e6ec;
+  --accent: #2563eb;
+  --accent-soft: #e8f0fe;
+  --code-bg: #0f172a;
+  --code-text: #e2e8f0;
+  --code-comment: #7dd3fc;
+  --radius: 12px;
+  --shadow: 0 1px 2px rgba(16,24,40,.04), 0 4px 16px rgba(16,24,40,.06);
+  --maxw: 1000px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0f17;
+    --surface: #121826;
+    --surface-2: #1a2234;
+    --text: #e6e9ef;
+    --muted: #9aa6b8;
+    --border: #232c40;
+    --accent: #6ea8fe;
+    --accent-soft: #16233f;
+    --code-bg: #060a12;
+    --code-text: #e2e8f0;
+    --code-comment: #7dd3fc;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.35);
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Sticky header + auto-generated section nav */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.site-header__inner {
+  max-width: var(--maxw); margin: 0 auto; padding: 12px 20px;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.site-header__brand { font-weight: 700; font-size: 1.05rem; white-space: nowrap; color: var(--text); }
+.site-header__brand .dot { color: var(--accent); }
+.site-nav {
+  display: flex; gap: 4px; overflow-x: auto; flex: 1; scrollbar-width: thin;
+  -ms-overflow-style: none;
+}
+.site-nav a {
+  white-space: nowrap; padding: 5px 11px; border-radius: 999px;
+  color: var(--muted); font-size: .86rem; font-weight: 500;
+}
+.site-nav a:hover { background: var(--surface-2); color: var(--text); text-decoration: none; }
+
+.rel_container { max-width: var(--maxw); margin: 0 auto; padding: 28px 20px 64px; }
+
+.rel_title {
+  text-align: center;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  font-weight: 800; letter-spacing: -.02em;
+  padding: 40px 20px 8px;
+  background: linear-gradient(180deg, var(--accent-soft), transparent);
+}
+
+.rel_section {
+  font-size: 1.35rem; font-weight: 700; letter-spacing: -.01em;
+  margin: 38px 0 14px; padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  scroll-margin-top: 88px;
+}
+.rel_section::before {
+  content: ""; display: inline-block; width: 8px; height: 8px;
+  margin-right: 10px; border-radius: 2px; background: var(--accent);
+  transform: translateY(-3px);
+}
+
+.rel_boxtext {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 22px;
+  margin-bottom: 22px;
+}
+.rel_boxtext p:first-child { margin-top: 0; }
+.rel_boxtext p:last-child { margin-bottom: 0; }
+.rel_boxtext ul { margin: 10px 0; padding-left: 22px; }
+.rel_boxtext li { margin: 4px 0; }
+.rel_boxtext h2 {
+  font-size: 1.05rem; margin: 22px 0 8px; color: var(--text);
+}
+small { color: var(--muted); }
+
+/* Code blocks (apt sources, install commands) */
+pre, .www_code {
+  background: var(--code-bg);
+  color: var(--code-text);
+  border-radius: 10px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: .86rem;
+  line-height: 1.6;
+  margin: 12px 0;
+}
+pre { white-space: pre; }
+.www_code b { color: var(--code-comment); font-weight: 600; }
+
+/* Copy-to-clipboard button injected by JS */
+.code-wrap { position: relative; }
+.copy-btn {
+  position: absolute; top: 8px; right: 8px;
+  background: rgba(255,255,255,.1); color: #e2e8f0;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 7px; padding: 4px 10px;
+  font-size: .74rem; font-family: inherit; cursor: pointer;
+  opacity: 0; transition: opacity .15s, background .15s;
+}
+.code-wrap:hover .copy-btn, .copy-btn:focus { opacity: 1; }
+.copy-btn:hover { background: rgba(255,255,255,.2); }
+.copy-btn.copied { background: #16a34a; border-color: #16a34a; color: #fff; }
+
+.rel_container > p:last-of-type { color: var(--muted); font-size: .85rem; text-align: center; }

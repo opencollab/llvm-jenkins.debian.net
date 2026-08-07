@@ -2,26 +2,55 @@
 set -ex
 
 ARCH=$(uname -m)
-if test "$ARCH" = "aarch64"; then
-    echo "don't install sccache - not supported yet on this arch"
-    exit 0
-fi
 echo "Also start sccache to test"
 mkdir -p /opt/sccache
 cd /opt/sccache/
-if test ! -f sccache; then
-    # Determine which files to download based on the system architecture
-    if [ "$ARCH" = "i686" ] || [ "$ARCH" = "i386" ]; then
-        suffix=".i386"
-    elif [ "$ARCH" = "s390x" ]; then
-        suffix=".s390x"
-    else
-        suffix=""
-    fi
+# This hook runs as root, but debian/rules starts the sccache server as the
+# non-root pbuilder build user. Both write SCCACHE_ERROR_LOG=/opt/sccache/sccache.log,
+# so the log (and dir) must be writable by both. Otherwise the root-created log is
+# unwritable by the builder -> "Cannot open/write log file" -> FTBFS at configure.
+# (amd64's image happens to ship a 0666 sccache.log; make every arch self-healing.)
+chmod 777 /opt/sccache 2>/dev/null || true
+touch /opt/sccache/sccache.log 2>/dev/null && chmod 666 /opt/sccache/sccache.log 2>/dev/null || true
+# Re-download if the binary is missing, empty (a truncated/interrupted prior
+# download leaves a 0-byte stub on the persistent s390x host), not runnable, or
+# present-but-broken: a stale build whose ELF interpreter is gone runs as exit
+# 127 "not found" despite being non-empty and +x, so the size/+x tests alone
+# keep it and FTBFS. `--version` is the liveness probe -- it execs the binary
+# (exercising the loader -> 127 if the interpreter/arch is wrong) and prints the
+# version in milliseconds without touching the server. Must be invoked as
+# `./sccache` (file stem "sccache"): under any other name sccache assumes it is
+# a compiler masquerade, treats `--version` as a compile arg and self-probes
+# with `-vV` -- which is why this binary is always named exactly sccache.
+# Wrap in `timeout` so a hang can never wedge the hook.
+if test ! -s sccache || test ! -x sccache || ! timeout 30 ./sccache --version >/dev/null 2>&1; then
+    rm -f sccache
+    # Map the system architecture to the upstream release triple.
+    # mozilla/sccache ships *static* musl binaries for x86_64/aarch64/i686, so
+    # those need no runtime libs. s390x is the exception: its musl build is
+    # dynamically linked against /lib/ld-musl-s390x.so.1, which the glibc build
+    # chroot does NOT ship -> "not found" (127). Use the s390x *gnu* build, whose
+    # interpreter (/lib/ld64.so.1) and NEEDED libs (libgcc_s, libm, libc) are all
+    # present in the chroot.
+    case "$ARCH" in
+        x86_64)          triple="x86_64-unknown-linux-musl" ;;
+        aarch64)         triple="aarch64-unknown-linux-musl" ;;
+        i686 | i386)     triple="i686-unknown-linux-musl" ;;
+        s390x)           triple="s390x-unknown-linux-gnu" ;;
+        *)
+            echo "no sccache binary available for arch $ARCH"
+            exit 0
+            ;;
+    esac
 
-    time wget -O sccache --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/sccache$suffix
-    time wget -O libssl.so.1.1 --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libssl.so.1.1$suffix
-    time wget -O libcrypto.so.1.1 --no-check-certificate https://github.com/opencollab/llvm-jenkins.debian.net/raw/master/libcrypto.so.1.1$suffix
+    # Download the latest sccache release from GitHub.
+    TAG=$(wget -qO- --no-check-certificate https://api.github.com/repos/mozilla/sccache/releases/latest \
+        | grep -m1 '"tag_name"' | cut -d'"' -f4)
+    echo "Downloading sccache $TAG for $triple"
+    time wget -O sccache.tar.gz --no-check-certificate \
+        "https://github.com/mozilla/sccache/releases/download/$TAG/sccache-$TAG-$triple.tar.gz"
+    tar -xzf sccache.tar.gz --strip-components=1 "sccache-$TAG-$triple/sccache"
+    rm -f sccache.tar.gz
 
     chmod +x sccache
 fi
@@ -33,10 +62,10 @@ if test "$ARCH" != "s390x"; then
 else
     # we are on s390x, use a local cache
     mkdir -p /opt/sccache/cache/
-    mkdir -p /opt/sccache/cache/preprocessor
+    mkdir -p /opt/sccache/cache/preprocessor ~/.cache/sccache/
     export SCCACHE_DIR=/opt/sccache/cache/
     export SCCACHE_DIRECT=true
-    chmod 777 /opt/sccache/cache/preprocessor /opt/sccache/cache/
+    chmod 777 /opt/sccache/cache/preprocessor $SCCACHE_DIR ~/.cache/sccache/
 fi
 export SCCACHE_VERBOSE_STATS=1
 SCCACHE_LOG=sccache=debug SCCACHE_ERROR_LOG=sccache.log LD_LIBRARY_PATH=/opt/sccache/ /opt/sccache/sccache --show-stats || { exit_status=$?; true; }

@@ -6,11 +6,11 @@ set -e -v
 # If USE_SCRIPT=1 is set, use llvm.sh to install the packages
 
 DEBIAN_DISTRO="buster bullseye bookworm trixie unstable"
-UBUNTU_DISTRO="bionic focal jammy kinetic lunar mantic noble oracular plucky questing"
+UBUNTU_DISTRO="bionic focal jammy kinetic lunar mantic noble oracular plucky questing resolute"
 
-DISTRO="$DEBIAN_DISTRO $UBUNTU_DISTRO plucky quokka questing"
-VERSION="10 11 12 13 14 15 16 17 18 19 20 21"
-VERSION_NEXT="22"
+DISTRO="$DEBIAN_DISTRO $UBUNTU_DISTRO quokka"
+VERSION="10 11 12 13 14 15 16 17 18 19 20 21 22 23"
+VERSION_NEXT="24"
 
 if test $# -eq 1; then
     JOB_NAME=$1
@@ -208,7 +208,10 @@ for d in $DISTRO; do
 
     echo "
          set -e
-         apt install -y wget gnupg git cmake g++ lsb-release software-properties-common
+         apt install -y wget gnupg git cmake g++ lsb-release
+         if apt-cache show software-properties-common &>/dev/null; then
+             apt install -y software-properties-common
+         fi
          wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
     " > $d-script.sh
 
@@ -262,11 +265,40 @@ for d in $DISTRO; do
     fi
     echo "
      set -e -v
+     # Find lit. llvm-N-tools ships it as bin/lit (and /usr/bin/lit-N) since
+     # LLVM 21; up to LLVM 20 it was the unwrapped build/utils/lit/lit.py.
+     LIT_CANDIDATES='/usr/lib/llvm-$v/bin/lit
+/usr/bin/lit-$v
+/usr/lib/llvm-$v/build/utils/lit/lit.py'
+     LIT_PATH=
+     for c in \$LIT_CANDIDATES; do
+         if [ -x \"\$c\" ] || [ -f \"\$c\" ]; then
+             LIT_PATH=\$c
+             break
+         fi
+     done
+     if [ -z \"\$LIT_PATH\" ]; then
+         LIT_PATH=\$(find /usr/lib/llvm-$v -name 'lit.py' -o -name 'lit' -type f 2>/dev/null | head -1)
+     fi
+     if [ -z \"\$LIT_PATH\" ]; then
+         LIT_PATH=\$(command -v lit 2>/dev/null || true)
+     fi
+     if [ -z \"\$LIT_PATH\" ]; then
+         echo 'ERROR: lit not found for LLVM $v'
+         echo \"Tried: \$LIT_CANDIDATES, a find under /usr/lib/llvm-$v, and the system PATH\"
+         echo 'Contents of /usr/lib/llvm-$v/bin and /usr/bin/lit*:'
+         ls -l /usr/lib/llvm-$v/bin/ | grep -i lit || true
+         ls -l /usr/bin/lit* || true
+         dpkg -l 'llvm-$v-tools' 'python3-lit' || true
+         echo 'Make sure llvm-$v-tools or python3-lit is installed'
+         exit 1
+     fi
+     echo \"Using lit: \$LIT_PATH\"
      rm -rf check
      git clone https://github.com/opencollab/llvm-toolchain-integration-test-suite.git check
      cd check
      mkdir build && cd build &&
-     cmake -DLIT=/usr/lib/llvm-$v/build/utils/lit/lit.py \
+     cmake -DLIT=\$LIT_PATH \
           -DCLANG_BINARY=/usr/bin/clang-$v \
           -DCLANGD_BINARY=/usr/bin/clangd-$v \
           -DCLANGXX_BINARY=/usr/bin/clang++-$v \

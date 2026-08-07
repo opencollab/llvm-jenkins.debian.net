@@ -1,6 +1,16 @@
 #!/bin/sh
 
 set -ex
+
+# For bullseye (archived), we need to update sources first
+if grep -q "bullseye" /etc/apt/sources.list; then
+    # Update to use archive.debian.org for bullseye
+    sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /etc/apt/sources.list
+    sed -i 's|http://cloudfront.debian.net//debian|http://archive.debian.org/debian|g' /etc/apt/sources.list
+    sed -i 's|http://security.debian.org/debian-security|http://archive.debian.org/debian-security|g' /etc/apt/sources.list
+    apt-get update
+fi
+
 apt-get install --assume-yes --no-install-recommends lsb-release wget time
 DIST=$(lsb_release -sc)
 ID=$(lsb_release -is| awk '{print tolower($0)}')
@@ -24,3 +34,15 @@ if test "$DIST" = "bionic" -a $LLVM_VERSION -ge 14; then
     apt update
     apt-get install g++-7 --assume-yes --no-install-recommends
 fi
+
+if test "$DIST" = "jammy" -a $LLVM_VERSION -ge 21 -a "$(arch)" = "s390x"; then
+    apt-get install --assume-yes --no-install-recommends gnupg ca-certificates software-properties-common
+    add-apt-repository -y main restricted universe multiverse
+    apt update
+    # Add apt.llvm.org repository for LLVM packages including lld on s390x
+    wget --no-check-certificate -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
+    echo "deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy main" >> /etc/apt/sources.list.d/llvm.list
+    apt update
+    apt-cache policy lld
+fi
+
