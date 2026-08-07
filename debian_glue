@@ -143,3 +143,30 @@ if [ "$(dpkg --print-architecture 2>/dev/null)" = "s390x" ] \
         echo "WARNING: could not mount /srv/repository - the final deploy will bail out"
     fi
 fi
+
+# The arm64 agents are provisioned per build (random-suffix names, workspace
+# under /tmp) and /srv/repository comes up root-owned (2026-08-04..08): the
+# build succeeds but every publish-step reprepro call dies with
+# "Error 13 creating lock file '/srv/repository/<suite>/db/lockfile':
+# Permission denied!". The real fix is the agent image; until that lands,
+# hand the tree to the build user here, before the build starts. Checks the
+# per-suite db/ dirs too, in case only the subtree is root-owned.
+if [ "$(dpkg --print-architecture 2>/dev/null)" = "arm64" ] \
+   && [ -d /srv/repository ]; then
+    need_chown=no
+    [ -w /srv/repository ] || need_chown=yes
+    for d in /srv/repository/*/db; do
+        if [ -d "$d" ] && [ ! -w "$d" ]; then
+            need_chown=yes
+        fi
+    done
+    if [ "$need_chown" = "yes" ]; then
+        echo "WARNING: /srv/repository is not writable by $(id -un); attempting to chown it"
+        if sudo -n chown -R "$(id -un):" /srv/repository; then
+            echo "INFO: chowned /srv/repository to $(id -un)"
+        else
+            echo "WARNING: could not chown /srv/repository - the publish step will fail"
+        fi
+    fi
+    unset need_chown
+fi

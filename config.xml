@@ -110,6 +110,9 @@ su - jenkins -c &quot;cd ~jenkins/llvm-jenkins.debian.net.git &amp;&amp; git sta
           <machineType>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/zones/europe-west1-c/machineTypes/c4a-standard-32</machineType>
           <numExecutorsStr>1</numExecutorsStr>
           <startupScript>if [ &quot;$(id -u jenkins)&quot; != 1001 ]; then c=$(getent passwd 1001 | cut -d: -f1); [ -n &quot;$c&quot; ] &amp;&amp; [ &quot;$c&quot; != jenkins ] &amp;&amp; usermod -u 1991 &quot;$c&quot;; usermod -u 1001 jenkins; fi
+# /srv/repository comes up root-owned on these ephemeral agents, so every
+# publish-step reprepro call dies on db/lockfile: Permission denied (2026-08).
+mkdir -p /srv/repository &amp;&amp; chown -R jenkins: /srv/repository
 su - jenkins -c &quot;cd ~jenkins/llvm-jenkins.debian.net.git &amp;&amp; git stash &amp;&amp; git pull &amp;&amp; git stash apply&quot;</startupScript>
           <startupScriptExitReporterLinux>curl -s -X PUT -H &quot;Metadata-Flavor: Google&quot; \
   &quot;http://metadata.google.internal/computeMetadata/v1/instance/guest-attributes/startup-script/status&quot; \
