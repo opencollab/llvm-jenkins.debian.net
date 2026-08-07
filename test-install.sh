@@ -67,14 +67,20 @@ for d in $DISTRO; do
         echo "Create $d chroot"
         sudo debootstrap $d $d.chroot $MIRROR
     fi
-    if test ! -e $0.chroot/proc/uptime; then
+    if test ! -e $d.chroot/proc/uptime; then
         sudo mount -t proc /proc $d.chroot/proc || true
     fi
-    if test ! -e $0.chroot/dev/shm; then
+    if test ! -e $d.chroot/dev/shm; then
         sudo mount --bind /dev/shm "$d.chroot/dev/shm" || true
     fi
-    if test ! -e $0.chroot/dev/pts; then
+    if test ! -e $d.chroot/dev/pts; then
         sudo mount --bind /dev/pts "$d.chroot/dev/pts" || true
+    fi
+    # libomp needs /sys/devices/system/cpu/*/topology to discover the CPU
+    # topology on arches whose /proc/cpuinfo has no "physical id" (arm64,
+    # s390x); without it the openmp tests die on an affinity assertion.
+    if test ! -e $d.chroot/sys/devices; then
+        sudo mount -t sysfs sysfs "$d.chroot/sys" || true
     fi
 done
 

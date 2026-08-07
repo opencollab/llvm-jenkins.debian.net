@@ -55,6 +55,7 @@ cd -
 sudo umount install-all/*.chroot/proc || true
 sudo umount install-all/*.chroot/dev/shm || true
 sudo umount install-all/*.chroot/dev/pts || true
+sudo umount install-all/*.chroot/sys || true
 sudo /bin/rm -rf install-all || true
 </command>
       <configuredLocalRules/>
