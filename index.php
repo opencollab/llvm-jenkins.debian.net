@@ -94,6 +94,7 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Aug 9th 2026 - Ubuntu Questing (25.10) disabled (EOL)<br />
 May 20th 2026 - Ubuntu Resolute (26.04) enabled<br />
 Feb 19th 2026 - https://apt.llvm.org/llvm-snapshot.gpg.key has been updated to support sha512<br />
 Jan 10th 2026 - Snapshot becomes 23, branch 22 created<br />
@@ -287,20 +288,6 @@ deb-src http://apt.llvm.org/plucky/ llvm-toolchain-plucky-<?=$stableBranch?> mai
 
 deb http://apt.llvm.org/plucky/ llvm-toolchain-plucky-<?=$qualificationBranch?> main
 deb-src http://apt.llvm.org/plucky/ llvm-toolchain-plucky-<?=$qualificationBranch?> main
-</pre>
-
-Questing (25.10) - <small>Last update : <?=getLastUpdate("questing");?> / Revision: <?=getLastRevision("questing")?></small>
-<pre>
-deb http://apt.llvm.org/questing/ llvm-toolchain-questing main
-deb-src http://apt.llvm.org/questing/ llvm-toolchain-questing main
-# <?=$stableBranch?>
-
-deb http://apt.llvm.org/questing/ llvm-toolchain-questing-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/questing/ llvm-toolchain-questing-<?=$stableBranch?> main
-# <?=$qualificationBranch?>
-
-deb http://apt.llvm.org/questing/ llvm-toolchain-questing-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/questing/ llvm-toolchain-questing-<?=$qualificationBranch?> main
 </pre>
 
 Resolute (26.04) - <small>Last update : <?=getLastUpdate("resolute");?> / Revision: <?=getLastRevision("resolute")?></small>
