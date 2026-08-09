@@ -2,8 +2,8 @@
 function buildFullPath($distro, $pathSuffix) {
     $base = "/data/apt/www";
     return ($distro != "unstable")
-        ? "{$base}/${distro}/dists/llvm-toolchain-{$distro}{$pathSuffix}"
-        : "{$base}/${distro}/dists/llvm-toolchain{$pathSuffix}";
+        ? "{$base}/{$distro}/dists/llvm-toolchain-{$distro}{$pathSuffix}"
+        : "{$base}/{$distro}/dists/llvm-toolchain{$pathSuffix}";
 }
 
 function getLastUpdate($distro) {
