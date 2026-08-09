@@ -9,11 +9,7 @@ function buildFullPath($distro, $pathSuffix) {
 function getLastUpdate($distro) {
     $fullpath = buildFullPath($distro, "/Release");
     $handle = fopen($fullpath, "r");
-   if (!$handle) {
-        $error = error_get_last(); // Capture the last error message
-        echo "Failed to open file: $fullpath\nError: " . $error['message'];
-        return null;
-    }
+    if (!$handle) return null;
 
     while (($line = fgets($handle)) !== false) {
         if (preg_match("/^Date: (.*)/", $line, $matches)) {
