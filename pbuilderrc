@@ -99,6 +99,20 @@ elif $(echo ${UBUNTU_SUITES[@]} | grep -q $DIST); then
     # Ubuntu configuration
     MIRRORSITE="http://$UBUNTU_MIRROR/"
     COMPONENTS="main restricted universe multiverse"
+    # focal (20.04) ships debhelper 12, i.e. it provides debhelper-compat (= 12).
+    # llvm-defaults build-depends on debhelper-compat (= 13), which exists only
+    # in focal-backports (13.6ubuntu1~bpo20.04.1), so without this the build
+    # fails at pbuilder-satisfydepends with "unmet dependencies: debhelper-compat
+    # (= 13)". Adding a versioned alternative to Build-Depends cannot help:
+    # nothing in focal proper provides debhelper-compat (= 13) at all.
+    if [ "$DIST" = "focal" ]; then
+        BACKPORTS_LINE="deb $MIRRORSITE $DIST-backports $COMPONENTS"
+        if [ -n "$OTHERMIRROR" ]; then
+            OTHERMIRROR="$OTHERMIRROR | $BACKPORTS_LINE"
+        else
+            OTHERMIRROR="$BACKPORTS_LINE"
+        fi
+    fi
 else
     echo "Unknown distribution: $DIST"
     exit 1
