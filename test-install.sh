@@ -67,19 +67,22 @@ for d in $DISTRO; do
         echo "Create $d chroot"
         sudo debootstrap $d $d.chroot $MIRROR
     fi
-    if test ! -e $d.chroot/proc/uptime; then
+    # Test mountedness, not the directory: dev/shm and dev/pts exist (empty)
+    # in a fresh debootstrap chroot, so `test -e` would skip the mount and
+    # lldb then cannot open a pty ("Cannot launch ...: No such device").
+    if ! mountpoint -q $d.chroot/proc; then
         sudo mount -t proc /proc $d.chroot/proc || true
     fi
-    if test ! -e $d.chroot/dev/shm; then
+    if ! mountpoint -q $d.chroot/dev/shm; then
         sudo mount --bind /dev/shm "$d.chroot/dev/shm" || true
     fi
-    if test ! -e $d.chroot/dev/pts; then
+    if ! mountpoint -q $d.chroot/dev/pts; then
         sudo mount --bind /dev/pts "$d.chroot/dev/pts" || true
     fi
     # libomp needs /sys/devices/system/cpu/*/topology to discover the CPU
     # topology on arches whose /proc/cpuinfo has no "physical id" (arm64,
     # s390x); without it the openmp tests die on an affinity assertion.
-    if test ! -e $d.chroot/sys/devices; then
+    if ! mountpoint -q $d.chroot/sys; then
         sudo mount -t sysfs sysfs "$d.chroot/sys" || true
     fi
 done
