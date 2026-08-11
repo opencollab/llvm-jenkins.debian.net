@@ -23,6 +23,14 @@ for dsc_file in /build/*.dsc; do
         . /etc/os-release
         DIST=$(lsb_release -sc 2>/dev/null || echo "$VERSION_CODENAME")
 
+        # lsb_release is not installed yet at this point, and in a sid chroot
+        # os-release's VERSION_CODENAME carries the *testing* codename, which
+        # does not exist on apt.llvm.org; /etc/debian_version is the only file
+        # that actually says sid.
+        if grep -q '/sid$' /etc/debian_version 2>/dev/null; then
+            DIST="sid"
+        fi
+
         # Check if the required LLVM packages are available
         apt-get update
 
@@ -58,10 +66,21 @@ for dsc_file in /build/*.dsc; do
                     REPO_DIST="$DIST"
                 fi
 
-                # Add repository with trusted=yes to bypass SSL certificate issues in build environment
-                # The GPG key provides the actual security
-                echo "deb [trusted=yes] http://apt.llvm.org/$REPO_DIST/ $REPO_COMPONENT main" > /etc/apt/sources.list.d/llvm.list
-                
+                # The plain $REPO_COMPONENT suite only carries the current
+                # snapshot major; a released/qualification major lives in the
+                # versioned suite. Add every suite that actually exists —
+                # probe first, because an apt-get update 404 aborts the build.
+                # trusted=yes bypasses SSL certificate issues in the build
+                # environment; the GPG key provides the actual security.
+                : > /etc/apt/sources.list.d/llvm.list
+                for suite in "$REPO_COMPONENT" "$REPO_COMPONENT-$LLVM_VERSION"; do
+                    if wget -q --no-check-certificate --spider "https://apt.llvm.org/$REPO_DIST/dists/$suite/Release"; then
+                        echo "deb [trusted=yes] http://apt.llvm.org/$REPO_DIST/ $suite main" >> /etc/apt/sources.list.d/llvm.list
+                    else
+                        echo "W: suite $suite does not exist on apt.llvm.org/$REPO_DIST, skipping"
+                    fi
+                done
+
                 apt-get update
 
                 # Check again if packages are available
