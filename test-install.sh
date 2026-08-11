@@ -5,8 +5,8 @@ set -e -v
 # If 2 are provided, distro + version
 # If USE_SCRIPT=1 is set, use llvm.sh to install the packages
 
-DEBIAN_DISTRO="buster bullseye bookworm trixie unstable"
-UBUNTU_DISTRO="bionic focal jammy kinetic lunar mantic noble oracular plucky questing resolute"
+DEBIAN_DISTRO="bullseye bookworm trixie unstable"
+UBUNTU_DISTRO="focal jammy noble plucky resolute"
 
 DISTRO="$DEBIAN_DISTRO $UBUNTU_DISTRO quokka"
 VERSION="10 11 12 13 14 15 16 17 18 19 20 21 22 23"
@@ -102,7 +102,7 @@ for d in $DISTRO; do
     fi
 
     if echo "$UBUNTU_DISTRO" | grep -qw "$d"; then
-        # focal, groovy, etc need universe
+        # Ubuntu needs universe
         # lip6 only mirrors the x86 archive; every other arch lives on ports
         if test "$(arch)" == "x86_64" -o "$(arch)" == "i686"; then
             echo "deb http://www-ftp.lip6.fr/pub/linux/distributions/Ubuntu/ $d universe"  >> $d.list
@@ -117,17 +117,7 @@ for d in $DISTRO; do
                 continue
             fi
         fi
-        if test $v == "9" -a $d == "groovy"; then
-            continue
-        fi
-        if test $v == "9" -a $d == "hirsute"; then
-            continue
-        fi
-
         if test $v == "9" -o $v == "10" -o $v == "11"; then
-            if test "$d" == "impish"; then
-                continue
-            fi
             if test "$(arch)" == "aarch64"; then
                 # no support before 12
                 continue
@@ -169,19 +159,7 @@ for d in $DISTRO; do
                 continue
             fi
         fi
-        if test $v == "9" -a $d == "groovy"; then
-            # 9 isn't supported for this distro
-            continue
-        fi
-        if test $v == "9" -a $d == "hirsute"; then
-            # 9 isn't supported for this distro
-            continue
-        fi
         if test $v == "9" -o $v == "10" -o $v == "11"; then
-            if test "$d" == "impish"; then
-                # 9, 10 and 11 aren't supported for this distro
-                continue
-            fi
             if test "$(arch)" == "aarch64"; then
                 # no support before 12
                 continue
@@ -192,9 +170,6 @@ for d in $DISTRO; do
         if test -z "$USE_SCRIPT"; then
 
             PKG="$PKG clang-$v clangd-$v clang-tidy-$v clang-format-$v clang-tools-$v llvm-$v-dev lld-$v lldb-$v llvm-$v-tools libomp-$v-dev libc++-$v-dev libc++abi-$v-dev libclang-common-$v-dev libclang-$v-dev libclang-cpp$v-dev liblldb-$v-dev libpolly-$v-dev"
-            if test "$d" == "bionic" -o "$d" == "buster"; then
-                PKG="$PKG python"
-            fi
             if test $v -gt 13; then
                 # libclang-rt isn't package for -13
                 PKG="$PKG libclang-rt-$v-dev"
@@ -225,15 +200,7 @@ for d in $DISTRO; do
          wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
     " > $d-script.sh
 
-    if test "$d" == bionic; then
-        echo "
-             apt install -y software-properties-common
-             add-apt-repository -y ppa:ubuntu-toolchain-r/test
-             apt install -y libstdc++-8-dev
-        " >> $d-script.sh
-    fi
-
-    if test "$d" == "jammy" -o "$d" == "buster"; then
+    if test "$d" == "jammy"; then
         PKG="$PKG zlib1g-dev"
     fi
 
