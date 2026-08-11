@@ -7,10 +7,10 @@ STABLE_CODENAME="bookworm"
 
 # List of Debian suites.
 DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME
-    "unstable" "testing" "stable" "buster" "bullseye" "bookworm" "trixie")
+    "unstable" "testing" "stable" "bullseye" "bookworm" "trixie")
 
 # List of Ubuntu suites. Update these when needed.
-UBUNTU_SUITES=("resolute" "questing" "plucky" "oracular" "noble" "mantic" "lunar" "kinetic" "jammy" "impish" "hirsute" "groovy" "focal" "eoan" "disco" "cosmic" "bionic" "artful" "zesty" "yakkety" "xenial" "wily" "vivid" "utopic" "trusty" "saucy" "raring" "quantal" "precise" "oneiric" "natty" "lucid" "hardy")
+UBUNTU_SUITES=("resolute" "plucky" "noble" "jammy" "focal")
 
 
 # Mirrors to use. Update these to your preferred mirror.
@@ -56,7 +56,7 @@ if test "$DIST" == "bookworm"; then
   DEBIAN_MIRROR="deb.debian.org/"
 fi
 
-if test "$DIST" == "buster" -o "$DIST" == "bullseye"; then
+if test "$DIST" == "bullseye"; then
   DEBIAN_MIRROR="archive.debian.org/"
 fi
 
@@ -80,12 +80,7 @@ BUILDPLACE="/var/cache/pbuilder/build/"
 mkdir -p "$BUILDRESULT" "$APTCACHE" 2>/dev/null || true
 
 # Use apt as resolver
-PBUILDERSATISFYDEPENDSCMD=/usr/lib/pbuilder/
-if [[ $DIST = xenial ]]; then
-	PBUILDERSATISFYDEPENDSCMD+=pbuilder-satisfydepends-aptitude
-else
-	PBUILDERSATISFYDEPENDSCMD+=pbuilder-satisfydepends-apt
-fi
+PBUILDERSATISFYDEPENDSCMD=/usr/lib/pbuilder/pbuilder-satisfydepends-apt
 
 if $(echo ${DEBIAN_SUITES[@]} | grep -q $DIST); then
     # Debian configuration
@@ -138,10 +133,4 @@ if [ "${ARCH}" == 'i386' -o "${ARCH}" == 'amd64' -o "${ARCH}" == 's390x' -o "${A
    BINDMOUNTS="${BINDMOUNTS} /opt/sccache/"
 fi
 
-# ubuntu is moving to zstd. So, make sure it is installed in the pbuilder
-case "$DIST" in
-    impish)
-        EXTRAPACKAGES="$EXTRAPACKAGES zstd"
-        ;;
-esac
 BUILDSUBDIR="source"
