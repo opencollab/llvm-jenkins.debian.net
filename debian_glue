@@ -170,3 +170,17 @@ if [ "$(dpkg --print-architecture 2>/dev/null)" = "arm64" ] \
     fi
     unset need_chown
 fi
+
+# Real arch list for generate-reprepro-codename, whose "amd64 i386 source" default
+# built a stanza rejecting the s390x .debs (2026-08-12, focal-23). i386: Debian only.
+if [ -z "${ARCHITECTURES:-}" ] && [ -n "${REPOSITORY:-}" ]; then
+    case "$(basename "$REPOSITORY")" in
+        unstable|buster|bullseye|bookworm|trixie)
+            ARCHITECTURES="amd64 i386 source s390x arm64"
+            ;;
+        *)
+            ARCHITECTURES="amd64 source s390x arm64"
+            ;;
+    esac
+    echo "INFO: ARCHITECTURES set to [$ARCHITECTURES] for $REPOSITORY"
+fi

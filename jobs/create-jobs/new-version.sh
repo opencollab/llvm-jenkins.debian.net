@@ -24,7 +24,6 @@ echo "in jenkins, reload the configuration"
 echo "create a group"
 echo "Disable the old version when ready"
 D=$(echo "{$DISTROS}"| sed -e "s| |,|g")
-echo "do it also on arm64 & s390x machines"
 echo "Update test-install.sh & update the build node (image-update.sh)"
 echo "Update llvm.sh"
 echo "Update https://github.com/opencollab/llvm-toolchain-integration-test-suite/edit/main/.github/workflows/CI.yml"
@@ -78,4 +77,13 @@ Tracking: minimal
 SignWith: 6084F3CF814B57C1CF12EFD515CF4D18AF4F7421
 " >> /srv/repository/$d/conf/distributions
     fi
+done
+
+# The stanzas above land on the master only; without them a node's publish step dies
+# with "has the wrong architecture to add it to ...". Push them out, as new-distro.sh does.
+echo "run the following commands on jenkins-master to give the other nodes the new codename:"
+for d in "${DISTROS[@]}"; do
+    for h in "jenkins@10.132.0.38" "llvm-jenkins-s390x-1.debian.net"; do
+        echo "scp /srv/repository/$d/conf/distributions $h:/srv/repository/$d/conf/distributions"
+    done
 done
