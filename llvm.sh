@@ -26,6 +26,7 @@ error() {
 usage() {
     set +x
     echo "Usage: $0 [llvm_major_version] [all] [OPTIONS]" 1>&2
+    echo -e "latest\t\t\tInstall the latest available major version." 1>&2
     echo -e "all\t\t\tInstall all packages." 1>&2
     echo -e "-n=code_name\t\tSpecifies the distro codename, for example bionic" 1>&2
     echo -e "-h\t\t\tPrints this help." 1>&2
@@ -200,16 +201,17 @@ LLVM_VERSION_PATTERNS[21]="-21"
 LLVM_VERSION_PATTERNS[22]="-22"
 LLVM_VERSION_PATTERNS[23]="-23"
 LLVM_VERSION_PATTERNS[24]=""
+LLVM_VERSION_PATTERNS["latest"]=""
 
 if [ ! ${LLVM_VERSION_PATTERNS[$LLVM_VERSION]+_} ]; then
     error "This script does not support LLVM version $LLVM_VERSION" 3
 fi
 
-LLVM_VERSION_STRING=${LLVM_VERSION_PATTERNS[$LLVM_VERSION]}
+LLVM_REPO_SUFFIX=${LLVM_VERSION_PATTERNS[$LLVM_VERSION]}
 
 # join the repository name
 if [[ -n "${CODENAME}" ]]; then
-    REPO_NAME="deb ${BASE_URL}/${CODENAME}/  llvm-toolchain${LINKNAME}${LLVM_VERSION_STRING} main"
+    REPO_NAME="deb ${BASE_URL}/${CODENAME}/  llvm-toolchain${LINKNAME}${LLVM_REPO_SUFFIX} main"
     # check if the repository exists for the distro and version
     if ! check_url "${BASE_URL}/${CODENAME}/"; then
         if [[ -n "${CODENAME_FROM_ARGUMENTS}" ]]; then
@@ -250,7 +252,7 @@ elif [[ $is_new_debian -eq 1 ]]; then
 Architectures: amd64 arm64
 Signed-By: /etc/apt/trusted.gpg.d/apt.llvm.org.asc
 URIs: ${BASE_URL}/${CODENAME}/
-Suites: llvm-toolchain${LINKNAME}${LLVM_VERSION_STRING}
+Suites: llvm-toolchain${LINKNAME}${LLVM_REPO_SUFFIX}
 Components: main"
     echo "$TEXT_TO_ADD" | tee -a "$SOURCES_FILE" > /dev/null
 else
@@ -258,6 +260,12 @@ else
 fi
 
 apt-get update
+
+if [[ "$LLVM_VERSION" == "latest" ]]; then
+    LLVM_VERSION=$(apt-cache search '^llvm-[0-9]+$' | awk '{print $1}' | sed "s/llvm-//" | sort -n | tail -n 1)
+    echo "Installing version=$LLVM_VERSION"
+fi
+
 PKG="clang-$LLVM_VERSION lldb-$LLVM_VERSION lld-$LLVM_VERSION clangd-$LLVM_VERSION"
 if [[ $ALL -eq 1 ]]; then
     # same as in test-install.sh
