@@ -8,7 +8,7 @@
     <string>jenkins.diagnostics.ControllerExecutorsAgents</string>
     <string>hudson.diagnosis.ReverseProxySetupMonitor</string>
   </disabledAdministrativeMonitors>
-  <version>2.568</version>
+  <version>2.579</version>
   <numExecutors>1</numExecutors>
   <mode>EXCLUSIVE</mode>
   <useSecurity>true</useSecurity>
@@ -18,6 +18,7 @@
   <securityRealm class="hudson.security.HudsonPrivateSecurityRealm">
     <disableSignup>true</disableSignup>
     <enableCaptcha>false</enableCaptcha>
+    <passwordComplexityRule class="jenkins.security.NonePasswordComplexityRule"/>
   </securityRealm>
   <disableRememberMe>true</disableRememberMe>
   <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
@@ -30,7 +31,7 @@ Contact: sylvestre@debian.org</systemMessage>
   <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
   <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
   <clouds>
-    <com.google.jenkins.plugins.computeengine.ComputeEngineCloud plugin="google-compute-engine@4.814.v531c47649a_5f">
+    <com.google.jenkins.plugins.computeengine.ComputeEngineCloud plugin="google-compute-engine@4.820.v2209fb_d7a_261">
       <name>gce-gce</name>
       <instanceCap>10</instanceCap>
       <projectId>secret-envoy-319113</projectId>
@@ -60,7 +61,7 @@ su - jenkins -c &quot;cd ~jenkins/llvm-jenkins.debian.net.git &amp;&amp; git sta
           <runAsUser>jenkins</runAsUser>
           <bootDiskType>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/zones/europe-west1-b/diskTypes/pd-ssd</bootDiskType>
           <bootDiskAutoDelete>true</bootDiskAutoDelete>
-          <bootDiskSourceImageName>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/global/images/image-debian-node-166</bootDiskSourceImageName>
+          <bootDiskSourceImageName>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/global/images/image-debian-node-168</bootDiskSourceImageName>
           <bootDiskSourceImageProject>secret-envoy-319113</bootDiskSourceImageProject>
           <networkConfiguration class="com.google.jenkins.plugins.computeengine.AutofilledNetworkConfiguration">
             <network>https://www.googleapis.com/compute/v1/projects/secret-envoy-319113/global/networks/default</network>
@@ -81,6 +82,7 @@ su - jenkins -c &quot;cd ~jenkins/llvm-jenkins.debian.net.git &amp;&amp; git sta
           <minimumNumberOfInstances>0</minimumNumberOfInstances>
           <minimumNumberOfSpareInstances>0</minimumNumberOfSpareInstances>
           <template></template>
+          <fallbackZones></fallbackZones>
           <createSnapshot>false</createSnapshot>
           <diskMapping></diskMapping>
           <remoteFs></remoteFs>
@@ -88,12 +90,20 @@ su - jenkins -c &quot;cd ~jenkins/llvm-jenkins.debian.net.git &amp;&amp; git sta
           <sshPort>22</sshPort>
           <googleLabels>
             <entry>
+              <string>jenkins_server_url</string>
+              <string>https___llvm-jenkins_debian_net_</string>
+            </entry>
+            <entry>
               <string>jenkins_cloud_id</string>
               <string>17df13f8-c117-4760-86a2-3dfec8c9477b</string>
             </entry>
             <entry>
               <string>jenkins_config_name</string>
               <string>deb</string>
+            </entry>
+            <entry>
+              <string>jenkins_cloud_name</string>
+              <string>gce</string>
             </entry>
           </googleLabels>
           <numExecutors>1</numExecutors>
@@ -149,6 +159,7 @@ su - jenkins -c &quot;cd ~jenkins/llvm-jenkins.debian.net.git &amp;&amp; git sta
           <minimumNumberOfInstances>0</minimumNumberOfInstances>
           <minimumNumberOfSpareInstances>0</minimumNumberOfSpareInstances>
           <template></template>
+          <fallbackZones></fallbackZones>
           <createSnapshot>false</createSnapshot>
           <diskMapping></diskMapping>
           <remoteFs></remoteFs>
@@ -156,12 +167,20 @@ su - jenkins -c &quot;cd ~jenkins/llvm-jenkins.debian.net.git &amp;&amp; git sta
           <sshPort>22</sshPort>
           <googleLabels>
             <entry>
+              <string>jenkins_server_url</string>
+              <string>https___llvm-jenkins_debian_net_</string>
+            </entry>
+            <entry>
               <string>jenkins_cloud_id</string>
               <string>17df13f8-c117-4760-86a2-3dfec8c9477b</string>
             </entry>
             <entry>
               <string>jenkins_config_name</string>
               <string>arm64</string>
+            </entry>
+            <entry>
+              <string>jenkins_cloud_name</string>
+              <string>gce</string>
             </entry>
           </googleLabels>
           <numExecutors>1</numExecutors>
@@ -432,28 +451,6 @@ su - jenkins -c &quot;cd ~jenkins/llvm-jenkins.debian.net.git &amp;&amp; git sta
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>18</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="java.lang.String$CaseInsensitiveComparator" reference="../../../listView[9]/jobNames/comparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*18.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
       <name>Ubuntu Noble</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
@@ -476,50 +473,6 @@ su - jenkins -c &quot;cd ~jenkins/llvm-jenkins.debian.net.git &amp;&amp; git sta
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>19</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="java.lang.String$CaseInsensitiveComparator" reference="../../../listView[9]/jobNames/comparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*19.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
-      <name>20</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="java.lang.String$CaseInsensitiveComparator" reference="../../../listView[9]/jobNames/comparator"/>
-      </jobNames>
-      <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*20.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
       <name>Ubuntu Plucky</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
@@ -538,32 +491,6 @@ su - jenkins -c &quot;cd ~jenkins/llvm-jenkins.debian.net.git &amp;&amp; git sta
         <hudson.views.BuildButtonColumn/>
       </columns>
       <includeRegex>.*plucky.*</includeRegex>
-      <recurse>false</recurse>
-    </listView>
-    <listView>
-      <owner class="hudson" reference="../../.."/>
-      <name>21</name>
-      <filterExecutors>false</filterExecutors>
-      <filterQueue>false</filterQueue>
-      <properties class="hudson.model.View$PropertyList"/>
-      <jobNames>
-        <comparator class="java.lang.String$CaseInsensitiveComparator" reference="../../../listView[9]/jobNames/comparator"/>
-      </jobNames>
-      <jobFilters>
-        <hudson.views.StatusFilter>
-          <statusFilter>true</statusFilter>
-        </hudson.views.StatusFilter>
-      </jobFilters>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
-      <includeRegex>.*21.*</includeRegex>
       <recurse>false</recurse>
     </listView>
     <listView>
@@ -656,6 +583,28 @@ su - jenkins -c &quot;cd ~jenkins/llvm-jenkins.debian.net.git &amp;&amp; git sta
         <hudson.views.BuildButtonColumn/>
       </columns>
       <includeRegex>.*resolute.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>23</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="java.lang.String$CaseInsensitiveComparator" reference="../../../listView[9]/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <includeRegex>.*23.*</includeRegex>
       <recurse>false</recurse>
     </listView>
   </views>
