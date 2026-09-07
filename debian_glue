@@ -184,3 +184,141 @@ if [ -z "${ARCHITECTURES:-}" ] && [ -n "${REPOSITORY:-}" ]; then
     esac
     echo "INFO: ARCHITECTURES set to [$ARCHITECTURES] for $REPOSITORY"
 fi
+
+# ---------------------------------------------------------------------------
+# cowbuilder base self-heal (2026-09-03, llvm-toolchain-noble-23-binaries/s390x
+# build 31). The refresh of an existing base died before any build started:
+#
+#   I: redirecting /dev/ptmx to /dev/pts/ptmx
+#   mount: /var/cache/pbuilder/build/cow.N/dev/ptmx: mount point does not exist.
+#   E: pbuilder update failed
+#   E: Something (/var/cache/pbuilder/build/cow.N/proc) is still mounted under
+#      /var/cache/pbuilder/build/cow.N; unmount and remove ... manually
+#   Error: Failed to update cowbuilder base /var/cache/pbuilder/base-noble-s390x.cow.
+#
+# Two things went wrong, and the glue turned both into a hard failure:
+#   * base-<dist>-<arch>.cow had lost /dev/ptmx, which pbuilder bind-mounts
+#     unless it is a symlink. Deterministic: every later build hits it too.
+#   * the failed run left /proc & co. mounted under build/cow.N, so cowbuilder
+#     could not remove its copy, and neither can clean-pbuilder.sh.
+#
+# Upstream's cowbuilder_init() runs the create/update exactly once and calls
+# bailout on any error. This file is sourced by checks_and_defaults(), i.e.
+# after that function is defined and before it runs, so it can be wrapped:
+#   1. preflight: unmount + remove build/cow.N copies whose cowbuilder is gone,
+#      and put back the device nodes pbuilder expects in the base;
+#   2. run the upstream create/update in a subshell so its bailout does not
+#      end the job; on failure, preflight again and retry once;
+#   3. if the *update* still fails, delete the base and let the upstream code
+#      recreate it from scratch with the current pbuilderrc (this also covers
+#      a base whose baked-in sources.list points at a mirror that dropped the
+#      suite -- the buster case of 2026-08-11);
+#   4. only then fail, with the same message as before so the dashboard's
+#      cowbuilder-create rule keeps matching.
+# Everything under /var/cache/pbuilder is root's, hence sudo -n throughout;
+# when sudo is refused the step is skipped with a warning and the upstream
+# behaviour is what remains.
+
+_cow_sudo() {
+    sudo -n "$@"
+}
+
+# Print the mount points below $1, deepest first (they must go in that order).
+_cow_mounts_under() {
+    awk -v root="$1" '$2 == root || index($2, root "/") == 1 { print $2 }' /proc/mounts \
+        | sort -r
+}
+
+# $1 = build/cow.N directory. True when the cowbuilder that owns it (its PID
+# is the N) is no longer running. Ask as root: on a node with proc hidepid,
+# jenkins cannot see root's processes and would otherwise declare every live
+# build stale.
+_cow_dir_is_stale() {
+    local pid=${1##*/cow.}
+    case "$pid" in
+        ''|*[!0-9]*) return 1 ;;
+    esac
+    if _cow_sudo test -d "/proc/$pid" 2>/dev/null; then
+        return 1
+    fi
+    # Belt and braces: never touch a copy that changed in the last 10 minutes.
+    [ -z "$(find "$1" -maxdepth 0 -mmin -10 2>/dev/null)" ]
+}
+
+cowbuilder_preflight() {
+    local base cow mnt failed d
+
+    # 1. Leftovers of an aborted create/update/build.
+    for cow in /var/cache/pbuilder/build/cow.*; do
+        [ -d "$cow" ] || continue
+        _cow_dir_is_stale "$cow" || continue
+        failed=""
+        for mnt in $(_cow_mounts_under "$cow"); do
+            echo "WARNING: $mnt is still mounted from a dead cowbuilder run; unmounting"
+            _cow_sudo umount "$mnt" 2>/dev/null \
+                || _cow_sudo umount -l "$mnt" 2>/dev/null \
+                || failed=1
+        done
+        if [ -n "$failed" ]; then
+            echo "WARNING: could not unmount everything under $cow, leaving it alone"
+            continue
+        fi
+        echo "INFO: removing stale build copy $cow"
+        _cow_sudo rm -rf "$cow" || echo "WARNING: could not remove $cow"
+    done
+
+    # 2. Device nodes in the base image. pbuilder itself creates /dev/console
+    # when missing but bind-mounts /dev/pts/ptmx over /dev/ptmx and fails when
+    # the target is gone -- a symlink is what it skips, and what devtmpfs
+    # ships anyway. Path mirrors dist_and_arch_settings() in the glue.
+    base=${COWBUILDER_BASE:-/var/cache/pbuilder/base-${COWBUILDER_DIST:-${distribution:-}}-${architecture:-$(dpkg --print-architecture 2>/dev/null)}.cow}
+    [ -d "$base/dev" ] || return 0
+    if [ ! -e "$base/dev/ptmx" ] && [ ! -L "$base/dev/ptmx" ]; then
+        echo "WARNING: $base/dev/ptmx is missing; recreating it as a symlink to pts/ptmx"
+        _cow_sudo ln -s pts/ptmx "$base/dev/ptmx" \
+            || echo "WARNING: could not create $base/dev/ptmx - the base refresh will fail"
+    fi
+    for d in pts shm; do
+        if [ ! -d "$base/dev/$d" ]; then
+            echo "WARNING: $base/dev/$d is missing; recreating it"
+            _cow_sudo mkdir -p "$base/dev/$d" \
+                || echo "WARNING: could not create $base/dev/$d"
+        fi
+    done
+    # /dev/null is what every hook and apt run needs first; the rest pbuilder
+    # can live without.
+    if [ ! -c "$base/dev/null" ]; then
+        echo "WARNING: $base/dev/null is missing; recreating it"
+        _cow_sudo rm -f "$base/dev/null" 2>/dev/null
+        _cow_sudo mknod -m 666 "$base/dev/null" c 1 3 \
+            || echo "WARNING: could not create $base/dev/null"
+    fi
+}
+
+if declare -F cowbuilder_init >/dev/null 2>&1 \
+   && ! declare -F upstream_cowbuilder_init >/dev/null 2>&1; then
+    eval "upstream_$(declare -f cowbuilder_init)"
+
+    cowbuilder_init() {
+        cowbuilder_preflight
+        # Subshell: upstream's bailout only ends the attempt, not the job. It
+        # still removes the update lock files it created, so a retry is not
+        # skipped as "already taking place".
+        ( upstream_cowbuilder_init ) && return 0
+
+        echo "WARNING: cowbuilder base create/update failed; cleaning up and retrying once"
+        cowbuilder_preflight
+        ( upstream_cowbuilder_init ) && return 0
+
+        if [ -d "${COWBUILDER_BASE}" ]; then
+            echo "WARNING: refreshing ${COWBUILDER_BASE} failed twice; rebuilding it from scratch"
+            if _cow_sudo rm -rf "${COWBUILDER_BASE}"; then
+                ( upstream_cowbuilder_init ) && return 0
+            else
+                echo "WARNING: could not remove ${COWBUILDER_BASE}"
+            fi
+            bailout 1 "Error: Failed to update cowbuilder base ${COWBUILDER_BASE}."
+        fi
+        bailout 1 "Error: Failed to create cowbuilder base ${COWBUILDER_BASE}."
+    }
+fi
