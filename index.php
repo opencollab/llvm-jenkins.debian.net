@@ -38,10 +38,10 @@ function getLastRevision($distro) {
     return null; // Return null if the version line isn't found
 }
 
-$stableBranch="21";
-$qualificationBranch="22";
-$devBranch="23";
-$isQualification=true;
+$stableBranch="22";
+$qualificationBranch="23";
+$devBranch="24";
+$isQualification=false;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,7 +90,9 @@ The main goal of this support is to improve the security and sustainability of t
 We deployed sigstore support, which makes it easier for users to verify that the packages came from us and to detect potential malicious signatures. We even contributed upstream to sigstore, helping future users of sigstore.<br />
 In parallel, we continued to ship new releases, enable new features (bolt, etc) etc.<br />
 <br />
+Aug 26th 2026 - LLVM 23.1.0 released, branch 23 is now stable<br />
 Aug 9th 2026 - Ubuntu Questing (25.10) disabled (EOL)<br />
+Jul 15th 2026 - Snapshot becomes 24, branch 23 created<br />
 May 20th 2026 - Ubuntu Resolute (26.04) enabled<br />
 Feb 19th 2026 - https://apt.llvm.org/llvm-snapshot.gpg.key has been updated to support sha512<br />
 Jan 10th 2026 - Snapshot becomes 23, branch 22 created<br />
