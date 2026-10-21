@@ -138,6 +138,42 @@ if [[ -d /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain/ || -d /tmp/tmp-$DISTRO/poo
         PKG_NAME+="-$DISTRO"
     fi
 
+    # Collect the incoming .deb set before touching the repository. The removal
+    # loop below is destructive and has no rollback: if the includedeb that
+    # follows it ends up with nothing to install, the distribution keeps only
+    # its Architecture: all packages, and clang-N along with every other
+    # arch-specific package disappears from the index until the next successful
+    # sync. The guard above accepts both pool names, so look in both instead of
+    # hardcoding one and letting an unexpanded glob reach reprepro.
+    incoming=()
+    for pool_dir in /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-snapshot /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain; do
+        test -d "$pool_dir" || continue
+        while IFS= read -r deb; do
+            incoming+=("$deb")
+        done < <(find "$pool_dir" -maxdepth 1 -type f -name '*.deb' | sort)
+    done
+
+    if [ ${#incoming[@]} -eq 0 ]; then
+        echo "ERROR: no .deb to import into $PKG_NAME, keeping the current $ARCH packages"
+        exit 1
+    fi
+
+    # _all.deb alone is not enough: the removal below only drops the
+    # arch-specific packages, so importing nothing but Architecture: all would
+    # empty the $ARCH index just the same.
+    arch_debs=0
+    for deb in "${incoming[@]}"; do
+        case "$deb" in
+            *_"$ARCH".deb) arch_debs=$((arch_debs + 1)) ;;
+        esac
+    done
+    if [ "$arch_debs" -eq 0 ]; then
+        echo "ERROR: ${#incoming[@]} .deb found for $PKG_NAME but none built for $ARCH;"
+        echo "       removing the current ones would leave the index without any"
+        exit 1
+    fi
+    echo "Importing ${#incoming[@]} package(s) into $PKG_NAME ($arch_debs for $ARCH)"
+
     # Get the list of packages (but don't get the _all packages)
     LIST=$(reprepro -A $ARCH -Vb /srv/repository/$DISTRO/  listfilter $PKG_NAME  'Architecture (!= all)' | awk '{print $2}')
     echo "Delete $LIST (existing package) on $ARCH before includedeb"
@@ -149,5 +185,11 @@ if [[ -d /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain/ || -d /tmp/tmp-$DISTRO/poo
     done
 
     # Include the deb package(s)
-    reprepro -Vb /srv/repository/$DISTRO/ includedeb $PKG_NAME /tmp/tmp-$DISTRO/pool/main/l/llvm-toolchain-snapshot/*deb
+    reprepro -Vb /srv/repository/$DISTRO/ includedeb $PKG_NAME "${incoming[@]}"
+
+    # Last chance to notice an empty $ARCH before the repository is synced out.
+    if ! reprepro -A $ARCH -b /srv/repository/$DISTRO/ listfilter $PKG_NAME 'Architecture (!= all)' | grep -q .; then
+        echo "ERROR: $PKG_NAME has no $ARCH package left after the import"
+        exit 1
+    fi
 fi
