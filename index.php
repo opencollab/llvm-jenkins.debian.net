@@ -154,16 +154,16 @@ sudo ./llvm.sh all
 Bullseye (Debian 11 - <a href="https://wiki.debian.org/DebianOldOldStable">oldoldstable</a>) - <small>Last update : <?=getLastUpdate("bullseye");?> / Revision: <?=getLastRevision("bullseye")?></small>
 <small>Save as /etc/apt/sources.list.d/llvm-toolchain-bullseye.list</small>
 <pre>
-deb [signed-by=/etc/apt/trusted.gpg.d/apt.llvm.org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
-deb-src [signed-by=/etc/apt/trusted.gpg.d/apt.llvm.org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
+deb [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
+deb-src [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
 # <?=$stableBranch?>
 
-deb [signed-by=/etc/apt/trusted.gpg.d/apt.llvm.org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$stableBranch?> main
-deb-src [signed-by=/etc/apt/trusted.gpg.d/apt.llvm.org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$stableBranch?> main
+deb [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$stableBranch?> main
+deb-src [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$stableBranch?> main
 # <?=$qualificationBranch?>
 
-deb [signed-by=/etc/apt/trusted.gpg.d/apt.llvm.org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranch?> main
-deb-src [signed-by=/etc/apt/trusted.gpg.d/apt.llvm.org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranch?> main
+deb [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranch?> main
+deb-src [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranch?> main
 </pre>
 
 Bookworm (Debian 12 - <a href="https://wiki.debian.org/DebianOldStable">oldstable</a>) - <small>Last update : <?=getLastUpdate("bookworm");?> / Revision: <?=getLastRevision("bookworm")?></small>
@@ -176,14 +176,14 @@ Components: main
 Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 # <?=$stableBranch?>
 
-Types: deb
+Types: deb deb-src
 URIs: http://apt.llvm.org/bookworm/
 Suites: llvm-toolchain-bookworm-<?=$stableBranch?>
 Components: main
 Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 # <?=$qualificationBranch?>
 
-Types: deb
+Types: deb deb-src
 URIs: http://apt.llvm.org/bookworm/
 Suites: llvm-toolchain-bookworm-<?=$qualificationBranch?>
 Components: main
@@ -200,14 +200,14 @@ Components: main
 Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 # <?=$stableBranch?>
 
-Types: deb
+Types: deb deb-src
 URIs: http://apt.llvm.org/trixie/
 Suites: llvm-toolchain-trixie-<?=$stableBranch?>
 Components: main
 Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 # <?=$qualificationBranch?>
 
-Types: deb
+Types: deb deb-src
 URIs: http://apt.llvm.org/trixie/
 Suites: llvm-toolchain-trixie-<?=$qualificationBranch?>
 Components: main
@@ -220,21 +220,21 @@ Forky / sid (Debian 14 - <a href="https://wiki.debian.org/DebianUnstable">unstab
 <pre>
 Types: deb deb-src
 URIs: http://apt.llvm.org/unstable/
-Suites: llvm-toolchain-unstable
+Suites: llvm-toolchain
 Components: main
 Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 # <?=$stableBranch?>
 
-Types: deb
+Types: deb deb-src
 URIs: http://apt.llvm.org/unstable/
-Suites: llvm-toolchain-unstable-<?=$stableBranch?>
+Suites: llvm-toolchain-<?=$stableBranch?>
 Components: main
 Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 # <?=$qualificationBranch?>
 
-Types: deb
+Types: deb deb-src
 URIs: http://apt.llvm.org/unstable/
-Suites: llvm-toolchain-unstable-<?=$qualificationBranch?>
+Suites: llvm-toolchain-<?=$qualificationBranch?>
 Components: main
 Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 </pre>
@@ -263,17 +263,18 @@ deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranc
 </pre>
 -->
 Focal (20.04) LTS - <small>Last update : <?=getLastUpdate("focal");?> / Revision: <?=getLastRevision("focal")?></small>
+<small>Save as /etc/apt/sources.list.d/llvm-toolchain-focal.list</small>
 <pre>
-deb [signed-by=/etc/apt/trusted.gpg.d/apt.llvm.org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal main
-deb-src [signed-by=/etc/apt/trusted.gpg.d/apt.llvm.org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal main
+deb [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal main
+deb-src [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal main
 # <?=$stableBranch?>
 
-deb [signed-by=/etc/apt/trusted.gpg.d/apt.llvm.org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$stableBranch?> main
-deb-src [signed-by=/etc/apt/trusted.gpg.d/apt.llvm.org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$stableBranch?> main
+deb [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$stableBranch?> main
+deb-src [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$stableBranch?> main
 # <?=$qualificationBranch?>
 
-deb [signed-by=/etc/apt/trusted.gpg.d/apt.llvm.org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
-deb-src [signed-by=/etc/apt/trusted.gpg.d/apt.llvm.org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
+deb [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
+deb-src [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
 </pre>
 
 Jammy (22.04) LTS - <small>Last update : <?=getLastUpdate("jammy");?> / Revision: <?=getLastRevision("jammy")?></small>
@@ -301,19 +302,18 @@ Components: main
 Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 # <?=$stableBranch?>
 
-Types: deb
+Types: deb deb-src
 URIs: http://apt.llvm.org/noble/
 Suites: llvm-toolchain-noble-<?=$stableBranch?>
 Components: main
 Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 # <?=$qualificationBranch?>
 
-Types: deb
+Types: deb deb-src
 URIs: http://apt.llvm.org/noble/
 Suites: llvm-toolchain-noble-<?=$qualificationBranch?>
 Components: main
 Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
-
 </pre>
 
 Plucky (25.04) - <small>Last update : <?=getLastUpdate("plucky");?> / Revision: <?=getLastRevision("plucky")?></small>
@@ -326,14 +326,14 @@ Components: main
 Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 # <?=$stableBranch?>
 
-Types: deb
+Types: deb deb-src
 URIs: http://apt.llvm.org/plucky/
 Suites: llvm-toolchain-plucky-<?=$stableBranch?>
 Components: main
 Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 # <?=$qualificationBranch?>
 
-Types: deb
+Types: deb deb-src
 URIs: http://apt.llvm.org/plucky/
 Suites: llvm-toolchain-plucky-<?=$qualificationBranch?>
 Components: main
@@ -350,14 +350,14 @@ Components: main
 Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 # <?=$stableBranch?>
 
-Types: deb
+Types: deb deb-src
 URIs: http://apt.llvm.org/resolute/
 Suites: llvm-toolchain-resolute-<?=$stableBranch?>
 Components: main
 Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 # <?=$qualificationBranch?>
 
-Types: deb
+Types: deb deb-src
 URIs: http://apt.llvm.org/resolute/
 Suites: llvm-toolchain-resolute-<?=$qualificationBranch?>
 Components: main
