@@ -309,6 +309,11 @@ deb-src http://apt.llvm.org/resolute/ llvm-toolchain-resolute-<?=$qualificationB
 <p class="www_code">
         apt-get install clang-format clang-tidy clang-tools clang clangd libc++-dev libc++1 libc++abi-dev libc++abi1 libclang-dev libclang1 liblldb-dev libllvm-ocaml-dev libomp-dev libomp5 lld lldb llvm-dev llvm-runtime llvm python3-clang
 </p>
+<br />
+<b>"Unable to satisfy dependencies"?</b> If a branch is also in your distribution, apt may mix sources. Select the apt.llvm.org release:
+<p class="www_code">
+        apt-get install -t llvm-toolchain-<?=$devBranch?> clang-<?=$devBranch?> libclang-<?=$devBranch?>-dev llvm-<?=$devBranch?>-dev
+</p>
 </div>
 
 <a href="#" id="install_stable" style="visibility: hidden">install_stable</a>
