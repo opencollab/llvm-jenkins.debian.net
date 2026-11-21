@@ -312,7 +312,7 @@ deb-src http://apt.llvm.org/resolute/ llvm-toolchain-resolute-<?=$qualificationB
 <br />
 <b>"Unable to satisfy dependencies"?</b> If a branch is also in your distribution, apt may mix sources. Select the apt.llvm.org release:
 <p class="www_code">
-        apt-get install -t llvm-toolchain-<?=$devBranch?> clang-<?=$devBranch?> libclang-<?=$devBranch?>-dev llvm-<?=$devBranch?>-dev
+        apt-get install -t llvm-toolchain-<?=$qualificationBranch?> clang-<?=$qualificationBranch?> libclang-<?=$qualificationBranch?>-dev llvm-<?=$qualificationBranch?>-dev
 </p>
 </div>
 
