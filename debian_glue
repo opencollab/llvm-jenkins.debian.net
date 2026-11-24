@@ -208,7 +208,9 @@ fi
 #   1. preflight: unmount + remove build/cow.N copies whose cowbuilder is gone,
 #      and put back the device nodes pbuilder expects in the base;
 #   2. run the upstream create/update in a subshell so its bailout does not
-#      end the job; on failure, preflight again and retry once;
+#      end the job; on failure, preflight again and retry once. Upstream sets
+#      the global $pbuilderrc in there, which cowbuilder_run() needs later
+#      (set -u: "pbuilderrc: unbound variable"), so it is handed back out;
 #   3. if the *update* still fails, delete the base and let the upstream code
 #      recreate it from scratch with the current pbuilderrc (this also covers
 #      a base whose baked-in sources.list points at a mirror that dropped the
@@ -295,6 +297,18 @@ cowbuilder_preflight() {
     fi
 }
 
+# One upstream cowbuilder_init in a subshell, copying the $pbuilderrc it
+# created back into this shell on success.
+_cow_attempt() {
+    local state rc
+    state=$(mktemp) || return 1
+    ( upstream_cowbuilder_init && printf '%s' "${pbuilderrc:-}" > "$state" )
+    rc=$?
+    [ $rc -eq 0 ] && [ -s "$state" ] && pbuilderrc=$(cat "$state")
+    rm -f "$state"
+    return $rc
+}
+
 if declare -F cowbuilder_init >/dev/null 2>&1 \
    && ! declare -F upstream_cowbuilder_init >/dev/null 2>&1; then
     eval "upstream_$(declare -f cowbuilder_init)"
@@ -304,16 +318,16 @@ if declare -F cowbuilder_init >/dev/null 2>&1 \
         # Subshell: upstream's bailout only ends the attempt, not the job. It
         # still removes the update lock files it created, so a retry is not
         # skipped as "already taking place".
-        ( upstream_cowbuilder_init ) && return 0
+        _cow_attempt && return 0
 
         echo "WARNING: cowbuilder base create/update failed; cleaning up and retrying once"
         cowbuilder_preflight
-        ( upstream_cowbuilder_init ) && return 0
+        _cow_attempt && return 0
 
         if [ -d "${COWBUILDER_BASE}" ]; then
             echo "WARNING: refreshing ${COWBUILDER_BASE} failed twice; rebuilding it from scratch"
             if _cow_sudo rm -rf "${COWBUILDER_BASE}"; then
-                ( upstream_cowbuilder_init ) && return 0
+                _cow_attempt && return 0
             else
                 echo "WARNING: could not remove ${COWBUILDER_BASE}"
             fi
