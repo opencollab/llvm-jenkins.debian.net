@@ -152,61 +152,99 @@ sudo ./llvm.sh all
 <div class="rel_boxtext">
 
 Bullseye (Debian 11 - <a href="https://wiki.debian.org/DebianOldOldStable">oldoldstable</a>) - <small>Last update : <?=getLastUpdate("bullseye");?> / Revision: <?=getLastRevision("bullseye")?></small>
+<br /><small>Save as /etc/apt/sources.list.d/llvm-toolchain-bullseye.list</small>
 <pre>
-deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
-deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
+deb [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
+deb-src [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main
+
 # <?=$stableBranch?>
 
-deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$stableBranch?> main
+deb [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$stableBranch?> main
+deb-src [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$stableBranch?> main
+
 # <?=$qualificationBranch?>
 
-deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranch?> main
+deb [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranch?> main
+deb-src [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-<?=$qualificationBranch?> main
 </pre>
 
 Bookworm (Debian 12 - <a href="https://wiki.debian.org/DebianOldStable">oldstable</a>) - <small>Last update : <?=getLastUpdate("bookworm");?> / Revision: <?=getLastRevision("bookworm")?></small>
+<br /><small>Save as /etc/apt/sources.list.d/llvm-toolchain-bookworm.sources</small>
 <pre>
-deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm main
-deb-src http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm main
+Types: deb deb-src
+URIs: http://apt.llvm.org/bookworm/
+Suites: llvm-toolchain-bookworm
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
+
 # <?=$stableBranch?>
 
-deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$stableBranch?> main
+Types: deb deb-src
+URIs: http://apt.llvm.org/bookworm/
+Suites: llvm-toolchain-bookworm-<?=$stableBranch . PHP_EOL?>
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
+
 # <?=$qualificationBranch?>
 
-deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-<?=$qualificationBranch?> main
+Types: deb deb-src
+URIs: http://apt.llvm.org/bookworm/
+Suites: llvm-toolchain-bookworm-<?=$qualificationBranch . PHP_EOL?>
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 </pre>
 
 Trixie (Debian 13 - <a href="https://wiki.debian.org/DebianStable">stable</a>) - <small>Last update : <?=getLastUpdate("trixie");?> / Revision: <?=getLastRevision("trixie")?></small>
+<br /><small>Save as /etc/apt/sources.list.d/llvm-toolchain-trixie.sources</small>
 <pre>
-deb http://apt.llvm.org/trixie/ llvm-toolchain-trixie main
-deb-src http://apt.llvm.org/trixie/ llvm-toolchain-trixie main
+Types: deb deb-src
+URIs: http://apt.llvm.org/trixie/
+Suites: llvm-toolchain-trixie
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
+
 # <?=$stableBranch?>
 
-deb http://apt.llvm.org/trixie/ llvm-toolchain-trixie-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/trixie/ llvm-toolchain-trixie-<?=$stableBranch?> main
+Types: deb deb-src
+URIs: http://apt.llvm.org/trixie/
+Suites: llvm-toolchain-trixie-<?=$stableBranch . PHP_EOL?>
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
+
 # <?=$qualificationBranch?>
 
-deb http://apt.llvm.org/trixie/ llvm-toolchain-trixie-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/trixie/ llvm-toolchain-trixie-<?=$qualificationBranch?> main
+Types: deb deb-src
+URIs: http://apt.llvm.org/trixie/
+Suites: llvm-toolchain-trixie-<?=$qualificationBranch . PHP_EOL?>
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 </pre>
 
 Forky / sid (Debian 14 - <a href="https://wiki.debian.org/DebianUnstable">unstable</a>) - <small>Last update : <?=getLastUpdate("unstable");?> / Revision: <?=getLastRevision("unstable")?></small>
 <!--# Need Debian experimental too-->
+<br /><small>Save as /etc/apt/sources.list.d/llvm-toolchain-unstable.sources</small>
 <pre>
-deb http://apt.llvm.org/unstable/ llvm-toolchain main
-deb-src http://apt.llvm.org/unstable/ llvm-toolchain main
+Types: deb deb-src
+URIs: http://apt.llvm.org/unstable/
+Suites: llvm-toolchain
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
+
 # <?=$stableBranch?>
 
-deb http://apt.llvm.org/unstable/ llvm-toolchain-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/unstable/ llvm-toolchain-<?=$stableBranch?> main
+Types: deb deb-src
+URIs: http://apt.llvm.org/unstable/
+Suites: llvm-toolchain-<?=$stableBranch . PHP_EOL?>
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
+
 # <?=$qualificationBranch?>
 
-deb http://apt.llvm.org/unstable/ llvm-toolchain-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/unstable/ llvm-toolchain-<?=$qualificationBranch?> main
-
+Types: deb deb-src
+URIs: http://apt.llvm.org/unstable/
+Suites: llvm-toolchain-<?=$qualificationBranch . PHP_EOL?>
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 </pre>
 
 </div>
@@ -222,10 +260,12 @@ Bionic LTS (18.04) - <small>Last update : <?=getLastUpdate("bionic");?> / Revisi
 deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic main
 deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic main
 # Needs 'sudo add-apt-repository ppa:ubuntu-toolchain-r/test' for libstdc++ with C++20 support
+
 # <?=$stableBranch?>
 
 deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$stableBranch?> main
 deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$stableBranch?> main
+
 # <?=$qualificationBranch?>
 
 deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranch?> main
@@ -233,73 +273,115 @@ deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-<?=$qualificationBranc
 </pre>
 -->
 Focal (20.04) LTS - <small>Last update : <?=getLastUpdate("focal");?> / Revision: <?=getLastRevision("focal")?></small>
+<br /><small>Save as /etc/apt/sources.list.d/llvm-toolchain-focal.list</small>
 <pre>
-deb http://apt.llvm.org/focal/ llvm-toolchain-focal main
-deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal main
+deb [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal main
+deb-src [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal main
+
 # <?=$stableBranch?>
 
-deb http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$stableBranch?> main
+deb [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$stableBranch?> main
+deb-src [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$stableBranch?> main
+
 # <?=$qualificationBranch?>
 
-deb http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
+deb [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
+deb-src [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/focal/ llvm-toolchain-focal-<?=$qualificationBranch?> main
 </pre>
 
 Jammy (22.04) LTS - <small>Last update : <?=getLastUpdate("jammy");?> / Revision: <?=getLastRevision("jammy")?></small>
+<br /><small>Save as /etc/apt/sources.list.d/llvm-toolchain-jammy.list</small>
 <pre>
-deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy main
-deb-src http://apt.llvm.org/jammy/ llvm-toolchain-jammy main
+deb [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/jammy/ llvm-toolchain-jammy main
+deb-src [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/jammy/ llvm-toolchain-jammy main
+
 # <?=$stableBranch?>
 
-deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$stableBranch?> main
+deb [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$stableBranch?> main
+deb-src [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$stableBranch?> main
+
 # <?=$qualificationBranch?>
 
-deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$qualificationBranch?> main
+deb [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$qualificationBranch?> main
+deb-src [signed-by=/etc/apt/keyrings/apt_llvm_org.asc] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-<?=$qualificationBranch?> main
 </pre>
 
 Noble (24.04) - <small>Last update : <?=getLastUpdate("noble");?> / Revision: <?=getLastRevision("noble")?></small>
+<br /><small>Save as /etc/apt/sources.list.d/llvm-toolchain-noble.sources</small>
 <pre>
-deb http://apt.llvm.org/noble/ llvm-toolchain-noble main
-deb-src http://apt.llvm.org/noble/ llvm-toolchain-noble main
+Types: deb deb-src
+URIs: http://apt.llvm.org/noble/
+Suites: llvm-toolchain-noble
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
+
 # <?=$stableBranch?>
 
-deb http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$stableBranch?> main
+Types: deb deb-src
+URIs: http://apt.llvm.org/noble/
+Suites: llvm-toolchain-noble-<?=$stableBranch . PHP_EOL?>
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
+
 # <?=$qualificationBranch?>
 
-deb http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/noble/ llvm-toolchain-noble-<?=$qualificationBranch?> main
+Types: deb deb-src
+URIs: http://apt.llvm.org/noble/
+Suites: llvm-toolchain-noble-<?=$qualificationBranch . PHP_EOL?>
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 </pre>
 
 Plucky (25.04) - <small>Last update : <?=getLastUpdate("plucky");?> / Revision: <?=getLastRevision("plucky")?></small>
+<br /><small>Save as /etc/apt/sources.list.d/llvm-toolchain-plucky.sources</small>
 <pre>
-deb http://apt.llvm.org/plucky/ llvm-toolchain-plucky main
-deb-src http://apt.llvm.org/plucky/ llvm-toolchain-plucky main
+Types: deb deb-src
+URIs: http://apt.llvm.org/plucky/
+Suites: llvm-toolchain-plucky
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
+
 # <?=$stableBranch?>
 
-deb http://apt.llvm.org/plucky/ llvm-toolchain-plucky-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/plucky/ llvm-toolchain-plucky-<?=$stableBranch?> main
+Types: deb deb-src
+URIs: http://apt.llvm.org/plucky/
+Suites: llvm-toolchain-plucky-<?=$stableBranch . PHP_EOL?>
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
+
 # <?=$qualificationBranch?>
 
-deb http://apt.llvm.org/plucky/ llvm-toolchain-plucky-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/plucky/ llvm-toolchain-plucky-<?=$qualificationBranch?> main
+Types: deb deb-src
+URIs: http://apt.llvm.org/plucky/
+Suites: llvm-toolchain-plucky-<?=$qualificationBranch . PHP_EOL?>
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 </pre>
 
 Resolute (26.04) - <small>Last update : <?=getLastUpdate("resolute");?> / Revision: <?=getLastRevision("resolute")?></small>
+<br /><small>Save as /etc/apt/sources.list.d/llvm-toolchain-resolute.sources</small>
 <pre>
-deb http://apt.llvm.org/resolute/ llvm-toolchain-resolute main
-deb-src http://apt.llvm.org/resolute/ llvm-toolchain-resolute main
+Types: deb deb-src
+URIs: http://apt.llvm.org/resolute/
+Suites: llvm-toolchain-resolute
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
+
 # <?=$stableBranch?>
 
-deb http://apt.llvm.org/resolute/ llvm-toolchain-resolute-<?=$stableBranch?> main
-deb-src http://apt.llvm.org/resolute/ llvm-toolchain-resolute-<?=$stableBranch?> main
+Types: deb deb-src
+URIs: http://apt.llvm.org/resolute/
+Suites: llvm-toolchain-resolute-<?=$stableBranch . PHP_EOL?>
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
+
 # <?=$qualificationBranch?>
 
-deb http://apt.llvm.org/resolute/ llvm-toolchain-resolute-<?=$qualificationBranch?> main
-deb-src http://apt.llvm.org/resolute/ llvm-toolchain-resolute-<?=$qualificationBranch?> main
+Types: deb deb-src
+URIs: http://apt.llvm.org/resolute/
+Suites: llvm-toolchain-resolute-<?=$qualificationBranch . PHP_EOL?>
+Components: main
+Signed-By: /etc/apt/keyrings/apt_llvm_org.asc
 </pre>
 </div>
 <a href="#" id="default_pkg" style="visibility: hidden">default_pkg</a>
